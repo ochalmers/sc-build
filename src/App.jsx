@@ -1,29 +1,46 @@
-import { SystemProvider } from "./context/SystemContext";
-import { siteContent } from "./content/siteContent";
-import HeroSection from "./sections/HeroSection";
-import ColourSection from "./sections/ColourSection";
-import FlowSection from "./sections/FlowSection";
-import CloseSection from "./sections/CloseSection";
+import { Navigate, Route, Routes } from "react-router-dom";
+import DesignSystemPage from "./pages/DesignSystemPage.jsx";
+import FlowsRevisedPage from "./pages/FlowsRevisedPage.jsx";
+import InspirationPage from "./pages/InspirationPage.jsx";
+import MarketingCollateralPage from "./pages/MarketingCollateralPage.jsx";
+import PlanPage from "./pages/PlanPage.jsx";
+import PrdDesignsPage from "./pages/PrdDesignsPage.jsx";
+import PrdPrototypePage from "./pages/PrdPrototypePage.jsx";
+import ProjectSummaryPage from "./pages/ProjectSummaryPage.jsx";
+import SiteArchitecturePage from "./pages/SiteArchitecturePage.jsx";
 
 export default function App() {
   return (
-    <SystemProvider>
-      <div className="min-h-dvh bg-paper-200 text-ink-950">
-        <a href="#intro" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-lg focus:bg-ink-950 focus:px-4 focus:py-2 focus:text-paper-200">
-          Skip to content
-        </a>
+    <Routes>
+      <Route path="/" element={<ProjectSummaryPage />} />
+      <Route path="/plan" element={<PlanPage />} />
 
-        <header className="fixed top-0 left-0 right-0 z-50 px-5 py-4">
-          <img src="/Images/Logo.svg" alt="Sonocea" className="h-5 w-auto opacity-90" />
-        </header>
+      {/* PRD product surfaces */}
+      <Route path="/flows" element={<Navigate to="/flows/revised" replace />} />
+      <Route path="/flows/revised" element={<FlowsRevisedPage />} />
+      <Route path="/flows/lite" element={<Navigate to="/flows/revised" replace />} />
+      <Route path="/flows/key-screens" element={<Navigate to="/designs/prd" replace />} />
+      <Route path="/designs" element={<Navigate to="/designs/prd" replace />} />
+      <Route path="/designs/prd" element={<PrdDesignsPage />} />
+      <Route path="/prototype" element={<Navigate to="/prototype/prd" replace />} />
+      <Route path="/prototype/prd" element={<PrdPrototypePage />} />
 
-        <main className="max-w-[640px] mx-auto px-5 pt-24 pb-32">
-          <HeroSection content={siteContent} colourModes={siteContent.adaptiveColour.modes} />
-          <ColourSection content={siteContent.adaptiveColour} />
-          <FlowSection content={siteContent.flow} />
-          <CloseSection content={siteContent.next} />
-        </main>
-      </div>
-    </SystemProvider>
+      {/* Foundations — pre-reset reference */}
+      <Route path="/design-system" element={<DesignSystemPage />} />
+      <Route path="/marketing" element={<MarketingCollateralPage />} />
+      <Route path="/site-architecture" element={<SiteArchitecturePage />} />
+      <Route path="/inspiration" element={<InspirationPage />} />
+
+      {/* Legacy redirects */}
+      <Route path="/wireframes" element={<Navigate to="/flows/revised" replace />} />
+      <Route path="/wireframes/lite" element={<Navigate to="/flows/revised" replace />} />
+      <Route path="/designs/phase-1" element={<Navigate to="/designs/prd" replace />} />
+      <Route path="/designs/phase-2" element={<Navigate to="/designs/prd" replace />} />
+      <Route path="/designs/phase-3" element={<Navigate to="/designs/prd" replace />} />
+      <Route path="/designs/phase-4" element={<Navigate to="/designs/prd" replace />} />
+      <Route path="/designs/:phase" element={<Navigate to="/designs/prd" replace />} />
+      <Route path="/concepts" element={<Navigate to="/designs/prd" replace />} />
+      <Route path="/system" element={<Navigate to="/design-system" replace />} />
+    </Routes>
   );
 }

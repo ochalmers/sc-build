@@ -12,4 +12,5 @@ dist/
 
 # local tooling
 .vite/
+.paper-tmp/
 

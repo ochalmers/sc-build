@@ -1,0 +1,405 @@
+export const MARKETING_COLLATERAL_META = {
+  title: "Marketing collateral",
+  subtitle: "Launch asset checklist",
+  description:
+    "Everything needed to launch Sonocea v1 — from App Store presence and promotional video through to partner sales materials and paid advertising. Track status here as assets are briefed, produced, and approved.",
+  status: "Pre-reset reference · align with June 2026 PRDs",
+};
+
+export const COLLATERAL_PRIORITIES = {
+  P0: { label: "P0", note: "Launch blocker" },
+  P1: { label: "P1", note: "Important for launch" },
+  P2: { label: "P2", note: "Post-launch or nice-to-have" },
+};
+
+export const COLLATERAL_STATUSES = {
+  planned: { label: "Planned", tone: "muted" },
+  "in-progress": { label: "In progress", tone: "active" },
+  review: { label: "In review", tone: "review" },
+  ready: { label: "Ready", tone: "done" },
+};
+
+/** @typedef {{ id: string; title: string; description: string; formats?: string[]; specs?: string[]; deliverables?: string[]; priority: 'P0'|'P1'|'P2'; status: keyof typeof COLLATERAL_STATUSES; notes?: string }} CollateralItem */
+
+/** @typedef {{ id: string; label: string; title: string; description: string; items: CollateralItem[] }} CollateralCategory */
+
+/** @type {CollateralCategory[]} */
+export const MARKETING_COLLATERAL_CATEGORIES = [
+  {
+    id: "collateral-video",
+    label: "Video & motion",
+    title: "Video and motion assets",
+    description:
+      "Brand and product motion for the marketing site, app stores, social channels, and partner presentations.",
+    items: [
+      {
+        id: "hero-promo-video",
+        title: "Hero promotional video",
+        description:
+          "Primary brand film explaining Sonocea, SAT™, and the invite-only listener experience — for homepage hero, partner decks, and events.",
+        formats: ["16:9 master (4K)", "9:16 social cut", "Muted loop variant for web"],
+        specs: ["60–90s full cut", "15s and 30s cut-downs", "Captions / SRT", "No Session audio in public cut"],
+        deliverables: ["Master ProRes/MP4", "Web-optimised H.264", "Thumbnail stills", "Caption files"],
+        priority: "P0",
+        status: "planned",
+      },
+      {
+        id: "app-store-preview",
+        title: "App Store preview video",
+        description:
+          "Short in-app walkthrough for Apple App Store and Google Play — onboarding, library, and player without proprietary audio.",
+        formats: ["iPhone 6.7\" (1290×2796)", "Optional iPad", "Google Play preview"],
+        specs: ["15–30 seconds", "Device frame or full-bleed UI", "No voiceover required — on-screen copy OK"],
+        deliverables: ["iOS preview MP4", "Android preview MP4", "Poster frame"],
+        priority: "P0",
+        status: "planned",
+      },
+      {
+        id: "sat-explainer",
+        title: "SAT™ explainer animation",
+        description:
+          "Lightweight motion piece describing sonic augmentation science for website, onboarding adjacency, and sales.",
+        formats: ["16:9", "1:1 social", "Looping GIF / Lottie optional"],
+        specs: ["30–45 seconds", "Science-led, non-clinical claims", "Aligns with approved copy"],
+        deliverables: ["Animation master", "Web embed", "Still keyframes"],
+        priority: "P1",
+        status: "planned",
+      },
+      {
+        id: "social-cutdowns",
+        title: "Paid & organic social cut-downs",
+        description: "Short-form variants for Meta, LinkedIn, and partner co-marketing.",
+        formats: ["9:16 (Stories/Reels)", "1:1 feed", "16:9 LinkedIn"],
+        specs: ["6s bumper", "15s", "30s", "Safe zones for UI overlays"],
+        deliverables: ["Per-ratio exports", "Copy variants doc"],
+        priority: "P1",
+        status: "planned",
+      },
+    ],
+  },
+  {
+    id: "collateral-app-store",
+    label: "App stores",
+    title: "App Store and Play Store presence",
+    description:
+      "Visual and copy assets required to publish and convert on iOS and Android storefronts.",
+    items: [
+      {
+        id: "app-icon",
+        title: "App icon",
+        description: "Master icon mark for home screen and store listings — iOS and Android adaptive.",
+        formats: ["1024×1024 PNG (iOS)", "Adaptive icon layers (Android)", "Favicon / web app manifest"],
+        specs: ["No transparency on iOS master", "Readable at 29pt", "Dark and light context tests"],
+        deliverables: ["Icon master", "Platform export set", "Brand guidelines page"],
+        priority: "P0",
+        status: "planned",
+      },
+      {
+        id: "splash-screen",
+        title: "App splash / launch screen",
+        description:
+          "Native launch screen and optional motion handoff from cold start — aligns with in-app splash designs.",
+        formats: ["iOS LaunchScreen storyboard assets", "Android splash XML", "Optional Lottie"],
+        specs: ["Matches Phase 1 splash concepts", "Fast load — static minimum", "Dark primary"],
+        deliverables: ["Static assets per density", "Engineering handoff spec"],
+        priority: "P0",
+        status: "planned",
+        notes: "Hi-fi concepts exist in Phase 1 designs — production assets needed.",
+      },
+      {
+        id: "ios-screenshots",
+        title: "App Store screenshots",
+        description: "Localized screenshot sets showing core listener journeys.",
+        formats: ["6.7\" iPhone (required)", "6.5\" iPhone", "5.5\" iPhone", "iPad if supporting tablet"],
+        specs: ["5–10 screens per device class", "Device frame or full-bleed", "Caption overlays per screen"],
+        deliverables: ["EN-US set minimum", "Caption copy doc", "Figma source"],
+        priority: "P0",
+        status: "planned",
+      },
+      {
+        id: "android-screenshots",
+        title: "Google Play screenshots & feature graphic",
+        description: "Play Store visual set plus 1024×500 feature graphic.",
+        formats: ["Phone screenshots", "7\" / 10\" tablet if applicable", "Feature graphic 1024×500"],
+        specs: ["Minimum 2 screenshots", "Feature graphic — no excessive text"],
+        deliverables: ["PNG exports", "Feature graphic master"],
+        priority: "P0",
+        status: "planned",
+      },
+      {
+        id: "store-copy",
+        title: "Store listing copy",
+        description: "Title, subtitle, description, keywords, and privacy URLs for both stores.",
+        formats: ["App Store Connect", "Google Play Console"],
+        specs: ["Character limits per field", "Invite-only positioning clear", "No open signup language"],
+        deliverables: ["Copy doc (EN)", "Keyword list", "Support & privacy URLs confirmed"],
+        priority: "P0",
+        status: "planned",
+      },
+      {
+        id: "release-notes",
+        title: "Release notes template",
+        description: "What's New copy for v1.0 and subsequent update pattern.",
+        formats: ["App Store", "Google Play", "In-app optional"],
+        specs: ["Short consumer-friendly tone", "Legal review for claims"],
+        deliverables: ["v1.0 template", "Update cadence guidance"],
+        priority: "P1",
+        status: "planned",
+      },
+    ],
+  },
+  {
+    id: "collateral-brand",
+    label: "Brand & press",
+    title: "Brand identity and press kit",
+    description: "Foundational brand assets for press, partners, and consistent marketing execution.",
+    items: [
+      {
+        id: "brand-guidelines",
+        title: "Brand guidelines",
+        description: "Logo usage, colour, typography, tone of voice, and motion principles.",
+        formats: ["PDF", "Figma library link", "Web summary on marketing site"],
+        specs: ["Cover personas and behavioural modes", "SAT™ trademark usage", "Do / don't examples"],
+        deliverables: ["Guidelines PDF", "Asset download portal"],
+        priority: "P0",
+        status: "planned",
+      },
+      {
+        id: "press-kit",
+        title: "Press kit",
+        description: "Materials for journalists, investors, and clinical stakeholders.",
+        formats: ["ZIP download", "/press page on marketing site"],
+        specs: ["Company fact sheet", "Founder/exec bios", "Approved product description"],
+        deliverables: ["Hi-res logos", "Product stills", "Fact sheet PDF", "Contact pointer"],
+        priority: "P1",
+        status: "planned",
+      },
+      {
+        id: "lifestyle-imagery",
+        title: "Product & lifestyle photography",
+        description: "Premium stills aligned with persona direction — listening contexts, devices, environments.",
+        formats: ["Web hero", "Print-ready TIFF optional", "Square crops for social"],
+        specs: ["Consistent with persona deck", "Diverse representation", "No clinical setting overclaim"],
+        deliverables: ["Image bank (min. 12 selects)", "Usage rights cleared"],
+        priority: "P1",
+        status: "planned",
+        notes: "Persona deck photography can seed direction.",
+      },
+      {
+        id: "logo-lockups",
+        title: "Logo lockups & clear space",
+        description: "Primary wordmark, icon mark, co-brand templates, and partner lockup rules.",
+        formats: ["SVG", "PNG @1x/@2x/@3x", "Reversed / mono variants"],
+        deliverables: ["Master logo files", "Co-brand template", "Minimum size spec"],
+        priority: "P0",
+        status: "planned",
+      },
+    ],
+  },
+  {
+    id: "collateral-advertising",
+    label: "Advertising",
+    title: "Paid and organic advertising",
+    description: "Templates and asset sets for performance and awareness campaigns.",
+    items: [
+      {
+        id: "paid-social",
+        title: "Paid social ad sets",
+        description: "Creative templates for Meta, LinkedIn, and optional TikTok — invite and partner angles.",
+        formats: ["1080×1080", "1080×1920", "1200×628"],
+        specs: ["3–5 concept variants", "CTA: Learn more / Request access", "No Session playback"],
+        deliverables: ["Static templates", "Motion variants where briefed", "Copy matrix"],
+        priority: "P1",
+        status: "planned",
+      },
+      {
+        id: "display-banners",
+        title: "Display & programmatic banners",
+        description: "Standard IAB sizes for retargeting and partner network placements.",
+        formats: ["300×250", "728×90", "160×600", "320×50 mobile"],
+        specs: ["Lightweight KB limits", "Animated GIF max 15s optional"],
+        deliverables: ["HTML5 or static set", "Click-through to marketing site"],
+        priority: "P2",
+        status: "planned",
+      },
+      {
+        id: "clinician-b2b",
+        title: "Clinician & B2B one-pagers",
+        description: "Printable PDF for practitioner and organisational outreach.",
+        formats: ["A4 PDF", "US Letter", "Digital flip optional"],
+        specs: ["Science summary", "Provisioning model", "Partner CTA", "Legal footer"],
+        deliverables: ["Designed PDF", "Editable template for sales"],
+        priority: "P1",
+        status: "planned",
+      },
+      {
+        id: "partner-comarketing",
+        title: "Partner co-marketing toolkit",
+        description: "Assets Partners can use when promoting Sonocea to their listeners.",
+        formats: ["Email header", "Social tiles", "Waiting-room poster optional"],
+        specs: ["Co-brand rules", "Pre-approved copy blocks", "No Partner logo misuse"],
+        deliverables: ["Partner portal ZIP", "Usage guidelines"],
+        priority: "P1",
+        status: "planned",
+      },
+    ],
+  },
+  {
+    id: "collateral-digital",
+    label: "Website & social",
+    title: "Website and social share assets",
+    description: "Supporting visuals for the marketing site, email, and link previews.",
+    items: [
+      {
+        id: "og-social-share",
+        title: "Open Graph & social share images",
+        description: "Default preview images when links are shared on Slack, LinkedIn, iMessage, etc.",
+        formats: ["1200×630 OG", "Twitter/X card optional"],
+        specs: ["Title-safe zone", "Works on dark and light chat UIs"],
+        deliverables: ["Default OG", "Per-page variants if needed"],
+        priority: "P0",
+        status: "planned",
+      },
+      {
+        id: "app-store-badges",
+        title: "App Store & Google Play badges",
+        description: "Official download badges for website footer, emails, and partner materials.",
+        formats: ["SVG preferred", "PNG fallback"],
+        specs: ["Use official Apple / Google assets", "Correct clear space"],
+        deliverables: ["Badge set", "Link targets documented"],
+        priority: "P0",
+        status: "planned",
+      },
+      {
+        id: "mailing-list-visuals",
+        title: "Mailing list & access request visuals",
+        description: "Hero and inline imagery for waitlist and partner enquiry flows.",
+        formats: ["Web hero", "Email header 600px"],
+        deliverables: ["Hero image", "Confirmation email visual"],
+        priority: "P1",
+        status: "planned",
+      },
+      {
+        id: "session-artwork-marketing",
+        title: "Session artwork — marketing use",
+        description: "Curated session covers and category colours for website and ads — never full audio.",
+        formats: ["16:9 hero crops", "1:1 tiles", "Blurred / abstract variants"],
+        specs: ["12-session system from design", "Category colour logic documented"],
+        deliverables: ["Approved marketing subset", "Usage restrictions doc"],
+        priority: "P1",
+        status: "planned",
+      },
+    ],
+  },
+  {
+    id: "collateral-email",
+    label: "Email & comms",
+    title: "Email and launch communications",
+    description: "Templates for launch moment, provisioning, and ongoing listener communication.",
+    items: [
+      {
+        id: "launch-announcement",
+        title: "Launch announcement email",
+        description: "External announcement for mailing list, partners, and press contacts.",
+        formats: ["HTML email", "Plain-text fallback"],
+        specs: ["Mobile-first", "Single primary CTA", "Unsubscribe compliant"],
+        deliverables: ["HTML template", "Copy doc", "ESP test sends"],
+        priority: "P1",
+        status: "planned",
+      },
+      {
+        id: "invite-email",
+        title: "Listener invite email",
+        description: "Email sent when a Listener is provisioned — redeem code and app download.",
+        formats: ["HTML + plain text", "SMS snippet optional"],
+        specs: ["Partner white-label variant", "Clear redemption steps"],
+        deliverables: ["Admin-triggered template", "Partner-branded variant"],
+        priority: "P0",
+        status: "planned",
+      },
+      {
+        id: "partner-provisioning",
+        title: "Partner provisioning notifications",
+        description: "Emails when Partners invite listeners or bundles are assigned.",
+        formats: ["HTML email"],
+        deliverables: ["Partner notification set", "Listener-facing variant"],
+        priority: "P1",
+        status: "planned",
+      },
+    ],
+  },
+  {
+    id: "collateral-sales",
+    label: "Sales & partner",
+    title: "Sales and partner materials",
+    description: "Decks and documents for commercial conversations and pilot programmes.",
+    items: [
+      {
+        id: "partner-pitch-deck",
+        title: "Partner pitch deck",
+        description: "Sales deck for organisational and clinical partners — provisioning model and ROI framing.",
+        formats: ["16:9 Keynote/PDF", "Speaker notes"],
+        specs: ["Align with investor deck where possible", "No unreleased roadmap promises"],
+        deliverables: ["Master deck", "PDF export", "One-slide leave-behind"],
+        priority: "P1",
+        status: "planned",
+        notes: "Investor deck exists — partner variant may fork from it.",
+      },
+      {
+        id: "session-catalog",
+        title: "Session catalog one-sheet",
+        description: "Overview of Session categories, durations, and intended outcomes for partner buyers.",
+        formats: ["A4 PDF", "Web PDF download"],
+        deliverables: ["Designed one-sheet", "Category colour key"],
+        priority: "P1",
+        status: "planned",
+      },
+      {
+        id: "pilot-programme",
+        title: "Pilot programme overview",
+        description: "Document outlining pilot structure, success metrics, and onboarding for new Partners.",
+        formats: ["PDF", "Notion / web summary optional"],
+        deliverables: ["Pilot PDF", "FAQ appendix"],
+        priority: "P2",
+        status: "planned",
+      },
+    ],
+  },
+];
+
+export const MARKETING_COLLATERAL_SUMMARY = [
+  { label: "Categories", count: String(MARKETING_COLLATERAL_CATEGORIES.length) },
+  {
+    label: "Total assets",
+    count: String(MARKETING_COLLATERAL_CATEGORIES.reduce((n, c) => n + c.items.length, 0)),
+  },
+  {
+    label: "P0 launch blockers",
+    count: String(
+      MARKETING_COLLATERAL_CATEGORIES.flatMap((c) => c.items).filter((i) => i.priority === "P0").length,
+    ),
+  },
+  {
+    label: "Ready",
+    count: String(
+      MARKETING_COLLATERAL_CATEGORIES.flatMap((c) => c.items).filter((i) => i.status === "ready").length,
+    ),
+  },
+];
+
+export const MARKETING_COLLATERAL_CHAPTERS = [
+  { id: "collateral-intro", label: "Overview", shortLabel: "Overview", href: "#collateral-intro" },
+  ...MARKETING_COLLATERAL_CATEGORIES.map((cat) => ({
+    id: cat.id,
+    label: cat.label,
+    shortLabel: cat.label,
+    href: `#${cat.id}`,
+  })),
+];
+
+export const MARKETING_COLLATERAL_RELATED = [
+  { label: "Marketing site architecture", to: "/site-architecture", note: "Where collateral lives on sonocea.com" },
+  { label: "PRD designs", to: "/designs/prd", note: "Public Visitor and Mobile App hi-fi reference" },
+  { label: "Roles overview", to: "/#summary-roles", note: "Audience and tone direction" },
+  { label: "Public Visitor flows", to: "/flows/revised#revised-pv-flows-golden", note: "Discover journey wireframes" },
+];

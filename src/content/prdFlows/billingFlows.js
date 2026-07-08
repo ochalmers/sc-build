@@ -1,0 +1,56 @@
+export const billingFlows = [
+  {
+    id: "billing-site-license",
+    title: "Site license · seat pool",
+    prdScreens: "Appendix A Example 1",
+    summary: "Flat fee with included seats, overage pricing, mid-period proration.",
+    role: "admin",
+    surface: "web",
+    steps: [
+      { id: "s1", label: "Configure plan", detail: "site_license · 100 included · $8k flat.", wireframeId: "admin-partner", events: ["partner_plan_updated"] },
+      { id: "s2", label: "Seat metering", detail: "Track peak concurrent / active seats.", wireframeId: "admin-billing", events: ["seat_allocated", "seat_released"] },
+      { id: "s3", label: "Overage", detail: "$100/seat above pool; proration after day 15.", wireframeId: "admin-billing" },
+      { id: "s4", label: "Period export", detail: "included_seats, seats_used, overage_seats, fees.", wireframeId: "admin-billing", events: ["export_billing_csv"] },
+    ],
+  },
+  {
+    id: "billing-per-seat",
+    title: "Per-seat · tiered pricing",
+    prdScreens: "Appendix A Example 2",
+    summary: "Bill active seats per period with volume tiers and minimum commit.",
+    role: "admin",
+    surface: "web",
+    steps: [
+      { id: "s1", label: "Rate tiers", detail: "1–199 / 200–499 / 500+ unit pricing.", wireframeId: "admin-partner", events: ["rate_card_updated"] },
+      { id: "s2", label: "Active seat count", detail: "Billable active Listeners per period.", wireframeId: "admin-billing", events: ["usage_metered"] },
+      { id: "s3", label: "CSV export", detail: "active_seats_billed, tier_name, unit_price.", wireframeId: "partner-billing", events: ["export_billing_csv"] },
+    ],
+  },
+  {
+    id: "billing-usage-based",
+    title: "Usage-based · hours listened",
+    prdScreens: "Appendix A Example 3",
+    summary: "Tiered $/hour bands with monthly minimum commit.",
+    role: "admin",
+    surface: "web",
+    steps: [
+      { id: "s1", label: "Usage metric", detail: "hours_listened with tier bands.", wireframeId: "admin-partner" },
+      { id: "s2", label: "Meter listens", detail: "Aggregate seconds → billable hours.", wireframeId: "admin-billing", events: ["usage_metered", "play_complete"] },
+      { id: "s3", label: "Minimum commit", detail: "e.g. 2,000 unit floor per PRD example.", wireframeId: "admin-billing" },
+      { id: "s4", label: "Export", detail: "usage_units_billed, tier, subtotal.", wireframeId: "partner-billing", events: ["export_billing_csv"] },
+    ],
+  },
+  {
+    id: "billing-reconciliation",
+    title: "Billing reconciliation (~1%)",
+    prdScreens: "§16 · Appendix A",
+    summary: "Exported totals must match sampled raw events and seat snapshots.",
+    role: "admin",
+    surface: "web",
+    steps: [
+      { id: "s1", label: "Export CSV", detail: "Partner period totals.", wireframeId: "admin-billing", events: ["export_billing_csv"] },
+      { id: "s2", label: "Sample events", detail: "Cross-check UsageRecord + seat snapshots.", wireframeId: "admin-dashboard" },
+      { id: "s3", label: "Variance check", detail: "Target ≤1% per supported model.", wireframeId: "admin-billing" },
+    ],
+  },
+];

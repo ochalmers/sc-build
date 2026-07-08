@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sonocea — Spectral Style Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 48px rgba(20, 18, 40, 0.08);
+      --glow-rose: 0 0 32px rgba(255, 120, 160, 0.45);
+      --glow-violet: 0 0 36px rgba(155, 122, 255, 0.5);
+    }
+
+    [data-theme="light"] {
+      --canvas: #faf8f5;
+      --surface: #ffffff;
+      --surface-2: #f0ebe3;
+      --text: #1c1c1e;
+      --text-muted: #636366;
+      --hairline: rgba(28, 28, 30, 0.08);
+
+      --n-white: #ffffff;
+      --n-cream: #faf8f5;
+      --n-beige: #f0ebe3;
+      --n-taupe: #c9c4bc;
+      --n-ink: #2c2c2e;
+
+      --sp-rose: #e8a8b8;
+      --sp-mauve: #c9a8cf;
+      --sp-lavender: #b8a8d8;
+      --sp-periwinkle: #8ba4e8;
+      --sp-seafoam: #8fc9bc;
+      --sp-peach: #e8c4a8;
+
+      --su-terracotta: #b07a6a;
+      --su-sand: #c4a882;
+      --su-sage: #7a8f7a;
+      --su-slate: #6a7a8a;
+
+      --grad-a: linear-gradient(135deg, #f8dfe8 0%, #ddd4f4 45%, #cfe0ff 100%);
+      --grad-b: linear-gradient(135deg, #fce8d8 0%, #f0dcc8 55%, #ebe0d4 100%);
+      --grad-c: linear-gradient(145deg, #d4f0ea 0%, #e8ebe8 60%, #f4f2ee 100%);
+      --grad-d: linear-gradient(160deg, #e8dcf8 0%, #f4d8e8 70%, #faf0f4 100%);
+      --grad-e: linear-gradient(120deg, #ebe3d8 0%, #f5ebe0 50%, #faf6f0 100%);
+    }
+
+    [data-theme="dark"] {
+      --canvas: #07070c;
+      --surface: #12121a;
+      --surface-2: #1a1a24;
+      --text: #f2f2f7;
+      --text-muted: #98989f;
+      --hairline: rgba(242, 242, 247, 0.08);
+
+      --n-void: #050508;
+      --n-deep: #0d0d14;
+      --n-charcoal: #16161f;
+      --n-slate: #24242e;
+      --n-mist: #3a3a46;
+
+      --sp-rose: #ff6b9a;
+      --sp-mauve: #d868e8;
+      --sp-lavender: #9b7aff;
+      --sp-periwinkle: #5b8cff;
+      --sp-seafoam: #3ecfbe;
+      --sp-peach: #ff9f7a;
+
+      --su-terracotta: #c87868;
+      --su-sand: #d4a878;
+      --su-sage: #8aaf88;
+      --su-slate: #7a8ca0;
+
+      --grad-a: radial-gradient(120% 80% at 20% 20%, rgba(255, 90, 140, 0.35), transparent 55%),
+        radial-gradient(90% 70% at 80% 30%, rgba(120, 90, 255, 0.35), transparent 50%),
+        linear-gradient(180deg, #0a0a12 0%, #07070c 100%);
+      --grad-b: radial-gradient(100% 80% at 50% 100%, rgba(255, 160, 120, 0.28), transparent 55%),
+        linear-gradient(185deg, #0c0c14 0%, #06060a 100%);
+      --grad-c: radial-gradient(90% 70% at 10% 90%, rgba(62, 207, 190, 0.25), transparent 55%),
+        linear-gradient(175deg, #080810 0%, #050508 100%);
+      --grad-d: radial-gradient(110% 90% at 70% 10%, rgba(200, 104, 232, 0.3), transparent 55%),
+        linear-gradient(180deg, #090910 0%, #06060c 100%);
+      --grad-e: radial-gradient(80% 60% at 40% 100%, rgba(255, 180, 140, 0.22), transparent 55%),
+        linear-gradient(175deg, #0b0b12 0%, #07070c 100%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--text);
+      line-height: 1.5;
+      font-size: 15px;
+      transition: background 0.35s ease, color 0.25s ease;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 22px 80px;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    h1 {
+      margin: 8px 0 0;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .lede {
+      margin: 12px 0 0;
+      max-width: 52ch;
+      color: var(--text-muted);
+      font-size: 16px;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--hairline);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid var(--sp-periwinkle);
+      outline-offset: 2px;
+    }
+
+    section {
+      margin-top: 44px;
+    }
+
+    h2 {
+      margin: 0 0 6px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .section-note {
+      margin: 0 0 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 70ch;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+
+    .swatch {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--hairline);
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .swatch-color {
+      height: 72px;
+    }
+
+    .swatch-meta {
+      padding: 10px 12px 12px;
+      font-size: 12px;
+    }
+
+    .swatch-name {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .swatch-hex {
+      font-variant-numeric: tabular-nums;
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    .grad-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+    }
+
+    .grad-tile {
+      height: 96px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      border: 1px solid var(--hairline);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .session-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .session-card-top {
+      padding: 18px 18px 12px;
+    }
+
+    .session-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 6px;
+    }
+
+    .session-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .session-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px 16px;
+    }
+
+    .play {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-pill);
+      border: none;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--sp-periwinkle), var(--sp-lavender));
+      color: #fff;
+      font-size: 16px;
+      box-shadow: 0 10px 28px rgba(90, 120, 220, 0.35);
+    }
+
+    [data-theme="dark"] .play {
+      box-shadow: var(--glow-violet), 0 12px 36px rgba(40, 30, 80, 0.55);
+    }
+
+    .chip {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      border-radius: var(--radius-pill);
+      background: var(--surface-2);
+      color: var(--text-muted);
+    }
+
+    .wave {
+      height: 72px;
+      margin: 8px -18px -18px;
+      padding: 0 18px;
+      background: var(--grad-a);
+      opacity: 0.95;
+      mask-image: linear-gradient(to top, black 55%, transparent);
+    }
+
+    [data-theme="dark"] .session-card .wave {
+      opacity: 1;
+      background: var(--grad-a);
+      mask-image: linear-gradient(to top, black 70%, transparent);
+    }
+
+    .mood-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .mood-dot {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-pill);
+      border: 2px solid rgba(255, 255, 255, 0.55);
+      box-shadow: 0 8px 22px rgba(20, 18, 40, 0.12);
+    }
+
+    [data-theme="dark"] .mood-dot {
+      box-shadow: 0 0 22px rgba(255, 255, 255, 0.08);
+    }
+
+    .waveform {
+      height: 56px;
+      margin-top: 12px;
+      display: flex;
+      align-items: flex-end;
+      gap: 4px;
+    }
+
+    .waveform span {
+      flex: 1;
+      border-radius: 99px;
+      background: linear-gradient(180deg, var(--sp-periwinkle), var(--sp-lavender), var(--sp-rose));
+      opacity: 0.85;
+      min-height: 10px;
+    }
+
+    [data-theme="dark"] .waveform span {
+      opacity: 1;
+      filter: drop-shadow(0 0 8px rgba(155, 122, 255, 0.55));
+    }
+
+    .donut {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 12px auto 0;
+      background: conic-gradient(
+        var(--sp-rose) 0 52deg,
+        var(--sp-lavender) 52deg 118deg,
+        var(--sp-periwinkle) 118deg 200deg,
+        var(--sp-seafoam) 200deg 275deg,
+        var(--sp-peach) 275deg 360deg
+      );
+      mask: radial-gradient(farthest-side, transparent 56%, #000 58%);
+      -webkit-mask: radial-gradient(farthest-side, transparent 56%, #000 58%);
+    }
+
+    [data-theme="dark"] .donut {
+      filter: drop-shadow(0 0 18px rgba(155, 122, 255, 0.35));
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .principle {
+      padding: 14px 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--hairline);
+      background: var(--surface);
+    }
+
+    .principle strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .principle span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--hairline);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="wrap">
+    <header>
+      <div>
+        <div class="eyebrow">Sonocea design system</div>
+        <h1>Spectral palette</h1>
+        <p class="lede">
+          Soft contrast, diffuse spectrum, and atmospheric gradients—mapped for calm listening surfaces.
+          Toggle appearance to compare light and dark treatments.
+        </p>
+      </div>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">
+        Switch to dark mode
+      </button>
+    </header>
+
+    <section aria-labelledby="neutrals-heading">
+      <h2 id="neutrals-heading">Base neutrals</h2>
+      <p class="section-note" data-light-copy>
+        Light: airy surfaces stepping from white through cream into taupe; charcoal anchors text.
+      </p>
+      <p class="section-note" data-dark-copy hidden>
+        Dark: near-black through deep slate for layered depth; mist for tertiary chrome.
+      </p>
+      <div class="grid" id="neutral-swatches"></div>
+    </section>
+
+    <section aria-labelledby="spectral-heading">
+      <h2 id="spectral-heading">Spectral accents</h2>
+      <p class="section-note">
+        Controlled pastel spectrum in light mode; luminous accents with subtle glow in dark mode.
+      </p>
+      <div class="grid" id="spectral-swatches"></div>
+    </section>
+
+    <section aria-labelledby="support-heading">
+      <h2 id="support-heading">Support tones</h2>
+      <p class="section-note">Earthy anchors for labels, charts, and secondary affordances.</p>
+      <div class="grid" id="support-swatches"></div>
+    </section>
+
+    <section aria-labelledby="gradients-heading">
+      <h2 id="gradients-heading">Atmospheric gradients</h2>
+      <p class="section-note">Use as hero washes, card footers, or modal scrims—keep blur soft and transitions gradual.</p>
+      <div class="grad-grid" id="gradient-tiles"></div>
+    </section>
+
+    <section aria-labelledby="components-heading">
+      <h2 id="components-heading">Usage snapshots</h2>
+      <p class="section-note">Representative patterns for Sessions UI—not pixel-final production specs.</p>
+      <div class="demo-grid">
+        <div class="session-card">
+          <div class="session-card-top">
+            <p class="session-title" data-light-copy>Session Sanctuary</p>
+            <p class="session-title" data-dark-copy hidden>Deep Focus Journey</p>
+            <p class="session-meta">18 min · Regulation · Assigned</p>
+          </div>
+          <div class="wave" aria-hidden="true"></div>
+          <div class="session-actions">
+            <span class="chip">Listen</span>
+            <button type="button" class="play" aria-label="Play session">▶</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Mood selector</h3>
+          <p style="margin: 0; font-weight: 600">How are you feeling today?</p>
+          <div class="mood-row" id="mood-dots"></div>
+        </div>
+
+        <div class="card">
+          <h3 data-light-copy>Breath Awareness</h3>
+          <h3 data-dark-copy hidden>Resonance Flow</h3>
+          <p style="margin: 4px 0 0; font-size: 13px; color: var(--text-muted)">Spectral waveform · thin strokes</p>
+          <div class="waveform" id="wave-bars" aria-hidden="true"></div>
+        </div>
+
+        <div class="card" style="text-align: center">
+          <h3>Weekly Balance</h3>
+          <div class="donut" aria-hidden="true"></div>
+          <p style="margin: 12px 0 0; font-size: 13px; color: var(--text-muted)">Donut segments map to spectral keys</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="principles-heading">
+      <h2 id="principles-heading">Principles</h2>
+      <div class="principles">
+        <div class="principle"><strong>Soft contrast</strong><span>Comfort-first luminance relationships.</span></div>
+        <div class="principle"><strong>Spectral balance</strong><span>Spectrum appears diffuse, never noisy.</span></div>
+        <div class="principle"><strong>Adaptive expression</strong><span>Intensity follows context and state.</span></div>
+        <div class="principle"><strong>Accessible by design</strong><span>Sensory-inclusive defaults.</span></div>
+        <div class="principle"><strong>Sound translated</strong><span>Colour tracks frequency and motion.</span></div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        Preview this file via Vite at <code>/sonocea-spectral-style-guide.html</code> or open it directly in a browser.
+        Refine hex values as brand governance lands.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    const themes = {
+      light: {
+        neutrals: [
+          { name: "White", token: "--n-white", var: "--n-white" },
+          { name: "Cream", token: "Canvas / cream", var: "--n-cream" },
+          { name: "Pale beige", token: "Surface wash", var: "--n-beige" },
+          { name: "Warm taupe", token: "Secondary chrome", var: "--n-taupe" },
+          { name: "Charcoal", token: "Primary text", var: "--n-ink" },
+        ],
+        spectral: [
+          { name: "Rose", var: "--sp-rose" },
+          { name: "Mauve", var: "--sp-mauve" },
+          { name: "Lavender", var: "--sp-lavender" },
+          { name: "Periwinkle", var: "--sp-periwinkle" },
+          { name: "Seafoam", var: "--sp-seafoam" },
+          { name: "Peach", var: "--sp-peach" },
+        ],
+        support: [
+          { name: "Terracotta", var: "--su-terracotta" },
+          { name: "Sand", var: "--su-sand" },
+          { name: "Sage", var: "--su-sage" },
+          { name: "Slate", var: "--su-slate" },
+        ],
+      },
+      dark: {
+        neutrals: [
+          { name: "Void", token: "Deepest ground", var: "--n-void" },
+          { name: "Deep", token: "Page canvas", var: "--n-deep" },
+          { name: "Charcoal", token: "Raised surface", var: "--n-charcoal" },
+          { name: "Slate", token: "Inset / divider", var: "--n-slate" },
+          { name: "Mist", token: "Tertiary chrome", var: "--n-mist" },
+        ],
+        spectral: [
+          { name: "Rose glow", var: "--sp-rose" },
+          { name: "Mauve glow", var: "--sp-mauve" },
+          { name: "Lavender glow", var: "--sp-lavender" },
+          { name: "Periwinkle glow", var: "--sp-periwinkle" },
+          { name: "Seafoam glow", var: "--sp-seafoam" },
+          { name: "Peach glow", var: "--sp-peach" },
+        ],
+        support: [
+          { name: "Terracotta", var: "--su-terracotta" },
+          { name: "Sand", var: "--su-sand" },
+          { name: "Sage", var: "--su-sage" },
+          { name: "Slate", var: "--su-slate" },
+        ],
+      },
+    };
+
+    const gradients = ["--grad-a", "--grad-b", "--grad-c", "--grad-d", "--grad-e"];
+
+    function hexFromComputed(variable) {
+      return getComputedStyle(document.body).getPropertyValue(variable).trim();
+    }
+
+    function renderSwatches(theme) {
+      const neutralHost = document.getElementById("neutral-swatches");
+      const spectralHost = document.getElementById("spectral-swatches");
+      const supportHost = document.getElementById("support-swatches");
+      neutralHost.innerHTML = "";
+      spectralHost.innerHTML = "";
+      supportHost.innerHTML = "";
+
+      themes[theme].neutrals.forEach((item) => {
+        const hex = hexFromComputed(item.var);
+        neutralHost.innerHTML += `
+          <div class="swatch">
+            <div class="swatch-color" style="background:${hex}"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">${item.name}</div>
+              <div class="swatch-hex">${hex.toUpperCase()}</div>
+              <div class="swatch-hex">${item.token}</div>
+            </div>
+          </div>`;
+      });
+
+      themes[theme].spectral.forEach((item) => {
+        const hex = hexFromComputed(item.var);
+        spectralHost.innerHTML += `
+          <div class="swatch">
+            <div class="swatch-color" style="background:${hex}"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">${item.name}</div>
+              <div class="swatch-hex">${hex.toUpperCase()}</div>
+            </div>
+          </div>`;
+      });
+
+      themes[theme].support.forEach((item) => {
+        const hex = hexFromComputed(item.var);
+        supportHost.innerHTML += `
+          <div class="swatch">
+            <div class="swatch-color" style="background:${hex}"></div>
+            <div class="swatch-meta">
+              <div class="swatch-name">${item.name}</div>
+              <div class="swatch-hex">${hex.toUpperCase()}</div>
+            </div>
+          </div>`;
+      });
+    }
+
+    function renderGradients() {
+      const host = document.getElementById("gradient-tiles");
+      host.innerHTML = "";
+      gradients.forEach((g, i) => {
+        host.innerHTML += `<div class="grad-tile" style="background:var(${g})" role="img" aria-label="Atmospheric gradient ${i + 1}"></div>`;
+      });
+    }
+
+    function renderMoods() {
+      const cols = [
+        "var(--sp-rose)",
+        "var(--sp-mauve)",
+        "var(--sp-lavender)",
+        "var(--sp-periwinkle)",
+        "var(--sp-seafoam)",
+        "var(--sp-peach)",
+      ];
+      const host = document.getElementById("mood-dots");
+      host.innerHTML = cols
+        .map(
+          (c) =>
+            `<span class="mood-dot" style="background:${c}" role="presentation"></span>`
+        )
+        .join("");
+    }
+
+    function renderWaveBars() {
+      const host = document.getElementById("wave-bars");
+      const heights = [40, 62, 48, 72, 36, 56, 44, 68, 52, 34, 58, 46];
+      host.innerHTML = heights.map((h) => `<span style="height:${h}%"></span>`).join("");
+    }
+
+    const toggle = document.getElementById("theme-toggle");
+    function applyTheme(next) {
+      document.body.dataset.theme = next;
+      toggle.setAttribute("aria-pressed", next === "dark" ? "true" : "false");
+      toggle.textContent = next === "light" ? "Switch to dark mode" : "Switch to light mode";
+      document.querySelectorAll("[data-light-copy]").forEach((el) => {
+        el.hidden = next !== "light";
+      });
+      document.querySelectorAll("[data-dark-copy]").forEach((el) => {
+        el.hidden = next !== "dark";
+      });
+      renderSwatches(next);
+      renderGradients();
+    }
+
+    toggle.addEventListener("click", () => {
+      applyTheme(document.body.dataset.theme === "light" ? "dark" : "light");
+    });
+
+    renderGradients();
+    renderMoods();
+    renderWaveBars();
+    applyTheme("light");
+  </script>
+</body>
+</html>

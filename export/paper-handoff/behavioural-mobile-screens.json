@@ -1,0 +1,236 @@
+{
+  "generated": "2026-04-06T22:56:18.545Z",
+  "summary": {
+    "totalFrames": 19,
+    "structure": [
+      "Row A: Spec (480×920)",
+      "Rows B–D: Care, Regulation, Performance — each with 01 Home, 02 Intent, 03 Setup, 04 Active, 05 Post, 06 Quick (390×844)"
+    ],
+    "userStories": "Supported clinical · sensitive / overload · regulator end-of-day · consistent repeat use · post-match performance · work reset — all map to the same six templates; mode selection encodes stimulation level."
+  },
+  "modeTokenReference": {
+    "care": {
+      "label": "Care",
+      "bg": "#f8f7f5",
+      "ink": "#3a3a38",
+      "muted": "#8f8e8a",
+      "border": "rgba(23,23,22,0.055)",
+      "padX": 28,
+      "padTop": 52,
+      "gapMajor": 36,
+      "gapRow": 20,
+      "gapList": 14,
+      "btnBg": "#ebeae7",
+      "btnInk": "#3a3a38",
+      "accentBar": "rgba(55,55,60,0.35)",
+      "wave": "rgba(55,55,60,0.22)",
+      "note": "Lower contrast · more whitespace · softer borders · generous vertical rhythm"
+    },
+    "regulation": {
+      "label": "Regulation",
+      "bg": "#f0efec",
+      "ink": "#171716",
+      "muted": "#6e6d68",
+      "border": "rgba(23,23,22,0.1)",
+      "padX": 24,
+      "padTop": 48,
+      "gapMajor": 28,
+      "gapRow": 16,
+      "gapList": 12,
+      "btnBg": "#171716",
+      "btnInk": "#f7f6f3",
+      "accentBar": "rgba(23,23,22,0.45)",
+      "wave": "rgba(23,23,22,0.28)",
+      "note": "Balanced baseline — neutral contrast, stable density (system reference)"
+    },
+    "performance": {
+      "label": "Performance",
+      "bg": "#e9e8e5",
+      "ink": "#0a0a0a",
+      "muted": "#52514e",
+      "border": "rgba(23,23,22,0.14)",
+      "padX": 20,
+      "padTop": 44,
+      "gapMajor": 22,
+      "gapRow": 12,
+      "gapList": 10,
+      "btnBg": "#0a0a0a",
+      "btnInk": "#f7f6f3",
+      "accentBar": "rgba(10,10,10,0.55)",
+      "wave": "rgba(10,10,10,0.35)",
+      "note": "Clearer hierarchy · tighter spacing · stronger contrast on primary actions"
+    }
+  },
+  "frames": [
+    {
+      "id": "spec-overview",
+      "name": "Mob · Spec — Behavioural mobile system",
+      "width": 480,
+      "height": 920,
+      "source": "Design brief — sound-led behavioural system",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#ebeae7;padding:32px 36px;gap:16px;overflow:hidden;\"><img src=\"http://localhost:29979/media/Users/Builds/Sonocea/Images/Logo.svg\" alt=\"\" style=\"height:20px;width:auto;align-self:flex-start;\" /><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#6e6d68;\">Sonocea · Mobile · Behavioural system</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:22px;font-weight:500;color:#171716;line-height:1.15;\">One system · three modes</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;line-height:1.55;color:#454440;\">Care · Regulation · Performance share identical layout. Only contrast, density (spacing), and visual intensity shift — not structure, components, or typography family.</p><div style=\"display:flex;flex-direction:column;gap:10px;padding-top:8px;\"><div style=\"padding:12px 14px;border-radius:12px;border:1px solid rgba(23,23,22,0.1);background-color:rgba(255,255,255,0.5);\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;font-weight:600;color:#171716;\">Care</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#5c5a56;line-height:1.4;padding-top:4px;\">Lower contrast · more whitespace · softer borders · generous vertical rhythm</p></div><div style=\"padding:12px 14px;border-radius:12px;border:1px solid rgba(23,23,22,0.1);background-color:rgba(255,255,255,0.5);\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;font-weight:600;color:#171716;\">Regulation (baseline)</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#5c5a56;line-height:1.4;padding-top:4px;\">Balanced baseline — neutral contrast, stable density (system reference)</p></div><div style=\"padding:12px 14px;border-radius:12px;border:1px solid rgba(23,23,22,0.1);background-color:rgba(255,255,255,0.5);\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;font-weight:600;color:#171716;\">Performance</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#5c5a56;line-height:1.4;padding-top:4px;\">Clearer hierarchy · tighter spacing · stronger contrast on primary actions</p></div></div><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;line-height:1.45;color:#6e6d68;padding-top:8px;\">Scenarios: clinical supported user · sensory overload · end-of-day reset · repeat / pregnancy cadence · post-match · work reset — same six screens.</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;color:#8a8986;padding-top:12px;\">Paper: create_artboard 390×844 (screens) / 480×920 (spec) → write_html insert-children.</p></div>"
+    },
+    {
+      "id": "mob-care-home",
+      "name": "Mob · Care · 01 Home",
+      "width": 390,
+      "height": 844,
+      "source": "home · Care mode",
+      "modeNotes": "Lower contrast · more whitespace · softer borders · generous vertical rhythm",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f8f7f5;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:52px 28px 0 28px;flex-shrink:0;\"><img src=\"http://localhost:29979/media/Users/Builds/Sonocea/Images/Logo.svg\" alt=\"\" style=\"height:18px;width:auto;opacity:0.85;\" /><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Care</span></div><div style=\"display:flex;flex-direction:column;flex:1;justify-content:center;padding:0 28px 28px 28px;gap:36px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Entry</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:26px;font-weight:500;color:#3a3a38;line-height:1.12;letter-spacing:-0.02em;\">Welcome back</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;line-height:1.5;color:#8f8e8a;\">When you are ready, start a session.</p><div style=\"padding-top:20px;\"><div style=\"padding:16px 22px;border-radius:14px;background-color:#ebeae7;text-align:center;border:1px solid rgba(23,23,22,0.055);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#3a3a38;\">Begin session</span></div></div><p style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#8f8e8a;opacity:0.75;padding-top:20px;\">Quick resume appears after your first session.</p></div></div>"
+    },
+    {
+      "id": "mob-care-intent",
+      "name": "Mob · Care · 02 Intent",
+      "width": 390,
+      "height": 844,
+      "source": "intent · Care mode",
+      "modeNotes": "Lower contrast · more whitespace · softer borders · generous vertical rhythm",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f8f7f5;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:52px 28px 0 28px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#8f8e8a;\">←</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Care</span><span style=\"width:20px;\"></span></div><div style=\"display:flex;flex-direction:column;flex:1;padding:36px 28px 28px 28px;gap:28px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Intent</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:22px;font-weight:500;color:#3a3a38;line-height:1.15;\">What do you need?</p><div style=\"display:flex;flex-direction:column;gap:14px;padding-top:8px;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:18px 18px;border-radius:14px;border:1px solid rgba(23,23,22,0.055);background-color:rgba(255,255,255,0.35);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:16px;font-weight:500;color:#3a3a38;\">Relax</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#8f8e8a;\">→</span></div><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:18px 18px;border-radius:14px;border:1px solid rgba(23,23,22,0.055);background-color:rgba(255,255,255,0.35);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:16px;font-weight:500;color:#3a3a38;\">Reset</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#8f8e8a;\">→</span></div><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:18px 18px;border-radius:14px;border:1px solid rgba(23,23,22,0.055);background-color:rgba(255,255,255,0.35);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:16px;font-weight:500;color:#3a3a38;\">Focus</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#8f8e8a;\">→</span></div></div></div></div>"
+    },
+    {
+      "id": "mob-care-setup",
+      "name": "Mob · Care · 03 Setup",
+      "width": 390,
+      "height": 844,
+      "source": "setup · Care mode",
+      "modeNotes": "Lower contrast · more whitespace · softer borders · generous vertical rhythm",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f8f7f5;\"><div style=\"display:flex;flex-direction:row;align-items:center;padding:52px 28px 0 28px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#8f8e8a;\">←</span><span style=\"flex:1;text-align:center;font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Care</span><span style=\"width:20px;\"></span></div><div style=\"display:flex;flex-direction:column;flex:1;padding:36px 28px 28px 28px;gap:20px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Setup</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:20px;font-weight:500;color:#3a3a38;\">Lightweight options</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;line-height:1.45;color:#8f8e8a;\">One choice is enough to continue.</p><div style=\"padding:20px 0;gap:12px;display:flex;flex-direction:column;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#8f8e8a;\">Length</p><div style=\"height:4px;border-radius:2px;background-color:rgba(23,23,22,0.055);overflow:hidden;\"><div style=\"width:45%;height:100%;background-color:rgba(55,55,60,0.35);border-radius:2px;\"></div></div></div><div style=\"display:flex;flex-direction:row;gap:10px;flex-wrap:wrap;\"><div style=\"padding:10px 16px;border-radius:999px;border:1px solid rgba(23,23,22,0.055);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#3a3a38;\">10 min</span></div><div style=\"padding:10px 16px;border-radius:999px;border:1px solid rgba(23,23,22,0.055);background-color:rgba(255,255,255,0.4);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#3a3a38;\">20 min</span></div></div><div style=\"flex:1;\"></div><div style=\"padding:16px 22px;border-radius:14px;background-color:#ebeae7;text-align:center;border:1px solid rgba(23,23,22,0.055);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#3a3a38;\">Start</span></div></div></div>"
+    },
+    {
+      "id": "mob-care-active",
+      "name": "Mob · Care · 04 Active",
+      "width": 390,
+      "height": 844,
+      "source": "active · Care mode",
+      "modeNotes": "Lower contrast · more whitespace · softer borders · generous vertical rhythm",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f8f7f5;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:52px 28px 0 28px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Session</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Care</span></div><div style=\"display:flex;flex-direction:column;flex:1;justify-content:center;align-items:center;padding:0 28px;gap:24px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#8f8e8a;\">Sound-led · visuals support only</p><div style=\"width:100%;max-width:300px;height:120px;display:flex;flex-direction:row;align-items:flex-end;justify-content:center;gap:4px;padding:0 8px;\"><div style=\"width:5px;height:32%;background-color:rgba(55,55,60,0.22);border-radius:2px;\"></div><div style=\"width:5px;height:55%;background-color:rgba(55,55,60,0.22);border-radius:2px;\"></div><div style=\"width:5px;height:40%;background-color:rgba(55,55,60,0.22);border-radius:2px;\"></div><div style=\"width:5px;height:70%;background-color:rgba(55,55,60,0.22);border-radius:2px;\"></div><div style=\"width:5px;height:48%;background-color:rgba(55,55,60,0.22);border-radius:2px;\"></div><div style=\"width:5px;height:62%;background-color:rgba(55,55,60,0.22);border-radius:2px;\"></div><div style=\"width:5px;height:36%;background-color:rgba(55,55,60,0.22);border-radius:2px;\"></div><div style=\"width:5px;height:58%;background-color:rgba(55,55,60,0.22);border-radius:2px;\"></div><div style=\"width:5px;height:44%;background-color:rgba(55,55,60,0.22);border-radius:2px;\"></div><div style=\"width:5px;height:66%;background-color:rgba(55,55,60,0.22);border-radius:2px;\"></div></div><p style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#8f8e8a;\">Listening</p></div><div style=\"display:flex;flex-direction:row;justify-content:center;padding:0 28px 36px 28px;gap:40px;\"><div style=\"width:52px;height:52px;border-radius:50%;border:1px solid rgba(23,23,22,0.055);display:flex;align-items:center;justify-content:center;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#8f8e8a;\">‖</span></div></div></div>"
+    },
+    {
+      "id": "mob-care-post",
+      "name": "Mob · Care · 05 Post",
+      "width": 390,
+      "height": 844,
+      "source": "post · Care mode",
+      "modeNotes": "Lower contrast · more whitespace · softer borders · generous vertical rhythm",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f8f7f5;\"><div style=\"display:flex;flex-direction:row;justify-content:flex-end;padding:52px 28px 0 28px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Care</span></div><div style=\"display:flex;flex-direction:column;flex:1;justify-content:center;padding:0 28px;gap:36px;\"><div style=\"width:48px;height:48px;border-radius:50%;border:1px solid rgba(23,23,22,0.055);display:flex;align-items:center;justify-content:center;align-self:center;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:18px;font-weight:500;color:#3a3a38;\">✓</span></div><p style=\"font-family:Aeonik Pro,sans-serif;font-size:22px;font-weight:500;color:#3a3a38;text-align:center;line-height:1.2;\">Session complete</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;line-height:1.5;color:#8f8e8a;text-align:center;\">Subtle feedback only — no scores or streaks.</p><div style=\"padding-top:20px;\"><div style=\"padding:14px 20px;border-radius:14px;border:1px solid rgba(23,23,22,0.055);text-align:center;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;font-weight:500;color:#3a3a38;\">Done</span></div></div></div></div>"
+    },
+    {
+      "id": "mob-care-quick",
+      "name": "Mob · Care · 06 Quick",
+      "width": 390,
+      "height": 844,
+      "source": "quick · Care mode",
+      "modeNotes": "Lower contrast · more whitespace · softer borders · generous vertical rhythm",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f8f7f5;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:52px 28px 0 28px;\"><img src=\"http://localhost:29979/media/Users/Builds/Sonocea/Images/Logo.svg\" alt=\"\" style=\"height:18px;width:auto;opacity:0.85;\" /><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Care</span></div><div style=\"display:flex;flex-direction:column;flex:1;padding:36px 28px 28px 28px;gap:20px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#8f8e8a;\">Quick access</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:20px;font-weight:500;color:#3a3a38;\">Resume last session</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;line-height:1.45;color:#8f8e8a;\">Same structure as home — faster path for repeat use (clinical rhythm, pregnancy cadence, post-match, work reset).</p><div style=\"padding:16px 20px;border-radius:14px;border:1px solid rgba(23,23,22,0.055);background-color:rgba(255,255,255,0.35);\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#8f8e8a;\">Last · Reset · 20 min</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#3a3a38;padding-top:6px;\">Continue</p></div><div style=\"flex:1;\"></div><div style=\"padding:16px 22px;border-radius:14px;background-color:#ebeae7;text-align:center;border:1px solid rgba(23,23,22,0.055);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#3a3a38;\">Resume</span></div></div></div>"
+    },
+    {
+      "id": "mob-regulation-home",
+      "name": "Mob · Regulation · 01 Home",
+      "width": 390,
+      "height": 844,
+      "source": "home · Regulation mode",
+      "modeNotes": "Balanced baseline — neutral contrast, stable density (system reference)",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f0efec;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:48px 24px 0 24px;flex-shrink:0;\"><img src=\"http://localhost:29979/media/Users/Builds/Sonocea/Images/Logo.svg\" alt=\"\" style=\"height:18px;width:auto;opacity:0.85;\" /><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Regulation</span></div><div style=\"display:flex;flex-direction:column;flex:1;justify-content:center;padding:0 24px 24px 24px;gap:28px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Entry</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:26px;font-weight:500;color:#171716;line-height:1.12;letter-spacing:-0.02em;\">Welcome back</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;line-height:1.5;color:#6e6d68;\">When you are ready, start a session.</p><div style=\"padding-top:16px;\"><div style=\"padding:16px 22px;border-radius:14px;background-color:#171716;text-align:center;border:1px solid rgba(23,23,22,0.1);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#f7f6f3;\">Begin session</span></div></div><p style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#6e6d68;opacity:0.75;padding-top:16px;\">Quick resume appears after your first session.</p></div></div>"
+    },
+    {
+      "id": "mob-regulation-intent",
+      "name": "Mob · Regulation · 02 Intent",
+      "width": 390,
+      "height": 844,
+      "source": "intent · Regulation mode",
+      "modeNotes": "Balanced baseline — neutral contrast, stable density (system reference)",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f0efec;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:48px 24px 0 24px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#6e6d68;\">←</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Regulation</span><span style=\"width:20px;\"></span></div><div style=\"display:flex;flex-direction:column;flex:1;padding:28px 24px 24px 24px;gap:20px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Intent</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:22px;font-weight:500;color:#171716;line-height:1.15;\">What do you need?</p><div style=\"display:flex;flex-direction:column;gap:12px;padding-top:8px;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:18px 18px;border-radius:14px;border:1px solid rgba(23,23,22,0.1);background-color:rgba(255,255,255,0.35);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:16px;font-weight:500;color:#171716;\">Relax</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#6e6d68;\">→</span></div><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:18px 18px;border-radius:14px;border:1px solid rgba(23,23,22,0.1);background-color:rgba(255,255,255,0.35);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:16px;font-weight:500;color:#171716;\">Reset</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#6e6d68;\">→</span></div><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:18px 18px;border-radius:14px;border:1px solid rgba(23,23,22,0.1);background-color:rgba(255,255,255,0.35);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:16px;font-weight:500;color:#171716;\">Focus</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#6e6d68;\">→</span></div></div></div></div>"
+    },
+    {
+      "id": "mob-regulation-setup",
+      "name": "Mob · Regulation · 03 Setup",
+      "width": 390,
+      "height": 844,
+      "source": "setup · Regulation mode",
+      "modeNotes": "Balanced baseline — neutral contrast, stable density (system reference)",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f0efec;\"><div style=\"display:flex;flex-direction:row;align-items:center;padding:48px 24px 0 24px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#6e6d68;\">←</span><span style=\"flex:1;text-align:center;font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Regulation</span><span style=\"width:20px;\"></span></div><div style=\"display:flex;flex-direction:column;flex:1;padding:28px 24px 24px 24px;gap:16px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Setup</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:20px;font-weight:500;color:#171716;\">Lightweight options</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;line-height:1.45;color:#6e6d68;\">One choice is enough to continue.</p><div style=\"padding:20px 0;gap:12px;display:flex;flex-direction:column;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#6e6d68;\">Length</p><div style=\"height:4px;border-radius:2px;background-color:rgba(23,23,22,0.1);overflow:hidden;\"><div style=\"width:45%;height:100%;background-color:rgba(23,23,22,0.45);border-radius:2px;\"></div></div></div><div style=\"display:flex;flex-direction:row;gap:10px;flex-wrap:wrap;\"><div style=\"padding:10px 16px;border-radius:999px;border:1px solid rgba(23,23,22,0.1);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#171716;\">10 min</span></div><div style=\"padding:10px 16px;border-radius:999px;border:1px solid rgba(23,23,22,0.1);background-color:rgba(255,255,255,0.4);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#171716;\">20 min</span></div></div><div style=\"flex:1;\"></div><div style=\"padding:16px 22px;border-radius:14px;background-color:#171716;text-align:center;border:1px solid rgba(23,23,22,0.1);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#f7f6f3;\">Start</span></div></div></div>"
+    },
+    {
+      "id": "mob-regulation-active",
+      "name": "Mob · Regulation · 04 Active",
+      "width": 390,
+      "height": 844,
+      "source": "active · Regulation mode",
+      "modeNotes": "Balanced baseline — neutral contrast, stable density (system reference)",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f0efec;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:48px 24px 0 24px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Session</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Regulation</span></div><div style=\"display:flex;flex-direction:column;flex:1;justify-content:center;align-items:center;padding:0 24px;gap:24px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#6e6d68;\">Sound-led · visuals support only</p><div style=\"width:100%;max-width:300px;height:120px;display:flex;flex-direction:row;align-items:flex-end;justify-content:center;gap:4px;padding:0 8px;\"><div style=\"width:5px;height:32%;background-color:rgba(23,23,22,0.28);border-radius:2px;\"></div><div style=\"width:5px;height:55%;background-color:rgba(23,23,22,0.28);border-radius:2px;\"></div><div style=\"width:5px;height:40%;background-color:rgba(23,23,22,0.28);border-radius:2px;\"></div><div style=\"width:5px;height:70%;background-color:rgba(23,23,22,0.28);border-radius:2px;\"></div><div style=\"width:5px;height:48%;background-color:rgba(23,23,22,0.28);border-radius:2px;\"></div><div style=\"width:5px;height:62%;background-color:rgba(23,23,22,0.28);border-radius:2px;\"></div><div style=\"width:5px;height:36%;background-color:rgba(23,23,22,0.28);border-radius:2px;\"></div><div style=\"width:5px;height:58%;background-color:rgba(23,23,22,0.28);border-radius:2px;\"></div><div style=\"width:5px;height:44%;background-color:rgba(23,23,22,0.28);border-radius:2px;\"></div><div style=\"width:5px;height:66%;background-color:rgba(23,23,22,0.28);border-radius:2px;\"></div></div><p style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#6e6d68;\">Listening</p></div><div style=\"display:flex;flex-direction:row;justify-content:center;padding:0 24px 32px 24px;gap:40px;\"><div style=\"width:52px;height:52px;border-radius:50%;border:1px solid rgba(23,23,22,0.1);display:flex;align-items:center;justify-content:center;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#6e6d68;\">‖</span></div></div></div>"
+    },
+    {
+      "id": "mob-regulation-post",
+      "name": "Mob · Regulation · 05 Post",
+      "width": 390,
+      "height": 844,
+      "source": "post · Regulation mode",
+      "modeNotes": "Balanced baseline — neutral contrast, stable density (system reference)",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f0efec;\"><div style=\"display:flex;flex-direction:row;justify-content:flex-end;padding:48px 24px 0 24px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Regulation</span></div><div style=\"display:flex;flex-direction:column;flex:1;justify-content:center;padding:0 24px;gap:28px;\"><div style=\"width:48px;height:48px;border-radius:50%;border:1px solid rgba(23,23,22,0.1);display:flex;align-items:center;justify-content:center;align-self:center;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:18px;font-weight:500;color:#171716;\">✓</span></div><p style=\"font-family:Aeonik Pro,sans-serif;font-size:22px;font-weight:500;color:#171716;text-align:center;line-height:1.2;\">Session complete</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;line-height:1.5;color:#6e6d68;text-align:center;\">Subtle feedback only — no scores or streaks.</p><div style=\"padding-top:16px;\"><div style=\"padding:14px 20px;border-radius:14px;border:1px solid rgba(23,23,22,0.1);text-align:center;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;font-weight:500;color:#171716;\">Done</span></div></div></div></div>"
+    },
+    {
+      "id": "mob-regulation-quick",
+      "name": "Mob · Regulation · 06 Quick",
+      "width": 390,
+      "height": 844,
+      "source": "quick · Regulation mode",
+      "modeNotes": "Balanced baseline — neutral contrast, stable density (system reference)",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#f0efec;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:48px 24px 0 24px;\"><img src=\"http://localhost:29979/media/Users/Builds/Sonocea/Images/Logo.svg\" alt=\"\" style=\"height:18px;width:auto;opacity:0.85;\" /><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Regulation</span></div><div style=\"display:flex;flex-direction:column;flex:1;padding:28px 24px 24px 24px;gap:16px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#6e6d68;\">Quick access</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:20px;font-weight:500;color:#171716;\">Resume last session</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;line-height:1.45;color:#6e6d68;\">Same structure as home — faster path for repeat use (clinical rhythm, pregnancy cadence, post-match, work reset).</p><div style=\"padding:16px 20px;border-radius:14px;border:1px solid rgba(23,23,22,0.1);background-color:rgba(255,255,255,0.35);\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#6e6d68;\">Last · Reset · 20 min</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#171716;padding-top:6px;\">Continue</p></div><div style=\"flex:1;\"></div><div style=\"padding:16px 22px;border-radius:14px;background-color:#171716;text-align:center;border:1px solid rgba(23,23,22,0.1);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#f7f6f3;\">Resume</span></div></div></div>"
+    },
+    {
+      "id": "mob-performance-home",
+      "name": "Mob · Performance · 01 Home",
+      "width": 390,
+      "height": 844,
+      "source": "home · Performance mode",
+      "modeNotes": "Clearer hierarchy · tighter spacing · stronger contrast on primary actions",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#e9e8e5;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:44px 20px 0 20px;flex-shrink:0;\"><img src=\"http://localhost:29979/media/Users/Builds/Sonocea/Images/Logo.svg\" alt=\"\" style=\"height:18px;width:auto;opacity:0.85;\" /><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Performance</span></div><div style=\"display:flex;flex-direction:column;flex:1;justify-content:center;padding:0 20px 20px 20px;gap:22px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Entry</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:26px;font-weight:500;color:#0a0a0a;line-height:1.12;letter-spacing:-0.02em;\">Welcome back</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;line-height:1.5;color:#52514e;\">When you are ready, start a session.</p><div style=\"padding-top:12px;\"><div style=\"padding:16px 22px;border-radius:14px;background-color:#0a0a0a;text-align:center;border:1px solid rgba(23,23,22,0.14);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#f7f6f3;\">Begin session</span></div></div><p style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#52514e;opacity:0.75;padding-top:12px;\">Quick resume appears after your first session.</p></div></div>"
+    },
+    {
+      "id": "mob-performance-intent",
+      "name": "Mob · Performance · 02 Intent",
+      "width": 390,
+      "height": 844,
+      "source": "intent · Performance mode",
+      "modeNotes": "Clearer hierarchy · tighter spacing · stronger contrast on primary actions",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#e9e8e5;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:44px 20px 0 20px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#52514e;\">←</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Performance</span><span style=\"width:20px;\"></span></div><div style=\"display:flex;flex-direction:column;flex:1;padding:22px 20px 20px 20px;gap:14px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Intent</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:22px;font-weight:500;color:#0a0a0a;line-height:1.15;\">What do you need?</p><div style=\"display:flex;flex-direction:column;gap:10px;padding-top:8px;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:18px 18px;border-radius:14px;border:1px solid rgba(23,23,22,0.14);background-color:rgba(255,255,255,0.35);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:16px;font-weight:500;color:#0a0a0a;\">Relax</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#52514e;\">→</span></div><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:18px 18px;border-radius:14px;border:1px solid rgba(23,23,22,0.14);background-color:rgba(255,255,255,0.35);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:16px;font-weight:500;color:#0a0a0a;\">Reset</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#52514e;\">→</span></div><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:18px 18px;border-radius:14px;border:1px solid rgba(23,23,22,0.14);background-color:rgba(255,255,255,0.35);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:16px;font-weight:500;color:#0a0a0a;\">Focus</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#52514e;\">→</span></div></div></div></div>"
+    },
+    {
+      "id": "mob-performance-setup",
+      "name": "Mob · Performance · 03 Setup",
+      "width": 390,
+      "height": 844,
+      "source": "setup · Performance mode",
+      "modeNotes": "Clearer hierarchy · tighter spacing · stronger contrast on primary actions",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#e9e8e5;\"><div style=\"display:flex;flex-direction:row;align-items:center;padding:44px 20px 0 20px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;color:#52514e;\">←</span><span style=\"flex:1;text-align:center;font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Performance</span><span style=\"width:20px;\"></span></div><div style=\"display:flex;flex-direction:column;flex:1;padding:22px 20px 20px 20px;gap:12px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Setup</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:20px;font-weight:500;color:#0a0a0a;\">Lightweight options</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;line-height:1.45;color:#52514e;\">One choice is enough to continue.</p><div style=\"padding:20px 0;gap:12px;display:flex;flex-direction:column;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#52514e;\">Length</p><div style=\"height:4px;border-radius:2px;background-color:rgba(23,23,22,0.14);overflow:hidden;\"><div style=\"width:45%;height:100%;background-color:rgba(10,10,10,0.55);border-radius:2px;\"></div></div></div><div style=\"display:flex;flex-direction:row;gap:10px;flex-wrap:wrap;\"><div style=\"padding:10px 16px;border-radius:999px;border:1px solid rgba(23,23,22,0.14);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#0a0a0a;\">10 min</span></div><div style=\"padding:10px 16px;border-radius:999px;border:1px solid rgba(23,23,22,0.14);background-color:rgba(255,255,255,0.4);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#0a0a0a;\">20 min</span></div></div><div style=\"flex:1;\"></div><div style=\"padding:16px 22px;border-radius:14px;background-color:#0a0a0a;text-align:center;border:1px solid rgba(23,23,22,0.14);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#f7f6f3;\">Start</span></div></div></div>"
+    },
+    {
+      "id": "mob-performance-active",
+      "name": "Mob · Performance · 04 Active",
+      "width": 390,
+      "height": 844,
+      "source": "active · Performance mode",
+      "modeNotes": "Clearer hierarchy · tighter spacing · stronger contrast on primary actions",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#e9e8e5;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:44px 20px 0 20px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Session</span><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Performance</span></div><div style=\"display:flex;flex-direction:column;flex:1;justify-content:center;align-items:center;padding:0 20px;gap:24px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#52514e;\">Sound-led · visuals support only</p><div style=\"width:100%;max-width:300px;height:120px;display:flex;flex-direction:row;align-items:flex-end;justify-content:center;gap:4px;padding:0 8px;\"><div style=\"width:5px;height:32%;background-color:rgba(10,10,10,0.35);border-radius:2px;\"></div><div style=\"width:5px;height:55%;background-color:rgba(10,10,10,0.35);border-radius:2px;\"></div><div style=\"width:5px;height:40%;background-color:rgba(10,10,10,0.35);border-radius:2px;\"></div><div style=\"width:5px;height:70%;background-color:rgba(10,10,10,0.35);border-radius:2px;\"></div><div style=\"width:5px;height:48%;background-color:rgba(10,10,10,0.35);border-radius:2px;\"></div><div style=\"width:5px;height:62%;background-color:rgba(10,10,10,0.35);border-radius:2px;\"></div><div style=\"width:5px;height:36%;background-color:rgba(10,10,10,0.35);border-radius:2px;\"></div><div style=\"width:5px;height:58%;background-color:rgba(10,10,10,0.35);border-radius:2px;\"></div><div style=\"width:5px;height:44%;background-color:rgba(10,10,10,0.35);border-radius:2px;\"></div><div style=\"width:5px;height:66%;background-color:rgba(10,10,10,0.35);border-radius:2px;\"></div></div><p style=\"font-family:Aeonik Pro,sans-serif;font-size:13px;color:#52514e;\">Listening</p></div><div style=\"display:flex;flex-direction:row;justify-content:center;padding:0 20px 28px 20px;gap:40px;\"><div style=\"width:52px;height:52px;border-radius:50%;border:1px solid rgba(23,23,22,0.14);display:flex;align-items:center;justify-content:center;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#52514e;\">‖</span></div></div></div>"
+    },
+    {
+      "id": "mob-performance-post",
+      "name": "Mob · Performance · 05 Post",
+      "width": 390,
+      "height": 844,
+      "source": "post · Performance mode",
+      "modeNotes": "Clearer hierarchy · tighter spacing · stronger contrast on primary actions",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#e9e8e5;\"><div style=\"display:flex;flex-direction:row;justify-content:flex-end;padding:44px 20px 0 20px;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Performance</span></div><div style=\"display:flex;flex-direction:column;flex:1;justify-content:center;padding:0 20px;gap:22px;\"><div style=\"width:48px;height:48px;border-radius:50%;border:1px solid rgba(23,23,22,0.14);display:flex;align-items:center;justify-content:center;align-self:center;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:18px;font-weight:500;color:#0a0a0a;\">✓</span></div><p style=\"font-family:Aeonik Pro,sans-serif;font-size:22px;font-weight:500;color:#0a0a0a;text-align:center;line-height:1.2;\">Session complete</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;line-height:1.5;color:#52514e;text-align:center;\">Subtle feedback only — no scores or streaks.</p><div style=\"padding-top:12px;\"><div style=\"padding:14px 20px;border-radius:14px;border:1px solid rgba(23,23,22,0.14);text-align:center;\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;font-weight:500;color:#0a0a0a;\">Done</span></div></div></div></div>"
+    },
+    {
+      "id": "mob-performance-quick",
+      "name": "Mob · Performance · 06 Quick",
+      "width": 390,
+      "height": 844,
+      "source": "quick · Performance mode",
+      "modeNotes": "Clearer hierarchy · tighter spacing · stronger contrast on primary actions",
+      "html": "<div style=\"display:flex;flex-direction:column;width:100%;height:100%;flex:1;background-color:#e9e8e5;\"><div style=\"display:flex;flex-direction:row;align-items:center;justify-content:space-between;padding:44px 20px 0 20px;\"><img src=\"http://localhost:29979/media/Users/Builds/Sonocea/Images/Logo.svg\" alt=\"\" style=\"height:18px;width:auto;opacity:0.85;\" /><span style=\"font-family:Aeonik Pro,sans-serif;font-size:10px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Performance</span></div><div style=\"display:flex;flex-direction:column;flex:1;padding:22px 20px 20px 20px;gap:12px;\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:11px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#52514e;\">Quick access</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:20px;font-weight:500;color:#0a0a0a;\">Resume last session</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:14px;line-height:1.45;color:#52514e;\">Same structure as home — faster path for repeat use (clinical rhythm, pregnancy cadence, post-match, work reset).</p><div style=\"padding:16px 20px;border-radius:14px;border:1px solid rgba(23,23,22,0.14);background-color:rgba(255,255,255,0.35);\"><p style=\"font-family:Aeonik Pro,sans-serif;font-size:12px;color:#52514e;\">Last · Reset · 20 min</p><p style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#0a0a0a;padding-top:6px;\">Continue</p></div><div style=\"flex:1;\"></div><div style=\"padding:16px 22px;border-radius:14px;background-color:#0a0a0a;text-align:center;border:1px solid rgba(23,23,22,0.14);\"><span style=\"font-family:Aeonik Pro,sans-serif;font-size:15px;font-weight:500;color:#f7f6f3;\">Resume</span></div></div></div>"
+    }
+  ]
+}

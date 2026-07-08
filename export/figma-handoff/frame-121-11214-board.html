@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sonocea · Frame 121:11214 · Design Phase 2</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    html, body { margin: 0; background: #1a1a18; }
+    /* Board matches Figma frame: Frame 1486 — node 121:11214 */
+    .board {
+      width: 3731px;
+      min-height: 5082px;
+      height: 5082px;
+      background: #f2f1ed;
+      color: #171716;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      letter-spacing: -0.02em;
+      padding: 72px 88px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      overflow: hidden;
+    }
+    .row-12 {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 40px 36px;
+      align-items: start;
+    }
+    .meta-corner {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid #dcd9d2;
+      padding-bottom: 32px;
+    }
+    .meta-corner .figma {
+      font-size: 13px;
+      color: #6e6d68;
+      max-width: 720px;
+      line-height: 1.5;
+    }
+    .meta-corner .node {
+      font-family: ui-monospace, monospace;
+      font-size: 12px;
+      color: #6e6d68;
+      text-align: right;
+    }
+    .hero { flex-shrink: 0; }
+    .hero .label { font-size: 14px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #6e6d68; }
+    .hero h1 { font-size: 72px; font-weight: 500; letter-spacing: -0.035em; line-height: 1.05; margin-top: 16px; }
+    .hero .sub { font-size: 30px; font-weight: 500; color: #3a3a38; margin-top: 12px; }
+    .hero .lead { font-size: 22px; line-height: 1.45; color: #565653; max-width: 52ch; margin-top: 24px; }
+
+    .section-label {
+      font-size: 13px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: #6e6d68;
+      margin-bottom: 28px;
+    }
+
+    .palette { grid-column: 1 / 6; }
+    .row-main { flex: 1; min-height: 0; }
+    .sw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .sw { border-radius: 20px; border: 1px solid rgba(23,23,22,.12); overflow: hidden; background: #fff; }
+    .sw .c { height: 100px; }
+    .sw .t { padding: 16px 18px; font-size: 15px; }
+    .sw .name { font-weight: 600; }
+    .sw .hex { font-family: ui-monospace, monospace; font-size: 13px; color: #6e6d68; margin-top: 4px; }
+
+    .modes { grid-column: 6 / 10; display: flex; flex-direction: column; min-height: 0; }
+    .mode-cards { display: flex; flex-direction: column; gap: 20px; flex: 1; }
+    .mode {
+      flex: 1;
+      border-radius: 20px;
+      border: 1px solid #dcd9d2;
+      padding: 24px 28px;
+      background: #fff;
+    }
+    .mode h3 { font-size: 26px; font-weight: 500; margin-bottom: 8px; }
+    .mode p { font-size: 18px; line-height: 1.45; color: #565653; }
+
+    .principles { grid-column: 10 / 13; min-height: 0; }
+    .principles ul { list-style: none; padding: 0; }
+    .principles li {
+      font-size: 19px;
+      font-weight: 500;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(23,23,22,.1);
+      line-height: 1.3;
+    }
+
+    .type-row { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; flex-shrink: 0; }
+    .type-panel {
+      border-radius: 24px;
+      border: 1px solid #dcd9d2;
+      padding: 40px 44px;
+    }
+    .type-panel.light { background: #fff; }
+    .type-panel.dark { background: #171716; color: #fbfbf9; }
+    .type-panel.dark .section-label { color: #a8a8a2; }
+    .tr { margin-bottom: 40px; }
+    .tr .role { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6e6d68; margin-bottom: 10px; }
+    .type-panel.dark .tr .role { color: #a8a8a2; }
+    .display { font-size: 48px; font-weight: 500; letter-spacing: -0.035em; line-height: 1.08; }
+    .heading { font-size: 32px; font-weight: 500; letter-spacing: -0.025em; }
+    .body { font-size: 21px; line-height: 1.5; color: #3a3a38; }
+    .type-panel.dark .body { color: #cfcfca; }
+    .caption { font-size: 18px; color: #6e6d68; }
+    .type-panel.dark .caption { color: #a8a8a2; }
+
+    .mid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; flex-shrink: 0; }
+    .mid-card {
+      border-radius: 24px;
+      border: 1px solid #dcd9d2;
+      background: #fff;
+      padding: 40px 44px;
+    }
+    .mid-card h3 { font-size: 22px; font-weight: 500; margin-bottom: 16px; }
+    .mid-card p, .mid-card li { font-size: 20px; line-height: 1.45; color: #565653; }
+    .spacing-bars { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-end; margin-top: 20px; }
+    .sb { text-align: center; }
+    .sb .bar { background: #171716; border-radius: 4px; margin: 0 auto 8px; }
+    .sb span { font-family: ui-monospace, monospace; font-size: 14px; color: #6e6d68; }
+
+    .components { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; flex: 1; min-height: 0; }
+    .col { border-radius: 24px; border: 1px solid #dcd9d2; padding: 40px; display: flex; flex-direction: column; gap: 28px; }
+    .col.care { background: #f7f6f3; }
+    .col.reg { background: #f2f1ed; }
+    .col.perf { background: #ebeae6; }
+    .col .tag { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #6e6d68; }
+    .fake-btn {
+      display: inline-block;
+      padding: 20px 40px;
+      border-radius: 16px;
+      font-size: 22px;
+      font-weight: 500;
+      text-align: center;
+    }
+    .fake-btn.a { background: #3d4a44; color: #f2f1ed; }
+    .fake-card {
+      border-radius: 18px;
+      border: 1px solid #dcd9d2;
+      padding: 28px;
+      background: #fff;
+    }
+    .fake-card p:first-child { font-size: 14px; text-transform: uppercase; letter-spacing: 0.12em; color: #6e6d68; }
+    .fake-card p:last-child { font-size: 22px; margin-top: 12px; font-weight: 500; }
+    .pills { display: flex; gap: 12px; flex-wrap: wrap; }
+    .pill {
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: 1px solid #dcd9d2;
+      font-size: 18px;
+    }
+    .pill.on { background: #fff; font-weight: 500; }
+    .wave {
+      height: 120px;
+      border-radius: 16px;
+      border: 1px solid #dcd9d2;
+      background: #ebeae5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer {
+      flex-shrink: 0;
+      border-top: 1px solid #dcd9d2;
+      padding-top: 28px;
+      font-size: 20px;
+      color: #6e6d68;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer code { font-family: ui-monospace, monospace; font-size: 17px; }
+  </style>
+</head>
+<body>
+  <div class="board" data-figma-file="BXizyHR65rR5o9x5ziW7kp" data-figma-node-id="121:11214">
+    <div class="meta-corner">
+      <div class="figma">
+        <strong>Sonocea — Design Phase 2</strong><br />
+        Target: empty frame in Figma (screenshot or place this board at 100% into Frame 1486).<br />
+        File: <code style="font-size:12px">Sonocea-Design-Phase-2</code> · One system · sound-first · adaptive modes (not themes).
+      </div>
+      <div class="node">node-id=121-11214<br />3731 × 5082</div>
+    </div>
+
+    <header class="hero">
+      <p class="label">Design system · v2 board</p>
+      <h1>Sonocea Design System</h1>
+      <p class="sub">One system, adaptable across states</p>
+      <p class="lead">
+        Behavioural modes (Care · Regulation · Performance) transform one palette — contrast, density, intensity.
+        Sound leads; motion supports.
+      </p>
+    </header>
+
+    <div class="row-12 row-main">
+    <section class="palette">
+      <p class="section-label">Core palette</p>
+      <div class="sw-grid">
+        <div class="sw"><div class="c" style="background:#f2f1ed"></div><div class="t"><div class="name">background</div><div class="hex">#f2f1ed</div></div></div>
+        <div class="sw"><div class="c" style="background:#ebeae5"></div><div class="t"><div class="name">surface</div><div class="hex">#ebeae5</div></div></div>
+        <div class="sw"><div class="c" style="background:#ffffff"></div><div class="t"><div class="name">surfaceElevated</div><div class="hex">#ffffff</div></div></div>
+        <div class="sw"><div class="c" style="background:#171716"></div><div class="t"><div class="name">textPrimary</div><div class="hex">#171716</div></div></div>
+        <div class="sw"><div class="c" style="background:#6e6d68"></div><div class="t"><div class="name">textSecondary</div><div class="hex">#6e6d68</div></div></div>
+        <div class="sw"><div class="c" style="background:#3d4a44"></div><div class="t"><div class="name">accentPrimary</div><div class="hex">#3d4a44</div></div></div>
+        <div class="sw"><div class="c" style="background:#8f9b95"></div><div class="t"><div class="name">accentSoft</div><div class="hex">#8f9b95</div></div></div>
+        <div class="sw"><div class="c" style="background:#dcd9d2"></div><div class="t"><div class="name">border</div><div class="hex">#dcd9d2</div></div></div>
+        <div class="sw"><div class="c" style="background:#5a6862"></div><div class="t"><div class="name">waveformBase</div><div class="hex">#5a6862</div></div></div>
+      </div>
+    </section>
+
+    <section class="modes">
+      <p class="section-label">Behavioural modes</p>
+      <div class="mode-cards">
+        <div class="mode"><h3>Care</h3><p>Reduce cognitive load — softer contrast, more open layout, low-intensity motion and waveform.</p></div>
+        <div class="mode"><h3>Regulation</h3><p>Maintain balance — neutral tone, steady rhythm, default-centred sliders.</p></div>
+        <div class="mode"><h3>Performance</h3><p>Enable clarity — sharper hierarchy, slightly tighter density, restrained snappy motion.</p></div>
+      </div>
+    </section>
+
+    <section class="principles">
+      <p class="section-label">Principles</p>
+      <ul>
+        <li>Sound leads · Motion supports</li>
+        <li>Restraint over expression</li>
+        <li>Clarity over personality</li>
+        <li>One palette, adaptive behaviour</li>
+        <li>Brand and product connected</li>
+      </ul>
+    </section>
+    </div>
+
+    <div class="type-row">
+      <div class="type-panel light">
+        <p class="section-label">Typography · light surface</p>
+        <div class="tr"><div class="role">Display</div><div class="display">Calm · premium</div></div>
+        <div class="tr"><div class="role">Heading</div><div class="heading">Section hierarchy</div></div>
+        <div class="tr"><div class="role">Body</div><div class="body">Neuroscience-led, sound-first product copy stays legible at length.</div></div>
+        <div class="tr"><div class="role">Caption</div><div class="caption">Metadata · 12–13px equivalent</div></div>
+      </div>
+      <div class="type-panel dark">
+        <p class="section-label">Typography · dark surface</p>
+        <div class="tr"><div class="role">Heading</div><div class="heading">Decks · emphasis</div></div>
+        <div class="tr"><div class="role">Body</div><div class="body">Same roles; use sparingly for contrast moments.</div></div>
+      </div>
+    </div>
+
+    <div class="mid">
+      <div class="mid-card">
+        <h3>Spacing scale (px)</h3>
+        <div class="spacing-bars">
+          <div class="sb"><div class="bar" style="width:8px;height:8px"></div><span>4</span></div>
+          <div class="sb"><div class="bar" style="width:16px;height:8px"></div><span>8</span></div>
+          <div class="sb"><div class="bar" style="width:24px;height:8px"></div><span>12</span></div>
+          <div class="sb"><div class="bar" style="width:32px;height:8px"></div><span>16</span></div>
+          <div class="sb"><div class="bar" style="width:48px;height:8px"></div><span>24</span></div>
+          <div class="sb"><div class="bar" style="width:64px;height:8px"></div><span>32</span></div>
+          <div class="sb"><div class="bar" style="width:96px;height:8px"></div><span>48</span></div>
+          <div class="sb"><div class="bar" style="width:128px;height:8px"></div><span>64</span></div>
+        </div>
+      </div>
+      <div class="mid-card">
+        <h3>Motion</h3>
+        <p>Secondary to sound. Fade and subtle scale only — no bounce, no decorative easing. If motion is noticeable, reduce it.</p>
+      </div>
+      <div class="mid-card">
+        <h3>Iconography</h3>
+        <p>1.5px stroke · minimal · precise · not playful. Prefer simple metaphors; avoid generic wellness clichés.</p>
+      </div>
+    </div>
+
+    <div class="components">
+      <div class="col care">
+        <span class="tag">Care</span>
+        <span class="fake-btn a">Primary action</span>
+        <div class="fake-card"><p>Card</p><p>Soft context · fewer controls</p></div>
+        <div class="pills"><span class="pill on">Selected</span><span class="pill">Option</span></div>
+        <div class="wave"><svg width="400" height="64" viewBox="0 0 400 64" fill="none"><path d="M0 32 Q50 18 100 32 T200 32 T300 32 T400 32" stroke="#5a6862" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.72"/></svg></div>
+      </div>
+      <div class="col reg">
+        <span class="tag">Regulation</span>
+        <span class="fake-btn a">Primary action</span>
+        <div class="fake-card"><p>Card</p><p>Balanced · familiar rhythm</p></div>
+        <div class="pills"><span class="pill on">Selected</span><span class="pill">Option</span></div>
+        <div class="wave"><svg width="400" height="64" viewBox="0 0 400 64" fill="none"><path d="M0 32 Q50 18 100 32 T200 32 T300 32 T400 32" stroke="#5a6862" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.88"/></svg></div>
+      </div>
+      <div class="col perf">
+        <span class="tag">Performance</span>
+        <span class="fake-btn a">Primary action</span>
+        <div class="fake-card"><p>Card</p><p>Clear hierarchy · efficient</p></div>
+        <div class="pills"><span class="pill on">Selected</span><span class="pill">Option</span></div>
+        <div class="wave"><svg width="400" height="64" viewBox="0 0 400 64" fill="none"><path d="M0 32 Q50 14 100 32 T200 32 T300 32 T400 32" stroke="#5a6862" stroke-width="1.55" stroke-linecap="round" fill="none" opacity="0.92"/></svg></div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>Repo: <code>src/system/tokens/</code> · <code>/design-system</code> in app</span>
+      <span>figma.com/design/BXizyHR65rR5o9x5ziW7kp · node 121:11214</span>
+    </footer>
+  </div>
+</body>
+</html>

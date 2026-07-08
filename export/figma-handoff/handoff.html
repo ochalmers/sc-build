@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sonocea — Figma handoff</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f2f1ed;
+      color: #171716;
+      letter-spacing: -0.01em;
+      line-height: 1.5;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 40px 80px;
+    }
+    .label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #6e6d68;
+    }
+    h1 {
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 500;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 12px 0 8px;
+    }
+    .sub {
+      font-size: 17px;
+      font-weight: 500;
+      color: #3a3a38;
+      margin-bottom: 24px;
+    }
+    .lead {
+      font-size: 15px;
+      color: #565653;
+      max-width: 52ch;
+      margin-bottom: 40px;
+    }
+    section { margin-bottom: 48px; }
+    h2 {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #6e6d68;
+      margin: 0 0 16px;
+    }
+    .grid { display: grid; gap: 12px; }
+    .swatches { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+    .sw {
+      border-radius: 12px;
+      border: 1px solid rgba(23,23,22,.1);
+      overflow: hidden;
+    }
+    .swatch { height: 64px; }
+    .sw meta {
+      display: block;
+      padding: 8px 10px;
+      font-size: 10px;
+      background: #fff;
+    }
+    .sw .name { font-weight: 600; font-size: 11px; color: #171716; }
+    .sw .hex { font-family: ui-monospace, monospace; color: #6e6d68; margin-top: 2px; }
+    .modes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 720px) { .modes { grid-template-columns: 1fr; } }
+    .mode {
+      border: 1px solid #dcd9d2;
+      border-radius: 16px;
+      padding: 16px;
+      background: #ffffff;
+    }
+    .mode h3 { margin: 0 0 8px; font-size: 15px; font-weight: 500; }
+    .mode p { margin: 0; font-size: 12px; color: #6e6d68; line-height: 1.45; }
+    .principles {
+      display: grid;
+      gap: 8px;
+    }
+    .principles li {
+      list-style: none;
+      border-bottom: 1px solid rgba(23,23,22,.08);
+      padding: 10px 0;
+      font-size: 14px;
+      color: #232322;
+    }
+    .type-sample { margin-bottom: 12px; }
+    .type-sample .role { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #6e6d68; margin-bottom: 4px; }
+    .display { font-size: 1.75rem; font-weight: 500; letter-spacing: -0.03em; }
+    .heading { font-size: 1.25rem; font-weight: 500; letter-spacing: -0.02em; }
+    .body { font-size: 15px; line-height: 1.55; color: #3a3a38; }
+    .caption { font-size: 12px; color: #6e6d68; }
+    .spacing { display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; }
+    .sp { text-align: center; }
+    .sp .bar { background: #171716; border-radius: 2px; margin: 0 auto 4px; }
+    .sp span { font-family: ui-monospace, monospace; font-size: 9px; color: #6e6d68; }
+    .footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid #dcd9d2;
+      font-size: 11px;
+      color: #6e6d68;
+    }
+    .wave-inline {
+      margin-top: 16px;
+      height: 48px;
+      border-radius: 12px;
+      border: 1px solid #dcd9d2;
+      background: #ebeae5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <p class="label">Internal handoff · one system</p>
+    <h1>Sonocea Design System</h1>
+    <p class="sub">One system, adaptable across states</p>
+    <p class="lead">
+      This page is a static snapshot for Figma: base palette, behavioural modes (not separate themes),
+      type roles, and spacing scale. Screenshot or place into your file — colours match code tokens.
+    </p>
+
+    <section>
+      <h2>Core palette</h2>
+      <div class="grid swatches">
+        <div class="sw"><div class="swatch" style="background:#f2f1ed"></div><meta><span class="name">background</span><span class="hex">#f2f1ed</span></meta></div>
+        <div class="sw"><div class="swatch" style="background:#ebeae5"></div><meta><span class="name">surface</span><span class="hex">#ebeae5</span></meta></div>
+        <div class="sw"><div class="swatch" style="background:#ffffff"></div><meta><span class="name">surfaceElevated</span><span class="hex">#ffffff</span></meta></div>
+        <div class="sw"><div class="swatch" style="background:#171716"></div><meta><span class="name">textPrimary</span><span class="hex">#171716</span></meta></div>
+        <div class="sw"><div class="swatch" style="background:#6e6d68"></div><meta><span class="name">textSecondary</span><span class="hex">#6e6d68</span></meta></div>
+        <div class="sw"><div class="swatch" style="background:#3d4a44"></div><meta><span class="name">accentPrimary</span><span class="hex">#3d4a44</span></meta></div>
+        <div class="sw"><div class="swatch" style="background:#8f9b95"></div><meta><span class="name">accentSoft</span><span class="hex">#8f9b95</span></meta></div>
+        <div class="sw"><div class="swatch" style="background:#dcd9d2"></div><meta><span class="name">border</span><span class="hex">#dcd9d2</span></meta></div>
+        <div class="sw"><div class="swatch" style="background:#5a6862"></div><meta><span class="name">waveformBase</span><span class="hex">#5a6862</span></meta></div>
+      </div>
+      <div class="wave-inline" aria-hidden="true">
+        <svg width="280" height="32" viewBox="0 0 280 32" fill="none">
+          <path d="M0 16 Q35 6 70 16 T140 16 T210 16 T280 16" stroke="#5a6862" stroke-width="1.35" stroke-linecap="round" fill="none" opacity="0.9"/>
+        </svg>
+      </div>
+    </section>
+
+    <section>
+      <h2>Behavioural modes · one palette, transformed</h2>
+      <div class="modes">
+        <div class="mode">
+          <h3>Care</h3>
+          <p>Reduce cognitive load. Softer contrast, more open density, gentler motion and waveform.</p>
+        </div>
+        <div class="mode">
+          <h3>Regulation</h3>
+          <p>Maintain balance. Neutral, steady rhythm; default slider targets centred.</p>
+        </div>
+        <div class="mode">
+          <h3>Performance</h3>
+          <p>Enable clarity. Sharper hierarchy, slightly tighter layout, faster but restrained motion.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Principles</h2>
+      <ul class="principles">
+        <li>Sound leads · Motion supports</li>
+        <li>Restraint over expression · Clarity over personality</li>
+        <li>One palette, adaptive behaviour</li>
+        <li>Reduce cognitive load · Brand and product connected</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Typography</h2>
+      <div class="type-sample"><div class="role">Display</div><div class="display">Calm, premium, legible</div></div>
+      <div class="type-sample"><div class="role">Heading</div><div class="heading">Section title</div></div>
+      <div class="type-sample"><div class="role">Body</div><div class="body">Neuroscience-led, sound-first copy stays readable at length with relaxed line height.</div></div>
+      <div class="type-sample"><div class="role">Caption</div><div class="caption">Secondary metadata and timestamps</div></div>
+    </section>
+
+    <section>
+      <h2>Spacing scale (px)</h2>
+      <div class="spacing">
+        <div class="sp"><div class="bar" style="width:4px;height:4px"></div><span>4</span></div>
+        <div class="sp"><div class="bar" style="width:8px;height:4px"></div><span>8</span></div>
+        <div class="sp"><div class="bar" style="width:12px;height:4px"></div><span>12</span></div>
+        <div class="sp"><div class="bar" style="width:16px;height:4px"></div><span>16</span></div>
+        <div class="sp"><div class="bar" style="width:24px;height:4px"></div><span>24</span></div>
+        <div class="sp"><div class="bar" style="width:32px;height:4px"></div><span>32</span></div>
+        <div class="sp"><div class="bar" style="width:48px;height:4px"></div><span>48</span></div>
+        <div class="sp"><div class="bar" style="width:64px;height:4px"></div><span>64</span></div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Source: Sonocea repo · <code>src/system/tokens/</code> · Screenshot this page or place PDF into Figma.
+    </div>
+  </div>
+</body>
+</html>

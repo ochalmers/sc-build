@@ -1,10 +1,45 @@
-# Sonocea Brand Exploration Microsite
+# Sonocea System Prototype
 
-Premium internal / stakeholder-facing narrative microsite showcasing the latest Sonocea brand development work.
+Internal workspace: **one** brand and product system that adapts through contrast, density, and intensity — not separate themes or apps.
 
-- React + Tailwind + Framer Motion
-- Calm, minimal, editorial tone
-- Chapter-style sections with a sticky right-hand nav and subtle reveal transitions
+## Routes
+
+| Path | Content |
+|------|---------|
+| `/` | Interactive behavioural prototype (personas, controls, live phone mockup). |
+| `/design-system` | **Design system reference** — tokens, principles, components, assets. |
+| `/system` | Redirects to `/design-system`. |
+
+## Design system (reusable)
+
+Canonical tokens and components live under **`src/system/`**. See **`src/system/README.md`** for a full map.
+
+- **Colours:** `src/system/tokens/colors.js` (re-exported from `src/config/basePalette.js` for older imports).
+- **Modes:** `src/system/modes.js` — Care / Regulation / Performance (transforms + documentation copy).
+- **Components:** `src/system/components/` — buttons, cards, inputs, waveform module, etc. Use with `ModeChrome` or `resolvePalette()` CSS variables.
+- **Exportable assets:** `public/assets/system/` — palette strip, waveform SVG, folder structure for imagery and icons.
+
+## Behavioural modes
+
+Modes are defined in **`src/system/modes.js`**. Each has:
+
+- A short definition (e.g. Care → reduce cognitive load).
+- **Default sliders** for contrast, density, and intensity (0–1). Changing mode in the prototype resets sliders until you adjust manually.
+
+Transforms in **`src/utils/resolvePalette.js`** blend the **base palette** with mode-specific softening/sharpening so the UI stays one system.
+
+## Where to edit (prototype)
+
+| What | File |
+|------|------|
+| Base colours | `src/system/tokens/colors.js` |
+| Mode labels, defaults, transform bias | `src/system/modes.js` |
+| Personas and adoption labels | `src/config/personas.js` |
+| Scenarios, copy, persona/mode mapping, rationale | `src/config/stories.js` |
+| How sliders + mode resolve to CSS variables and motion | `src/utils/resolvePalette.js` |
+| Global state (mode, persona, story, sliders) | `src/context/PrototypeContext.jsx` |
+
+Selecting a **user story** sets persona, behaviour mode, and sliders from `sliderHint` in the story object. Changing **behaviour mode** or **persona** from the controls clears the active story so the scenario list and manual tuning stay in sync.
 
 ## Run locally
 
@@ -13,24 +48,11 @@ npm install
 npm run dev
 ```
 
-Then open the URL shown in the terminal (usually `http://localhost:5173`).
+Build:
 
-## Structure
+```bash
+npm run build
+npm run preview
+```
 
-- `src/App.jsx`: page composition + sticky chapter nav
-- `src/content/siteContent.js`: primary text/content + palette values + placeholder assets
-- `src/sections/*`: the six narrative sections
-- `src/components/*`: shared motion / scroll-spy / waveforms
-
-## Swap points (content + assets)
-
-- **Text & labels**: edit `src/content/siteContent.js`
-- **Persona imagery**: replace the `image` paths in `siteContent.personas.cards[]` (placeholders currently reference files in `Images/`)
-- **Palette values**: edit `siteContent.colour.directions[].swatches`
-- **Adaptive colour modes**: edit `siteContent.adaptiveColour.modes[]` (name, rationale, swatches, bestFor, previewBg, accent, gradientFrom, gradientTo for app preview)
-- **Product flow screens**: edit `siteContent.flow.screens[].image` (paths to `Images/App screens/`)
-- **Logo**: `Images/Logo.svg`
-
-## Font
-
-This project loads `AeonikPro-Regular.otf` from the project root via `@font-face`.
+Stack: React (Vite), React Router, Tailwind CSS, Framer Motion.

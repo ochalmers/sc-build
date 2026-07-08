@@ -1,17 +1,20 @@
 {
-  "name": "sonocea-brand-exploration-microsite",
+  "name": "sonocea-system-prototype",
   "private": true,
   "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "paper:app-ds": "node scripts/generate-paper-app-ds-frames.mjs",
+    "paper:mobile": "node scripts/generate-paper-behavioural-mobile.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.12",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.14.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.3",
@@ -22,4 +25,3 @@
     "vite": "^7.3.1"
   }
 }
-
