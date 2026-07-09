@@ -12,6 +12,27 @@ import {
 } from "./prototypeFlows.js";
 import { renderPrototypeScreen } from "./renderPrototypeScreen.jsx";
 
+function PrototypePhonePreview({ screenId, screen }) {
+  return (
+    <div className="flex shrink-0 justify-center lg:justify-start">
+      <DesignAppScreen variant="wireframe" className="shadow-[0_32px_80px_rgba(8,8,8,0.12)]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={screenId}
+            className="absolute inset-0 h-full w-full"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {screen}
+          </motion.div>
+        </AnimatePresence>
+      </DesignAppScreen>
+    </div>
+  );
+}
+
 function FlowPicker({ onSelect }) {
   return (
     <div className="mx-auto w-full max-w-lg">
@@ -125,20 +146,8 @@ export default function PrototypePlayer() {
               </p>
             </div>
 
-            <div className="order-1 flex justify-center lg:order-2 lg:justify-start">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={screenId}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <DesignAppScreen variant="wireframe" className="shadow-[0_32px_80px_rgba(8,8,8,0.12)]">
-                    {screen}
-                  </DesignAppScreen>
-                </motion.div>
-              </AnimatePresence>
+            <div className="order-1 lg:order-2">
+              <PrototypePhonePreview screenId={screenId} screen={screen} />
             </div>
           </div>
         ) : (
@@ -193,20 +202,8 @@ export default function PrototypePlayer() {
               </div>
             </div>
 
-            <div className="order-1 flex justify-center lg:order-2 lg:justify-start">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={screenId}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <DesignAppScreen variant="wireframe" className="shadow-[0_32px_80px_rgba(8,8,8,0.12)]">
-                    {screen}
-                  </DesignAppScreen>
-                </motion.div>
-              </AnimatePresence>
+            <div className="order-1 lg:order-2">
+              <PrototypePhonePreview screenId={screenId} screen={screen} />
             </div>
           </div>
         )}

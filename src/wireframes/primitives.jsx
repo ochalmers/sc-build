@@ -15,7 +15,7 @@ export function WireframeScreen({ children, tone = "light" }) {
   return (
     <WireframeContext.Provider value={palette}>
       <div
-        className="flex h-full w-full flex-col overflow-hidden"
+        className="flex h-full min-h-0 w-full flex-col overflow-hidden"
         style={{ background: palette.bg, color: palette.text }}
       >
         {children}
@@ -353,7 +353,7 @@ export function WfTabBar({ active = "home" }) {
 }
 
 export function WfScreenBody({ children, className = "" }) {
-  return <div className={`flex flex-1 flex-col ${className}`}>{children}</div>;
+  return <div className={`flex min-h-0 flex-1 flex-col ${className}`}>{children}</div>;
 }
 
 export function WfScreenFooter({ children }) {

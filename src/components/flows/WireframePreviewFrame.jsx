@@ -23,7 +23,7 @@ export default function WireframePreviewFrame({ children, frame = "mobile", clas
   }
 
   return (
-    <DesignAppScreen className={`!max-w-[280px] w-full ${className}`} variant="wireframe">
+    <DesignAppScreen className={`!w-[280px] shrink-0 ${className}`} variant="wireframe">
       {children}
     </DesignAppScreen>
   );

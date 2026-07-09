@@ -7,7 +7,7 @@ export function DesignAppScreen({ children, className = "", variant = "hifi" }) 
 
   return (
     <div
-      className={`relative mx-auto w-full max-w-[300px] overflow-hidden rounded-[1.65rem] border shadow-[0_24px_60px_rgba(8,8,8,0.14)] ${
+      className={`relative mx-auto w-[300px] max-w-full shrink-0 overflow-hidden rounded-[1.65rem] border shadow-[0_24px_60px_rgba(8,8,8,0.14)] ${
         isWireframe
           ? "border-ink-200/80 bg-paper-100"
           : "border-ink-200/60 bg-[#080808]"
