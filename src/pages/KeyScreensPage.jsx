@@ -16,7 +16,7 @@ export default function KeyScreensPage() {
           id="key-screens-intro"
           className="scroll-mt-[7rem] border-b border-ink-200/40"
         >
-          <div className="max-w-site mx-auto px-6 pb-24 pt-28 md:pb-32 md:pt-36">
+          <div className="px-6 pb-24 pt-28 md:pb-32 md:pt-36">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -65,6 +65,7 @@ export default function KeyScreensPage() {
           label="Navigation"
           title="Core navigation concepts"
           description="Five wireframe proposals for how authenticated listeners move through the app. The variable is bottom navigation — tab count, destinations, and whether play/resume is always one tap away."
+          fullWidth
         >
           <CoreNavOptionsGrid />
         </PageSection>
@@ -76,6 +77,7 @@ export default function KeyScreensPage() {
             label={tier.label}
             title={tier.title}
             description={tier.description}
+            fullWidth
           >
             <div className="-mt-4">
               {tier.screens.map((screen) => (

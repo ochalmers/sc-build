@@ -4,6 +4,18 @@
  */
 import { WF, WF_TYPE } from "./tokens.js";
 import {
+  BRAND,
+  CHECK_IN,
+  ENTRY,
+  EXPERIENCED,
+  GUIDANCE,
+  NEUROTYPE,
+  PUBLIC_SAMPLE,
+  SCIENCE_TOPICS,
+  SESSIONS,
+  TOPIC_DETAIL,
+} from "./wireframeContent.js";
+import {
   WireframeScreen,
   WfTag,
   WfHeadline,
@@ -52,23 +64,22 @@ export function WfHomePlayerFirst() {
 }
 
 export function WfHomeProtocol() {
-  const steps = [
-    { n: "1", t: "Morning · settle", done: true },
-    { n: "2", t: "Midday · focus", done: false },
-    { n: "3", t: "Evening · unwind", done: false },
-  ];
   return (
     <WireframeScreen>
       <WfScreenHeader />
       <div className="px-5 pt-2">
         <p className={WF_TYPE.bodySm} style={{ color: WF.textMuted }}>
-          Day 3 of your programme
+          Assigned sessions for today
         </p>
         <h2 className={WF_TYPE.title} style={{ color: WF.text }}>
-          Today&apos;s plan
+          Your listening plan
         </h2>
         <div className="mt-4 space-y-2">
-          {steps.map((s) => (
+          {[
+            { n: "1", t: "Arrive · settle", done: true },
+            { n: "2", t: "Focus reset", done: false },
+            { n: "3", t: "Wind down", done: false },
+          ].map((s) => (
             <div
               key={s.n}
               className="flex items-center gap-3 rounded-xl border px-3 py-2.5"
@@ -246,8 +257,9 @@ export function WfDetailClinical() {
         <div className="mt-2 space-y-2">
           {[
             ["Indication", "Regulation · stress reduction"],
-            ["Duration", "14 minutes"],
-            ["When to use", "Morning or before demanding tasks"],
+            ["Duration", SESSIONS.detail.duration],
+            ["When to use", SESSIONS.detail.useCase],
+            ["Neurotype", SESSIONS.detail.neurotype],
             ["Note", "Use headphones in a quiet space"],
           ].map(([k, v]) => (
             <div key={k} className="flex justify-between border-b py-2" style={{ borderColor: WF.border }}>
@@ -476,8 +488,8 @@ export function WfCompletionProgress() {
         </p>
         <div className="mt-5 grid grid-cols-2 gap-2">
           {[
-            ["Streak", "5 days"],
-            ["Today", "28 min"],
+            ["Sessions completed", "4"],
+            ["Minutes today", "28 min"],
           ].map(([k, v]) => (
             <div key={k} className="rounded-xl border p-3" style={{ borderColor: WF.border }}>
               <p className={WF_TYPE.bodySm} style={{ color: WF.textMuted }}>
@@ -560,7 +572,7 @@ export function WfSplashPulse() {
       <WfScreenBody className="items-center justify-center">
         <WfPlaceholder size="logo" />
         <p className={`mt-6 ${WF_TYPE.title}`} style={{ color: palette.text }}>
-          Sonocea
+          {BRAND.name}
         </p>
         <div
           className="mt-6 h-16 w-16 rounded-full opacity-60"
@@ -581,7 +593,7 @@ export function WfSplashPartner() {
         </p>
         <WfPlaceholder size="logo" className="mt-2" />
         <p className={`mt-4 ${WF_TYPE.titleSm}`} style={{ color: WF.text }}>
-          Sonocea
+          {BRAND.name}
         </p>
       </WfScreenBody>
     </WireframeScreen>
@@ -594,7 +606,7 @@ export function WfSplashLoad() {
       <WfScreenBody className="items-center justify-center">
         <WfPlaceholder size="logo" />
         <p className={`mt-6 ${WF_TYPE.title}`} style={{ color: WF.text }}>
-          Sonocea
+          {BRAND.name}
         </p>
         <div className="mt-6 h-1 w-32 overflow-hidden rounded-full" style={{ background: WF.border }}>
           <div className="h-full w-1/2 rounded-full" style={{ background: WF.fill }} />
@@ -632,10 +644,10 @@ export function WfWelcomeScience() {
         <WfHeadline
           className="!px-0"
           title="Evidence-based sound for regulation"
-          subtitle="Structured sessions designed to support nervous system balance."
+          subtitle={BRAND.mission}
         />
         <div className="mt-4 space-y-2">
-          {["Clinical research", "Headphone-first", "Private listening"].map((t) => (
+          {ENTRY.publicHeroBullets.map((t) => (
             <div key={t} className="rounded-lg border px-3 py-2" style={{ borderColor: WF.border, background: WF.surface }}>
               <p className={WF_TYPE.bodySm} style={{ color: WF.textSecondary }}>
                 {t}
@@ -646,7 +658,7 @@ export function WfWelcomeScience() {
       </WfScreenBody>
       <WfScreenFooter>
         <WfButton>Try a sample</WfButton>
-        <WfButton variant="secondary">Sign in with invite</WfButton>
+        <WfButton variant="secondary">{ENTRY.invitationCta}</WfButton>
       </WfScreenFooter>
     </WireframeScreen>
   );
@@ -797,7 +809,7 @@ export function WfOnboardChat() {
 }
 
 export function WfGuidanceChecklist() {
-  const items = ["Use headphones", "Find a quiet space", "Allow full duration"];
+  const items = GUIDANCE.items;
   return (
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
@@ -932,7 +944,7 @@ export function WfCheckInEmoji() {
   return (
     <WireframeScreen tone="dark">
       <WfScreenBody className="px-5 pt-12">
-        <WfHeadline className="!px-0" title="How are you feeling?" subtitle="Tap the face that fits best." />
+        <WfHeadline className="!px-0" title={CHECK_IN.beforeTitle} subtitle="Tap the face that fits best." />
         <div className="mt-8 flex justify-between px-2">
           {faces.map((f, i) => (
             <button
@@ -961,7 +973,7 @@ export function WfCheckInChips() {
   return (
     <WireframeScreen tone="dark">
       <WfScreenBody className="px-5 pt-12">
-        <WfHeadline className="!px-0" title="How are you feeling?" subtitle="Select all that apply." />
+        <WfHeadline className="!px-0" title={CHECK_IN.beforeTitle} subtitle="Select all that apply." />
         <div className="mt-6 flex flex-wrap gap-2">
           {chips.map((c, i) => (
             <WfChip key={c} active={i === 1 || i === 2}>
@@ -1007,7 +1019,7 @@ export function WfCheckInSkip() {
             Default session
           </p>
           <p className={`mt-1 ${WF_TYPE.label}`} style={{ color: WF.text }}>
-            5-minute nervous system reset
+            {PUBLIC_SAMPLE.title}
           </p>
         </div>
       </WfScreenBody>
@@ -1078,7 +1090,7 @@ export function WfSampleCaptions() {
             What you&apos;re hearing
           </p>
           <p className={WF_TYPE.bodySm} style={{ color: palette.text }}>
-            Binaural frequencies supporting parasympathetic activation…
+            Precision-composed SAT™ supporting autonomic regulation — not binaural beats or generic relaxation.
           </p>
         </div>
       </WfScreenBody>
@@ -1090,7 +1102,7 @@ export function WfReflectionNote() {
   return (
     <WireframeScreen tone="dark">
       <WfScreenBody className="px-5 pt-10">
-        <WfHeadline className="!px-0" title="How do you feel now?" />
+        <WfHeadline className="!px-0" title={CHECK_IN.afterTitle} />
         <div className="mt-4">
           <WfSlider label="Regulation" value={65} />
         </div>
@@ -1109,7 +1121,11 @@ export function WfReflectionNote() {
 }
 
 export function WfScienceFaq() {
-  const faqs = ["How does it work?", "Is there clinical evidence?", "Who is it for?"];
+  const faqs = [
+    "What is Sonic Augmentation Technology™?",
+    "Is there clinical evidence?",
+    "How is this different from meditation or relaxation audio?",
+  ];
   return (
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
@@ -1139,7 +1155,7 @@ export function WfSciencePersonalised() {
         <WfTag>For you</WfTag>
         <WfHeadline className="!px-0 mt-2" title="Based on your check-in" subtitle="Regulation-focused articles." />
         <div className="mt-4 space-y-2">
-          {["Understanding stress response", "Sound and the nervous system", "When to listen"].map((t) => (
+          {SCIENCE_TOPICS.slice(0, 3).map((t) => (
             <WfRowLink key={t} title={t} />
           ))}
         </div>
@@ -1155,7 +1171,7 @@ export function WfScienceVideo() {
         <WfTag>Science</WfTag>
         <WfPlaceholder size="md" className="!h-28" />
         <ul className="mt-4 space-y-2">
-          {["Nervous system regulation", "Clinical evidence", "How to listen"].map((t) => (
+          {["Autonomic nervous system regulation", "Clinical evidence (UF study)", "Optimal listening guidance"].map((t) => (
             <li key={t} className={WF_TYPE.bodySm} style={{ color: WF.textSecondary }}>
               · {t}
             </li>
@@ -1252,8 +1268,8 @@ export function WfAboutClinical() {
         <WfHeadline className="!px-0 mt-2" title="What Sonocea is" />
         <div className="mt-4 space-y-3">
           {[
-            ["What it is", "Structured sound for regulation"],
-            ["What it isn't", "Not a diagnostic or treatment"],
+            ["What it is", "Structured sound Sessions with SAT™"],
+            ["What it isn't", "Not meditation, wellness, or binaural beats"],
             ["Evidence", "Clinical research summary"],
           ].map(([k, v]) => (
             <div key={k}>
@@ -1295,7 +1311,7 @@ export function WfAboutTeam() {
             Founder
           </p>
           <p className={`mt-2 ${WF_TYPE.body}`} style={{ color: WF.textSecondary }}>
-            &ldquo;Sound should feel as considered as medicine.&rdquo;
+            &ldquo;Decades of neuroscience research — from Stephen Porges to today.&rdquo;
           </p>
         </div>
         <div className="mt-3 rounded-xl border p-4" style={{ borderColor: WF.border }}>
@@ -1339,11 +1355,11 @@ export function WfScienceSearch() {
         <div className="mt-3 flex flex-wrap gap-1.5">
           <WfChip active>All</WfChip>
           <WfChip>Regulation</WfChip>
-          <WfChip>Sleep</WfChip>
+          <WfChip>Applications</WfChip>
         </div>
         <div className="mt-4 space-y-2">
-          <WfRowLink title="Nervous system basics" />
-          <WfRowLink title="Sound and sleep" />
+          <WfRowLink title={SCIENCE_TOPICS[0]} />
+          <WfRowLink title={SCIENCE_TOPICS[1]} />
         </div>
       </WfScreenBody>
     </WireframeScreen>
@@ -1587,7 +1603,7 @@ export function WfAccountMinimal() {
         <div className="mt-4 space-y-0">
           <WfRowLink title="alex@email.com" subtitle="Email" />
           <WfRowLink title="Clinic A" subtitle="Partner" />
-          <WfRowLink title="Regulation profile" subtitle="Neurotype" />
+          <WfRowLink title={NEUROTYPE.options[1].title} subtitle="Neurotype" />
         </div>
         <div className="mt-4 flex items-center justify-between rounded-lg border px-3 py-2.5" style={{ borderColor: WF.border }}>
           <span className={WF_TYPE.body} style={{ color: WF.text }}>
@@ -1635,7 +1651,7 @@ export function WfPrivacySummary() {
         <WfHeadline className="!px-0 mt-2" title="Privacy policy" />
         <div className="mt-4 rounded-xl border p-3" style={{ borderColor: WF.border, background: WF.surfaceMuted }}>
           <p className={WF_TYPE.bodySm} style={{ color: WF.textSecondary }}>
-            Plain-language summary: we collect listening data to improve recommendations. We never sell your data.
+            Plain-language summary: we collect listening engagement to support Partners and billing. We never sell your data.
           </p>
         </div>
         <WfTextLink>View full document</WfTextLink>

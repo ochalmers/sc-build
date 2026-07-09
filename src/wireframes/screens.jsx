@@ -1,5 +1,28 @@
 import { getWireframePalette, WF, WF_TYPE } from "./tokens.js";
 import {
+  ABOUT,
+  AUTH,
+  BRAND,
+  CHECK_IN,
+  ENTRY,
+  EXPERIENCED,
+  FEEDBACK,
+  GUIDANCE,
+  INVITATION,
+  NEUROTYPE,
+  ONBOARDING,
+  PLAYER,
+  PUBLIC_NAV,
+  PUBLIC_SAMPLE,
+  REQUEST_ACCESS,
+  RESEARCH,
+  SCIENCE_HOME,
+  SCIENCE_TOPICS,
+  SESSIONS,
+  SUPPORT,
+  TOPIC_DETAIL,
+} from "./wireframeContent.js";
+import {
   WireframeScreen,
   WfTag,
   WfHeadline,
@@ -44,10 +67,10 @@ export function WfSplash() {
       <WfScreenBody className="items-center justify-center px-6">
         <WfPlaceholder size="sm" className="!h-20 !w-20 !rounded-2xl" />
         <p className={`mt-5 ${WF_TYPE.title}`} style={{ color: WF.text }}>
-          App name
+          {BRAND.name}
         </p>
         <p className={`mt-2 ${WF_TYPE.body}`} style={{ color: WF.textMuted }}>
-          Tagline placeholder
+          {BRAND.tagline}
         </p>
         <div className="mt-8 h-1 w-16 rounded-full" style={{ background: WF.border }} />
         <p className={`mt-3 ${WF_TYPE.bodySm}`} style={{ color: WF.textMuted }}>
@@ -64,11 +87,11 @@ export function WfDiscover() {
       <WfScreenBody className="px-5 pt-10">
         <WfHeadline
           className="!px-0"
-          title="Discover the app"
-          subtitle="Value proposition and key benefits before sign-in."
+          title="Discover Sonocea"
+          subtitle="Experience structured sound before organisational access."
         />
         <div className="mt-4 space-y-2">
-          {["Benefit one", "Benefit two", "Benefit three"].map((b) => (
+          {ENTRY.publicHeroBullets.map((b) => (
             <div
               key={b}
               className="rounded-lg border px-3 py-2"
@@ -82,7 +105,7 @@ export function WfDiscover() {
         </div>
       </WfScreenBody>
       <WfScreenFooter>
-        <WfButton>Continue</WfButton>
+        <WfButton>Start sample session</WfButton>
       </WfScreenFooter>
     </WireframeScreen>
   );
@@ -96,16 +119,12 @@ export function WfGetStarted({ variant = "default", prototypeActions = {} }) {
         <WfPlaceholder size="logo" />
         <WfHeadline
           className="!px-0 mt-8"
-          title={publicLanding ? "Experience Sonocea" : "Welcome to Sonocea"}
-          subtitle={
-            publicLanding
-              ? "Try a sample session — no account required."
-              : "Experience structured sound — or sign in with your invitation."
-          }
+          title={ENTRY.getStartedTitle}
+          subtitle={publicLanding ? "Try a curated sample — no account required." : ENTRY.getStartedSubtitle}
         />
         {publicLanding ? (
           <div className="mt-5 space-y-2">
-            {["5-minute nervous system reset", "Science-backed sound", "No sign-up to start"].map((t) => (
+            {ENTRY.publicHeroBullets.map((t) => (
               <div
                 key={t}
                 className="rounded-lg border px-3 py-2"
@@ -121,12 +140,14 @@ export function WfGetStarted({ variant = "default", prototypeActions = {} }) {
       </WfScreenBody>
       <WfScreenFooter>
         <WfButton onClick={prototypeActions.onDiscover}>
-          {publicLanding ? "Start sample session" : "Discover Sonocea"}
+          {publicLanding ? ENTRY.publicLandingCta : ENTRY.discoverCta}
         </WfButton>
         <WfButton variant="secondary" onClick={prototypeActions.onInvitation}>
-          {publicLanding ? "Request access" : "Accept invitation"}
+          {publicLanding ? ENTRY.publicSecondaryCta : ENTRY.invitationCta}
         </WfButton>
-        {!publicLanding ? <WfTextLink onClick={prototypeActions.onLogin}>Login</WfTextLink> : null}
+        {!publicLanding ? (
+          <WfTextLink onClick={prototypeActions.onLogin}>{ENTRY.loginCta}</WfTextLink>
+        ) : null}
       </WfScreenFooter>
     </WireframeScreen>
   );
@@ -136,18 +157,18 @@ export function WfInvitation({ prototypeActions = {} }) {
   return (
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
-        <WfTag>Invited participant</WfTag>
+        <WfTag>{INVITATION.tag}</WfTag>
         <WfHeadline
           className="!px-0 mt-4"
-          title="You're invited"
-          subtitle="Your organisation has provisioned access. Activate your account to begin."
+          title={INVITATION.title}
+          subtitle={INVITATION.subtitle}
         />
         <div
           className="mt-5 rounded-xl border p-4"
           style={{ borderColor: WF.border, background: WF.surfaceMuted }}
         >
           <p className={WF_TYPE.body} style={{ color: WF.textSecondary }}>
-            Brief intro before sign-up — may preview public content.
+            {INVITATION.intro}
           </p>
         </div>
       </WfScreenBody>
@@ -165,10 +186,34 @@ export function WfInvitation({ prototypeActions = {} }) {
 
 export function WfAccessCode({ variant = "empty", prototypeActions = {} }) {
   const states = {
-    empty: { value: "", state: "default", message: null, title: "Access code", subtitle: "Enter the invite or partner code you received." },
-    valid: { value: "INV-7K2M-9P4X", state: "valid", message: "Code recognised — continue to redeem.", title: "Access code", subtitle: "Enter the invite or partner code you received." },
-    invalid: { value: "INV-XXXX-XXXX", state: "invalid", message: "This code isn't valid. Check and try again.", title: "Access code", subtitle: "Enter the invite or partner code you received." },
-    create: { value: "", state: "default", message: null, title: "Create account", subtitle: "Set up your listener profile with the invitation you received." },
+    empty: {
+      value: "",
+      state: "default",
+      message: null,
+      title: AUTH.accessCodeTitle,
+      subtitle: AUTH.accessCodeSubtitle,
+    },
+    valid: {
+      value: "INV-7K2M-9P4X",
+      state: "valid",
+      message: "Code recognised — continue to redeem.",
+      title: AUTH.accessCodeTitle,
+      subtitle: AUTH.accessCodeSubtitle,
+    },
+    invalid: {
+      value: "INV-XXXX-XXXX",
+      state: "invalid",
+      message: "This code isn't valid. Check and try again.",
+      title: AUTH.accessCodeTitle,
+      subtitle: AUTH.accessCodeSubtitle,
+    },
+    create: {
+      value: "",
+      state: "default",
+      message: null,
+      title: AUTH.createAccountTitle,
+      subtitle: AUTH.createAccountSubtitle,
+    },
   };
   const cfg = states[variant] ?? states.empty;
   const isCreate = variant === "create";
@@ -232,14 +277,14 @@ export function WfCheckIn({ variant = "before", prototypeActions = {} }) {
         <WfProgress total={after ? 5 : 4} current={after ? 4 : 0} />
         <WfHeadline
           className="!px-0"
-          title={after ? "How did that feel?" : "How is your nervous system today?"}
-          subtitle={after ? "Remeasure after your session." : "A quick check-in before you listen."}
+          title={after ? CHECK_IN.afterTitle : CHECK_IN.beforeTitle}
+          subtitle={after ? CHECK_IN.afterSubtitle : CHECK_IN.beforeSubtitle}
         />
         <div className="mt-6 space-y-4">
-          <WfSlider label="Stress level" value={after ? 28 : 72} />
-          <WfSlider label="Energy level" value={after ? 55 : 40} />
-          <WfSlider label="Focus" value={after ? 62 : 35} />
-          <WfSlider label="Restfulness" value={after ? 70 : 25} />
+          <WfSlider label={CHECK_IN.sliders[0]} value={after ? 28 : 72} />
+          <WfSlider label={CHECK_IN.sliders[1]} value={after ? 55 : 40} />
+          <WfSlider label={CHECK_IN.sliders[2]} value={after ? 62 : 35} />
+          <WfSlider label={CHECK_IN.sliders[3]} value={after ? 70 : 25} />
         </div>
       </WfScreenBody>
       <WfScreenFooter>
@@ -259,7 +304,7 @@ export function WfHeadphones({ prototypeActions = {} }) {
         <WfHeadline
           className="!px-0 mt-6 text-center [&_h2]:text-center [&_p]:text-center"
           title="Put on your headphones"
-          subtitle="Find a quiet place, free of distractions, for a 5-minute nervous system reset."
+          subtitle={PUBLIC_SAMPLE.headphones}
         />
       </WfScreenBody>
       <WfScreenFooter>
@@ -275,12 +320,12 @@ export function WfPublicListening({ prototypeActions = {} }) {
   return (
     <WireframeScreen tone="dark">
       <WfScreenBody className="px-5 pt-6">
-        <WfTag>Sample session</WfTag>
+        <WfTag>{PUBLIC_SAMPLE.tag}</WfTag>
         <p className={`px-5 ${WF_TYPE.caption}`} style={{ color: palette.placeholder }}>
-          Curated sample
+          {PUBLIC_SAMPLE.subtitle}
         </p>
         <p className={`mt-1 px-5 ${WF_TYPE.titleSm}`} style={{ color: palette.text }}>
-          Session title
+          {PUBLIC_SAMPLE.title}
         </p>
         <div className="flex flex-1 flex-col items-center justify-center px-5">
           <WfPlaceholder size="icon" />
@@ -312,30 +357,35 @@ export function WfExperienced({ prototypeActions = {} }) {
         <WfTag>Reflection</WfTag>
         <WfHeadline
           className="!px-0 mt-2"
-          title="What you experienced"
-          subtitle="Explain the physiological and experiential effects of the session."
+          title={EXPERIENCED.title}
+          subtitle={EXPERIENCED.subtitle}
         />
-        <div className="mt-5">
-          <WfSkeletonLines lines={6} />
+        <div
+          className="mt-5 rounded-xl border p-4"
+          style={{ borderColor: WF.border, background: WF.surfaceMuted }}
+        >
+          <p className={WF_TYPE.body} style={{ color: WF.textSecondary }}>
+            {EXPERIENCED.body}
+          </p>
         </div>
       </WfScreenBody>
       <WfScreenFooter>
-        <WfButton onClick={prototypeActions.onContinue}>Continue</WfButton>
+        <WfButton onClick={prototypeActions.onContinue}>Explore the science</WfButton>
       </WfScreenFooter>
     </WireframeScreen>
   );
 }
 
 export function WfScienceHome({ prototypeActions = {} }) {
-  const topics = ["Topic one", "Topic two", "Topic three", "Topic four"];
+  const topics = SCIENCE_TOPICS.slice(0, 4);
   return (
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Science</WfTag>
         <WfHeadline
           className="!px-0 mt-2"
-          title="How it works"
-          subtitle="What you experienced — and the science behind structured sound."
+          title={SCIENCE_HOME.title}
+          subtitle={SCIENCE_HOME.subtitle}
         />
         <div className="mt-4 space-y-2">
           {topics.map((t) => (
@@ -370,12 +420,15 @@ export function WfTopicDetail({ prototypeActions = {} }) {
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Education</WfTag>
         <p className={`${WF_TYPE.bodySm}`} style={{ color: WF.textMuted }}>
-          Science
+          {TOPIC_DETAIL.category}
         </p>
-        <WfHeadline className="!px-0 mt-1" title="Topic headline" />
+        <WfHeadline className="!px-0 mt-1" title={TOPIC_DETAIL.title} />
         <div className="mt-4">
           <WfSkeletonLines />
         </div>
+        <p className={`mt-4 ${WF_TYPE.body}`} style={{ color: WF.textSecondary }}>
+          {TOPIC_DETAIL.excerpt}
+        </p>
       </WfScreenBody>
       <WfScreenFooter>
         <WfButton variant="secondary" onClick={prototypeActions.onBack}>
@@ -393,13 +446,14 @@ export function WfRequestAccess({ prototypeActions = {} }) {
         <WfTag>Access request</WfTag>
         <WfHeadline
           className="!px-0 mt-2"
-          title="Stay in the loop"
-          subtitle="Request access for yourself or your organisation."
+          title={REQUEST_ACCESS.title}
+          subtitle={REQUEST_ACCESS.subtitle}
         />
         <div className="mt-4 space-y-3">
-          <WfField label="Name" placeholder="Your name" />
-          <WfField label="Email" placeholder="you@email.com" />
-          <WfField label="Organisation (optional)" placeholder="Hospital, clinic, team…" />
+          <WfField label="Name" placeholder={REQUEST_ACCESS.fields.name} />
+          <WfField label="Email" placeholder={REQUEST_ACCESS.fields.email} />
+          <WfField label="Organisation" placeholder={REQUEST_ACCESS.fields.organisation} />
+          <WfField label="Role" placeholder={REQUEST_ACCESS.fields.role} />
         </div>
       </WfScreenBody>
       <WfScreenFooter>
@@ -433,33 +487,39 @@ export function WfRequestSubmitted() {
 }
 
 export function WfReturningHome() {
-  const cards = ["Daily reset", "Science", "Research", "Applications", "Our story"];
   return (
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Public home</WfTag>
-        <WfHeadline className="!px-0 mt-2" title="Welcome back" subtitle="How are you feeling today?" />
+        <WfHeadline
+          className="!px-0 mt-2"
+          title="Welcome back"
+          subtitle="How is your nervous system today?"
+        />
         <div className="mt-4 grid grid-cols-2 gap-2">
-          {cards.map((c, i) => (
+          {PUBLIC_NAV.map((c, i) => (
             <div
-              key={c}
-              className={`rounded-xl border p-3 ${i === 0 ? "col-span-2" : ""}`}
+              key={c.label}
+              className={`rounded-xl border p-3 ${c.featured ? "col-span-2" : ""}`}
               style={{
                 borderColor: WF.border,
-                background: i === 0 ? WF.surfaceMuted : WF.surface,
+                background: c.featured ? WF.surfaceMuted : WF.surface,
               }}
             >
               <p className={WF_TYPE.bodySm} style={{ color: WF.text }}>
-                {c}
+                {c.label}
               </p>
-              {i === 0 ? (
+              {c.detail ? (
                 <p className={`mt-1 ${WF_TYPE.bodySm}`} style={{ color: WF.textMuted }}>
-                  Replay sample session
+                  {c.detail}
                 </p>
               ) : null}
             </div>
           ))}
         </div>
+        <p className={`mt-4 text-center ${WF_TYPE.bodySm}`} style={{ color: WF.textMuted }}>
+          Request Access
+        </p>
       </WfScreenBody>
       <WfTabBar active="home" />
     </WireframeScreen>
@@ -477,11 +537,11 @@ export function WfOnboarding({ step = 0, variant, prototypeActions = {} }) {
           <WfProgress total={3} current={0} />
           <WfHeadline
             className="!px-0 mt-4"
-            title="What is Sonocea?"
-            subtitle="Structured sound sessions designed for clinical and wellbeing contexts."
+            title={ONBOARDING.introTitle}
+            subtitle={ONBOARDING.introSubtitle}
           />
           <div className="mt-4 space-y-2">
-            {["Evidence-informed listening programmes", "Assigned by your provider", "Private, headphone-first experience"].map((t) => (
+            {ONBOARDING.introBullets.map((t) => (
               <div
                 key={t}
                 className="rounded-lg border px-3 py-2"
@@ -501,11 +561,7 @@ export function WfOnboarding({ step = 0, variant, prototypeActions = {} }) {
     );
   }
 
-  const steps = [
-    { title: "Welcome", subtitle: "Personalised greeting after authentication." },
-    { title: "How it works", subtitle: "Explain the listening programme model." },
-    { title: "Permissions", subtitle: "Request notification and audio permissions." },
-  ];
+  const steps = ONBOARDING.steps;
   const cfg = steps[step] ?? steps[0];
 
   return (
@@ -516,7 +572,7 @@ export function WfOnboarding({ step = 0, variant, prototypeActions = {} }) {
         <WfHeadline className="!px-0 mt-4" title={cfg.title} subtitle={cfg.subtitle} />
         {step === 1 ? (
           <div className="mt-4 space-y-2">
-            {["Browse assigned sessions", "Play with headphones", "Reflect when prompted"].map((t) => (
+            {ONBOARDING.howItWorksBullets.map((t) => (
               <div
                 key={t}
                 className="rounded-lg border px-3 py-2"
@@ -531,7 +587,7 @@ export function WfOnboarding({ step = 0, variant, prototypeActions = {} }) {
         ) : null}
         {step === 2 ? (
           <div className="mt-4 space-y-2">
-            {["Notifications", "Background audio", "Health data (optional)"].map((t) => (
+            {ONBOARDING.permissions.map((t) => (
               <div
                 key={t}
                 className="flex items-center justify-between rounded-lg border px-3 py-2.5"
@@ -563,11 +619,11 @@ export function WfGuidance() {
         <WfTag>Guidance</WfTag>
         <WfHeadline
           className="!px-0 mt-2"
-          title="Listening guidance"
-          subtitle="Set expectations for when and how to listen."
+          title={GUIDANCE.title}
+          subtitle={GUIDANCE.subtitle}
         />
         <div className="mt-4 space-y-2">
-          {["Use headphones", "One session at a time", "12–20 min typical"].map((t) => (
+          {GUIDANCE.items.map((t) => (
             <div
               key={t}
               className="rounded-lg border px-3 py-2"
@@ -597,7 +653,7 @@ export function WfNeurotype({ variant = "question", prototypeActions = {} }) {
             Profile captured
           </p>
           <p className={`mt-2 ${WF_TYPE.body}`} style={{ color: WF.textMuted }}>
-            We'll use this to tailor session recommendations.
+            {NEUROTYPE.completeSubtitle}
           </p>
         </WfScreenBody>
         <WfScreenFooter>
@@ -607,20 +663,16 @@ export function WfNeurotype({ variant = "question", prototypeActions = {} }) {
     );
   }
 
-  const options = [
-    { title: "Option A", sub: "Supporting description" },
-    { title: "Option B", sub: "Supporting description" },
-    { title: "Option C", sub: "Supporting description", selected: true },
-  ];
+  const options = NEUROTYPE.options.map((o, i) => ({ ...o, selected: i === 1 }));
 
   return (
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
-        <WfTag>Personalisation</WfTag>
+        <WfTag>Neurotype questionnaire</WfTag>
         <WfHeadline
           className="!px-0 mt-2"
-          title="Your listening profile"
-          subtitle="Pick the description that best fits for recommendations."
+          title={NEUROTYPE.title}
+          subtitle={NEUROTYPE.subtitle}
         />
         <div className="mt-4 space-y-2.5">
           {options.map((o) => (
@@ -640,16 +692,16 @@ export function WfProfile({ prototypeActions = {} }) {
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Profile</WfTag>
-        <WfHeadline className="!px-0 mt-2" title="Recommended profile" subtitle="Based on your responses." />
+        <WfHeadline className="!px-0 mt-2" title="Your neurotype profile" subtitle="Based on your questionnaire responses." />
         <div
           className="mt-4 rounded-xl border p-4"
           style={{ borderColor: WF.border, background: WF.surfaceMuted }}
         >
           <p className={WF_TYPE.label} style={{ color: WF.text }}>
-            Profile type
+            Low-support neurodivergent
           </p>
           <p className={`mt-1 ${WF_TYPE.body}`} style={{ color: WF.textSecondary }}>
-            Summary of listening preferences and recommendations.
+            Sessions in your provisioned library are aligned to this neurotype group.
           </p>
         </div>
       </WfScreenBody>
@@ -703,7 +755,7 @@ export function WfLibrary({ variant = "home", prototypeActions = {} }) {
   }
 
   if (variant === "categories") {
-    const categories = ["Calm", "Focus", "Reset", "Sleep", "Recovery", "Bonding"];
+    const categories = SESSIONS.categories;
     return (
       <WireframeScreen>
         <WfScreenHeader />
@@ -775,8 +827,8 @@ export function WfLibrary({ variant = "home", prototypeActions = {} }) {
           </p>
         </div>
         <div className="mt-2 flex-1 overflow-hidden">
-          <WfListRow title="Evening calm" meta="14 min · Assigned" />
-          <WfListRow title="Deep reset" meta="20 min · Assigned" />
+          <WfListRow title="Arrive · settle" meta="14 min · Assigned" />
+          <WfListRow title="Deep unwind" meta="20 min · Assigned" />
           <WfListRow title="Gentle arrival" meta="12 min · Assigned" />
           <WfListRow title="Wind down" meta="15 min · Assigned" />
         </div>
@@ -856,10 +908,10 @@ export function WfLibrary({ variant = "home", prototypeActions = {} }) {
               Continue
             </p>
             <p className={`mt-2 ${WF_TYPE.label}`} style={{ color: WF.text }}>
-              Session title
+              {SESSIONS.resume.title}
             </p>
             <p className={WF_TYPE.bodySm} style={{ color: WF.textMuted }}>
-              14 min · Category
+              {SESSIONS.resume.meta}
             </p>
             <div className="mt-3">
               <WfButton>Resume</WfButton>
@@ -868,11 +920,9 @@ export function WfLibrary({ variant = "home", prototypeActions = {} }) {
         )}
       </div>
       <div className="mt-2 flex-1 overflow-hidden">
-        <WfListRow title="Track title" meta="Artist" onClick={prototypeActions.onSelectSession} />
-        <WfListRow title="Track title" meta="Artist" onClick={prototypeActions.onSelectSession} />
-        <WfListRow title="Track title" meta="Artist" onClick={prototypeActions.onSelectSession} />
-        <WfListRow title="Track title" meta="Artist" onClick={prototypeActions.onSelectSession} />
-        <WfListRow title="Track title" meta="Artist" onClick={prototypeActions.onSelectSession} />
+        {SESSIONS.library.map((s) => (
+          <WfListRow key={s.title} title={s.title} meta={s.meta} onClick={prototypeActions.onSelectSession} />
+        ))}
       </div>
       <WfTabBar active={variant === "browse" ? "discover" : "home"} />
     </WireframeScreen>
@@ -884,11 +934,11 @@ export function WfFavorites() {
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Saved</WfTag>
-        <WfHeadline className="!px-0 mt-2" title="Saved sessions" />
+        <WfHeadline className="!px-0 mt-2" title="Sonocea Favorites" subtitle="Sessions you've bookmarked for quick access." />
       </WfScreenBody>
       <div className="flex-1">
-        <WfListRow title="Bookmarked session" meta="12 min · Favourite" />
-        <WfListRow title="Bookmarked session" meta="20 min" />
+        <WfListRow title="Arrive · settle" meta="14 min · Favourite" />
+        <WfListRow title="Deep unwind" meta="22 min · Favourite" />
       </div>
       <WfTabBar active="profile" />
     </WireframeScreen>
@@ -901,7 +951,7 @@ export function WfSessionDetail({ variant = "detail", prototypeActions = {} }) {
       <WireframeScreen>
         <WfScreenBody className="px-5 pt-6">
           <WfTag>Session overview</WfTag>
-          <WfHeadline className="!px-0 mt-2" title="Session title" subtitle="Quick summary before full detail." />
+          <WfHeadline className="!px-0 mt-2" title={SESSIONS.detail.title} subtitle="Purpose, duration, and neurotype fit at a glance." />
           <div
             className="mt-4 rounded-xl border p-4"
             style={{ borderColor: WF.border, background: WF.surfaceMuted }}
@@ -910,10 +960,10 @@ export function WfSessionDetail({ variant = "detail", prototypeActions = {} }) {
               <WfPlaceholder size="sm" className="!h-16 !w-16 shrink-0" />
               <div>
                 <p className={WF_TYPE.label} style={{ color: WF.text }}>
-                  14 min · Category
+                  {SESSIONS.detail.duration} · {SESSIONS.detail.useCase}
                 </p>
                 <p className={`mt-1 ${WF_TYPE.bodySm}`} style={{ color: WF.textSecondary }}>
-                  Brief purpose and audience fit at a glance.
+                  {SESSIONS.detail.benefits}
                 </p>
               </div>
             </div>
@@ -934,16 +984,16 @@ export function WfSessionDetail({ variant = "detail", prototypeActions = {} }) {
       <WfPlaceholder size="md" className="!h-28 !rounded-none border-x-0 border-t-0" />
       <WfScreenBody className="px-5 pt-3">
         <WfTag>Session detail</WfTag>
-        <WfHeadline className="!px-0" title="Session title" />
+        <WfHeadline className="!px-0" title={SESSIONS.detail.title} />
         <div className="mt-2 flex flex-wrap gap-1.5">
-          <WfChip>14 min</WfChip>
-          <WfChip>Category</WfChip>
-          <WfChip>Your profile</WfChip>
+          <WfChip>{SESSIONS.detail.duration}</WfChip>
+          <WfChip>{SESSIONS.detail.useCase}</WfChip>
+          <WfChip>{SESSIONS.detail.neurotype}</WfChip>
           {downloaded ? <WfChip active>Downloaded</WfChip> : null}
           {available ? <WfChip active>Ready to play</WfChip> : null}
         </div>
         <p className={`mt-3 ${WF_TYPE.body}`} style={{ color: WF.textSecondary }}>
-          Purpose, audience fit, and benefits — clinical-friendly description placeholder.
+          {SESSIONS.detail.description}
         </p>
         {downloaded ? (
           <p className={`mt-2 ${WF_TYPE.bodySm}`} style={{ color: WF.textMuted }}>
@@ -994,7 +1044,7 @@ export function WfPlayer({ variant = "playing", prototypeActions = {} }) {
               Now playing
             </p>
             <p className={`mt-1 ${WF_TYPE.label}`} style={{ color: palette.text }}>
-              Session title
+              {PLAYER.sessionTitle}
             </p>
             <div className="mt-3 h-1 overflow-hidden rounded-full" style={{ background: palette.border }}>
               <div className="h-full rounded-full" style={{ width: `${cfg.progress}%`, background: palette.fill }} />
@@ -1026,10 +1076,10 @@ export function WfPlayer({ variant = "playing", prototypeActions = {} }) {
             <span>{cfg.status}</span>
           </div>
           <p className={`mt-2 ${WF_TYPE.titleSm}`} style={{ color: palette.text }}>
-            Session title
+            {PLAYER.sessionTitle}
           </p>
           <p className={WF_TYPE.bodySm} style={{ color: palette.placeholder }}>
-            14:00 · Category
+            {PLAYER.duration} · {PLAYER.category}
           </p>
           <div className="my-4 flex flex-1 items-center justify-center">
             <WfPlaceholder size="md" className="!h-24" />
@@ -1091,11 +1141,11 @@ export function WfCompletion() {
           Session complete
         </p>
         <p className={`mt-2 ${WF_TYPE.body}`} style={{ color: WF.textMuted }}>
-          Well done. Share how it felt before returning to your library.
+          {FEEDBACK.completionSubtitle}
         </p>
       </WfScreenBody>
       <WfScreenFooter>
-        <WfButton>Leave feedback</WfButton>
+        <WfButton>Rate this Session</WfButton>
         <WfButton variant="secondary">Skip</WfButton>
       </WfScreenFooter>
     </WireframeScreen>
@@ -1109,14 +1159,14 @@ export function WfCompletionReflection() {
         <WfProgress total={5} current={4} />
         <WfHeadline
           className="!px-0"
-          title="How do you feel now?"
+          title={CHECK_IN.afterTitle}
           subtitle="Post-session reflection — compare to your check-in."
         />
         <div className="mt-6 space-y-4">
-          <WfSlider label="Stress level" value={32} />
-          <WfSlider label="Energy level" value={58} />
-          <WfSlider label="Focus" value={65} />
-          <WfSlider label="Restfulness" value={72} />
+          <WfSlider label={CHECK_IN.sliders[0]} value={32} />
+          <WfSlider label={CHECK_IN.sliders[1]} value={58} />
+          <WfSlider label={CHECK_IN.sliders[2]} value={65} />
+          <WfSlider label={CHECK_IN.sliders[3]} value={72} />
         </div>
       </WfScreenBody>
       <WfScreenFooter>
@@ -1137,7 +1187,7 @@ export function WfFeedback({ variant = "form", prototypeActions = {} }) {
             Thank you
           </p>
           <p className={`mt-2 ${WF_TYPE.body}`} style={{ color: WF.textMuted }}>
-            Your feedback helps improve session recommendations.
+            {FEEDBACK.submittedSubtitle}
           </p>
         </WfScreenBody>
         <WfScreenFooter>
@@ -1154,8 +1204,8 @@ export function WfFeedback({ variant = "form", prototypeActions = {} }) {
           <WfTag>Rating</WfTag>
           <WfHeadline
             className="!px-0 mt-2"
-            title="Rate this session"
-            subtitle="How effective was this session for you?"
+            title={FEEDBACK.ratingTitle}
+            subtitle={FEEDBACK.ratingSubtitle}
           />
           <div className="mt-6">
             <WfRatingRow />
@@ -1175,8 +1225,8 @@ export function WfFeedback({ variant = "form", prototypeActions = {} }) {
         <WfTag>Feedback</WfTag>
         <WfHeadline
           className="!px-0 mt-2"
-          title="How was this session?"
-          subtitle="Post-completion · optional comment"
+          title={FEEDBACK.formTitle}
+          subtitle={FEEDBACK.formSubtitle}
         />
         <div className="mt-4">
           <WfRatingRow />
@@ -1203,7 +1253,7 @@ export function WfFeedback({ variant = "form", prototypeActions = {} }) {
 
 export function WfAbout({ variant = "default" }) {
   if (variant === "privacy") {
-    const rows = ["Privacy policy", "Terms of use", "Cookie preferences", "Data processing", "Open-source notices"];
+    const rows = ABOUT.privacyLinks;
     return (
       <WireframeScreen>
         <WfScreenBody className="px-5 pt-6">
@@ -1219,7 +1269,7 @@ export function WfAbout({ variant = "default" }) {
     );
   }
 
-  const rows = ["Privacy policy", "Terms of use", "Open-source notices"];
+  const rows = ABOUT.links;
   return (
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
@@ -1230,7 +1280,7 @@ export function WfAbout({ variant = "default" }) {
           </span>
         </div>
         <WfPlaceholder size="sm" className="mt-3" />
-        <WfHeadline className="!px-0 mt-4" title="About" subtitle="Company and product information." />
+        <WfHeadline className="!px-0 mt-4" title={ABOUT.title} subtitle={ABOUT.subtitle} />
         <div className="mt-4">
           {rows.map((r) => (
             <WfRowLink key={r} title={r} />
@@ -1289,19 +1339,15 @@ export function WfSupport({ variant = "default" }) {
     );
   }
 
-  const rows = [
-    { title: "Email support", sub: "support@…" },
-    { title: "FAQ", sub: "Playback, invites, offline" },
-    { title: "Data & privacy", sub: "Export / delete pathways" },
-  ];
+  const rows = SUPPORT.rows;
   return (
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Support</WfTag>
         <WfHeadline
           className="!px-0 mt-2"
-          title="Help"
-          subtitle="Account access, playback, downloads, and privacy requests."
+          title={SUPPORT.title}
+          subtitle={SUPPORT.subtitle}
         />
         <div className="mt-4">
           {rows.map((r) => (
@@ -1321,9 +1367,9 @@ export function WfResearch() {
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Research</WfTag>
-        <WfHeadline className="!px-0 mt-2" title="Research" subtitle="Clinical research and publications." />
+        <WfHeadline className="!px-0 mt-2" title={RESEARCH.title} subtitle={RESEARCH.subtitle} />
         <div className="mt-4 space-y-2">
-          {["Publication one", "Publication two", "Publication three"].map((p) => (
+          {RESEARCH.publications.map((p) => (
             <div
               key={p}
               className="flex items-center justify-between rounded-xl border px-3 py-2.5"

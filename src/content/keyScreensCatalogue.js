@@ -54,7 +54,7 @@ export const KEY_SCREEN_TIERS = [
             "Ordered steps · completion ticks",
             "Day N header with ordered checklist — tap any step to open detail and play. Sequence and completion read first.",
             "Regiment and workplace programmes where order matters.",
-            "Protocols are limited in v1 — may over-promise scope.",
+            "Multi-day protocols are out of scope for v1 — show assigned order only.",
             "ks-home-protocol",
           ),
           c(
@@ -286,7 +286,7 @@ export const KEY_SCREEN_TIERS = [
             "Streak · minutes · next up",
             "Shows listening streak, minutes today, and suggested next session card.",
             "Habit-building workplace programmes.",
-            "Stats can feel gamified — keep tone clinical and private.",
+            "Keep tone clinical — no streaks or gamification in v1.",
             "ks-completion-progress",
           ),
           c(
@@ -748,7 +748,7 @@ export const KEY_SCREEN_TIERS = [
             "A",
             "Slider spectrum",
             "Dysregulated ← → regulated",
-            "Single horizontal slider with labelled endpoints. No numeric score shown to visitor.",
+            "Single horizontal slider with labelled endpoints. PRD baseline uses four sliders (stress, energy, focus, restfulness).",
             "Fast baseline capture — mirrors post-sample reflection.",
             "Endpoints need text labels for screen readers.",
             "pv-check-in",
