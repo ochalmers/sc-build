@@ -65,7 +65,7 @@ export default function ChapterNav() {
           {open ? (
             <div
               id={panelId}
-              className="mb-2 min-w-[12.5rem] overflow-hidden rounded-[1.25rem] bg-[#121212] p-2.5 shadow-[0_16px_48px_rgba(0,0,0,0.35)]"
+              className="mb-2 min-w-[16rem] max-w-[min(20rem,80vw)] overflow-hidden rounded-[1.25rem] bg-[#121212] p-2.5 shadow-[0_16px_48px_rgba(0,0,0,0.35)]"
             >
               <nav
                 className="max-h-[min(24rem,50dvh)] overflow-y-auto"
@@ -107,7 +107,9 @@ export default function ChapterNav() {
             <span className="flex h-8 w-8 shrink-0 items-center justify-center text-white/90">
               <ListIcon />
             </span>
-            <span className="pr-1 text-[13px] tracking-tight text-white">{activeLabel}</span>
+            <span className="max-w-[min(14rem,55vw)] truncate pr-1 text-[13px] tracking-tight text-white">
+              {activeLabel}
+            </span>
           </button>
         </div>
       </div>

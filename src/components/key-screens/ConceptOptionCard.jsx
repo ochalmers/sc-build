@@ -31,8 +31,8 @@ function ConceptWireframe({ wireframeKey, fallbackTitle, placeholderNote }) {
   }
 
   return (
-    <div className={`mx-auto origin-top ${isDesktop ? "w-[300px]" : "scale-[0.8]"}`}>
-      <WireframePreviewFrame frame={frame} className={isDesktop ? "w-full" : "!max-w-[240px]"}>
+    <div className={`mx-auto w-[240px] ${isDesktop ? "" : ""}`}>
+      <WireframePreviewFrame frame={frame} className="!max-w-[240px] w-full">
         <Screen {...props} />
       </WireframePreviewFrame>
     </div>
@@ -53,7 +53,7 @@ export default function ConceptOptionCard({ option }) {
       ) : null}
       <p className="mt-3 text-[12px] leading-relaxed text-ink-600">{option.idea}</p>
 
-      <div className="mt-6 flex justify-center">
+      <div className="mt-6 flex min-h-[320px] items-start justify-center">
         <ConceptWireframe
           wireframeKey={option.wireframeKey}
           fallbackTitle={option.name}

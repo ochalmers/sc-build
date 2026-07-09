@@ -5,9 +5,10 @@ import PageSection from "../components/workspace/PageSection.jsx";
 import {
   DELIVERY_SEQUENCE,
   DESIGN_DELIVERABLES,
-  DESIGN_PRIORITIES,
+  DESIGN_REVIEWS,
   getCurrentPhase,
   getUpcomingPhases,
+  NEXT_DESIGN_DELIVERABLES,
   PLAN_CHECKPOINTS,
   PLAN_HERO,
   PLAN_TIMELINE,
@@ -47,95 +48,63 @@ function TimelineStrip() {
   );
 }
 
-function CurrentPhaseCard() {
+function CurrentDeliveryCard() {
   const phase = getCurrentPhase();
-  const deliverables = phase.deliverables;
-  const hasStatusObjects = deliverables[0] && typeof deliverables[0] === "object";
-  const completed = hasStatusObjects
-    ? deliverables.filter((d) => d.status === "complete").length
-    : 0;
-  const progress = hasStatusObjects ? Math.round((completed / deliverables.length) * 100) : 0;
+  const categories = phase.deliveryCategories ?? [];
 
   return (
-    <article className="rounded-3xl border border-ink-950/10 bg-white/80 p-8 shadow-[0_1px_2px_rgba(0,0,0,0.04)] md:p-12">
+    <article className="rounded-3xl border border-ink-950/12 bg-white/90 p-8 shadow-[0_2px_8px_rgba(0,0,0,0.04)] md:p-14">
       <div className="flex flex-wrap items-start justify-between gap-6">
         <div>
           <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-500">
-            Phase {phase.number} · {phase.dates}
+            Delivery 1 · {phase.dates}
           </p>
           <div className="mt-4">
             <span className="text-[13px] text-ink-500">
-              Gate · <span className="font-medium text-ink-800">{phase.gateDate}</span>
+              Due · <span className="font-medium text-ink-800">{phase.gateDate}</span>
             </span>
           </div>
         </div>
-        {hasStatusObjects ? (
-          <div className="text-right">
-            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Progress</p>
-            <p className="mt-1 text-[28px] font-medium tabular-nums tracking-tight text-ink-950">{progress}%</p>
-          </div>
-        ) : null}
+        <span className="rounded-full border border-emerald-200/70 bg-emerald-50/60 px-3.5 py-1.5 text-[12px] font-medium text-emerald-800">
+          This week
+        </span>
       </div>
 
-      {hasStatusObjects ? (
-        <div className="mt-8 h-1 overflow-hidden rounded-full bg-ink-100">
-          <div
-            className="h-full rounded-full bg-ink-950 transition-all duration-700"
-            style={{ width: `${progress}%` }}
-            role="progressbar"
-            aria-valuenow={progress}
-            aria-valuemin={0}
-            aria-valuemax={100}
-            aria-label="Phase progress"
-          />
-        </div>
-      ) : null}
-
-      <h3 className="mt-10 text-[clamp(1.5rem,3vw,2rem)] font-medium leading-[1.1] tracking-tight text-ink-950">
+      <h3 className="mt-10 text-[clamp(1.625rem,3.2vw,2.125rem)] font-medium leading-[1.1] tracking-tight text-ink-950">
         {phase.title}
       </h3>
       <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-ink-600">{phase.objective}</p>
 
-      <div className="mt-10">
-        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Deliverables</p>
-        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-          {deliverables.map((item) => {
-            if (typeof item === "string") {
-              return (
+      <div className="mt-12 grid gap-8 sm:grid-cols-2">
+        {categories.map((category) => (
+          <div key={category.title}>
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">{category.title}</p>
+            <ul className="mt-4 space-y-2.5">
+              {category.items.map((item) => (
                 <li
                   key={item}
-                  className="flex items-center gap-2.5 rounded-xl border border-ink-200/60 bg-paper-50/80 px-4 py-3.5 text-[14px] text-ink-700"
+                  className="flex items-center gap-2.5 rounded-xl border border-ink-200/60 bg-paper-50/80 px-4 py-3 text-[14px] text-ink-700"
                 >
                   <span className="text-ink-300" aria-hidden>
                     ·
                   </span>
                   {item}
                 </li>
-              );
-            }
-            return (
-              <li
-                key={item.label}
-                className="flex items-center gap-2.5 rounded-xl border border-ink-200/60 bg-paper-50/80 px-4 py-3.5 text-[14px] text-ink-800"
-              >
-                <span className="text-ink-300" aria-hidden>
-                  ·
-                </span>
-                {item.label}
-              </li>
-            );
-          })}
-        </ul>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
 
-      {phase.engineeringOutcome && typeof phase.engineeringOutcome === "object" ? (
-        <div className="mt-10 rounded-2xl border border-ink-200/60 bg-paper-50/50 p-6 md:p-8">
-          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Engineering Outcome</p>
-          <p className="mt-3 text-[15px] font-medium text-ink-900">{phase.engineeringOutcome.title}</p>
+      {phase.engineeringCanBuild?.length ? (
+        <div className="mt-12 rounded-2xl border border-emerald-200/50 bg-emerald-50/30 p-6 md:p-8">
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-emerald-800/70">
+            Engineering can begin building
+          </p>
           <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-            {phase.engineeringOutcome.items.map((item) => (
-              <li key={item} className="flex items-center gap-2.5 text-[14px] text-ink-700">
-                <span className="text-ink-400" aria-hidden>
+            {phase.engineeringCanBuild.map((item) => (
+              <li key={item} className="flex items-center gap-2.5 text-[14px] text-ink-800">
+                <span className="text-emerald-500" aria-hidden>
                   ·
                 </span>
                 {item}
@@ -148,8 +117,10 @@ function CurrentPhaseCard() {
   );
 }
 
-function UpcomingPhaseCard({ phase, defaultOpen = false }) {
+function UpcomingDeliveryCard({ phase, defaultOpen = false }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
+  const goal = phase.goal ?? phase.objective;
+  const deliverables = phase.deliverables ?? [];
 
   return (
     <article className="overflow-hidden rounded-2xl border border-ink-200/70 bg-white/60 transition-colors hover:border-ink-300/80">
@@ -162,14 +133,14 @@ function UpcomingPhaseCard({ phase, defaultOpen = false }) {
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
             <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">
-              Phase {phase.number}
+              Delivery {phase.number}
             </span>
             <span className="text-[13px] text-ink-500">{phase.dates}</span>
           </div>
           <h3 className="mt-2 text-[18px] font-medium tracking-tight text-ink-950 md:text-[20px]">
             {phase.title}
           </h3>
-          {!isOpen ? <p className="mt-2 line-clamp-1 text-[14px] text-ink-500">{phase.objective}</p> : null}
+          {!isOpen ? <p className="mt-2 line-clamp-1 text-[14px] text-ink-500">{goal}</p> : null}
         </div>
         <span
           className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ink-200/80 text-[18px] leading-none text-ink-400"
@@ -181,12 +152,15 @@ function UpcomingPhaseCard({ phase, defaultOpen = false }) {
 
       {isOpen ? (
         <div className="border-t border-ink-200/50 px-6 pb-7 pt-5 md:px-8 md:pb-8">
-          <p className="text-[14px] leading-relaxed text-ink-600">{phase.objective}</p>
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Goal</p>
+            <p className="mt-2 text-[14px] leading-relaxed text-ink-600">{goal}</p>
+          </div>
 
           <div className="mt-6">
             <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Deliverables</p>
             <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-              {phase.deliverables.map((item) => (
+              {deliverables.map((item) => (
                 <li
                   key={typeof item === "string" ? item : item.label}
                   className="flex items-center gap-2.5 text-[14px] text-ink-700"
@@ -201,16 +175,37 @@ function UpcomingPhaseCard({ phase, defaultOpen = false }) {
           </div>
 
           <div className="mt-6 rounded-xl border border-ink-200/50 bg-paper-50/60 px-5 py-4">
-            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Engineering Outcome</p>
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">
+              Outcome for Engineering
+            </p>
             <p className="mt-2 text-[14px] leading-relaxed text-ink-700">
               {typeof phase.engineeringOutcome === "string"
                 ? phase.engineeringOutcome
-                : phase.engineeringOutcome.title}
+                : phase.engineeringOutcome?.title}
             </p>
           </div>
         </div>
       ) : null}
     </article>
+  );
+}
+
+function DesignReviewsSection() {
+  return (
+    <div className="grid gap-4 sm:grid-cols-3">
+      {DESIGN_REVIEWS.map((review) => (
+        <article
+          key={review.id}
+          className="rounded-2xl border border-ink-200/60 bg-white/50 px-5 py-5 md:px-6 md:py-6"
+        >
+          <h3 className="text-[15px] font-medium tracking-tight text-ink-950">{review.title}</h3>
+          <p className="mt-3 text-[13px] leading-relaxed text-ink-600">
+            <span className="text-ink-500">Purpose: </span>
+            {review.purpose}
+          </p>
+        </article>
+      ))}
+    </div>
   );
 }
 
@@ -284,31 +279,16 @@ function DeliverySequenceFlow() {
   );
 }
 
-function PriorityList() {
+function NextDesignDeliverables() {
   return (
-    <div className="space-y-5">
-      {DESIGN_PRIORITIES.map((priority) => (
-        <article
-          key={priority.id}
-          className="flex flex-col gap-5 rounded-2xl border border-ink-200/70 bg-white/60 p-6 sm:flex-row sm:items-center sm:justify-between md:p-8"
+    <div className="flex flex-wrap gap-3">
+      {NEXT_DESIGN_DELIVERABLES.map((item) => (
+        <span
+          key={item}
+          className="rounded-full border border-ink-200/70 bg-white/60 px-4 py-2 text-[14px] text-ink-800"
         >
-          <div className="min-w-0">
-            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">
-              Priority {priority.rank}
-            </p>
-            <h3 className="mt-1.5 text-[17px] font-medium tracking-tight text-ink-950">{priority.title}</h3>
-          </div>
-          <div className="flex flex-wrap gap-2 sm:justify-end">
-            {priority.items.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-ink-200/70 bg-paper-50 px-3.5 py-1.5 text-[13px] text-ink-700"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </article>
+          {item}
+        </span>
       ))}
     </div>
   );
@@ -339,16 +319,20 @@ export default function PlanPage() {
           </div>
         </section>
 
-        <PageSection id="plan-current" label="Current" title="Current Phase">
-          <CurrentPhaseCard />
+        <PageSection id="plan-current" label="Current" title="Current Delivery">
+          <CurrentDeliveryCard />
         </PageSection>
 
-        <PageSection id="plan-phases" label="Upcoming" title="Upcoming Phases">
+        <PageSection id="plan-phases" label="Upcoming" title="Upcoming Deliveries">
           <div className="space-y-4">
             {upcomingPhases.map((phase, index) => (
-              <UpcomingPhaseCard key={phase.id} phase={phase} defaultOpen={index === 0} />
+              <UpcomingDeliveryCard key={phase.id} phase={phase} defaultOpen={index === 0} />
             ))}
           </div>
+        </PageSection>
+
+        <PageSection id="plan-reviews" label="Reviews" title="Design Reviews & Team Check-ins">
+          <DesignReviewsSection />
         </PageSection>
 
         <PageSection id="plan-checkpoints" label="Gates" title="Phase Gates">
@@ -363,8 +347,8 @@ export default function PlanPage() {
           <DeliverySequenceFlow />
         </PageSection>
 
-        <PageSection id="plan-priorities" label="Priorities" title="Current Priorities" className="border-b-0">
-          <PriorityList />
+        <PageSection id="plan-priorities" label="In Progress" title="Next Design Deliverables" className="border-b-0">
+          <NextDesignDeliverables />
         </PageSection>
       </main>
     </SiteChrome>

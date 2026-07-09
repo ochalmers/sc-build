@@ -37,28 +37,33 @@ export const PLAN_PHASES = [
     statusLabel: "In Progress",
     objective:
       "Align on MVP scope, finalise information architecture, and deliver the core user flow catalogue with wireframes and early high-fidelity concepts.",
-    deliverables: [
-      { label: "Information Architecture", status: "complete" },
-      { label: "Core User Flows", status: "complete" },
-      { label: "Screen Inventory", status: "complete" },
-      { label: "Wireframes — core journeys", status: "in-progress" },
-      { label: "High-fidelity concepts", status: "in-progress" },
-      { label: "Design tokens — foundations", status: "in-progress" },
-      { label: "Component foundations", status: "pending" },
-      { label: "Developer notes", status: "pending" },
+    deliveryCategories: [
+      {
+        title: "UX",
+        items: ["Core user flows", "Wireframe journeys", "Information architecture"],
+      },
+      {
+        title: "High-Fidelity Designs",
+        items: ["Authentication", "Home", "Session Library", "Session Detail", "Player"],
+      },
+      {
+        title: "Design System",
+        items: ["Typography", "Colour foundations", "Buttons", "Cards", "Navigation"],
+      },
+      {
+        title: "Prototype",
+        items: ["Clickable listener journey", "Primary navigation", "Playback flow"],
+      },
     ],
-    engineeringOutcome: {
-      title: "After this phase the team can begin implementing:",
-      items: [
-        "Navigation",
-        "Authentication",
-        "Home",
-        "Session Library",
-        "Session Detail",
-        "Audio Player",
-        "Core component library",
-      ],
-    },
+    engineeringCanBuild: [
+      "App navigation shell and tab structure",
+      "Authentication screens and sign-in flow",
+      "Home screen layout and session cards",
+      "Session Library list, filters and empty states",
+      "Session Detail screen with metadata and actions",
+      "Audio player controls and playback states",
+      "Core component library — buttons, cards, navigation",
+    ],
     signOff: ["MVP scope", "Information architecture", "Core flow catalogue", "Wireframe structure"],
     gateDate: "Jul 12",
   },
@@ -68,20 +73,19 @@ export const PLAN_PHASES = [
     title: "UX Finalisation & Wireframes",
     dates: "July 13–18",
     status: "upcoming",
-    objective:
-      "Refine wireframes based on consolidated feedback, lock navigation and screen hierarchy, and complete every authenticated listener screen.",
+    goal: "Lock every authenticated listener screen in approved wireframes, ready for visual design.",
     deliverables: [
-      "Revised and approved wireframes",
-      "Listener onboarding",
-      "Session completion & feedback",
-      "Settings, About & Support",
-      "Navigation model",
-      "Screen-by-screen content structure",
-      "Expanded component library",
-      "Interaction states",
+      "Revised wireframes — Home, Library, Detail, Player",
+      "Listener onboarding flow — welcome, permissions, first session",
+      "Session completion and feedback screens",
+      "Settings, About and Support screens",
+      "Navigation model with tab bar and deep-link behaviour",
+      "Screen-by-screen content structure and copy placement",
+      "Expanded component library — forms, lists, modals",
+      "Interaction states — loading, empty, error, offline",
     ],
     engineeringOutcome:
-      "The complete authenticated listener experience can be built end-to-end from approved wireframes.",
+      "Engineering receives approved wireframes for every authenticated listener screen and can build the complete in-app experience end-to-end.",
     signOff: ["Wireframe structure", "Navigation", "Screen hierarchy", "Content approach"],
     gateDate: "Jul 18",
   },
@@ -91,21 +95,19 @@ export const PLAN_PHASES = [
     title: "Visual Language & Design System",
     dates: "July 19–24",
     status: "upcoming",
-    objective:
-      "Define how Sonocea looks and behaves — visual direction, design system, session artwork, and the public visitor discovery journey.",
+    goal: "Define how Sonocea looks and behaves, and deliver the public visitor discovery journey.",
     deliverables: [
-      "Visual direction",
-      "Design system v1",
-      "Light & dark mode approach",
-      "Session artwork system",
-      "Core component library",
-      "Public Welcome & Check-In",
-      "Public Listening Session",
-      "Science & Request Access",
-      "Motion principles",
+      "Visual direction — typography, colour, imagery principles",
+      "Design system v1 — tokens, components, spacing scale",
+      "Light and dark mode specifications",
+      "Session artwork system — generation rules and display patterns",
+      "Public Welcome and Check-In screens",
+      "Public Listening Session experience",
+      "Science and Request Access screens",
+      "Motion principles and transition specifications",
     ],
     engineeringOutcome:
-      "Engineering can build the complete public-facing application experience alongside the authenticated UI.",
+      "Engineering receives the complete design system and public visitor screens, and can build the full public-facing application alongside the authenticated UI.",
     signOff: ["Visual language", "Theme approach", "Session artwork direction", "Component system"],
     gateDate: "Jul 24",
   },
@@ -115,19 +117,19 @@ export const PLAN_PHASES = [
     title: "High-Fidelity Prototype & Handoff",
     dates: "July 25–29",
     status: "upcoming",
-    objective:
-      "Apply the final visual system to all approved screens, build the clickable prototype, and prepare the engineering handoff package.",
+    goal: "Apply the final visual system to all screens and prepare the production handoff package.",
     deliverables: [
-      "High-fidelity mobile app screens",
-      "Clickable prototype",
-      "Empty, error & offline states",
-      "Accessibility specifications",
-      "Interaction & handoff notes",
-      "State documentation",
-      "Final design QA",
-      "Asset export",
+      "High-fidelity screens — all authenticated and public flows",
+      "Clickable prototype covering primary user journeys",
+      "Empty, error and offline state designs for every screen",
+      "Accessibility specifications — contrast, touch targets, labels",
+      "Interaction and handoff notes for engineering",
+      "State documentation — all component variants",
+      "Final design QA pass across all screens",
+      "Asset export — icons, illustrations, artwork templates",
     ],
-    engineeringOutcome: "Complete production-ready design package for development and QA.",
+    engineeringOutcome:
+      "Engineering receives a complete, production-ready design package with annotated screens, prototype links and exported assets for development and QA.",
     signOff: ["Final design", "Prototype", "Handoff package", "Development readiness"],
     gateDate: "Jul 29",
   },
@@ -140,27 +142,61 @@ export const PLAN_CHECKPOINTS = PLAN_PHASES.map((phase) => ({
   highlight: phase.id === CURRENT_PHASE_ID,
 }));
 
+export const DESIGN_REVIEWS = [
+  {
+    id: "internal-review",
+    title: "Internal Review",
+    purpose: "Review wireframes, UX decisions and prepare the next delivery.",
+  },
+  {
+    id: "design-handoff",
+    title: "Design Handoff",
+    purpose: "Present new screens, prototype updates and answer engineering questions.",
+  },
+  {
+    id: "engineering-review",
+    title: "Engineering Review",
+    purpose: "Review implementation progress, gather feedback and agree priorities for the next delivery.",
+  },
+];
+
 export const DESIGN_DELIVERABLES = [
   {
     id: "ux-architecture",
     title: "UX Architecture",
     status: "complete",
     statusLabel: "Complete",
-    items: ["Information Architecture", "Route Map", "User Flows", "Screen Inventory"],
+    items: [
+      "Information architecture — app sections and navigation hierarchy",
+      "Route map — deep links, tab routes and screen transitions",
+      "Core user flows — listen, discover, authenticate, complete session",
+      "Screen inventory — 40+ screens mapped to user roles",
+    ],
   },
   {
     id: "wireframes",
     title: "Wireframes",
     status: "in-progress",
     statusLabel: "In Progress",
-    items: ["Core journeys", "Edge cases", "Error flows", "Player behaviour"],
+    items: [
+      "Core listener journeys — Home → Library → Detail → Player",
+      "Onboarding and authentication wireframes",
+      "Edge case flows — empty library, expired session, offline",
+      "Player behaviour — play, pause, skip, background audio",
+    ],
   },
   {
     id: "ui-design",
     title: "UI Design",
     status: "in-progress",
     statusLabel: "In Progress",
-    items: ["High fidelity screens", "Components", "Design tokens", "Motion", "Accessibility"],
+    items: [
+      "High-fidelity screens — Authentication, Home, Library, Detail, Player",
+      "Component library — buttons, cards, navigation, forms",
+      "Design tokens — typography, colour, spacing, radius",
+      "Motion specifications — transitions, loading, playback animations",
+      "Accessibility — contrast ratios, touch targets, screen reader labels",
+    ],
   },
 ];
 
@@ -205,33 +241,20 @@ export const DELIVERY_SEQUENCE = [
     label: "Release",
     description: "Production-ready design package signed off for launch.",
   },
+  {
+    id: "iteration",
+    label: "Iteration",
+    description: "Refine designs based on feedback and plan the next delivery cycle.",
+  },
 ];
 
-export const DESIGN_PRIORITIES = [
-  {
-    id: "priority-01",
-    rank: "01",
-    title: "Core Listening Experience",
-    items: ["Home", "Library", "Session Detail", "Player"],
-  },
-  {
-    id: "priority-02",
-    rank: "02",
-    title: "Listener Experience",
-    items: ["Authentication", "Onboarding", "Feedback"],
-  },
-  {
-    id: "priority-03",
-    rank: "03",
-    title: "Public Visitor",
-    items: ["Discovery", "Science", "Request Access"],
-  },
-  {
-    id: "priority-04",
-    rank: "04",
-    title: "Production Polish",
-    items: ["Accessibility", "Motion", "States", "QA"],
-  },
+export const NEXT_DESIGN_DELIVERABLES = [
+  "Authentication",
+  "Home",
+  "Session Library",
+  "Session Detail",
+  "Player",
+  "Core Prototype",
 ];
 
 export const DELIVERABLE_STATUS = {

@@ -173,6 +173,6 @@ export function flowSectionAnchor(id) {
 
 export const FLOW_NAV_SECTIONS = FLOW_SECTIONS.map((section) => ({
   id: flowSectionAnchor(section.id),
-  label: section.number ?? "Admin",
+  label: section.number ? `${section.number}. ${section.title}` : section.title,
   title: section.title,
 }));

@@ -12,7 +12,7 @@ function CoreNavOptionCard({ option }) {
       <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.1em] text-ink-500">{option.tabs}</p>
       <p className="mt-3 text-[12px] leading-relaxed text-ink-600">{option.idea}</p>
 
-      <div className="mt-6 flex justify-center">
+      <div className="mt-6 flex min-h-[320px] items-start justify-center">
         <Phone />
       </div>
 
