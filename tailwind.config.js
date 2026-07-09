@@ -49,13 +49,36 @@ export default {
       letterSpacing: {
         tightish: "-0.02em",
         editorial: "-0.035em",
+        appEyebrow: "0.05em",
+        appTab: "0.11em",
+        appTitle: "-0.0095em",
       },
       boxShadow: {
         soft: "0 18px 55px rgba(8,8,8,.10)",
         card: "0 16px 40px rgba(8,8,8,.08)",
+        appScreen: "0 4px 40px rgba(0,0,0,0.15)",
       },
       borderRadius: {
         xl2: "1.25rem",
+        appCard: "10px",
+        appTag: "40px",
+      },
+      backdropBlur: {
+        appTab: "7.5px",
+        appFade: "25px",
+      },
+      width: {
+        "app-frame": "403px",
+        "app-content": "369px",
+        "app-card": "256px",
+        "app-tab": "110px",
+      },
+      height: {
+        "app-navbar": "64px",
+        "app-tabbar": "80px",
+        "app-card": "180px",
+        "app-tag": "28px",
+        "app-play": "98px",
       },
     },
   },

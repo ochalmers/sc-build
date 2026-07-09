@@ -1,13 +1,24 @@
 /**
- * Phone chrome for hi-fi design concepts — full-bleed content, no system header.
+ * Phone chrome for design previews — full-bleed content, no system header.
+ * @param {"hifi" | "wireframe"} variant
  */
-export function DesignAppScreen({ children, className = "" }) {
+export function DesignAppScreen({ children, className = "", variant = "hifi" }) {
+  const isWireframe = variant === "wireframe";
+
   return (
     <div
-      className={`relative mx-auto w-full max-w-[300px] overflow-hidden rounded-[1.65rem] border border-ink-200/60 bg-[#080808] shadow-[0_24px_60px_rgba(8,8,8,0.14)] ${className}`}
+      className={`relative mx-auto w-full max-w-[300px] overflow-hidden rounded-[1.65rem] border shadow-[0_24px_60px_rgba(8,8,8,0.14)] ${
+        isWireframe
+          ? "border-ink-200/80 bg-paper-100"
+          : "border-ink-200/60 bg-[#080808]"
+      } ${className}`}
       style={{ aspectRatio: "333 / 724" }}
     >
-      <div className="absolute left-1/2 top-2 z-20 h-4 w-11 -translate-x-1/2 rounded-full bg-black/20" />
+      <div
+        className={`absolute left-1/2 top-2 z-20 h-4 w-11 -translate-x-1/2 rounded-full ${
+          isWireframe ? "bg-ink-200/60" : "bg-black/20"
+        }`}
+      />
       <div className="relative h-full w-full overflow-hidden">{children}</div>
     </div>
   );

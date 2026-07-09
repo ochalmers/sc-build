@@ -1,4 +1,4 @@
-/** Directional samples — 1.5px stroke, rounded caps, 2px corner radius on bounding icons */
+/** Directional samples — 1.5px stroke, rounded caps; matches Figma icon weight */
 export function IconSound({ className = "h-5 w-5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -35,6 +35,37 @@ export function IconSettings({ className = "h-5 w-5" }) {
         strokeWidth="1.5"
         strokeLinecap="round"
       />
+    </svg>
+  );
+}
+
+export function IconDiscover({ className = "h-[26px] w-[26px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 26 26" fill="none" aria-hidden>
+      <circle cx="11.5" cy="11.5" r="6.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M16.5 16.5L21 21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconProfile({ className = "h-[26px] w-[26px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 26 26" fill="none" aria-hidden>
+      <circle cx="13" cy="9" r="4" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M6 22c0-4.5 3.1-7 7-7s7 2.5 7 7"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function IconMenu({ className = "h-8 w-8" }) {
+  return (
+    <svg className={className} viewBox="0 0 32 32" fill="none" aria-hidden>
+      <path d="M6 10h20M6 16h20M6 22h20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
 }

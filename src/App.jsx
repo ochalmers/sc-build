@@ -1,46 +1,28 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import DesignSystemPage from "./pages/DesignSystemPage.jsx";
-import FlowsRevisedPage from "./pages/FlowsRevisedPage.jsx";
-import InspirationPage from "./pages/InspirationPage.jsx";
-import MarketingCollateralPage from "./pages/MarketingCollateralPage.jsx";
+import ScrollManager from "./components/ScrollManager.jsx";
+import WorkspacePage from "./components/workspace/WorkspacePage.jsx";
+import DesignPage from "./pages/DesignPage.jsx";
+import OverviewPage from "./pages/OverviewPage.jsx";
 import PlanPage from "./pages/PlanPage.jsx";
-import PrdDesignsPage from "./pages/PrdDesignsPage.jsx";
-import PrdPrototypePage from "./pages/PrdPrototypePage.jsx";
-import ProjectSummaryPage from "./pages/ProjectSummaryPage.jsx";
-import SiteArchitecturePage from "./pages/SiteArchitecturePage.jsx";
+import FlowsPage from "./pages/FlowsPage.jsx";
+import KeyScreensPage from "./pages/KeyScreensPage.jsx";
+import ReferencesPage from "./pages/ReferencesPage.jsx";
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<ProjectSummaryPage />} />
-      <Route path="/plan" element={<PlanPage />} />
-
-      {/* PRD product surfaces */}
-      <Route path="/flows" element={<Navigate to="/flows/revised" replace />} />
-      <Route path="/flows/revised" element={<FlowsRevisedPage />} />
-      <Route path="/flows/lite" element={<Navigate to="/flows/revised" replace />} />
-      <Route path="/flows/key-screens" element={<Navigate to="/designs/prd" replace />} />
-      <Route path="/designs" element={<Navigate to="/designs/prd" replace />} />
-      <Route path="/designs/prd" element={<PrdDesignsPage />} />
-      <Route path="/prototype" element={<Navigate to="/prototype/prd" replace />} />
-      <Route path="/prototype/prd" element={<PrdPrototypePage />} />
-
-      {/* Foundations — pre-reset reference */}
-      <Route path="/design-system" element={<DesignSystemPage />} />
-      <Route path="/marketing" element={<MarketingCollateralPage />} />
-      <Route path="/site-architecture" element={<SiteArchitecturePage />} />
-      <Route path="/inspiration" element={<InspirationPage />} />
-
-      {/* Legacy redirects */}
-      <Route path="/wireframes" element={<Navigate to="/flows/revised" replace />} />
-      <Route path="/wireframes/lite" element={<Navigate to="/flows/revised" replace />} />
-      <Route path="/designs/phase-1" element={<Navigate to="/designs/prd" replace />} />
-      <Route path="/designs/phase-2" element={<Navigate to="/designs/prd" replace />} />
-      <Route path="/designs/phase-3" element={<Navigate to="/designs/prd" replace />} />
-      <Route path="/designs/phase-4" element={<Navigate to="/designs/prd" replace />} />
-      <Route path="/designs/:phase" element={<Navigate to="/designs/prd" replace />} />
-      <Route path="/concepts" element={<Navigate to="/designs/prd" replace />} />
-      <Route path="/system" element={<Navigate to="/design-system" replace />} />
-    </Routes>
+    <>
+      <ScrollManager />
+      <Routes>
+        <Route path="/" element={<OverviewPage />} />
+        <Route path="/plan" element={<PlanPage />} />
+        <Route path="/flows" element={<FlowsPage />} />
+        <Route path="/design" element={<DesignPage />} />
+        <Route path="/key-screens" element={<KeyScreensPage />} />
+        <Route path="/designs" element={<Navigate to="/design" replace />} />
+        <Route path="/designs/*" element={<Navigate to="/design" replace />} />
+        <Route path="/references" element={<ReferencesPage />} />
+        <Route path="/prototype" element={<WorkspacePage pageKey="prototype" />} />
+      </Routes>
+    </>
   );
 }

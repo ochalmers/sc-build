@@ -31,6 +31,18 @@ export const safeArea = {
   minBottom: spacingPx[6],
 };
 
+/** App screen rhythm — Figma GTM Home (node 1:54800) */
+export const appSpacing = {
+  insetX: spacingPx[4],
+  sectionGap: spacingPx[4],
+  tagGap: spacingPx[2],
+  cardCarouselGap: 5,
+  cardInfoPadding: spacingPx[4],
+  tabIconLabelGap: spacingPx[2],
+  tabPaddingY: spacingPx[5],
+  sectionHeaderGap: spacingPx[2],
+};
+
 /**
  * Density multipliers for layout — applied with spacing tokens, not separate grids.
  * Care: more open · Performance: slightly tighter

@@ -1,280 +1,322 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import SiteChrome from "../components/SiteChrome.jsx";
-import { FlowSection } from "../flows/FlowSection.jsx";
+import PageSection from "../components/workspace/PageSection.jsx";
 import {
-  DELIVERY_PLAN_CHECKPOINTS,
-  DELIVERY_PLAN_FEEDBACK_LOOP,
-  DELIVERY_PLAN_META,
-  DELIVERY_PLAN_OUTPUTS,
-  DELIVERY_PLAN_PHASES,
-  DELIVERY_PLAN_PRE_HOLIDAY,
-  DELIVERY_PLAN_PRINCIPLES,
-  DELIVERY_PLAN_PRODUCT_AREAS,
-  DELIVERY_PLAN_TIMELINE,
-} from "../content/deliveryPlan.js";
-
-function ListBlock({ title, items }) {
-  return (
-    <div>
-      <h4 className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">{title}</h4>
-      <ul className="mt-3 space-y-2">
-        {items.map((item) => (
-          <li key={item} className="flex gap-2.5 text-[13px] leading-relaxed text-ink-700">
-            <span className="mt-[0.5rem] h-1 w-1 shrink-0 rounded-full bg-ink-300" aria-hidden />
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+  DELIVERY_SEQUENCE,
+  DESIGN_DELIVERABLES,
+  DESIGN_PRIORITIES,
+  getCurrentPhase,
+  getUpcomingPhases,
+  PLAN_CHECKPOINTS,
+  PLAN_HERO,
+  PLAN_TIMELINE,
+} from "../content/plan.js";
 
 function TimelineStrip() {
+  const currentPhase = getCurrentPhase();
+
   return (
-    <div className="mt-14 overflow-x-auto pb-2">
-      <div className="flex min-w-[42rem] items-start gap-0">
-        {DELIVERY_PLAN_TIMELINE.map((step, idx) => (
-          <div key={step.id} className="flex flex-1 items-start">
-            <div className="flex flex-1 flex-col items-center text-center">
-              <div
-                className={`flex h-10 w-10 items-center justify-center rounded-full border text-[11px] font-medium ${
-                  step.type === "async"
-                    ? "border-accent-clay/40 bg-accent-clay/10 text-accent-clay"
-                    : "border-ink-200 bg-white text-ink-700"
-                }`}
-              >
-                {step.type === "async" ? "◇" : idx === 0 ? "1" : idx === 2 ? "2" : idx === 3 ? "3" : "4"}
+    <div className="mt-12 overflow-x-auto pb-2">
+      <div className="flex min-w-[36rem] items-start gap-0">
+        {PLAN_TIMELINE.map((step, idx) => {
+          const isCurrent = step.id === currentPhase.id;
+          return (
+            <div key={step.id} className="flex flex-1 items-start">
+              <div className="flex flex-1 flex-col items-center text-center">
+                <div
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border text-[11px] font-medium ${
+                    isCurrent
+                      ? "border-emerald-300 bg-emerald-50 text-emerald-800"
+                      : "border-ink-200 bg-white text-ink-700"
+                  }`}
+                >
+                  {isCurrent ? <span aria-hidden>🟢</span> : idx + 1}
+                </div>
+                <p className="mt-3 text-[12px] font-medium text-ink-900">{step.label}</p>
+                <p className="mt-1 text-[11px] text-ink-500">{step.dates}</p>
               </div>
-              <p className="mt-3 text-[12px] font-medium text-ink-900">{step.label}</p>
-              <p className="mt-1 text-[11px] text-ink-500">{step.dates}</p>
+              {idx < PLAN_TIMELINE.length - 1 ? (
+                <div className="mt-5 h-px w-full min-w-[1.5rem] flex-1 bg-gradient-to-r from-ink-200 via-ink-300/60 to-ink-200" />
+              ) : null}
             </div>
-            {idx < DELIVERY_PLAN_TIMELINE.length - 1 ? (
-              <div className="mt-5 h-px w-full min-w-[1.5rem] flex-1 bg-gradient-to-r from-ink-200 via-ink-300/60 to-ink-200" />
-            ) : null}
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
 }
 
-function PhaseCard({ phase }) {
-  const isAsync = phase.variant === "async";
-  const isPreHoliday = phase.preHoliday;
+function CurrentPhaseCard() {
+  const phase = getCurrentPhase();
+  const deliverables = phase.deliverables;
+  const hasStatusObjects = deliverables[0] && typeof deliverables[0] === "object";
+  const completed = hasStatusObjects
+    ? deliverables.filter((d) => d.status === "complete").length
+    : 0;
+  const progress = hasStatusObjects ? Math.round((completed / deliverables.length) * 100) : 0;
 
   return (
-    <article
-      id={phase.id}
-      className={`scroll-mt-[7rem] rounded-2xl border p-6 md:p-8 ${
-        isAsync
-          ? "border-accent-clay/30 bg-[radial-gradient(120%_80%_at_0%_0%,rgba(185,133,110,0.08),transparent_55%)] bg-white/60"
-          : isPreHoliday
-            ? "border-accent-clay/25 bg-[radial-gradient(120%_80%_at_100%_0%,rgba(185,133,110,0.06),transparent_55%)] bg-white/55"
-            : "border-ink-200/80 bg-white/55"
-      }`}
-    >
-      <div className="flex flex-wrap items-start justify-between gap-4">
+    <article className="rounded-3xl border border-ink-950/10 bg-white/80 p-8 shadow-[0_1px_2px_rgba(0,0,0,0.04)] md:p-12">
+      <div className="flex flex-wrap items-start justify-between gap-6">
         <div>
-          {phase.number ? (
-            <p
-              className={`text-[10px] font-medium uppercase tracking-[0.14em] ${
-                isPreHoliday ? "text-accent-clay" : "text-ink-500"
-              }`}
-            >
-              Phase {phase.number}
-              {isPreHoliday ? " · pre-holiday delivery" : ""}
-            </p>
-          ) : (
-            <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-accent-clay">
-              Vacation period
-            </p>
-          )}
-          <h3 className="mt-2 text-[clamp(1.15rem,2.2vw,1.5rem)] font-medium tracking-tight text-ink-950">
-            {phase.title}
-          </h3>
-        </div>
-        <span className="rounded-full border border-ink-200/80 bg-paper-100 px-3 py-1.5 text-[11px] text-ink-600">
-          {phase.dates}
-        </span>
-      </div>
-
-      <p className="mt-5 text-[14px] leading-relaxed text-ink-600">{phase.objective}</p>
-
-      <div className="mt-8 grid gap-8 lg:grid-cols-2">
-        <ListBlock title="Activities" items={phase.activities} />
-        <ListBlock title="Deliverables" items={phase.deliverables} />
-      </div>
-
-      {phase.keyScreens ? (
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {Object.entries(phase.keyScreens).map(([role, screens]) => (
-            <div key={role} className="rounded-xl border border-ink-200/70 bg-paper-50/80 p-4">
-              <h4 className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">{role}</h4>
-              <ul className="mt-3 space-y-1.5">
-                {screens.map((screen) => (
-                  <li key={screen} className="text-[12px] leading-snug text-ink-700">
-                    {screen}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      ) : null}
-
-      {phase.designSystemComponents ? (
-        <div className="mt-8">
-          <h4 className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">
-            Design system components
-          </h4>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {phase.designSystemComponents.map((comp) => (
-              <span
-                key={comp}
-                className="rounded-full border border-ink-200/70 bg-white px-3 py-1 text-[11px] text-ink-700"
-              >
-                {comp}
-              </span>
-            ))}
-          </div>
-        </div>
-      ) : null}
-
-      {phase.sessionArtwork ? (
-        <div className="mt-8">
-          <h4 className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">
-            Session artwork system
-          </h4>
-          <div className="mt-4 grid gap-4 sm:grid-cols-3">
-            {phase.sessionArtwork.groups.map((group) => (
-              <div key={group.name} className="rounded-xl border border-ink-200/70 bg-paper-50/80 p-4">
-                <p className="text-[12px] font-medium text-ink-900">{group.name}</p>
-                <p className="mt-2 text-[11px] leading-relaxed text-ink-600">
-                  {group.examples.join(" · ")}
-                </p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-4 text-[12px] leading-relaxed text-ink-600">{phase.sessionArtwork.themeNote}</p>
-        </div>
-      ) : null}
-
-      {phase.prototypeFlow ? (
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <div>
-            <h4 className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">
-              Final prototype flow
-            </h4>
-            <ol className="mt-3 space-y-2">
-              {phase.prototypeFlow.map((step, idx) => (
-                <li key={step} className="flex gap-3 text-[12px] text-ink-700">
-                  <span className="w-5 shrink-0 text-[10px] text-ink-400">{idx + 1}</span>
-                  {step}
-                </li>
-              ))}
-            </ol>
-          </div>
-          <div>
-            <h4 className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">
-              States to include
-            </h4>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {phase.states.map((state) => (
-                <span
-                  key={state}
-                  className="rounded-full border border-ink-200/70 bg-white px-3 py-1 text-[11px] text-ink-700"
-                >
-                  {state}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      ) : null}
-
-      <div className="mt-8 rounded-xl border border-ink-200/70 bg-paper-50/60 p-5">
-        <h4 className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">
-          {phase.feedback.method ? "Feedback method" : "Feedback session"}
-        </h4>
-        <p className="mt-2 text-[14px] font-medium text-ink-900">{phase.feedback.title}</p>
-        {phase.feedback.attendees ? (
-          <p className="mt-2 text-[12px] text-ink-600">
-            Attendees: {phase.feedback.attendees.join(" · ")}
+          <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-500">
+            Phase {phase.number} · {phase.dates}
           </p>
-        ) : null}
-        {phase.feedback.agenda ? (
-          <ol className="mt-4 space-y-2">
-            {phase.feedback.agenda.map((item, idx) => (
-              <li key={item} className="flex gap-3 text-[13px] text-ink-700">
-                <span className="w-5 shrink-0 text-[10px] text-ink-400">{idx + 1}</span>
-                {item}
-              </li>
-            ))}
-          </ol>
-        ) : null}
-        {phase.feedback.note ? (
-          <p className="mt-4 text-[12px] leading-relaxed text-accent-clay">{phase.feedback.note}</p>
+          <div className="mt-4">
+            <span className="text-[13px] text-ink-500">
+              Gate · <span className="font-medium text-ink-800">{phase.gateDate}</span>
+            </span>
+          </div>
+        </div>
+        {hasStatusObjects ? (
+          <div className="text-right">
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Progress</p>
+            <p className="mt-1 text-[28px] font-medium tabular-nums tracking-tight text-ink-950">{progress}%</p>
+          </div>
         ) : null}
       </div>
 
-      <div className="mt-6">
-        <h4 className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">Sign-off required</h4>
-        <ul className="mt-3 flex flex-wrap gap-2">
-          {phase.signOff.map((item) => (
-            <li
-              key={item}
-              className="rounded-full border border-ink-200/80 bg-white px-3 py-1.5 text-[11px] text-ink-700"
-            >
-              {item}
-            </li>
-          ))}
+      {hasStatusObjects ? (
+        <div className="mt-8 h-1 overflow-hidden rounded-full bg-ink-100">
+          <div
+            className="h-full rounded-full bg-ink-950 transition-all duration-700"
+            style={{ width: `${progress}%` }}
+            role="progressbar"
+            aria-valuenow={progress}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Phase progress"
+          />
+        </div>
+      ) : null}
+
+      <h3 className="mt-10 text-[clamp(1.5rem,3vw,2rem)] font-medium leading-[1.1] tracking-tight text-ink-950">
+        {phase.title}
+      </h3>
+      <p className="mt-4 max-w-2xl text-[16px] leading-relaxed text-ink-600">{phase.objective}</p>
+
+      <div className="mt-10">
+        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Deliverables</p>
+        <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+          {deliverables.map((item) => {
+            if (typeof item === "string") {
+              return (
+                <li
+                  key={item}
+                  className="flex items-center gap-2.5 rounded-xl border border-ink-200/60 bg-paper-50/80 px-4 py-3.5 text-[14px] text-ink-700"
+                >
+                  <span className="text-ink-300" aria-hidden>
+                    ·
+                  </span>
+                  {item}
+                </li>
+              );
+            }
+            return (
+              <li
+                key={item.label}
+                className="flex items-center gap-2.5 rounded-xl border border-ink-200/60 bg-paper-50/80 px-4 py-3.5 text-[14px] text-ink-800"
+              >
+                <span className="text-ink-300" aria-hidden>
+                  ·
+                </span>
+                {item.label}
+              </li>
+            );
+          })}
         </ul>
       </div>
 
-      {phase.lockNote ? (
-        <p className="mt-5 text-[12px] leading-relaxed text-ink-500">{phase.lockNote}</p>
+      {phase.engineeringOutcome && typeof phase.engineeringOutcome === "object" ? (
+        <div className="mt-10 rounded-2xl border border-ink-200/60 bg-paper-50/50 p-6 md:p-8">
+          <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Engineering Outcome</p>
+          <p className="mt-3 text-[15px] font-medium text-ink-900">{phase.engineeringOutcome.title}</p>
+          <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+            {phase.engineeringOutcome.items.map((item) => (
+              <li key={item} className="flex items-center gap-2.5 text-[14px] text-ink-700">
+                <span className="text-ink-400" aria-hidden>
+                  ·
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
       ) : null}
     </article>
   );
 }
 
-function FeedbackLoopDiagram() {
-  const { steps, rules } = DELIVERY_PLAN_FEEDBACK_LOOP;
+function UpcomingPhaseCard({ phase, defaultOpen = false }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="space-y-10">
-      <div className="overflow-x-auto pb-2">
-        <div className="flex min-w-[36rem] items-center justify-between gap-2">
-          {steps.map((step, idx) => (
-            <div key={step} className="flex flex-1 items-center">
-              <div className="rounded-xl border border-ink-200/80 bg-white/70 px-3 py-2.5 text-center text-[11px] leading-snug text-ink-800">
-                {step}
-              </div>
-              {idx < steps.length - 1 ? (
-                <span className="mx-1 shrink-0 text-ink-300" aria-hidden>
-                  →
-                </span>
-              ) : null}
-            </div>
-          ))}
+    <article className="overflow-hidden rounded-2xl border border-ink-200/70 bg-white/60 transition-colors hover:border-ink-300/80">
+      <button
+        type="button"
+        className="flex w-full items-start justify-between gap-6 px-6 py-6 text-left md:px-8 md:py-7"
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+            <span className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">
+              Phase {phase.number}
+            </span>
+            <span className="text-[13px] text-ink-500">{phase.dates}</span>
+          </div>
+          <h3 className="mt-2 text-[18px] font-medium tracking-tight text-ink-950 md:text-[20px]">
+            {phase.title}
+          </h3>
+          {!isOpen ? <p className="mt-2 line-clamp-1 text-[14px] text-ink-500">{phase.objective}</p> : null}
         </div>
-      </div>
+        <span
+          className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ink-200/80 text-[18px] leading-none text-ink-400"
+          aria-hidden
+        >
+          {isOpen ? "−" : "+"}
+        </span>
+      </button>
 
-      <ul className="grid gap-3 sm:grid-cols-2">
-        {rules.map((rule) => (
-          <li
-            key={rule}
-            className="rounded-xl border border-ink-200/70 bg-paper-100/80 px-4 py-3 text-[13px] leading-relaxed text-ink-700"
-          >
-            {rule}
-          </li>
-        ))}
-      </ul>
+      {isOpen ? (
+        <div className="border-t border-ink-200/50 px-6 pb-7 pt-5 md:px-8 md:pb-8">
+          <p className="text-[14px] leading-relaxed text-ink-600">{phase.objective}</p>
+
+          <div className="mt-6">
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Deliverables</p>
+            <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+              {phase.deliverables.map((item) => (
+                <li
+                  key={typeof item === "string" ? item : item.label}
+                  className="flex items-center gap-2.5 text-[14px] text-ink-700"
+                >
+                  <span className="text-ink-300" aria-hidden>
+                    ·
+                  </span>
+                  {typeof item === "string" ? item : item.label}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="mt-6 rounded-xl border border-ink-200/50 bg-paper-50/60 px-5 py-4">
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">Engineering Outcome</p>
+            <p className="mt-2 text-[14px] leading-relaxed text-ink-700">
+              {typeof phase.engineeringOutcome === "string"
+                ? phase.engineeringOutcome
+                : phase.engineeringOutcome.title}
+            </p>
+          </div>
+        </div>
+      ) : null}
+    </article>
+  );
+}
+
+function CheckpointList() {
+  return (
+    <div className="space-y-3">
+      {PLAN_CHECKPOINTS.map((checkpoint) => (
+        <div
+          key={`${checkpoint.phase}-${checkpoint.date}`}
+          className={`flex flex-wrap items-center justify-between gap-4 rounded-2xl border px-5 py-4 ${
+            checkpoint.highlight
+              ? "border-emerald-200/60 bg-emerald-50/40"
+              : "border-ink-200/80 bg-white/55"
+          }`}
+        >
+          <div className="flex flex-wrap items-center gap-4">
+            <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500">
+              {checkpoint.phase}
+            </span>
+            <span className="text-[14px] text-ink-800">{checkpoint.gate}</span>
+          </div>
+          <span className="rounded-full border border-ink-200/70 bg-paper-100 px-3 py-1 text-[11px] text-ink-600">
+            {checkpoint.date}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function DeliverablesBoard() {
+  return (
+    <div className="grid gap-5 md:grid-cols-2">
+      {DESIGN_DELIVERABLES.map((category) => (
+        <article
+          key={category.id}
+          className="flex flex-col rounded-2xl border border-ink-200/70 bg-white/60 p-6 md:p-8"
+        >
+          <h3 className="text-[17px] font-medium tracking-tight text-ink-950">{category.title}</h3>
+          <ul className="mt-6 flex-1 space-y-2.5">
+            {category.items.map((item) => (
+              <li key={item} className="flex items-center gap-3 text-[14px] text-ink-700">
+                <span className="h-px w-3 shrink-0 bg-ink-300" aria-hidden />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function DeliverySequenceFlow() {
+  return (
+    <div className="mx-auto max-w-xl">
+      {DELIVERY_SEQUENCE.map((stage, index) => (
+        <div key={stage.id}>
+          <div className="rounded-2xl border border-ink-200/70 bg-white/60 px-6 py-5 md:px-8 md:py-6">
+            <h3 className="text-[16px] font-medium tracking-tight text-ink-950">{stage.label}</h3>
+            <p className="mt-2 text-[14px] leading-relaxed text-ink-600">{stage.description}</p>
+          </div>
+          {index < DELIVERY_SEQUENCE.length - 1 ? (
+            <div className="flex justify-center py-3" aria-hidden>
+              <span className="text-[20px] leading-none text-ink-300">↓</span>
+            </div>
+          ) : null}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PriorityList() {
+  return (
+    <div className="space-y-5">
+      {DESIGN_PRIORITIES.map((priority) => (
+        <article
+          key={priority.id}
+          className="flex flex-col gap-5 rounded-2xl border border-ink-200/70 bg-white/60 p-6 sm:flex-row sm:items-center sm:justify-between md:p-8"
+        >
+          <div className="min-w-0">
+            <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">
+              Priority {priority.rank}
+            </p>
+            <h3 className="mt-1.5 text-[17px] font-medium tracking-tight text-ink-950">{priority.title}</h3>
+          </div>
+          <div className="flex flex-wrap gap-2 sm:justify-end">
+            {priority.items.map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-ink-200/70 bg-paper-50 px-3.5 py-1.5 text-[13px] text-ink-700"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
     </div>
   );
 }
 
 export default function PlanPage() {
+  const upcomingPhases = getUpcomingPhases();
+
   return (
     <SiteChrome>
       <main className="pt-[6.5rem]">
@@ -282,248 +324,48 @@ export default function PlanPage() {
           id="plan-intro"
           className="scroll-mt-[7rem] border-b border-ink-200/60 bg-[radial-gradient(120%_90%_at_20%_0%,rgba(255,255,255,0.9),rgba(249,248,246,0.35)_48%,rgba(247,246,243,0)_100%)]"
         >
-          <div className="max-w-content mx-auto px-6 pb-20 pt-28 md:pb-28 md:pt-32">
+          <div className="max-w-content mx-auto px-6 pb-16 pt-28 md:pb-20 md:pt-32">
             <motion.div
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-500">
-                Design programme · {DELIVERY_PLAN_META.dateRange}
-              </p>
-              <h1 className="mt-4 max-w-3xl text-[clamp(2rem,4.4vw,3rem)] font-medium leading-[1.06] tracking-tight text-ink-950">
-                {DELIVERY_PLAN_META.title}
-                <span className="mt-2 block text-[clamp(1.5rem,3vw,2.25rem)] text-ink-700">
-                  {DELIVERY_PLAN_META.subtitle}
-                </span>
+              <h1 className="max-w-3xl text-[clamp(2rem,4.4vw,3rem)] font-medium leading-[1.06] tracking-tight text-ink-950">
+                {PLAN_HERO.title}
               </h1>
-              <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink-600">
-                {DELIVERY_PLAN_META.description}
-              </p>
-
+              <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-ink-700">{PLAN_HERO.intro}</p>
               <TimelineStrip />
-
-              <div className="mt-14 grid gap-4 md:grid-cols-3">
-                {DELIVERY_PLAN_PRODUCT_AREAS.map((area) => (
-                  <div
-                    key={area.role}
-                    className={`rounded-2xl border p-5 ${
-                      area.priority
-                        ? "border-ink-300/60 bg-white/80"
-                        : "border-ink-200/70 bg-white/55"
-                    }`}
-                  >
-                    <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">
-                      {area.surface}
-                      {area.priority ? " · priority" : ""}
-                    </p>
-                    <h2 className="mt-2 text-[16px] font-medium tracking-tight text-ink-950">{area.role}</h2>
-                    <p className="mt-2 text-[13px] leading-relaxed text-ink-600">{area.summary}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div
-                id="plan-pre-holiday"
-                className="mt-10 scroll-mt-[7rem] rounded-2xl border border-accent-clay/35 bg-[radial-gradient(120%_80%_at_0%_0%,rgba(185,133,110,0.1),transparent_55%)] bg-white/60 p-6 md:p-8"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-accent-clay">
-                      Before holiday · {DELIVERY_PLAN_PRE_HOLIDAY.dates}
-                    </p>
-                    <h2 className="mt-2 text-[clamp(1.15rem,2.2vw,1.5rem)] font-medium tracking-tight text-ink-950">
-                      {DELIVERY_PLAN_PRE_HOLIDAY.title}
-                    </h2>
-                  </div>
-                  <span className="rounded-full border border-accent-clay/30 bg-accent-clay/10 px-3 py-1.5 text-[11px] text-accent-clay">
-                    Async review {DELIVERY_PLAN_PRE_HOLIDAY.holidayWindow}
-                  </span>
-                </div>
-                <p className="mt-4 max-w-3xl text-[14px] leading-relaxed text-ink-600">
-                  {DELIVERY_PLAN_PRE_HOLIDAY.objective}
-                </p>
-                <div className="mt-8 grid gap-6 lg:grid-cols-2">
-                  {DELIVERY_PLAN_PRE_HOLIDAY.deliverables.map((group) => (
-                    <div key={group.category} className="rounded-xl border border-ink-200/70 bg-white/70 p-5">
-                      <h3 className="text-[13px] font-medium text-ink-900">{group.category}</h3>
-                      <p className="mt-2 text-[12px] leading-relaxed text-ink-600">{group.summary}</p>
-                      <ul className="mt-4 space-y-2">
-                        {group.items.map((item) => (
-                          <li key={item} className="flex gap-2.5 text-[12px] leading-snug text-ink-700">
-                            <span className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-ink-400" aria-hidden />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                      <p className="mt-4 text-[11px] leading-relaxed text-ink-500">{group.note}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="mt-6">
-                  <h3 className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">
-                    Also included
-                  </h3>
-                  <ul className="mt-3 flex flex-wrap gap-2">
-                    {DELIVERY_PLAN_PRE_HOLIDAY.supporting.map((item) => (
-                      <li
-                        key={item}
-                        className="rounded-full border border-ink-200/80 bg-white px-3 py-1.5 text-[11px] text-ink-700"
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <p className="mt-5 text-[12px] leading-relaxed text-accent-clay">
-                  {DELIVERY_PLAN_PRE_HOLIDAY.asyncNote}
-                </p>
-              </div>
-
-              <div className="mt-6 rounded-2xl border border-ink-200/70 bg-white/50 px-5 py-4">
-                <p className="text-[13px] leading-relaxed text-ink-600">
-                  This is a focused four-stage design programme. The listener experience is the priority.
-                  By June 16, all PRD-identified flows and two hi-fi concepts are delivered for async
-                  review during the holiday window (June 17–22). The full high-fidelity prototype and
-                  engineering handoff package follows by July 12.
-                </p>
-              </div>
             </motion.div>
           </div>
         </section>
 
-        <FlowSection
-          id="plan-principles"
-          label="Programme principles"
-          title="How we will work"
-          description="Four principles to keep the programme calm, structured and product-led."
-        >
-          <div className="grid gap-4 md:grid-cols-2">
-            {DELIVERY_PLAN_PRINCIPLES.map((principle, idx) => (
-              <div
-                key={principle.title}
-                className="rounded-2xl border border-ink-200/80 bg-white/55 p-6"
-              >
-                <span className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-400">
-                  {String(idx + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-2 text-[16px] font-medium tracking-tight text-ink-950">
-                  {principle.title}
-                </h3>
-                <p className="mt-3 text-[14px] leading-relaxed text-ink-600">{principle.body}</p>
-              </div>
+        <PageSection id="plan-current" label="Current" title="Current Phase">
+          <CurrentPhaseCard />
+        </PageSection>
+
+        <PageSection id="plan-phases" label="Upcoming" title="Upcoming Phases">
+          <div className="space-y-4">
+            {upcomingPhases.map((phase, index) => (
+              <UpcomingPhaseCard key={phase.id} phase={phase} defaultOpen={index === 0} />
             ))}
           </div>
-        </FlowSection>
+        </PageSection>
 
-        <FlowSection
-          id="plan-roadmap"
-          label="Roadmap"
-          title="Four stages over four weeks"
-          description="From product definition through to high-fidelity prototype and engineering handoff."
-        >
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {DELIVERY_PLAN_TIMELINE.map((step) => (
-              <a
-                key={step.id}
-                href={`#plan-${step.id}`}
-                className={`rounded-2xl border p-5 transition-colors hover:border-ink-300 ${
-                  step.type === "async"
-                    ? "border-accent-clay/30 bg-accent-clay/5"
-                    : "border-ink-200/80 bg-white/55"
-                }`}
-              >
-                <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">
-                  {step.label}
-                </p>
-                <p className="mt-2 text-[13px] text-ink-700">{step.dates}</p>
-              </a>
-            ))}
-          </div>
-        </FlowSection>
+        <PageSection id="plan-checkpoints" label="Gates" title="Phase Gates">
+          <CheckpointList />
+        </PageSection>
 
-        <section id="plan-phases" className="scroll-mt-[7rem] border-b border-ink-200/60 py-20 md:py-28">
-          <div className="max-w-content mx-auto px-6">
-            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-500">Phase detail</p>
-            <h2 className="mt-3 max-w-3xl text-[clamp(1.35rem,3vw,2rem)] font-medium leading-[1.15] tracking-tight text-ink-950">
-              Delivery phases
-            </h2>
-            <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-ink-600">
-              Each phase produces clear deliverables, a feedback session, and sign-off before the next
-              stage begins.
-            </p>
-            <div className="mt-12 space-y-8">
-              {DELIVERY_PLAN_PHASES.map((phase) => (
-                <PhaseCard key={phase.id} phase={phase} />
-              ))}
-            </div>
-          </div>
-        </section>
+        <PageSection id="plan-deliverables" label="Deliverables" title="Design Deliverables">
+          <DeliverablesBoard />
+        </PageSection>
 
-        <FlowSection
-          id="plan-feedback"
-          label="Feedback loop"
-          title="Review, consolidate, revise, sign off"
-          description="How stakeholder feedback flows into each phase without creating design churn."
-        >
-          <FeedbackLoopDiagram />
-        </FlowSection>
+        <PageSection id="plan-sequence" label="Sequence" title="Delivery Sequence">
+          <DeliverySequenceFlow />
+        </PageSection>
 
-        <FlowSection
-          id="plan-outputs"
-          label="Final output"
-          title="What we will have by July 12"
-          description="The complete design programme output across product definition, UX, UI, prototype and handoff."
-        >
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {DELIVERY_PLAN_OUTPUTS.map((group) => (
-              <div key={group.category} className="rounded-2xl border border-ink-200/80 bg-white/55 p-6">
-                <h3 className="text-[13px] font-medium uppercase tracking-[0.12em] text-ink-500">
-                  {group.category}
-                </h3>
-                <ul className="mt-4 space-y-2.5">
-                  {group.items.map((item) => (
-                    <li key={item} className="flex gap-2.5 text-[13px] leading-relaxed text-ink-700">
-                      <span className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-ink-400" aria-hidden />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </FlowSection>
-
-        <FlowSection
-          id="plan-checkpoints"
-          label="Decision checkpoints"
-          title="Phase gates"
-          description="Clear decision points that unlock each subsequent stage of the programme."
-          className="border-b-0"
-        >
-          <div className="space-y-3">
-            {DELIVERY_PLAN_CHECKPOINTS.map((checkpoint) => (
-              <div
-                key={`${checkpoint.phase}-${checkpoint.date}`}
-                className={`flex flex-wrap items-center justify-between gap-4 rounded-2xl border px-5 py-4 ${
-                  checkpoint.highlight
-                    ? "border-accent-clay/35 bg-[radial-gradient(120%_80%_at_0%_0%,rgba(185,133,110,0.08),transparent_55%)] bg-white/60"
-                    : "border-ink-200/80 bg-white/55"
-                }`}
-              >
-                <div className="flex items-center gap-4">
-                  <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500">
-                    {checkpoint.phase}
-                  </span>
-                  <span className="text-[14px] text-ink-800">{checkpoint.gate}</span>
-                </div>
-                <span className="rounded-full border border-ink-200/70 bg-paper-100 px-3 py-1 text-[11px] text-ink-600">
-                  {checkpoint.date}
-                </span>
-              </div>
-            ))}
-          </div>
-        </FlowSection>
+        <PageSection id="plan-priorities" label="Priorities" title="Current Priorities" className="border-b-0">
+          <PriorityList />
+        </PageSection>
       </main>
     </SiteChrome>
   );

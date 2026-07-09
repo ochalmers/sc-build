@@ -1,48 +1,8 @@
-import { DELIVERY_PLAN_CHAPTERS } from "../content/deliveryPlan.js";
-import { SITE_ARCHITECTURE_CHAPTERS } from "../content/siteArchitecture.js";
-import { PROJECT_SUMMARY_SECTIONS } from "../content/projectSummary.js";
-import { MARKETING_COLLATERAL_CHAPTERS } from "../content/marketingCollateral.js";
-import { PRD_DESIGNS_NAV } from "../content/prdRevisedDesigns.js";
-import { REVISED_NAV } from "../content/prdRevised/index.js";
-import { INSPIRATION_NAV } from "../content/inspiration.js";
-
-function withMeta(items) {
-  return items.map((item) => ({
-    ...item,
-    id: item.id ?? item.href.replace(/^#/, ""),
-    shortLabel: item.shortLabel ?? item.label,
-  }));
-}
-
-export const PROJECT_SUMMARY_CHAPTERS = withMeta(
-  PROJECT_SUMMARY_SECTIONS.map((section) => ({
-    label: section.label,
-    shortLabel: section.label,
-    href: `#${section.id}`,
-    id: section.id,
-  })),
-);
-
-export const DESIGN_SYSTEM_CHAPTERS = withMeta([
-  { label: "Overview", shortLabel: "Overview", href: "#ds-intro", id: "ds-intro" },
-  { label: "Tokens", shortLabel: "Tokens", href: "#ds-tokens", id: "ds-tokens" },
-  { label: "Behavioural modes", shortLabel: "Modes", href: "#ds-modes", id: "ds-modes" },
-  { label: "Components", shortLabel: "Components", href: "#ds-components", id: "ds-components" },
-  { label: "Example screen", shortLabel: "Example", href: "#ds-app", id: "ds-app" },
-]);
+import { getChaptersForPage, getPageByPath } from "../content/workspace.js";
 
 export function getChaptersForPath(pathname) {
-  if (pathname.startsWith("/plan")) return withMeta(DELIVERY_PLAN_CHAPTERS);
-  if (pathname.startsWith("/site-architecture")) return withMeta(SITE_ARCHITECTURE_CHAPTERS);
-  if (pathname.startsWith("/flows")) return withMeta(REVISED_NAV);
-  if (pathname.startsWith("/design-system")) return DESIGN_SYSTEM_CHAPTERS;
-  if (pathname.startsWith("/inspiration")) return withMeta(INSPIRATION_NAV);
-  if (pathname.startsWith("/marketing")) return withMeta(MARKETING_COLLATERAL_CHAPTERS);
-  if (pathname.startsWith("/designs/prd")) return withMeta(PRD_DESIGNS_NAV);
-  if (pathname.startsWith("/prototype")) return withMeta([
-    { label: "Prototype", href: "#prototype-prd-intro", id: "prototype-prd-intro", shortLabel: "Prototype" },
-  ]);
-  return PROJECT_SUMMARY_CHAPTERS;
+  const page = getPageByPath(pathname);
+  return getChaptersForPage(page);
 }
 
 export function getChapterScrollIds(pathname) {
