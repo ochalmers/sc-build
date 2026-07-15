@@ -3,7 +3,7 @@ import ChapterNav from "./ChapterNav.jsx";
 import SiteNav from "./SiteNav.jsx";
 import { getIntroAnchor } from "../config/siteNav.js";
 
-export default function SiteChrome({ children }) {
+export default function SiteChrome({ children, hideChapterNav = false }) {
   const { pathname } = useLocation();
 
   return (
@@ -19,7 +19,7 @@ export default function SiteChrome({ children }) {
 
       {children}
 
-      <ChapterNav />
+      {hideChapterNav ? null : <ChapterNav />}
 
       <footer className="border-t border-ink-200/70 bg-paper-100 py-10">
         <div className="max-w-content mx-auto flex flex-wrap items-center justify-between gap-4 px-6 text-[11px] text-ink-500">

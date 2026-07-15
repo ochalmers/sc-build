@@ -14,8 +14,8 @@ export const WORKSPACE_META = {
 };
 
 export const PROTOTYPE_CTA = {
-  label: "View Prototype",
-  to: "/prototype",
+  label: "Open App",
+  to: "/app",
 };
 
 export const WORKSPACE_PAGES = {
@@ -63,8 +63,8 @@ export const WORKSPACE_PAGES = {
     navLabel: "Flows",
     eyebrow: "UX Review",
     title: "Flows",
-    description: "Visual wireframe journeys across every surface of the product.",
-    purpose: "Showcase complete user journeys as design review storyboards.",
+    description: "Invite-only listener journeys — Home and Profile bottom navigation — plus organisation and system states.",
+    purpose: "Showcase complete user journeys as design review storyboards with left-hand flow navigation.",
     introId: "flows-intro",
     sections: FLOW_NAV_SECTIONS,
   },

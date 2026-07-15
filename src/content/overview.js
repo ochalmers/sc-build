@@ -17,8 +17,8 @@ export const OVERVIEW_HERO = {
     "Build documentation",
   ],
   ctas: {
-    primary: { label: "Explore Flows", to: "/flows" },
-    secondary: { label: "View Design", to: "/design" },
+    primary: { label: "Open working app", to: "/app" },
+    secondary: { label: "Explore Flows", to: "/flows" },
   },
 };
 
@@ -42,6 +42,7 @@ export const SOURCE_DOCUMENTS = [
     downloadLabel: "Sonocea Mobile App PRD (revised, June 2026).pdf",
     flows: "/flows#flows-library-discovery",
     wireframes: "/flows#flows-library-discovery",
+    app: "/app",
   },
 ];
 
@@ -108,7 +109,7 @@ export const USER_TYPES = [
 ];
 
 export const BUILD_FOCUS = {
-  currentStage: "flows",
+  currentStage: "prototype",
   stages: [
     {
       id: "architecture",
@@ -132,8 +133,8 @@ export const BUILD_FOCUS = {
     },
     {
       id: "prototype",
-      label: "Prototype",
-      explanation: "Interactive build for stakeholder review and engineering handoff.",
+      label: "Working app",
+      explanation: "Semi-working Mobile App PRD build at /app for iteration and review.",
     },
     {
       id: "development",
@@ -193,6 +194,11 @@ export const WORKSPACE_SECTIONS = [
 
 export const WHATS_NEXT = [
   {
+    label: "Working app",
+    to: "/app",
+    description: "Semi-working Mobile App PRD — Listener, Partner, and Admin.",
+  },
+  {
     label: "Plan",
     to: "/plan",
     description: "Delivery roadmap, phases and what ships next.",
@@ -206,10 +212,5 @@ export const WHATS_NEXT = [
     label: "Design",
     to: "/design",
     description: "Visual language, components and screen specifications.",
-  },
-  {
-    label: "References",
-    to: "/references",
-    description: "Inspiration, research and technical supporting material.",
   },
 ];

@@ -48,6 +48,27 @@ export function IconDiscover({ className = "h-[26px] w-[26px]" }) {
   );
 }
 
+export function IconHome({ className = "h-[26px] w-[26px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 26 26" fill="none" aria-hidden>
+      <path
+        d="M4.5 12.5L13 5l8.5 7.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7 11.5V21h12V11.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function IconProfile({ className = "h-[26px] w-[26px]" }) {
   return (
     <svg className={className} viewBox="0 0 26 26" fill="none" aria-hidden>
@@ -66,6 +87,32 @@ export function IconMenu({ className = "h-8 w-8" }) {
   return (
     <svg className={className} viewBox="0 0 32 32" fill="none" aria-hidden>
       <path d="M6 10h20M6 16h20M6 22h20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function IconAssigned({ className = "h-[26px] w-[26px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 26 26" fill="none" aria-hidden>
+      <path
+        d="M7 7.5h12M7 13h12M7 18.5h8"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function IconProgress({ className = "h-[26px] w-[26px]" }) {
+  return (
+    <svg className={className} viewBox="0 0 26 26" fill="none" aria-hidden>
+      <path
+        d="M6 18V14M11 18V10M16 18V12M21 18V8"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }

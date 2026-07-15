@@ -8,12 +8,13 @@ import { motionDuration, motionEase } from "../../system/tokens/motion.js";
 import { BEHAVIOUR_MODES, behaviourModeMeta, modeReference } from "../../system/modes.js";
 import { FIGMA_REFERENCE } from "../../system/tokens/appLayout.js";
 import {
-  IconDiscover,
+  IconHome,
   IconPlay,
   IconProfile,
   IconSettings,
   IconSound,
   SystemAppSectionHeader,
+  SystemLogoMark,
   SystemPlayControl,
   SystemSessionCard,
   SystemTag,
@@ -38,9 +39,10 @@ const ELEVATION_STEPS = [
 ];
 
 const SAMPLE_ICONS = [
+  { Icon: IconHome, label: "Home" },
   { Icon: IconSound, label: "Sound" },
   { Icon: IconPlay, label: "Play" },
-  { Icon: IconDiscover, label: "Discover" },
+  { Icon: SystemLogoMark, label: "Mark" },
   { Icon: IconProfile, label: "Profile" },
   { Icon: IconSettings, label: "Settings" },
 ];

@@ -320,21 +320,30 @@ export function WfChip({ children, active = false }) {
 
 export function WfTabBar({ active = "home" }) {
   const WF = useWf();
+  const normalized =
+    active === "discover" ||
+    active === "today" ||
+    active === "library" ||
+    active === "sessions" ||
+    active === "assigned" ||
+    active === "assigned-programme" ||
+    active === "progress"
+      ? "home"
+      : active;
   const tabs = [
-    { id: "discover", label: "Discover" },
-    { id: "home", label: "Today" },
+    { id: "home", label: "Home" },
     { id: "profile", label: "Profile" },
   ];
 
   return (
     <div
-      className="mt-auto flex justify-between border-t px-5 py-2.5"
+      className="mt-auto flex justify-around border-t px-2 py-2.5"
       style={{ borderColor: WF.border, background: WF.surface }}
     >
       {tabs.map((t) => {
-        const on = t.id === active;
+        const on = t.id === normalized;
         return (
-          <div key={t.id} className="flex w-16 flex-col items-center gap-1">
+          <div key={t.id} className="flex min-w-0 flex-1 flex-col items-center gap-1">
             <WfIcon
               shape="box"
               style={{

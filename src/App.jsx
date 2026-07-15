@@ -7,6 +7,7 @@ import PlanPage from "./pages/PlanPage.jsx";
 import FlowsPage from "./pages/FlowsPage.jsx";
 import KeyScreensPage from "./pages/KeyScreensPage.jsx";
 import ReferencesPage from "./pages/ReferencesPage.jsx";
+import ProductApp from "./app/ProductApp.jsx";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/designs/*" element={<Navigate to="/design" replace />} />
         <Route path="/references" element={<ReferencesPage />} />
         <Route path="/prototype" element={<WorkspacePage pageKey="prototype" />} />
+        <Route path="/app/*" element={<ProductApp />} />
       </Routes>
     </>
   );

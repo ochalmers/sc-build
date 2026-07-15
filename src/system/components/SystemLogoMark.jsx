@@ -1,0 +1,34 @@
+/**
+ * Sonocea logo mark — four-quadrant symbol (wordmark is SystemBrandLogo).
+ * Uses currentColor so it adapts to light/dark and tab active state.
+ */
+export function SystemLogoMark({ className = "h-[26px] w-auto", title }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 58 77"
+      fill="none"
+      className={className}
+      aria-hidden={title ? undefined : true}
+      role={title ? "img" : undefined}
+    >
+      {title ? <title>{title}</title> : null}
+      <path
+        d="M38.1168 0H57.1711V38.1123H38.1168C27.601 38.1123 19.0625 29.5738 19.0625 19.058C19.0588 8.53852 27.601 0 38.1168 0Z"
+        fill="currentColor"
+      />
+      <path
+        d="M19.0543 38.1123C8.53111 38.1123 0 29.5812 0 19.0543C0 8.53111 8.53111 3.8147e-06 19.0543 3.8147e-06V38.1123Z"
+        fill="currentColor"
+      />
+      <path
+        d="M38.1094 38.1121C48.6326 38.1121 57.1637 46.6432 57.1637 57.1664C57.1637 67.6895 48.6326 76.2207 38.1094 76.2207V38.1084V38.1121Z"
+        fill="currentColor"
+      />
+      <path
+        d="M0 38.1121H19.0543C29.5701 38.1121 38.1086 46.6506 38.1086 57.1664C38.1086 67.6821 29.5701 76.2207 19.0543 76.2207H0V38.1084V38.1121Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}

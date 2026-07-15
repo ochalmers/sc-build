@@ -10,22 +10,28 @@ function path(w, h, amp, phase) {
   return d;
 }
 
-export function SystemWaveformModule({ mode = "regulation" }) {
+export function SystemWaveformModule({ mode = "regulation", active = true }) {
   const ref = useRef(null);
   const phase = useRef(0);
   const amp = mode === "care" ? 0.35 : mode === "performance" ? 0.55 : 0.45;
+  const displayAmp = active ? amp : amp * 0.35;
 
   useEffect(() => {
+    if (!active) {
+      const el = ref.current;
+      if (el) el.setAttribute("d", path(200, 56, displayAmp, phase.current));
+      return undefined;
+    }
     let raf;
     const tick = () => {
       phase.current += mode === "care" ? 0.012 : mode === "performance" ? 0.022 : 0.017;
       const el = ref.current;
-      if (el) el.setAttribute("d", path(200, 56, amp, phase.current));
+      if (el) el.setAttribute("d", path(200, 56, displayAmp, phase.current));
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [mode, amp]);
+  }, [mode, displayAmp, active]);
 
   return (
     <div
@@ -33,7 +39,7 @@ export function SystemWaveformModule({ mode = "regulation" }) {
       style={{ borderColor: "var(--proto-border)", background: "var(--proto-surface)" }}
     >
       <p className="text-[10px] uppercase tracking-[0.14em]" style={{ color: "var(--proto-text-muted)" }}>
-        Active · sound layer
+        {active ? "Active · sound layer" : "Complete · sound layer"}
       </p>
       <svg className="mt-3 w-full" viewBox="0 0 200 56" aria-hidden>
         <path

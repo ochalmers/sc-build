@@ -409,7 +409,7 @@ export function WfScienceHome({ prototypeActions = {} }) {
           <WfButton onClick={prototypeActions.onRequestAccess}>Request access</WfButton>
         </WfScreenFooter>
       ) : null}
-      <WfTabBar active="discover" />
+      <WfTabBar active="sessions" />
     </WireframeScreen>
   );
 }
@@ -781,7 +781,7 @@ export function WfLibrary({ variant = "home", prototypeActions = {} }) {
             ))}
           </div>
         </div>
-        <WfTabBar active="discover" />
+        <WfTabBar active="sessions" />
       </WireframeScreen>
     );
   }
@@ -809,7 +809,7 @@ export function WfLibrary({ variant = "home", prototypeActions = {} }) {
             <WfChip>Focus</WfChip>
           </div>
         </div>
-        <WfTabBar active="discover" />
+        <WfTabBar active="sessions" />
       </WireframeScreen>
     );
   }
@@ -832,7 +832,7 @@ export function WfLibrary({ variant = "home", prototypeActions = {} }) {
           <WfListRow title="Gentle arrival" meta="12 min · Assigned" />
           <WfListRow title="Wind down" meta="15 min · Assigned" />
         </div>
-        <WfTabBar active="discover" />
+        <WfTabBar active="sessions" />
       </WireframeScreen>
     );
   }
@@ -873,7 +873,7 @@ export function WfLibrary({ variant = "home", prototypeActions = {} }) {
           <WfButton>Apply filters</WfButton>
           <WfButton variant="secondary">Clear all</WfButton>
         </WfScreenFooter>
-        <WfTabBar active="discover" />
+        <WfTabBar active="sessions" />
       </WireframeScreen>
     );
   }
@@ -924,7 +924,7 @@ export function WfLibrary({ variant = "home", prototypeActions = {} }) {
           <WfListRow key={s.title} title={s.title} meta={s.meta} onClick={prototypeActions.onSelectSession} />
         ))}
       </div>
-      <WfTabBar active={variant === "browse" ? "discover" : "home"} />
+      <WfTabBar active="sessions" />
     </WireframeScreen>
   );
 }
@@ -940,6 +940,292 @@ export function WfFavorites() {
         <WfListRow title="Arrive · settle" meta="14 min · Favourite" />
         <WfListRow title="Deep unwind" meta="22 min · Favourite" />
       </div>
+      <WfTabBar active="profile" />
+    </WireframeScreen>
+  );
+}
+
+/** Listener Home — personalised programme overview (MVP tab). */
+export function WfHome({ variant = "default", prototypeActions = {} }) {
+  const showContinue = variant === "default" || variant === "continue";
+  const highlight =
+    variant === "recommend"
+      ? "recommend"
+      : variant === "progress"
+        ? "progress"
+        : variant === "activity"
+          ? "activity"
+          : "default";
+
+  return (
+    <WireframeScreen>
+      <WfScreenHeader />
+      <div className="px-5 pt-2">
+        <p className={`${WF_TYPE.bodySm} uppercase tracking-wider`} style={{ color: WF.textMuted }}>
+          Preston North End · Performance
+        </p>
+        <h2 className={`mt-1 ${WF_TYPE.title}`} style={{ color: WF.text }}>
+          Home
+        </h2>
+
+        {showContinue ? (
+          <div
+            className="mt-4 rounded-xl border p-4"
+            style={{
+              borderColor: highlight === "default" || highlight === "continue" ? WF.borderStrong : WF.border,
+              background: WF.surfaceMuted,
+            }}
+          >
+            <p className={`${WF_TYPE.bodySm} uppercase tracking-wider`} style={{ color: WF.textMuted }}>
+              Continue listening
+            </p>
+            <p className={`mt-2 ${WF_TYPE.label}`} style={{ color: WF.text }}>
+              {SESSIONS.resume.title}
+            </p>
+            <p className={WF_TYPE.bodySm} style={{ color: WF.textMuted }}>
+              {SESSIONS.resume.meta}
+            </p>
+            <div className="mt-3">
+              <WfButton onClick={prototypeActions.onContinue}>Resume</WfButton>
+            </div>
+          </div>
+        ) : null}
+
+        <div
+          className="mt-4 rounded-xl border p-4"
+          style={{
+            borderColor: highlight === "recommend" ? WF.borderStrong : WF.border,
+            background: WF.surface,
+          }}
+        >
+          <p className={`${WF_TYPE.bodySm} uppercase tracking-wider`} style={{ color: WF.textMuted }}>
+            Recommended next
+          </p>
+          <p className={`mt-2 ${WF_TYPE.label}`} style={{ color: WF.text }}>
+            Inner Balance
+          </p>
+          <p className={WF_TYPE.bodySm} style={{ color: WF.textMuted }}>
+            18 min · Daily regulation
+          </p>
+        </div>
+
+        <div
+          className="mt-4 rounded-xl border p-4"
+          style={{
+            borderColor: highlight === "progress" ? WF.borderStrong : WF.border,
+            background: WF.surface,
+          }}
+        >
+          <div className="flex items-center justify-between">
+            <p className={`${WF_TYPE.bodySm} uppercase tracking-wider`} style={{ color: WF.textMuted }}>
+              Programme progress
+            </p>
+            <p className={WF_TYPE.bodySm} style={{ color: WF.text }}>
+              4 / 7
+            </p>
+          </div>
+          <div className="mt-3">
+            <WfProgress value={57} />
+          </div>
+        </div>
+
+        {highlight === "activity" ? (
+          <div className="mt-4">
+            <p className={`${WF_TYPE.bodySm} uppercase tracking-wider`} style={{ color: WF.textMuted }}>
+              Recent activity
+            </p>
+            <WfListRow title="Arrive" meta="Completed · Yesterday" />
+            <WfListRow title="Settle" meta="Completed · 3 days ago" />
+          </div>
+        ) : (
+          <div className="mt-4">
+            <p className={`${WF_TYPE.bodySm} uppercase tracking-wider`} style={{ color: WF.textMuted }}>
+              Assigned sessions
+            </p>
+          </div>
+        )}
+      </div>
+      {highlight !== "activity" ? (
+        <div className="mt-1 flex-1 overflow-hidden">
+          {SESSIONS.library.slice(0, 3).map((s) => (
+            <WfListRow key={s.title} title={s.title} meta={s.meta} onClick={prototypeActions.onSelectSession} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex-1" />
+      )}
+      <WfTabBar active="home" />
+    </WireframeScreen>
+  );
+}
+
+/** Assigned programme — current / upcoming / completed. */
+export function WfAssigned({ variant = "default", prototypeActions = {} }) {
+  const sections = {
+    default: [
+      { title: "Current", rows: SESSIONS.library.slice(0, 2) },
+      { title: "Upcoming", rows: SESSIONS.library.slice(2, 4) },
+      { title: "Completed", rows: [{ title: "Arrive", meta: "12 min · Done" }] },
+    ],
+    current: [{ title: "Current", rows: SESSIONS.library.slice(0, 3) }],
+    upcoming: [{ title: "Upcoming", rows: SESSIONS.library.slice(1, 4) }],
+    completed: [
+      {
+        title: "Completed",
+        rows: [
+          { title: "Arrive", meta: "12 min · Done" },
+          { title: "Settle", meta: "15 min · Done" },
+        ],
+      },
+    ],
+  };
+  const groups = sections[variant] ?? sections.default;
+
+  return (
+    <WireframeScreen>
+      <WfScreenHeader />
+      <div className="px-5 pt-2">
+        <h2 className={WF_TYPE.title} style={{ color: WF.text }}>
+          Assigned
+        </h2>
+        <p className={`mt-1 ${WF_TYPE.bodySm}`} style={{ color: WF.textMuted }}>
+          Every session from your organisation
+        </p>
+      </div>
+      <div className="mt-2 flex-1 overflow-hidden">
+        {groups.map((group) => (
+          <div key={group.title}>
+            <p
+              className={`px-5 pt-3 ${WF_TYPE.bodySm} uppercase tracking-wider`}
+              style={{ color: WF.textMuted }}
+            >
+              {group.title}
+            </p>
+            {group.rows.map((s) => (
+              <WfListRow
+                key={`${group.title}-${s.title}`}
+                title={s.title}
+                meta={s.meta}
+                onClick={prototypeActions.onSelectSession}
+              />
+            ))}
+          </div>
+        ))}
+      </div>
+      <WfTabBar active="assigned" />
+    </WireframeScreen>
+  );
+}
+
+/** Programme progress tab. */
+export function WfProgrammeProgress({ variant = "default" }) {
+  const titleMap = {
+    default: "Progress",
+    overview: "Programme overview",
+    completed: "Completed sessions",
+    history: "Listening history",
+    reflections: "Reflections",
+    complete: "Programme complete",
+  };
+
+  return (
+    <WireframeScreen>
+      <WfScreenHeader />
+      <div className="px-5 pt-2">
+        <h2 className={WF_TYPE.title} style={{ color: WF.text }}>
+          {titleMap[variant] ?? titleMap.default}
+        </h2>
+        <p className={`mt-1 ${WF_TYPE.bodySm}`} style={{ color: WF.textMuted }}>
+          Preston North End Performance Programme
+        </p>
+
+        {variant !== "complete" ? (
+          <div className="mt-5 rounded-xl border p-4" style={{ borderColor: WF.border, background: WF.surface }}>
+            <div className="flex items-center justify-between">
+              <p className={WF_TYPE.label} style={{ color: WF.text }}>
+                4 of 7 sessions
+              </p>
+              <p className={WF_TYPE.bodySm} style={{ color: WF.textMuted }}>
+                57%
+              </p>
+            </div>
+            <div className="mt-3">
+              <WfProgress value={57} />
+            </div>
+          </div>
+        ) : (
+          <div className="mt-5 rounded-xl border p-4" style={{ borderColor: WF.border, background: WF.surfaceMuted }}>
+            <p className={WF_TYPE.label} style={{ color: WF.text }}>
+              Programme complete
+            </p>
+            <p className={`mt-2 ${WF_TYPE.bodySm}`} style={{ color: WF.textMuted }}>
+              You’ve finished every assigned session. Your organisation may add more.
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-2 flex-1 overflow-hidden">
+        {variant === "reflections" ? (
+          <>
+            <WfListRow title="Arrive" meta="Felt settled · Note added" />
+            <WfListRow title="Settle" meta="Rated 4 · Skip note" />
+          </>
+        ) : variant === "history" || variant === "completed" ? (
+          <>
+            <WfListRow title="Arrive" meta="Yesterday · 12 min" />
+            <WfListRow title="Settle" meta="3 days ago · 15 min" />
+            <WfListRow title="Inner Balance" meta="Last week · 18 min" />
+          </>
+        ) : (
+          <>
+            <WfListRow title="Arrive" meta="Completed" />
+            <WfListRow title="Settle" meta="Completed" />
+            <WfListRow title="Inner Balance" meta="Current" />
+            <WfListRow title="Access" meta="Upcoming" />
+          </>
+        )}
+      </div>
+      <WfTabBar active="progress" />
+    </WireframeScreen>
+  );
+}
+
+/** Organisation / programme context. */
+export function WfOrganisation({ variant = "default" }) {
+  const copy = {
+    default: {
+      tag: "Organisation",
+      title: "Preston North End",
+      subtitle: "Performance Programme — provisioned listening for your squad.",
+      rows: ["About the programme", "Programme objectives", "Organisation details", "Support contact"],
+    },
+    programme: {
+      tag: "Programme",
+      title: "About the programme",
+      subtitle: "Structured sessions assigned by your performance team to support recovery and focus.",
+      rows: ["Weekly listening cadence", "Match-day preparation", "Recovery protocols"],
+    },
+    objectives: {
+      tag: "Objectives",
+      title: "Programme objectives",
+      subtitle: "What this pathway is designed to support.",
+      rows: ["Autonomic regulation", "Pre-performance readiness", "Post-session recovery"],
+    },
+  };
+  const cfg = copy[variant] ?? copy.default;
+
+  return (
+    <WireframeScreen>
+      <WfScreenBody className="px-5 pt-6">
+        <WfTag>{cfg.tag}</WfTag>
+        <WfHeadline className="!px-0 mt-2" title={cfg.title} subtitle={cfg.subtitle} />
+        <div className="mt-4">
+          {cfg.rows.map((r) => (
+            <WfRowLink key={r} title={r} />
+          ))}
+        </div>
+      </WfScreenBody>
       <WfTabBar active="profile" />
     </WireframeScreen>
   );

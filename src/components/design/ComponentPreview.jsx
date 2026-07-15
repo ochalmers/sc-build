@@ -4,7 +4,6 @@ import {
   SystemTextButton,
   SystemInput,
   SystemTabBar,
-  SystemNavbar,
   SystemSessionCard,
   SystemTag,
   SystemWaveformModule,
@@ -42,8 +41,14 @@ const COMPONENT_PREVIEWS = {
   ),
   "nav-header": () => (
     <PreviewFrame>
-      <div className="w-full max-w-[280px] overflow-hidden rounded-xl border border-ink-200/50">
-        <SystemNavbar />
+      <div
+        className="flex w-full max-w-[280px] items-center gap-3 rounded-xl border border-ink-200/50 px-4 py-3"
+        style={{ background: "var(--proto-bg)", color: "var(--proto-text)" }}
+      >
+        <span className="text-[13px]" style={{ color: "var(--proto-text-muted)" }}>
+          ←
+        </span>
+        <span className="text-[15px] font-medium tracking-tight">Screen title</span>
       </div>
     </PreviewFrame>
   ),

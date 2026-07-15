@@ -210,7 +210,7 @@ export function WfLibraryCompact() {
           ),
         )}
       </div>
-      <WfTabBar active="discover" />
+      <WfTabBar active="sessions" />
     </WireframeScreen>
   );
 }
@@ -243,7 +243,7 @@ export function WfLibraryGrouped() {
           </div>
         ))}
       </div>
-      <WfTabBar active="discover" />
+      <WfTabBar active="sessions" />
     </WireframeScreen>
   );
 }
@@ -473,7 +473,7 @@ export function WfPlayerMiniBrowse() {
         </div>
         <WfIcon shape="control" />
       </div>
-      <WfTabBar active="discover" />
+      <WfTabBar active="sessions" />
     </WireframeScreen>
   );
 }

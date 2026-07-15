@@ -36,5 +36,5 @@ The design system reference page lives at **`/design-system`** (`src/pages/Desig
 Structural styles (layout, type scale, radii, blur, component geometry) are sourced from **[Sonocea App — GTM, Home](https://www.figma.com/design/lmo2RrohjwEiyyZj7SEGHM/Sonocea-App--GTM-?node-id=1-54800)** (node `1:54800`). Colour and imagery are intentionally excluded from tokens — bind via `resolvePalette` / CSS vars.
 
 - Tokens: `tokens/appLayout.js`, `appTypeClasses` in `tokens/typography.js`
-- Components: `SystemTag`, `SystemTabBar`, `SystemNavbar`, `SystemSessionCard`, `SystemPlayControl`, `SystemAppSectionHeader`
+- Components: `SystemTag`, `SystemTabBar`, `SystemSessionCard`, `SystemPlayControl`, `SystemAppSectionHeader`
 - Layout reference: `screens/HomeScreenReference.jsx`

@@ -26,7 +26,7 @@ export default function DiscoverScreen() {
         }}
         aria-hidden
       />
-      <AppTabBar active="discover" variant="light" />
+      <AppTabBar active="home" variant="light" />
     </div>
   );
 }

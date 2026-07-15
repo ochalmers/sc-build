@@ -16,11 +16,26 @@ export default function FlowSection({ id, section, className = "" }) {
               {section.number}.
             </p>
           ) : (
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">Web</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">
+              End-to-end
+            </p>
           )}
           <h2 className="mt-4 text-[clamp(1.5rem,3vw,2.25rem)] font-medium leading-[1.08] tracking-editorial text-ink-950">
             {section.title}
           </h2>
+          {section.purpose ? (
+            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-600">
+              {section.purpose}
+            </p>
+          ) : null}
+          {section.appPath ? (
+            <a
+              href={section.appPath}
+              className="mt-4 inline-flex text-[13px] text-ink-500 underline-offset-4 hover:text-ink-900 hover:underline"
+            >
+              Open in working app →
+            </a>
+          ) : null}
         </header>
 
         <div className="mt-8 max-w-content">

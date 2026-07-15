@@ -69,6 +69,7 @@ function DocumentCards() {
             </a>
             <BtnSecondary to={doc.flows}>View Flows</BtnSecondary>
             <BtnSecondary to={doc.wireframes}>View Wireframes</BtnSecondary>
+            {doc.app ? <BtnPrimary to={doc.app}>Open working app</BtnPrimary> : null}
           </div>
         </article>
       ))}

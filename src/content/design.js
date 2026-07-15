@@ -31,8 +31,8 @@ export const COMPONENT_CATEGORIES = [
     id: "navigation",
     label: "Navigation",
     components: [
-      { id: "tab-bar", name: "Tab Bar", purpose: "Primary app navigation — Home, Library, Settings.", variants: ["Default", "With badge"], properties: ["activeTab", "items", "onChange"], states: ["Default", "Active", "Disabled"], usageNotes: ["Fixed bottom on authenticated screens"], developerNotes: ["Safe area inset bottom required"], status: "draft" },
-      { id: "nav-header", name: "Nav Header", purpose: "Screen title with back action.", variants: ["Default", "Large title", "Modal"], properties: ["title", "showBack", "actions"], states: ["Default", "Scrolled"], usageNotes: ["Use large title on hub screens"], developerNotes: ["Collapse on scroll optional"], status: "draft" },
+      { id: "tab-bar", name: "Tab Bar", purpose: "Primary app navigation — Home, Profile.", variants: ["Default", "With badge"], properties: ["activeTab", "items", "onChange"], states: ["Default", "Active", "Disabled"], usageNotes: ["Fixed bottom on authenticated screens", "Two tabs only — no top logo or hamburger menu"], developerNotes: ["Safe area inset bottom required"], status: "draft" },
+      { id: "nav-header", name: "Nav Header", purpose: "Screen title with back action.", variants: ["Default", "Large title", "Modal"], properties: ["title", "showBack", "actions"], states: ["Default", "Scrolled"], usageNotes: ["Use large title on hub screens", "Not a brand bar — logo lives out of chrome"], developerNotes: ["Collapse on scroll optional"], status: "draft" },
     ],
   },
   {
