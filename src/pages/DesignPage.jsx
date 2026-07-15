@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import SiteChrome from "../components/SiteChrome.jsx";
+import PageHero from "../components/workspace/PageHero.jsx";
 import PageSection from "../components/workspace/PageSection.jsx";
+import { PAGE_MAIN } from "../components/workspace/pageLayout.js";
 import PreviewPlaceholder from "../components/design/PreviewPlaceholder.jsx";
 import DesignSystemShowcase from "../components/design/DesignSystemShowcase.jsx";
 import ComponentPreview from "../components/design/ComponentPreview.jsx";
@@ -351,28 +352,18 @@ function AccessibilityDocs() {
 export default function DesignPage() {
   return (
     <SiteChrome>
-      <main className="pt-[6.5rem]">
-        <section
+      <main className={PAGE_MAIN}>
+        <PageHero
           id="design-intro"
-          className="scroll-mt-[7rem] border-b border-ink-200/60 bg-[radial-gradient(120%_90%_at_20%_0%,rgba(255,255,255,0.9),rgba(249,248,246,0.35)_48%,rgba(247,246,243,0)_100%)]"
+          title={DESIGN_HERO.title}
+          description={DESIGN_HERO.intro}
+          withGradient
         >
-          <div className="max-w-content mx-auto px-6 pb-20 pt-28 md:pb-28 md:pt-32">
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <h1 className="max-w-3xl text-[clamp(2rem,4.4vw,3rem)] font-medium leading-[1.06] tracking-tight text-ink-950">
-                {DESIGN_HERO.title}
-              </h1>
-              <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-ink-700">{DESIGN_HERO.intro}</p>
-              <div className="mt-10 flex flex-wrap gap-3">
-                <BtnPrimary to={DESIGN_HERO.ctas.primary.to}>{DESIGN_HERO.ctas.primary.label}</BtnPrimary>
-                <BtnSecondary to={DESIGN_HERO.ctas.secondary.to}>{DESIGN_HERO.ctas.secondary.label}</BtnSecondary>
-              </div>
-            </motion.div>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <BtnPrimary to={DESIGN_HERO.ctas.primary.to}>{DESIGN_HERO.ctas.primary.label}</BtnPrimary>
+            <BtnSecondary to={DESIGN_HERO.ctas.secondary.to}>{DESIGN_HERO.ctas.secondary.label}</BtnSecondary>
           </div>
-        </section>
+        </PageHero>
 
         <PageSection
           id="design-system"

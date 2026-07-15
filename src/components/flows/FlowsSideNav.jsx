@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FLOW_NAV_SECTIONS, LISTENER_MVP_NAV } from "../../content/flows.js";
 import { useScrollSpy } from "../../hooks/useScrollSpy.js";
+import { EYEBROW, FLOWS_SIDEBAR_W } from "../workspace/pageLayout.js";
 
 const SCROLL_IDS = ["flows-intro", ...FLOW_NAV_SECTIONS.map((s) => s.id)];
 
@@ -18,15 +19,15 @@ export default function FlowsSideNav() {
 
   const navBody = (
     <>
-      <div className="mb-6">
-        <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-400">Listener MVP</p>
+      <div className="mb-5">
+        <p className={EYEBROW}>Listener MVP</p>
         <p className="mt-2 text-[13px] leading-snug text-ink-600">Bottom navigation</p>
         <ul className="mt-3 flex flex-wrap gap-1.5">
           {LISTENER_MVP_NAV.map((tab) => (
             <li key={tab.id}>
               <Link
                 to={tab.path}
-                className="inline-block rounded-md border border-ink-200/60 bg-paper-100 px-2 py-1 text-[11px] text-ink-700 transition-colors hover:border-ink-400 hover:text-ink-950"
+                className="inline-block rounded-full border border-ink-200/70 bg-paper-100 px-3 py-1.5 text-[12px] text-ink-700 transition-colors hover:border-ink-400 hover:text-ink-950"
               >
                 {tab.label}
               </Link>
@@ -35,13 +36,13 @@ export default function FlowsSideNav() {
         </ul>
       </div>
 
-      <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-400">Flows</p>
+      <p className={EYEBROW}>Flows</p>
       <nav className="mt-3" aria-label="Application flows">
         <ul className="space-y-0.5">
           <li>
             <a
               href="#flows-intro"
-              className={`flex items-baseline gap-2 rounded-lg px-2 py-1.5 text-[13px] transition-colors ${
+              className={`flex items-baseline gap-2 rounded-lg px-2.5 py-2 text-[13px] transition-colors ${
                 activeId === "flows-intro"
                   ? "bg-ink-950 text-paper-100"
                   : "text-ink-600 hover:bg-ink-950/5 hover:text-ink-950"
@@ -56,7 +57,7 @@ export default function FlowsSideNav() {
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
-                  className={`flex items-baseline gap-2.5 rounded-lg px-2 py-1.5 text-[13px] leading-snug transition-colors ${
+                  className={`flex items-baseline gap-2.5 rounded-lg px-2.5 py-2 text-[13px] leading-snug transition-colors ${
                     isActive
                       ? "bg-ink-950 text-paper-100"
                       : "text-ink-600 hover:bg-ink-950/5 hover:text-ink-950"
@@ -81,9 +82,12 @@ export default function FlowsSideNav() {
 
   return (
     <>
-      {/* Desktop sticky rail */}
-      <aside className="pointer-events-none absolute bottom-0 left-0 top-0 hidden w-[15.5rem] lg:block">
-        <div className="pointer-events-auto sticky top-[6.5rem] max-h-[calc(100dvh-7.5rem)] overflow-y-auto py-2 pr-4">
+      {/* Desktop sticky rail — inset to match SiteNav gutter */}
+      <aside
+        className="pointer-events-none absolute bottom-0 left-0 top-0 hidden lg:block"
+        style={{ width: `calc(30px + ${FLOWS_SIDEBAR_W})` }}
+      >
+        <div className="pointer-events-auto sticky top-[6.5rem] max-h-[calc(100dvh-7.5rem)] overflow-y-auto py-4 pl-[30px] pr-3">
           {navBody}
         </div>
       </aside>

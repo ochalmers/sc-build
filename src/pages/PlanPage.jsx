@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import SiteChrome from "../components/SiteChrome.jsx";
+import PageHero from "../components/workspace/PageHero.jsx";
 import PageSection from "../components/workspace/PageSection.jsx";
+import { PAGE_MAIN } from "../components/workspace/pageLayout.js";
 import {
   DELIVERY_SEQUENCE,
   DESIGN_DELIVERABLES,
@@ -18,7 +19,7 @@ function TimelineStrip() {
   const currentPhase = getCurrentPhase();
 
   return (
-    <div className="mt-12 overflow-x-auto pb-2">
+    <div className="mt-8 overflow-x-auto pb-2">
       <div className="flex min-w-[36rem] items-start gap-0">
         {PLAN_TIMELINE.map((step, idx) => {
           const isCurrent = step.id === currentPhase.id;
@@ -299,25 +300,15 @@ export default function PlanPage() {
 
   return (
     <SiteChrome>
-      <main className="pt-[6.5rem]">
-        <section
+      <main className={PAGE_MAIN}>
+        <PageHero
           id="plan-intro"
-          className="scroll-mt-[7rem] border-b border-ink-200/60 bg-[radial-gradient(120%_90%_at_20%_0%,rgba(255,255,255,0.9),rgba(249,248,246,0.35)_48%,rgba(247,246,243,0)_100%)]"
+          title={PLAN_HERO.title}
+          description={PLAN_HERO.intro}
+          withGradient
         >
-          <div className="max-w-content mx-auto px-6 pb-16 pt-28 md:pb-20 md:pt-32">
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <h1 className="max-w-3xl text-[clamp(2rem,4.4vw,3rem)] font-medium leading-[1.06] tracking-tight text-ink-950">
-                {PLAN_HERO.title}
-              </h1>
-              <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-ink-700">{PLAN_HERO.intro}</p>
-              <TimelineStrip />
-            </motion.div>
-          </div>
-        </section>
+          <TimelineStrip />
+        </PageHero>
 
         <PageSection id="plan-current" label="Current" title="Current Delivery">
           <CurrentDeliveryCard />

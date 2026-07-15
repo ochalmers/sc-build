@@ -1,3 +1,11 @@
+import {
+  EYEBROW,
+  PAGE_GUTTER,
+  SECTION_BODY,
+  SECTION_PAD,
+  SECTION_SCROLL,
+  SECTION_TITLE,
+} from "../../workspace/pageLayout.js";
 import FlowSequenceStrip from "./FlowSequenceStrip.jsx";
 import WireframeStoryboard from "./WireframeStoryboard.jsx";
 
@@ -7,27 +15,15 @@ export default function FlowSection({ id, section, className = "" }) {
   return (
     <section
       id={id}
-      className={`scroll-mt-[7rem] border-b border-ink-200/50 py-16 md:py-24 ${className}`}
+      className={`${SECTION_SCROLL} border-b border-ink-200/60 ${SECTION_PAD} ${className}`.trim()}
     >
-      <div className="max-w-site mx-auto px-6">
-        <header className="max-w-content">
-          {section.number ? (
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">
-              {section.number}.
-            </p>
-          ) : (
-            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-400">
-              End-to-end
-            </p>
-          )}
-          <h2 className="mt-4 text-[clamp(1.5rem,3vw,2.25rem)] font-medium leading-[1.08] tracking-editorial text-ink-950">
-            {section.title}
-          </h2>
-          {section.purpose ? (
-            <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-ink-600">
-              {section.purpose}
-            </p>
-          ) : null}
+      <div className={`max-w-content ${PAGE_GUTTER}`}>
+        <header className="max-w-3xl">
+          <p className={EYEBROW}>
+            {section.number ? `${section.number}.` : "End-to-end"}
+          </p>
+          <h2 className={`mt-3 ${SECTION_TITLE}`}>{section.title}</h2>
+          {section.purpose ? <p className={SECTION_BODY}>{section.purpose}</p> : null}
           {section.appPath ? (
             <a
               href={section.appPath}
@@ -38,12 +34,12 @@ export default function FlowSection({ id, section, className = "" }) {
           ) : null}
         </header>
 
-        <div className="mt-8 max-w-content">
+        <div className="mt-8">
           <FlowSequenceStrip steps={section.steps} />
         </div>
 
         {storyboardSteps.length > 0 ? (
-          <div className="mt-12 rounded-3xl border border-ink-200/30 bg-[radial-gradient(ellipse_120%_80%_at_50%_0%,rgba(255,255,255,0.9),rgba(249,248,246,0.4)_60%,transparent)] px-2 py-10 md:px-4 md:py-14">
+          <div className="mt-10 rounded-3xl border border-ink-200/30 bg-[radial-gradient(ellipse_120%_80%_at_50%_0%,rgba(255,255,255,0.9),rgba(249,248,246,0.4)_60%,transparent)] px-2 py-8 md:px-4 md:py-12">
             <WireframeStoryboard steps={storyboardSteps} />
           </div>
         ) : null}

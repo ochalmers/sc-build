@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import SiteChrome from "../components/SiteChrome.jsx";
+import PageHero from "../components/workspace/PageHero.jsx";
 import PageSection from "../components/workspace/PageSection.jsx";
+import { PAGE_MAIN } from "../components/workspace/pageLayout.js";
 import {
   BUILD_FOCUS,
   OVERVIEW_HERO,
@@ -251,42 +252,32 @@ function WhatsNextCards() {
 export default function OverviewPage() {
   return (
     <SiteChrome>
-      <main className="pt-[6.5rem]">
-        {/* Section 01 — Hero */}
-        <section
+      <main className={PAGE_MAIN}>
+        <PageHero
           id="overview-intro"
-          className="scroll-mt-[7rem] border-b border-ink-200/60 bg-[radial-gradient(120%_90%_at_20%_0%,rgba(255,255,255,0.9),rgba(249,248,246,0.35)_48%,rgba(247,246,243,0)_100%)]"
+          title={OVERVIEW_HERO.title}
+          description={OVERVIEW_HERO.intro}
+          withGradient
         >
-          <div className="max-w-content mx-auto px-6 pb-20 pt-28 md:pb-28 md:pt-32">
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <h1 className="max-w-3xl text-[clamp(2rem,4.4vw,3rem)] font-medium leading-[1.06] tracking-tight text-ink-950">
-                {OVERVIEW_HERO.title}
-              </h1>
-              <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-ink-700">{OVERVIEW_HERO.intro}</p>
-
-              <div className="mt-8 max-w-xl">
-                <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">This workspace contains</p>
-                <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-                  {OVERVIEW_HERO.contains.map((item) => (
-                    <li key={item} className="flex gap-2.5 text-[14px] text-ink-700">
-                      <span className="mt-[0.5rem] h-1 w-1 shrink-0 rounded-full bg-ink-400" aria-hidden />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-10 flex flex-wrap gap-3">
-                <BtnPrimary to={OVERVIEW_HERO.ctas.primary.to}>{OVERVIEW_HERO.ctas.primary.label}</BtnPrimary>
-                <BtnSecondary to={OVERVIEW_HERO.ctas.secondary.to}>{OVERVIEW_HERO.ctas.secondary.label}</BtnSecondary>
-              </div>
-            </motion.div>
+          <div className="mt-8 max-w-xl">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-500">
+              This workspace contains
+            </p>
+            <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+              {OVERVIEW_HERO.contains.map((item) => (
+                <li key={item} className="flex gap-2.5 text-[14px] text-ink-700">
+                  <span className="mt-[0.5rem] h-1 w-1 shrink-0 rounded-full bg-ink-400" aria-hidden />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
-        </section>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            <BtnPrimary to={OVERVIEW_HERO.ctas.primary.to}>{OVERVIEW_HERO.ctas.primary.label}</BtnPrimary>
+            <BtnSecondary to={OVERVIEW_HERO.ctas.secondary.to}>{OVERVIEW_HERO.ctas.secondary.label}</BtnSecondary>
+          </div>
+        </PageHero>
 
         {/* Section 02 — Source Documents */}
         <PageSection

@@ -22,7 +22,7 @@ export default function SiteChrome({ children, hideChapterNav = false }) {
       {hideChapterNav ? null : <ChapterNav />}
 
       <footer className="border-t border-ink-200/70 bg-paper-100 py-10">
-        <div className="max-w-content mx-auto flex flex-wrap items-center justify-between gap-4 px-6 text-[11px] text-ink-500">
+        <div className="max-w-content mx-auto flex flex-wrap items-center justify-between gap-4 px-[30px] text-[11px] text-ink-500">
           <span>Internal · sound-first · one adaptive system</span>
           <Link to="/design" className="text-ink-600 underline-offset-4 hover:underline">
             Design
