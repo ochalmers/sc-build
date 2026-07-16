@@ -10,6 +10,7 @@ import ReferencesPage from "./pages/ReferencesPage.jsx";
 import ProductApp from "./app/ProductApp.jsx";
 import CopyPage from "./pages/CopyPage.jsx";
 import { CommentProvider } from "./comments/CommentStore.jsx";
+import CommentModeFab from "./components/comments/CommentModeFab.jsx";
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/prototype" element={<WorkspacePage pageKey="prototype" />} />
         <Route path="/app/*" element={<ProductApp />} />
       </Routes>
+      <CommentModeFab />
     </CommentProvider>
   );
 }
