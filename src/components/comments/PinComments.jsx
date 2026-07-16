@@ -37,22 +37,18 @@ export default function PinComments({ scopeKey, children }) {
     const rect = containerRef.current.getBoundingClientRect();
     const pin = openThreadData.pin;
     setPanelPos({
-      left: Math.min(pin.x * rect.width + 14, rect.width - 20),
-      top: Math.min(pin.y * rect.height + 14, rect.height - 20),
+      left: Math.min(pin.x * rect.width + 14, Math.max(8, rect.width - 280)),
+      top: Math.min(pin.y * rect.height + 14, Math.max(8, rect.height - 120)),
     });
   }, [openIsHere, openThreadData]);
 
   if (!scopeKey) return children;
 
-  function placeDraft(event) {
-    if (!commentMode) return;
-    // Don't place when clicking existing UI chrome inside
-    if (event.target.closest("[data-comment-ui]")) return;
-
+  function placeAt(clientX, clientY) {
     const rect = containerRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    const x = (event.clientX - rect.left) / rect.width;
-    const y = (event.clientY - rect.top) / rect.height;
+    if (!rect || rect.width <= 0 || rect.height <= 0) return;
+    const x = (clientX - rect.left) / rect.width;
+    const y = (clientY - rect.top) / rect.height;
     startDraft(scopeKey, x, y);
   }
 
@@ -65,16 +61,24 @@ export default function PinComments({ scopeKey, children }) {
     <div
       ref={containerRef}
       className={`relative ${commentMode ? "cursor-crosshair" : ""}`}
-      onClick={placeDraft}
     >
       {children}
 
-      {/* Hit layer when commenting so clicks land even over interactive content */}
-      {commentMode ? (
-        <div className="absolute inset-0 z-20 cursor-crosshair" aria-hidden data-comment-ui />
+      {/* Hit layer captures clicks over interactive phone/wireframe content */}
+      {commentMode && !draftHere ? (
+        <button
+          type="button"
+          aria-label="Place comment pin"
+          className="absolute inset-0 z-20 cursor-crosshair bg-transparent"
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            placeAt(event.clientX, event.clientY);
+          }}
+        />
       ) : null}
 
-      <div className="pointer-events-none absolute inset-0 z-30">
+      <div className="pointer-events-none absolute inset-0 z-30 overflow-visible">
         {threads.map((thread, index) => {
           const isOpen = openThreadId === thread.id;
           return (

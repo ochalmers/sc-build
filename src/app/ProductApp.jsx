@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { AppStoreProvider } from "./context/AppStore.jsx";
+import { AppShell } from "./components/AppShell.jsx";
 import { ListenerStage } from "./components/ListenerStage.jsx";
 import { ListenerEntry, ListenerInvite, ListenerLogin } from "./screens/listener/AuthScreens.jsx";
 import { ListenerNeurotype, ListenerOnboarding } from "./screens/listener/OnboardingScreens.jsx";
@@ -36,7 +37,7 @@ import {
 export default function ProductApp() {
   return (
     <AppStoreProvider>
-      <div className="min-h-dvh">
+      <AppShell>
         <Routes>
           <Route index element={<Navigate to="/app/listener/invite" replace />} />
 
@@ -75,7 +76,7 @@ export default function ProductApp() {
 
           <Route path="*" element={<Navigate to="/app/listener/invite" replace />} />
         </Routes>
-      </div>
+      </AppShell>
     </AppStoreProvider>
   );
 }

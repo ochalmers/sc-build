@@ -2,7 +2,6 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { FLOW_SECTIONS } from "../../content/flows.js";
 import { DEMO_CREDENTIALS } from "../data/catalog.js";
 import { useAppStore } from "../context/AppStore.jsx";
-import { SurfaceSwitcher } from "./SurfaceSwitcher.jsx";
 
 function pathsMatch(stepPath, pathname, search) {
   if (!stepPath.includes("?")) return stepPath === pathname && !search;
@@ -44,7 +43,7 @@ const AUTH_GATE_PATHS = new Set(["/app/listener", "/app/listener/invite", "/app/
  * left rail jumps between flow destinations for review.
  */
 export function ListenerStage() {
-  const { resetApp, logout, role, loginListener } = useAppStore();
+  const { logout, role, loginListener } = useAppStore();
   const { pathname, search } = useLocation();
   const navigate = useNavigate();
 
@@ -78,7 +77,7 @@ export function ListenerStage() {
   }
 
   return (
-    <div className="relative min-h-dvh bg-[#12110f]">
+    <div className="relative min-h-[calc(100dvh-3.5rem)] bg-[#12110f]">
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -88,27 +87,7 @@ export function ListenerStage() {
         aria-hidden
       />
 
-      <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 px-5 py-4 text-[12px] text-white/45">
-        <div className="flex items-center gap-3">
-          <Link to="/app" className="text-white/70 hover:text-white">
-            Sonocea App
-          </Link>
-          <SurfaceSwitcher />
-        </div>
-        <div className="flex gap-4">
-          <Link to="/flows" className="hover:text-white/70">
-            Flows docs
-          </Link>
-          <button type="button" onClick={resetApp} className="hover:text-white/70">
-            Reset demo
-          </button>
-          <Link to="/" className="hover:text-white/70">
-            (microsite)
-          </Link>
-        </div>
-      </div>
-
-      <div className="relative z-10 mx-auto flex max-w-[1180px] gap-8 px-4 pb-16 pt-2 md:px-6 md:pt-4">
+      <div className="relative z-10 mx-auto flex max-w-[1180px] gap-8 px-4 pb-16 pt-4 md:px-6 md:pt-6">
         <aside className="hidden w-[13.5rem] shrink-0 lg:block">
           <div className="sticky top-6 max-h-[calc(100dvh-3rem)] overflow-y-auto pr-2">
             <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/35">

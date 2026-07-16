@@ -15,7 +15,8 @@ function surfaceFromPath(pathname) {
   return "listener";
 }
 
-export function SurfaceSwitcher({ compact = false }) {
+/** Pill switcher — same control on Listener, Partner, and Admin. */
+export function SurfaceSwitcher() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { loginPartner, loginAdmin, logout } = useAppStore();
@@ -51,29 +52,6 @@ export function SurfaceSwitcher({ compact = false }) {
     }
   }
 
-  if (compact) {
-    return (
-      <div className="flex items-center gap-2">
-        <label className="sr-only" htmlFor="surface-switcher">
-          Switch app surface
-        </label>
-        <select
-          id="surface-switcher"
-          value={active}
-          onChange={(e) => goToSurface(e.target.value)}
-          className="rounded-full border border-white/12 bg-white/[0.06] px-3 py-1.5 text-[12px] text-white/85 outline-none transition-colors hover:bg-white/[0.08]"
-        >
-          {SURFACES.map((surface) => (
-            <option key={surface.id} value={surface.id} className="bg-[#161616] text-white">
-              {surface.label}
-            </option>
-          ))}
-        </select>
-        {error ? <span className="text-[12px] text-red-300">{error}</span> : null}
-      </div>
-    );
-  }
-
   return (
     <div>
       <div className="flex flex-wrap items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] p-1">
@@ -85,7 +63,9 @@ export function SurfaceSwitcher({ compact = false }) {
               type="button"
               onClick={() => goToSurface(surface.id)}
               className={`rounded-full px-3 py-1.5 text-[12px] transition-colors ${
-                isActive ? "bg-white text-black" : "text-white/65 hover:bg-white/[0.08] hover:text-white"
+                isActive
+                  ? "bg-white text-black"
+                  : "text-white/65 hover:bg-white/[0.08] hover:text-white"
               }`}
             >
               {surface.label}
@@ -93,7 +73,7 @@ export function SurfaceSwitcher({ compact = false }) {
           );
         })}
       </div>
-      {error ? <p className="mt-2 text-[12px] text-red-300">{error}</p> : null}
+      {error ? <p className="mt-1 text-[11px] text-red-300">{error}</p> : null}
     </div>
   );
 }
