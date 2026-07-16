@@ -10,6 +10,7 @@ export const MAIN_NAV = [
   { label: WORKSPACE_PAGES.flows.navLabel, to: WORKSPACE_PAGES.flows.path },
   { label: WORKSPACE_PAGES.design.navLabel, to: WORKSPACE_PAGES.design.path },
   { label: WORKSPACE_PAGES.keyScreens.navLabel, to: WORKSPACE_PAGES.keyScreens.path },
+  { label: WORKSPACE_PAGES.copy.navLabel, to: WORKSPACE_PAGES.copy.path },
   { label: WORKSPACE_PAGES.references.navLabel, to: WORKSPACE_PAGES.references.path },
 ];
 

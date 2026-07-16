@@ -8,7 +8,7 @@ export default function FlowScreenPreview({ screenKey, label }) {
 
   if (Screen) {
     return (
-      <WireframePreviewFrame frame={frame}>
+      <WireframePreviewFrame frame={frame} commentScopeKey={screenKey ? `screen:${screenKey}` : undefined}>
         <Screen {...props} />
       </WireframePreviewFrame>
     );

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { SurfaceSwitcher } from "./SurfaceSwitcher.jsx";
 import { useAppStore } from "../context/AppStore.jsx";
 
 /**
@@ -25,6 +26,7 @@ export function AppChrome({ children, title, subtitle, nav, actions, simple }) {
             <Link to="/app" className="text-[15px] font-medium tracking-tight text-white">
               Sonocea<span className="text-white/40"> · App</span>
             </Link>
+            {!simple ? <SurfaceSwitcher compact /> : null}
             {nav ? <div className="hidden items-center gap-1 sm:flex">{nav}</div> : null}
           </div>
           <div className="flex flex-wrap items-center gap-3 text-[12px] text-white/55">

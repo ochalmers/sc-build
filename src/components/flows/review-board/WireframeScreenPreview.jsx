@@ -22,7 +22,11 @@ export default function WireframeScreenPreview({ screenKey, label }) {
               : "rounded-[1.75rem] border-2 border-ink-200/70"
           }`}
         >
-          <WireframePreviewFrame frame={frame} className="!rounded-none !border-0 !shadow-none">
+          <WireframePreviewFrame
+            frame={frame}
+            className="!rounded-none !border-0 !shadow-none"
+            commentScopeKey={screenKey ? `screen:${screenKey}` : undefined}
+          >
             <Screen {...props} />
           </WireframePreviewFrame>
         </div>

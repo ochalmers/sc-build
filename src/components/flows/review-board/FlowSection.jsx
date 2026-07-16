@@ -6,6 +6,7 @@ import {
   SECTION_SCROLL,
   SECTION_TITLE,
 } from "../../workspace/pageLayout.js";
+import SectionComments from "../../comments/SectionComments.jsx";
 import FlowSequenceStrip from "./FlowSequenceStrip.jsx";
 import WireframeStoryboard from "./WireframeStoryboard.jsx";
 
@@ -32,6 +33,7 @@ export default function FlowSection({ id, section, className = "" }) {
               Open in working app →
             </a>
           ) : null}
+          {id ? <SectionComments scopeKey={`section:${id}`} className="max-w-2xl" /> : null}
         </header>
 
         <div className="mt-8">

@@ -106,6 +106,20 @@ export const WORKSPACE_PAGES = {
     ],
   },
 
+  copy: {
+    path: "/copy",
+    navLabel: "Copy",
+    eyebrow: "Content Ops",
+    title: "Marketing Copy Breakdown",
+    description: "Flow-by-flow messaging, CTA intent, and review status for launch copy.",
+    purpose: "Align product, design, and marketing on screen-level messaging before ship.",
+    introId: "copy-intro",
+    sections: [
+      { id: "copy-public-visitor", label: "Public Visitor", title: "Public Visitor Funnel" },
+      { id: "copy-listener-onboarding", label: "Listener", title: "Invitation + Onboarding" },
+    ],
+  },
+
   references: {
     path: "/references",
     navLabel: "References",

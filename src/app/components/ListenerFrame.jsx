@@ -1,10 +1,11 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ModeChrome } from "../../system/components/ModeChrome.jsx";
 import { IconProfile } from "../../system/components/SampleIcons.jsx";
 import { SystemLogoMark } from "../../system/components/SystemLogoMark.jsx";
 import { appTypeClasses } from "../../system/tokens/typography.js";
 import { useAppStore } from "../context/AppStore.jsx";
 import { LISTENER_MVP_NAV } from "../../content/flows.js";
+import PinComments from "../../components/comments/PinComments.jsx";
 
 /** Fixed iPhone-class frame — content scrolls; chrome stays put. */
 export const LISTENER_FRAME = { width: 390, height: 812 };
@@ -41,6 +42,7 @@ export function ListenerFrame({
   bleed = false,
 }) {
   const navigate = useNavigate();
+  const { pathname, search } = useLocation();
   const { appearance } = useAppStore();
   const isDark = appearance === "dark";
 
@@ -55,30 +57,32 @@ export function ListenerFrame({
 
   return (
     <ModeChrome mode={mode} className="flex w-full justify-center">
-      <div
-        className="relative flex flex-col overflow-hidden rounded-[2rem] shadow-[0_24px_80px_rgba(18,18,18,0.18)] ring-1 ring-black/5"
-        style={{
-          width: LISTENER_FRAME.width,
-          height: LISTENER_FRAME.height,
-          maxWidth: "100%",
-          background: "var(--proto-bg)",
-          color: "var(--proto-text)",
-          ...(isDark ? DARK_APPEARANCE : {}),
-        }}
-      >
+      <PinComments scopeKey={`app:${pathname}${search}`}>
         <div
-          className={`relative min-h-0 flex-1 overflow-y-auto overscroll-contain ${
-            bleed ? "p-0" : "px-5 pb-4 pt-6"
-          }`}
+          className="relative flex flex-col overflow-hidden rounded-[2rem] shadow-[0_24px_80px_rgba(18,18,18,0.18)] ring-1 ring-black/5"
+          style={{
+            width: LISTENER_FRAME.width,
+            height: LISTENER_FRAME.height,
+            maxWidth: "100%",
+            background: "var(--proto-bg)",
+            color: "var(--proto-text)",
+            ...(isDark ? DARK_APPEARANCE : {}),
+          }}
         >
-          {children}
-        </div>
+          <div
+            className={`relative min-h-0 flex-1 overflow-y-auto overscroll-contain ${
+              bleed ? "p-0" : "px-5 pb-4 pt-6"
+            }`}
+          >
+            {children}
+          </div>
 
-        {footer}
-        {!hideTabBar && !footer ? (
-          <ListenerTabBar activeTab={activeTab} onTabChange={handleTabChange} />
-        ) : null}
-      </div>
+          {footer}
+          {!hideTabBar && !footer ? (
+            <ListenerTabBar activeTab={activeTab} onTabChange={handleTabChange} />
+          ) : null}
+        </div>
+      </PinComments>
     </ModeChrome>
   );
 }

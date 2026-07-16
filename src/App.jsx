@@ -8,10 +8,12 @@ import FlowsPage from "./pages/FlowsPage.jsx";
 import KeyScreensPage from "./pages/KeyScreensPage.jsx";
 import ReferencesPage from "./pages/ReferencesPage.jsx";
 import ProductApp from "./app/ProductApp.jsx";
+import CopyPage from "./pages/CopyPage.jsx";
+import { CommentProvider } from "./comments/CommentStore.jsx";
 
 export default function App() {
   return (
-    <>
+    <CommentProvider>
       <ScrollManager />
       <Routes>
         <Route path="/" element={<OverviewPage />} />
@@ -19,12 +21,13 @@ export default function App() {
         <Route path="/flows" element={<FlowsPage />} />
         <Route path="/design" element={<DesignPage />} />
         <Route path="/key-screens" element={<KeyScreensPage />} />
+        <Route path="/copy" element={<CopyPage />} />
         <Route path="/designs" element={<Navigate to="/design" replace />} />
         <Route path="/designs/*" element={<Navigate to="/design" replace />} />
         <Route path="/references" element={<ReferencesPage />} />
         <Route path="/prototype" element={<WorkspacePage pageKey="prototype" />} />
         <Route path="/app/*" element={<ProductApp />} />
       </Routes>
-    </>
+    </CommentProvider>
   );
 }

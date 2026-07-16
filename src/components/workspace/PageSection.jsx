@@ -7,6 +7,7 @@ import {
   SECTION_SCROLL,
   SECTION_TITLE,
 } from "./pageLayout.js";
+import SectionComments from "../comments/SectionComments.jsx";
 
 export default function PageSection({
   id,
@@ -26,6 +27,7 @@ export default function PageSection({
         <p className={EYEBROW}>{label}</p>
         <h2 className={`mt-3 ${SECTION_TITLE}`}>{title}</h2>
         {description ? <p className={SECTION_BODY}>{description}</p> : null}
+        {id ? <SectionComments scopeKey={`section:${id}`} /> : null}
         {children ? <div className="mt-10">{children}</div> : null}
       </div>
     </section>

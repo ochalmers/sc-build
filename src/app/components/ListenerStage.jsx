@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { FLOW_SECTIONS } from "../../content/flows.js";
 import { DEMO_CREDENTIALS } from "../data/catalog.js";
 import { useAppStore } from "../context/AppStore.jsx";
+import { SurfaceSwitcher } from "./SurfaceSwitcher.jsx";
 
 function pathsMatch(stepPath, pathname, search) {
   if (!stepPath.includes("?")) return stepPath === pathname && !search;
@@ -87,10 +88,13 @@ export function ListenerStage() {
         aria-hidden
       />
 
-      <div className="relative z-10 flex items-center justify-between px-5 py-4 text-[12px] text-white/45">
-        <Link to="/app" className="text-white/70 hover:text-white">
-          ← All services
-        </Link>
+      <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 px-5 py-4 text-[12px] text-white/45">
+        <div className="flex items-center gap-3">
+          <Link to="/app" className="text-white/70 hover:text-white">
+            Sonocea App
+          </Link>
+          <SurfaceSwitcher />
+        </div>
         <div className="flex gap-4">
           <Link to="/flows" className="hover:text-white/70">
             Flows docs

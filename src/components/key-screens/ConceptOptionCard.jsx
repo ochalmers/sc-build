@@ -32,7 +32,11 @@ function ConceptWireframe({ wireframeKey, fallbackTitle, placeholderNote }) {
 
   return (
     <div className={`mx-auto w-[240px] ${isDesktop ? "" : ""}`}>
-      <WireframePreviewFrame frame={frame} className="!max-w-[240px] w-full">
+      <WireframePreviewFrame
+        frame={frame}
+        className="!max-w-[240px] w-full"
+        commentScopeKey={wireframeKey ? `screen:${wireframeKey}` : undefined}
+      >
         <Screen {...props} />
       </WireframePreviewFrame>
     </div>

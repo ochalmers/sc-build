@@ -16,6 +16,7 @@ function WireframePreview({ screenKey, label }) {
     <WireframePreviewFrame
       frame={frame}
       className={frame === "desktop" ? "w-full" : "!max-w-[280px] w-full"}
+      commentScopeKey={screenKey ? `screen:${screenKey}` : undefined}
     >
       <Screen {...props} />
     </WireframePreviewFrame>
@@ -72,6 +73,7 @@ export function WireframeOnly({ screenKey, label, compact = false }) {
       <WireframePreviewFrame
         frame={frame}
         className={isDesktop ? "w-full" : compact ? "!max-w-[240px]" : "!max-w-[280px] w-full"}
+        commentScopeKey={screenKey ? `screen:${screenKey}` : undefined}
       >
         <Screen {...props} />
       </WireframePreviewFrame>
