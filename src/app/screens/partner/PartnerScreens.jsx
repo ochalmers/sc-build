@@ -1,13 +1,11 @@
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { formatDuration } from "../../data/catalog.js";
 import { useAppStore } from "../../context/AppStore.jsx";
 import { AppChrome, ConsoleNavLink } from "../../components/AppChrome.jsx";
 
 export function PartnerHome() {
-  const { role, user, partners, listeners, listenHistory, catalog } = useAppStore();
+  const { user, partners, listeners, listenHistory, catalog } = useAppStore();
   const location = useLocation();
-
-  if (role !== "partner" || !user) return <Navigate to="/app" replace />;
 
   const partner = partners.find((p) => p.id === user.partnerId);
   const roster = listeners.filter((l) => l.partnerId === user.partnerId);
@@ -92,10 +90,8 @@ export function PartnerHome() {
 }
 
 export function PartnerBilling() {
-  const { role, user, partners, listenHistory, catalog } = useAppStore();
+  const { user, partners, listenHistory, catalog } = useAppStore();
   const location = useLocation();
-
-  if (role !== "partner" || !user) return <Navigate to="/app" replace />;
 
   const partner = partners.find((p) => p.id === user.partnerId);
   const entitledIds = new Set(catalog.filter((s) => s.partnerIds.includes(user.partnerId)).map((s) => s.id));

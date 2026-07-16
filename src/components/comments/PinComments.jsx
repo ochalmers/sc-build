@@ -1,11 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useComments } from "../../comments/CommentStore.jsx";
 import { CommentComposer, CommentThreadPanel } from "./CommentComposer.jsx";
 
+function clamp(n, min, max) {
+  return Math.max(min, Math.min(max, n));
+}
+
 /**
  * Overlay for pin comments on preview frames.
- * - Comment mode on: click to place a pin + open composer
- * - Comment mode off: click an existing pin to open its thread
+ * Draft/thread panels render in a portal so overflow:hidden parents cannot clip them.
  */
 export default function PinComments({ scopeKey, children }) {
   const {
@@ -25,7 +29,8 @@ export default function PinComments({ scopeKey, children }) {
   } = useComments();
 
   const containerRef = useRef(null);
-  const [panelPos, setPanelPos] = useState({ left: 0, top: 0 });
+  const [anchor, setAnchor] = useState(null); // { left, top } viewport coords for portal UI
+  const labelId = useId();
 
   const threads = scopeKey ? getThreads(scopeKey).filter((t) => t.pin) : [];
   const openThreadData = openThreadId ? getThread(openThreadId) : null;
@@ -33,14 +38,17 @@ export default function PinComments({ scopeKey, children }) {
   const draftHere = draft?.scopeKey === scopeKey ? draft : null;
 
   useEffect(() => {
-    if (!openIsHere || !containerRef.current) return;
+    if (!openIsHere || !containerRef.current) {
+      if (!draftHere) setAnchor(null);
+      return;
+    }
     const rect = containerRef.current.getBoundingClientRect();
     const pin = openThreadData.pin;
-    setPanelPos({
-      left: Math.min(pin.x * rect.width + 14, Math.max(8, rect.width - 280)),
-      top: Math.min(pin.y * rect.height + 14, Math.max(8, rect.height - 120)),
+    setAnchor({
+      left: clamp(rect.left + pin.x * rect.width + 12, 12, window.innerWidth - 340),
+      top: clamp(rect.top + pin.y * rect.height + 12, 12, window.innerHeight - 280),
     });
-  }, [openIsHere, openThreadData]);
+  }, [openIsHere, openThreadData, draftHere]);
 
   if (!scopeKey) return children;
 
@@ -50,48 +58,119 @@ export default function PinComments({ scopeKey, children }) {
     const x = (clientX - rect.left) / rect.width;
     const y = (clientY - rect.top) / rect.height;
     startDraft(scopeKey, x, y);
+    setAnchor({
+      left: clamp(clientX + 12, 12, window.innerWidth - 340),
+      top: clamp(clientY + 12, 12, window.innerHeight - 280),
+    });
+    closeThread();
   }
 
   function submitDraft(body) {
     if (!draftHere) return;
     addPinComment(scopeKey, draftHere.pin.x, draftHere.pin.y, body);
+    setAnchor(null);
   }
+
+  const portal =
+    typeof document !== "undefined" &&
+    (draftHere || openIsHere) &&
+    anchor &&
+    createPortal(
+      <div
+        className="fixed z-[80]"
+        style={{ left: anchor.left, top: anchor.top }}
+        onMouseDown={(e) => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {draftHere ? (
+          <div className="w-[min(20rem,calc(100vw-1.5rem))] rounded-2xl border border-ink-200/80 bg-white p-3 shadow-[0_16px_40px_rgba(0,0,0,0.2)]">
+            <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500">
+              New comment
+            </p>
+            <CommentComposer
+              onSubmit={submitDraft}
+              onCancel={() => {
+                clearDraft();
+                setAnchor(null);
+              }}
+              submitLabel="Post"
+            />
+          </div>
+        ) : null}
+        {openIsHere && !draftHere ? (
+          <CommentThreadPanel
+            thread={openThreadData}
+            onClose={() => {
+              closeThread();
+              setAnchor(null);
+            }}
+            onReply={(body) => addReply(openThreadData.id, body)}
+            onToggleResolved={() => toggleResolved(openThreadData.id)}
+            onDelete={() => {
+              deleteThread(openThreadData.id);
+              setAnchor(null);
+            }}
+          />
+        ) : null}
+      </div>,
+      document.body,
+    );
 
   return (
     <div
       ref={containerRef}
-      className={`relative ${commentMode ? "cursor-crosshair" : ""}`}
+      className={`relative isolate ${commentMode ? "cursor-crosshair" : ""}`}
+      aria-describedby={commentMode ? labelId : undefined}
     >
       {children}
 
-      {/* Hit layer captures clicks over interactive phone/wireframe content */}
+      {commentMode ? (
+        <p id={labelId} className="sr-only">
+          Comment mode active. Click to place a pin.
+        </p>
+      ) : null}
+
+      {/* Solid near-invisible hit target — transparent buttons can miss clicks in some browsers */}
       {commentMode && !draftHere ? (
-        <button
-          type="button"
+        <div
+          role="button"
+          tabIndex={0}
           aria-label="Place comment pin"
-          className="absolute inset-0 z-20 cursor-crosshair bg-transparent"
+          className="absolute inset-0 z-20 cursor-crosshair"
+          style={{ background: "rgba(58, 57, 255, 0.04)" }}
           onClick={(event) => {
             event.preventDefault();
             event.stopPropagation();
             placeAt(event.clientX, event.clientY);
           }}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              const rect = containerRef.current?.getBoundingClientRect();
+              if (!rect) return;
+              placeAt(rect.left + rect.width / 2, rect.top + rect.height / 2);
+            }
+          }}
         />
       ) : null}
 
-      <div className="pointer-events-none absolute inset-0 z-30 overflow-visible">
+      <div className="pointer-events-none absolute inset-0 z-30">
         {threads.map((thread, index) => {
           const isOpen = openThreadId === thread.id;
           return (
             <button
               key={thread.id}
               type="button"
-              data-comment-ui
               aria-label={`Open comment ${index + 1}`}
               onClick={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
-                if (isOpen) closeThread();
-                else openThread(thread.id);
+                if (isOpen) {
+                  closeThread();
+                  setAnchor(null);
+                } else {
+                  openThread(thread.id);
+                }
               }}
               className={`pointer-events-auto absolute flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border text-[11px] font-medium shadow-md transition-transform hover:scale-110 ${
                 thread.status === "resolved"
@@ -108,48 +187,14 @@ export default function PinComments({ scopeKey, children }) {
         })}
 
         {draftHere ? (
-          <div
-            data-comment-ui
-            className="pointer-events-auto absolute z-40 w-[min(18rem,calc(100%-1rem))]"
-            style={{
-              left: `min(${draftHere.pin.x * 100}%, calc(100% - 18rem))`,
-              top: `min(${draftHere.pin.y * 100}%, calc(100% - 10rem))`,
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div
-              className="absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-accent-indigo shadow"
-              style={{ left: 0, top: 0 }}
-            />
-            <div className="ml-3 mt-3 rounded-2xl border border-ink-200/80 bg-white p-3 shadow-[0_16px_40px_rgba(0,0,0,0.16)]">
-              <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.12em] text-ink-500">
-                New comment
-              </p>
-              <CommentComposer
-                onSubmit={submitDraft}
-                onCancel={clearDraft}
-                submitLabel="Post"
-              />
-            </div>
-          </div>
-        ) : null}
-
-        {openIsHere ? (
-          <div
-            data-comment-ui
-            className="pointer-events-auto absolute z-40"
-            style={{ left: panelPos.left, top: panelPos.top }}
-          >
-            <CommentThreadPanel
-              thread={openThreadData}
-              onClose={closeThread}
-              onReply={(body) => addReply(openThreadData.id, body)}
-              onToggleResolved={() => toggleResolved(openThreadData.id)}
-              onDelete={() => deleteThread(openThreadData.id)}
-            />
-          </div>
+          <span
+            className="absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-accent-indigo shadow"
+            style={{ left: `${draftHere.pin.x * 100}%`, top: `${draftHere.pin.y * 100}%` }}
+          />
         ) : null}
       </div>
+
+      {portal}
     </div>
   );
 }

@@ -29,6 +29,7 @@ import {
   AdminPartners,
   AdminSessions,
 } from "./screens/admin/AdminScreens.jsx";
+import { RequireAdmin, RequirePartner } from "./components/RequireRole.jsx";
 
 /**
  * Working Mobile App PRD destination — Listener (mobile), Partner & Admin (web).
@@ -64,15 +65,64 @@ export default function ProductApp() {
           </Route>
 
           {/* Partner */}
-          <Route path="partner" element={<PartnerHome />} />
-          <Route path="partner/billing" element={<PartnerBilling />} />
+          <Route
+            path="partner"
+            element={
+              <RequirePartner>
+                <PartnerHome />
+              </RequirePartner>
+            }
+          />
+          <Route
+            path="partner/billing"
+            element={
+              <RequirePartner>
+                <PartnerBilling />
+              </RequirePartner>
+            }
+          />
 
           {/* Admin */}
-          <Route path="admin" element={<AdminHome />} />
-          <Route path="admin/sessions" element={<AdminSessions />} />
-          <Route path="admin/partners" element={<AdminPartners />} />
-          <Route path="admin/invites" element={<AdminInvites />} />
-          <Route path="admin/analytics" element={<AdminAnalytics />} />
+          <Route
+            path="admin"
+            element={
+              <RequireAdmin>
+                <AdminHome />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="admin/sessions"
+            element={
+              <RequireAdmin>
+                <AdminSessions />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="admin/partners"
+            element={
+              <RequireAdmin>
+                <AdminPartners />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="admin/invites"
+            element={
+              <RequireAdmin>
+                <AdminInvites />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="admin/analytics"
+            element={
+              <RequireAdmin>
+                <AdminAnalytics />
+              </RequireAdmin>
+            }
+          />
 
           <Route path="*" element={<Navigate to="/app/listener/invite" replace />} />
         </Routes>

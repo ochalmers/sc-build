@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { formatDuration } from "../../data/catalog.js";
 import { useAppStore } from "../../context/AppStore.jsx";
 import { AppChrome, ConsoleNavLink } from "../../components/AppChrome.jsx";
@@ -28,9 +28,7 @@ function AdminNav() {
 }
 
 export function AdminHome() {
-  const { role, partners, listeners, catalog, invites, analyticsEvents, feedback } = useAppStore();
-  if (role !== "admin") return <Navigate to="/app" replace />;
-
+  const { partners, listeners, catalog, invites, analyticsEvents, feedback } = useAppStore();
   const pending = invites.filter((i) => i.status === "pending").length;
 
   return (
@@ -87,12 +85,10 @@ export function AdminHome() {
 }
 
 export function AdminSessions() {
-  const { role, catalog, partners, upsertSession } = useAppStore();
+  const { catalog, partners, upsertSession } = useAppStore();
   const [title, setTitle] = useState("");
   const [minutes, setMinutes] = useState("15");
   const [partnerId, setPartnerId] = useState(partners[0]?.id ?? "");
-
-  if (role !== "admin") return <Navigate to="/app" replace />;
 
   function addSession(e) {
     e.preventDefault();
@@ -189,12 +185,10 @@ export function AdminSessions() {
 }
 
 export function AdminPartners() {
-  const { role, partners, upsertPartner } = useAppStore();
+  const { partners, upsertPartner } = useAppStore();
   const [name, setName] = useState("");
   const [seats, setSeats] = useState("30");
   const [model, setModel] = useState("seat-pool");
-
-  if (role !== "admin") return <Navigate to="/app" replace />;
 
   function addPartner(e) {
     e.preventDefault();
@@ -268,12 +262,10 @@ export function AdminPartners() {
 }
 
 export function AdminInvites() {
-  const { role, partners, invites, addInvite } = useAppStore();
+  const { partners, invites, addInvite } = useAppStore();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [partnerId, setPartnerId] = useState(partners[0]?.id ?? "");
-
-  if (role !== "admin") return <Navigate to="/app" replace />;
 
   function createInvite(e) {
     e.preventDefault();
@@ -357,9 +349,7 @@ export function AdminInvites() {
 }
 
 export function AdminAnalytics() {
-  const { role, analyticsEvents, listenHistory, feedback } = useAppStore();
-  if (role !== "admin") return <Navigate to="/app" replace />;
-
+  const { analyticsEvents, listenHistory, feedback } = useAppStore();
   const summary = useMemo(() => {
     const byType = {};
     for (const e of analyticsEvents) {
