@@ -90,6 +90,37 @@ function reducer(state, action) {
         threads: state.threads.filter((thread) => thread.id !== action.payload),
         openThreadId: state.openThreadId === action.payload ? null : state.openThreadId,
       };
+    case "MOVE_PIN": {
+      const { id, x, y } = action.payload;
+      return {
+        ...state,
+        threads: state.threads.map((thread) =>
+          thread.id === id && thread.pin
+            ? {
+                ...thread,
+                pin: {
+                  x: Math.max(0, Math.min(1, x)),
+                  y: Math.max(0, Math.min(1, y)),
+                },
+                updatedAt: Date.now(),
+              }
+            : thread,
+        ),
+      };
+    }
+    case "MOVE_DRAFT_PIN": {
+      if (!state.draft?.pin) return state;
+      return {
+        ...state,
+        draft: {
+          ...state.draft,
+          pin: {
+            x: Math.max(0, Math.min(1, action.payload.x)),
+            y: Math.max(0, Math.min(1, action.payload.y)),
+          },
+        },
+      };
+    }
     default:
       return state;
   }
@@ -206,6 +237,12 @@ export function CommentProvider({ children }) {
       },
       deleteThread(id) {
         dispatch({ type: "DELETE_THREAD", payload: id });
+      },
+      movePin(id, x, y) {
+        dispatch({ type: "MOVE_PIN", payload: { id, x, y } });
+      },
+      moveDraftPin(x, y) {
+        dispatch({ type: "MOVE_DRAFT_PIN", payload: { x, y } });
       },
     }),
     [state],

@@ -7,9 +7,11 @@ function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
 }
 
+const DRAG_THRESHOLD = 4;
+
 /**
  * Overlay for pin comments on preview frames.
- * Draft/thread panels render in a portal so overflow:hidden parents cannot clip them.
+ * Pins are draggable; draft/thread panels portal so overflow parents cannot clip them.
  */
 export default function PinComments({ scopeKey, children }) {
   const {
@@ -26,10 +28,14 @@ export default function PinComments({ scopeKey, children }) {
     addReply,
     toggleResolved,
     deleteThread,
+    movePin,
+    moveDraftPin,
   } = useComments();
 
   const containerRef = useRef(null);
-  const [anchor, setAnchor] = useState(null); // { left, top } viewport coords for portal UI
+  const dragRef = useRef(null);
+  const [anchor, setAnchor] = useState(null);
+  const [draggingId, setDraggingId] = useState(null);
   const labelId = useId();
 
   const threads = scopeKey ? getThreads(scopeKey).filter((t) => t.pin) : [];
@@ -38,8 +44,8 @@ export default function PinComments({ scopeKey, children }) {
   const draftHere = draft?.scopeKey === scopeKey ? draft : null;
 
   useEffect(() => {
-    if (!openIsHere || !containerRef.current) {
-      if (!draftHere) setAnchor(null);
+    if (!openIsHere || !containerRef.current || draggingId) {
+      if (!draftHere && !openIsHere) setAnchor(null);
       return;
     }
     const rect = containerRef.current.getBoundingClientRect();
@@ -48,7 +54,68 @@ export default function PinComments({ scopeKey, children }) {
       left: clamp(rect.left + pin.x * rect.width + 12, 12, window.innerWidth - 340),
       top: clamp(rect.top + pin.y * rect.height + 12, 12, window.innerHeight - 280),
     });
-  }, [openIsHere, openThreadData, draftHere]);
+  }, [openIsHere, openThreadData, draftHere, draggingId]);
+
+  useEffect(() => {
+    function onMove(event) {
+      const drag = dragRef.current;
+      if (!drag || !containerRef.current) return;
+
+      const point = event.touches?.[0] ?? event;
+      const dx = point.clientX - drag.startX;
+      const dy = point.clientY - drag.startY;
+      if (!drag.moved && Math.hypot(dx, dy) < DRAG_THRESHOLD) return;
+
+      drag.moved = true;
+      const rect = containerRef.current.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) return;
+      const x = clamp((point.clientX - rect.left) / rect.width, 0, 1);
+      const y = clamp((point.clientY - rect.top) / rect.height, 0, 1);
+
+      if (drag.kind === "thread") {
+        movePin(drag.id, x, y);
+        if (openThreadId === drag.id) {
+          setAnchor({
+            left: clamp(point.clientX + 12, 12, window.innerWidth - 340),
+            top: clamp(point.clientY + 12, 12, window.innerHeight - 280),
+          });
+        }
+      } else if (drag.kind === "draft") {
+        moveDraftPin(x, y);
+        setAnchor({
+          left: clamp(point.clientX + 12, 12, window.innerWidth - 340),
+          top: clamp(point.clientY + 12, 12, window.innerHeight - 280),
+        });
+      }
+    }
+
+    function onUp() {
+      const drag = dragRef.current;
+      if (!drag) return;
+      const wasDrag = drag.moved;
+      const { kind, id } = drag;
+      dragRef.current = null;
+      setDraggingId(null);
+
+      if (!wasDrag && kind === "thread") {
+        if (openThreadId === id) {
+          closeThread();
+          setAnchor(null);
+        } else {
+          openThread(id);
+        }
+      }
+    }
+
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+    return () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+    };
+  }, [movePin, moveDraftPin, openThreadId, openThread, closeThread]);
 
   if (!scopeKey) return children;
 
@@ -69,6 +136,20 @@ export default function PinComments({ scopeKey, children }) {
     if (!draftHere) return;
     addPinComment(scopeKey, draftHere.pin.x, draftHere.pin.y, body);
     setAnchor(null);
+  }
+
+  function beginDrag(kind, id, event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const point = event.touches?.[0] ?? event;
+    dragRef.current = {
+      kind,
+      id,
+      startX: point.clientX,
+      startY: point.clientY,
+      moved: false,
+    };
+    setDraggingId(id ?? "draft");
   }
 
   const portal =
@@ -126,11 +207,10 @@ export default function PinComments({ scopeKey, children }) {
 
       {commentMode ? (
         <p id={labelId} className="sr-only">
-          Comment mode active. Click to place a pin.
+          Comment mode active. Click to place a pin. Drag pins to reposition.
         </p>
       ) : null}
 
-      {/* Solid near-invisible hit target — transparent buttons can miss clicks in some browsers */}
       {commentMode && !draftHere ? (
         <div
           role="button"
@@ -157,22 +237,16 @@ export default function PinComments({ scopeKey, children }) {
       <div className="pointer-events-none absolute inset-0 z-30">
         {threads.map((thread, index) => {
           const isOpen = openThreadId === thread.id;
+          const isDragging = draggingId === thread.id;
           return (
             <button
               key={thread.id}
               type="button"
-              aria-label={`Open comment ${index + 1}`}
-              onClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                if (isOpen) {
-                  closeThread();
-                  setAnchor(null);
-                } else {
-                  openThread(thread.id);
-                }
-              }}
-              className={`pointer-events-auto absolute flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border text-[11px] font-medium shadow-md transition-transform hover:scale-110 ${
+              aria-label={`Comment ${index + 1}. Drag to move, click to open.`}
+              onPointerDown={(event) => beginDrag("thread", thread.id, event)}
+              className={`pointer-events-auto absolute flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 touch-none items-center justify-center rounded-full border text-[11px] font-medium shadow-md ${
+                isDragging ? "cursor-grabbing scale-110" : "cursor-grab hover:scale-110"
+              } ${
                 thread.status === "resolved"
                   ? "border-emerald-500 bg-emerald-100 text-emerald-900"
                   : isOpen
@@ -187,8 +261,13 @@ export default function PinComments({ scopeKey, children }) {
         })}
 
         {draftHere ? (
-          <span
-            className="absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-accent-indigo shadow"
+          <button
+            type="button"
+            aria-label="Drag new comment pin"
+            onPointerDown={(event) => beginDrag("draft", "draft", event)}
+            className={`pointer-events-auto absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 touch-none rounded-full border-2 border-white bg-accent-indigo shadow ${
+              draggingId === "draft" ? "cursor-grabbing scale-125" : "cursor-grab"
+            }`}
             style={{ left: `${draftHere.pin.x * 100}%`, top: `${draftHere.pin.y * 100}%` }}
           />
         ) : null}

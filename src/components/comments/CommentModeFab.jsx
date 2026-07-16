@@ -33,7 +33,7 @@ export default function CommentModeFab() {
       {commentMode ? (
         <div className="max-w-[16rem] rounded-2xl border border-ink-200/80 bg-white px-3 py-2 text-[12px] leading-snug text-ink-600 shadow-[0_12px_32px_rgba(0,0,0,0.16)]">
           <p className="font-medium text-ink-900">Comment mode on</p>
-          <p className="mt-1">Click a screen to drop a pin. Esc or toggle off to exit.</p>
+          <p className="mt-1">Click a screen to drop a pin. Drag pins to move them. Esc or toggle off to exit.</p>
           <label className="mt-2 flex items-center gap-2 text-[11px] text-ink-500">
             As
             <input
