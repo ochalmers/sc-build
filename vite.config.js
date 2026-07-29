@@ -2,7 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { get, put } from "@vercel/blob";
 
-const BLOB_PATH = "workspace-comments.json";
+const BLOB_PATH = "workspace-comments-v2.json";
 
 function commentsApiPlugin(env) {
   const token = env.BLOB_READ_WRITE_TOKEN || "";
@@ -23,6 +23,21 @@ function commentsApiPlugin(env) {
       }
     }
     return [...map.values()].sort((x, y) => (y.updatedAt || 0) - (x.updatedAt || 0));
+  }
+
+  function sanitizeThreads(threads) {
+    return (threads || []).filter((thread) => {
+      if (!thread || thread.deleted) return false;
+      if (/^test$/i.test(String(thread.scopeKey || ""))) return false;
+      if (
+        /^(cmt-smoke|cmt-verify|cmt-b-|cmt-a-|cmt-local-|cmt-prod-|cmt-alive-|cmt-final-|cmt-mA-|cmt-mB-|cmt-ok-|cmt-keep)/i.test(
+          String(thread.id || ""),
+        )
+      ) {
+        return false;
+      }
+      return true;
+    });
   }
 
   async function readStore() {
@@ -94,16 +109,22 @@ function commentsApiPlugin(env) {
             return res.end();
           }
           if (req.method === "GET") {
-            return send(res, 200, await readStore());
+            const data = await readStore();
+            return send(res, 200, {
+              threads: sanitizeThreads(data.threads),
+              updatedAt: data.updatedAt,
+            });
           }
           if (req.method === "PUT") {
             const body = await readBody(req);
             if (!Array.isArray(body.threads)) {
               return send(res, 400, { error: "threads_array_required" });
             }
-            let merged = body.threads;
+            let merged = sanitizeThreads(body.threads);
             try {
-              merged = mergeThreads((await readStore()).threads, body.threads);
+              merged = sanitizeThreads(
+                mergeThreads((await readStore()).threads, body.threads),
+              );
             } catch {
               // write payload as received if merge read fails
             }

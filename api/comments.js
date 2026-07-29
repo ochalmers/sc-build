@@ -11,9 +11,24 @@
 
 import { get, put } from "@vercel/blob";
 
-const BLOB_PATH = "workspace-comments.json";
+const BLOB_PATH = "workspace-comments-v2.json";
 const LEGACY_GIST_ID = "5253e9bc9987baf2d4a4ff0007aa5098";
 const GIST_FILE = "comments.json";
+
+const TEST_SCOPE = /^test$/i;
+const TEST_ID =
+  /^(cmt-smoke|cmt-verify|cmt-b-|cmt-a-|cmt-local-|cmt-prod-|cmt-alive-|cmt-final-|cmt-mA-|cmt-mB-|cmt-ok-|cmt-keep)/i;
+
+function isJunkThread(thread) {
+  if (!thread || thread.deleted) return true;
+  if (TEST_SCOPE.test(String(thread.scopeKey || ""))) return true;
+  if (TEST_ID.test(String(thread.id || ""))) return true;
+  return false;
+}
+
+function sanitizeThreads(threads) {
+  return (threads || []).filter((thread) => !isJunkThread(thread));
+}
 
 function corsHeaders() {
   return {
@@ -133,11 +148,16 @@ export default async function handler(req, res) {
   try {
     if (req.method === "GET") {
       let data = await readBlob();
+      data = {
+        threads: sanitizeThreads(data.threads),
+        updatedAt: data.updatedAt,
+      };
       // One-time hydrate from legacy gist if blob is empty.
       if (data.threads.length === 0) {
         const legacy = await readLegacyGist().catch(() => null);
-        if (legacy?.threads?.length) {
-          data = await writeBlob(legacy.threads, legacy.updatedAt || Date.now());
+        const legacyThreads = sanitizeThreads(legacy?.threads);
+        if (legacyThreads.length) {
+          data = await writeBlob(legacyThreads, legacy.updatedAt || Date.now());
         }
       }
       return json(res, 200, data);
@@ -148,10 +168,10 @@ export default async function handler(req, res) {
       const threads = Array.isArray(body.threads) ? body.threads : null;
       if (!threads) return json(res, 400, { error: "threads_array_required" });
 
-      let merged = threads;
+      let merged = sanitizeThreads(threads);
       try {
         const current = await readBlob();
-        merged = mergeThreads(current.threads, threads);
+        merged = sanitizeThreads(mergeThreads(current.threads, threads));
       } catch {
         // write payload as received if merge read fails
       }

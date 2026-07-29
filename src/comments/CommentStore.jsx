@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useReducer, useRef } from "react";
 import { loadSharedComments, saveSharedComments } from "./commentsApi.js";
 
-const STORAGE_KEY = "sonocea-workspace-comments-v1";
+const STORAGE_KEY = "sonocea-workspace-comments-v2";
 const AUTHOR_KEY = "sonocea-workspace-comment-author";
 const POLL_MS = 15000;
 const CommentContext = createContext(null);
