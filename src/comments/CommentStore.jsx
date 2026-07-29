@@ -199,6 +199,7 @@ export function CommentProvider({ children }) {
   const saveTimer = useRef(null);
   const bootstrapped = useRef(false);
   const applyingRemote = useRef(false);
+  const skipNextPush = useRef(false);
 
   useEffect(() => {
     stateRef.current = state;
@@ -281,6 +282,7 @@ export function CommentProvider({ children }) {
 
       bootstrapped.current = true;
       applyingRemote.current = true;
+      skipNextPush.current = true;
       dispatch({
         type: "REPLACE_THREADS",
         payload: {
@@ -331,6 +333,10 @@ export function CommentProvider({ children }) {
   useEffect(() => {
     if (!bootstrapped.current) return;
     if (applyingRemote.current) return;
+    if (skipNextPush.current) {
+      skipNextPush.current = false;
+      return;
+    }
     if (state.syncStatus === "loading") return;
     schedulePush();
     // eslint-disable-next-line react-hooks/exhaustive-deps
