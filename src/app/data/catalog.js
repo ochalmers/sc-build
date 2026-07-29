@@ -49,15 +49,15 @@ export const ONBOARDING_ABOUT_SLIDES = [
   {
     id: "what-is",
     eyebrow: "Experience",
-    title: "A different kind of listening",
+    title: "Listening, designed differently",
     body: "Sonocea uses structured sound to create listening experiences designed around how your nervous system responds to what you hear.",
     cta: "Next",
   },
   {
     id: "support",
     eyebrow: "Purpose",
-    title: "Designed for different moments",
-    body: "Choose sessions based on what you need. From feeling calmer and more settled to supporting focus, recovery, rest or preparation for sleep.",
+    title: "Made for the moments that matter",
+    body: "Choose sessions based on what you need, from feeling calmer and more settled to supporting focus, recovery, rest or preparation for sleep.",
     cta: "Next",
   },
   {

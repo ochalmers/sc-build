@@ -6,7 +6,7 @@ import { isCombinedStyleSurface, useReviewSurface } from "../context/SurfaceCont
 const SURFACES = [
   { id: "listener", label: "Listener" },
   { id: "admin", label: "Admin" },
-  { id: "combined", label: "Combined" },
+  { id: "combined", label: "non-anon" },
   { id: "anonymous", label: "Anonymous" },
 ];
 

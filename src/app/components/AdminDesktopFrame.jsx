@@ -6,8 +6,8 @@ import { SystemLogoMark } from "../../system/components/SystemLogoMark.jsx";
  * Same height/width across every Admin screen so the Combined flow feels like one OS window.
  */
 export const ADMIN_DESKTOP = {
-  /** Nearly fill the stage under AppShell; all Admin prototype steps share this. */
-  height: "calc(100dvh - 4.75rem)",
+  /** Fill the stage under AppShell while leaving top/bottom padding around the window. */
+  height: "calc(100dvh - 7.5rem)",
   surface: "#141414",
 };
 
