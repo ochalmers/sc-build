@@ -1,10 +1,10 @@
 export const PRD_LITE_META = {
   version: "1.0 LITE",
-  source: "Sonocea Mobile App — Version 1.0 LITE",
+  source: "Sonocea Mobile App - Version 1.0 LITE",
   designCanvas: "Sonocea Design Phase 2 (Paper)",
 };
 
-/** Roles from PRD LITE §Definitions — Guest replaces generic “public visitor”. */
+/** Roles from PRD LITE §Definitions - Guest replaces generic “public visitor”. */
 export const PRD_LITE_ROLES = [
   {
     id: "admin",
@@ -32,7 +32,7 @@ export const PRD_LITE_ROLES = [
     label: "Guest",
     surface: "Mobile app · pre-auth shell",
     summary:
-      "Uninvited store visitor who can learn about Sonocea and request access — no Session playback or entitlement.",
+      "Uninvited store visitor who can learn about Sonocea and request access - no Session playback or entitlement.",
   },
 ];
 
@@ -90,7 +90,7 @@ export const MOBILE_SCREEN_MAP_LITE = [
   { id: "09", label: "Feedback & support" },
 ];
 
-/** Out-of-scope items from PRD LITE — excluded from stories and flows. */
+/** Out-of-scope items from PRD LITE - excluded from stories and flows. */
 export const LITE_OUT_OF_SCOPE = [
   "Direct-to-consumer open sign-up via app stores",
   "Partner user type for resellers who self-manage their userbase",

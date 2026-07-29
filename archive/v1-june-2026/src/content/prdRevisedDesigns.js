@@ -68,7 +68,7 @@ export const PUBLIC_VISITOR_DESIGN_SECTIONS = [
     sectionId: "prd-designs-pv-entry",
     label: "Entry routing",
     title: "Layer 0 · Get Started",
-    description: "Discover Sonocea, Accept Invitation, or Login — from Public Visitor PRD §2 Layer 0.",
+    description: "Discover Sonocea, Accept Invitation, or Login - from Public Visitor PRD §2 Layer 0.",
     layout: "rows",
     rows: [
       {
@@ -96,7 +96,7 @@ export const PUBLIC_VISITOR_DESIGN_SECTIONS = [
     sectionId: "prd-designs-golden",
     label: "Golden route",
     title: "First-time Discover journey",
-    description: "Experience before explanation — the guiding Public Visitor golden route.",
+    description: "Experience before explanation - the guiding Public Visitor golden route.",
     layout: "flow",
     concepts: [
       concept("pv-flow-checkin", "Check-in", "Nervous system sliders.", PvCheckInScreen, { variant: "before" }),
@@ -151,7 +151,7 @@ export const PUBLIC_VISITOR_DESIGN_SECTIONS = [
       {
         id: "pv-returning",
         title: "Returning public home",
-        purpose: "Layer 4 persistent navigation — light auth to replay sample.",
+        purpose: "Layer 4 persistent navigation - light auth to replay sample.",
         prdRef: "FR-006 · Layer 4",
         concepts: [
           concept("pv-returning-home", "Public home", "Daily reset and education.", PvReturningHomeScreen),
@@ -176,7 +176,7 @@ export const MOBILE_APP_DESIGN_SECTIONS = [
     sectionId: "prd-designs-listener",
     label: "Listener",
     title: "Provisioned Listener screens",
-    description: "Mapped to Mobile App v1.0 [REVISED] §4 screen list — designs from Phase 1 concept package.",
+    description: "Mapped to Mobile App v1.0 [REVISED] §4 screen list - designs from Phase 1 concept package.",
     layout: "rows",
     rows: [
       {
@@ -255,7 +255,7 @@ export const MOBILE_APP_DESIGN_SECTIONS = [
     sectionId: "prd-designs-ops",
     label: "Partner & Admin",
     title: "Partner Console and Admin CMS",
-    description: "Web surfaces from Mobile App PRD §4 Partner Console — Phase 1 wireframe concepts.",
+    description: "Web surfaces from Mobile App PRD §4 Partner Console - Phase 1 wireframe concepts.",
     layout: "rows",
     rows: [
       {

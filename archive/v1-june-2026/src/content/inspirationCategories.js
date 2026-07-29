@@ -21,7 +21,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Headphone prep",
           whatWeAreDoing: "Pre-session environment prompt before immersive audio",
-          relevance: "Headphone icon + single-line instruction on black — direct model for PV headphone screen.",
+          relevance: "Headphone icon + single-line instruction on black - direct model for PV headphone screen.",
           mobbinUrl: "https://mobbin.com/screens/ae084dd0-a216-4afe-95da-cdbe6387a74e",
           hasLocal: true,
         },
@@ -30,7 +30,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Spatial audio gate",
           whatWeAreDoing: "Headphone prompt before sample playback",
-          relevance: "Full-screen black with earbuds illustration — sets expectation that audio quality matters.",
+          relevance: "Full-screen black with earbuds illustration - sets expectation that audio quality matters.",
           mobbinUrl: "https://mobbin.com/screens/3ab98252-48a0-4b2e-a629-d0879b52288f",
         },
         {
@@ -38,7 +38,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Feature onboarding",
           whatWeAreDoing: "Headphone recommendation in onboarding carousel",
-          relevance: "3-of-3 step with earbuds illustration — lightweight pattern for first-time visitors.",
+          relevance: "3-of-3 step with earbuds illustration - lightweight pattern for first-time visitors.",
           mobbinUrl: "https://mobbin.com/screens/aa9fa7bb-dab0-4778-a2ab-917547841d40",
         },
         {
@@ -46,7 +46,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Nervous-system check-in",
           whatWeAreDoing: "PV-02 pre-sample nervous-system check-in",
-          relevance: "Dark serif headline + central check-in ring — clinical calm without clinical coldness.",
+          relevance: "Dark serif headline + central check-in ring - clinical calm without clinical coldness.",
           mobbinUrl: "https://mobbin.com/screens/c84e26a7-4671-4c65-acd9-5e2feb764591",
         },
         {
@@ -54,7 +54,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Mood scale",
           whatWeAreDoing: "PV-02 check-in and PV-02 reflection remeasure",
-          relevance: "5-point calm→stressed scale with disabled CTA until selection — maps to before/after sample.",
+          relevance: "5-point calm→stressed scale with disabled CTA until selection - maps to before/after sample.",
           mobbinUrl: "https://mobbin.com/screens/17d2479f-0e07-463c-8f43-d216063d8340",
         },
         {
@@ -62,7 +62,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Onboarding check-in",
           whatWeAreDoing: "PV-02 nervous-system check-in with education",
-          relevance: "Step 1/7 mood clouds + value prop below — progressive disclosure for first-time users.",
+          relevance: "Step 1/7 mood clouds + value prop below - progressive disclosure for first-time users.",
           mobbinUrl: "https://mobbin.com/screens/6ca4e693-8ba3-4e7f-9746-0970331fc7ff",
         },
         {
@@ -70,7 +70,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Mood check-in intro",
           whatWeAreDoing: "PV-02 check-in feature introduction",
-          relevance: "Weekly mood tracker preview + single CTA — shows how to frame a new measurement habit.",
+          relevance: "Weekly mood tracker preview + single CTA - shows how to frame a new measurement habit.",
           mobbinUrl: "https://mobbin.com/screens/85a8fe65-394e-408e-b91f-69802f27295c",
         },
         {
@@ -78,7 +78,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Pre-activity checklist",
           whatWeAreDoing: "Headphone + environment prep before guided audio",
-          relevance: "Grab headphones / put on shoes checklist — practical prep pattern before sample starts.",
+          relevance: "Grab headphones / put on shoes checklist - practical prep pattern before sample starts.",
           mobbinUrl: "https://mobbin.com/screens/b759c2f0-4b6a-49e4-8737-e21e44c8cbb6",
         },
         {
@@ -86,7 +86,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Daily session hero",
           whatWeAreDoing: "PV-02 5-minute reset entry and returning PV home",
-          relevance: "Blurred hero + one primary session — curated not catalog.",
+          relevance: "Blurred hero + one primary session - curated not catalog.",
           mobbinUrl: "https://mobbin.com/apps/open-7fe5d7f7/ios",
           hasLocal: true,
         },
@@ -95,7 +95,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Mood → recommendations",
           whatWeAreDoing: "PV-02 reflection leading to access request CTA",
-          relevance: "Post check-in mood confirmation + 'For your mood' rail — bridges measurement to next action.",
+          relevance: "Post check-in mood confirmation + 'For your mood' rail - bridges measurement to next action.",
           mobbinUrl: "https://mobbin.com/screens/d3dcd25b-e11a-4ec2-98b7-a0de2fb6975c",
         },
         {
@@ -103,7 +103,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Invite code entry",
           whatWeAreDoing: "PV-04 request access and IP-02 invitation intro",
-          relevance: "Invite-only code field with premium dark typography — parallel to org verification path.",
+          relevance: "Invite-only code field with premium dark typography - parallel to org verification path.",
           mobbinUrl: "https://mobbin.com/screens/5992e997-6eb8-4221-9043-47bb8f64739e",
         },
         {
@@ -111,7 +111,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Waitlist access",
           whatWeAreDoing: "PV-04 register interest / mailing list",
-          relevance: "Exclusive access code entry — scarcity framing without hard paywall.",
+          relevance: "Exclusive access code entry - scarcity framing without hard paywall.",
           mobbinUrl: "https://mobbin.com/screens/1040382c-734f-428a-9d62-df94ec63f4f7",
         },
       ],
@@ -121,7 +121,7 @@ export function buildInspirationCategories(highlights) {
       label: "PV · Science",
       title: "Science education & SAT™ content",
       whatWeAreDoing:
-        "Build browsable science content for Public Visitors and new Listeners — topic home, article detail, and progressive SAT™ education without lecture carousels.",
+        "Build browsable science content for Public Visitors and new Listeners - topic home, article detail, and progressive SAT™ education without lecture carousels.",
       description:
         "Science must earn trust before playback. Favour scannable topic cards, citation-style detail, and calm typography over dense medical copy.",
       sonoceaMapping: "PRD: PV-03 science home · PV-03 topic detail · Listener onboarding science",
@@ -132,15 +132,15 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Topic detail",
           whatWeAreDoing: "PV-03 science topic detail with related content",
-          relevance: "Long-form article with hero image, read time, and 'Up next' rail — editorial science layout.",
+          relevance: "Long-form article with hero image, read time, and 'Up next' rail - editorial science layout.",
           mobbinUrl: "https://mobbin.com/screens/1f7b4e1c-2f65-4b45-acb7-8d4ed5c7683b",
         },
         {
           name: "Alan Mind",
           platform: "iOS",
           pattern: "Science article",
-          whatWeAreDoing: "PV-03 topic detail — evidence-based education",
-          relevance: "Category tag + read time + body copy hierarchy — clinical adjacency without jargon walls.",
+          whatWeAreDoing: "PV-03 topic detail - evidence-based education",
+          relevance: "Category tag + read time + body copy hierarchy - clinical adjacency without jargon walls.",
           mobbinUrl: "https://mobbin.com/screens/fec89802-2911-4198-b2a6-70109d033655",
         },
         {
@@ -148,7 +148,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Micro-lesson card",
           whatWeAreDoing: "PV-03 science home lesson cards",
-          relevance: "Short lesson tiles with duration + illustration — bite-sized science on the discover path.",
+          relevance: "Short lesson tiles with duration + illustration - bite-sized science on the discover path.",
           mobbinUrl: "https://mobbin.com/screens/549e7c7c-2e6b-464a-9575-09d486099d20",
         },
         {
@@ -156,7 +156,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Science explainer",
           whatWeAreDoing: "SAT™ mechanism education for listeners",
-          relevance: "Bold headline + body + 'Learn more' — explains physiology in plain language.",
+          relevance: "Bold headline + body + 'Learn more' - explains physiology in plain language.",
           mobbinUrl: "https://mobbin.com/screens/0fb68abc-8cce-423a-8e63-a72cd6031363",
         },
         {
@@ -164,7 +164,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Encyclopedia entry",
           whatWeAreDoing: "PV-03 deep-dive science topics",
-          relevance: "Structured health encyclopedia with tags and related topics — trustworthy reference tone.",
+          relevance: "Structured health encyclopedia with tags and related topics - trustworthy reference tone.",
           mobbinUrl: "https://mobbin.com/screens/22db4de9-3bba-4906-909c-c239b32f90ca",
         },
         {
@@ -172,7 +172,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Daily insight card",
           whatWeAreDoing: "PV-03 science home featured topic",
-          relevance: "Daily insight with illustration — one primary science story per visit.",
+          relevance: "Daily insight with illustration - one primary science story per visit.",
           mobbinUrl: "https://mobbin.com/screens/fda43927-1a1e-4ebf-b4e4-c064b041441b",
         },
         {
@@ -180,7 +180,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Science in onboarding",
           whatWeAreDoing: "Listener onboarding science education",
-          relevance: "Research-backed claims woven into onboarding — not a separate textbook section.",
+          relevance: "Research-backed claims woven into onboarding - not a separate textbook section.",
           mobbinUrl: "https://mobbin.com/search/apps?q=headspace+science",
         },
         {
@@ -188,7 +188,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Theory + practice",
           whatWeAreDoing: "SAT™ education paired with listening guidance",
-          relevance: "Intellectual science framing before practice — matches Sonocea's evidence positioning.",
+          relevance: "Intellectual science framing before practice - matches Sonocea's evidence positioning.",
           mobbinUrl: "https://mobbin.com/search/apps?q=waking+up",
         },
         {
@@ -196,7 +196,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Goal education",
           whatWeAreDoing: "Listener onboarding intent + science framing",
-          relevance: "Goal intro with 'why we ask' copy — progressive disclosure model.",
+          relevance: "Goal intro with 'why we ask' copy - progressive disclosure model.",
           mobbinUrl: "https://mobbin.com/apps/open-7fe5d7f7/ios",
           hasLocal: true,
         },
@@ -205,7 +205,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Science-backed claims",
           whatWeAreDoing: "Science credibility on discover and detail surfaces",
-          relevance: "Research citations and mechanism copy — how to state evidence without overclaiming.",
+          relevance: "Research citations and mechanism copy - how to state evidence without overclaiming.",
           mobbinUrl: "https://mobbin.com/search/apps?q=brain.fm",
         },
       ],
@@ -226,7 +226,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Brand splash",
           whatWeAreDoing: "PV-01 splash and Listener brand intro",
-          relevance: "Minimal logotype on black + editorial portrait — closest tonal match.",
+          relevance: "Minimal logotype on black + editorial portrait - closest tonal match.",
           mobbinUrl: "https://mobbin.com/apps/open-7fe5d7f7/ios",
           hasLocal: true,
         },
@@ -243,7 +243,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Subscription gate",
           whatWeAreDoing: "Invitation intro before account creation",
-          relevance: "Intellectual tone with soft gating — premium without aggressive paywall.",
+          relevance: "Intellectual tone with soft gating - premium without aggressive paywall.",
           mobbinUrl: "https://mobbin.com/search/apps?q=waking+up",
         },
         {
@@ -320,7 +320,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Profile onboarding",
           whatWeAreDoing: "Post-auth identity and preference capture",
-          relevance: "Name, username, goals, experience — without carousel overload.",
+          relevance: "Name, username, goals, experience - without carousel overload.",
           mobbinUrl: "https://mobbin.com/apps/open-7fe5d7f7/ios",
           hasLocal: true,
         },
@@ -337,7 +337,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Behavioural framing",
           whatWeAreDoing: "SAT™ education with behavioural science tone",
-          relevance: "Questionnaire pacing and reassurance copy — clinical adjacency.",
+          relevance: "Questionnaire pacing and reassurance copy - clinical adjacency.",
           mobbinUrl: "https://mobbin.com/screens/23b0920b-3a38-49ec-b8fe-97b311de7c05",
         },
         {
@@ -345,7 +345,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Section interstitial",
           whatWeAreDoing: "Break long onboarding into digestible sections",
-          relevance: "'03 / 05' interstitial before medical history — reduces form fatigue.",
+          relevance: "'03 / 05' interstitial before medical history - reduces form fatigue.",
           mobbinUrl: "https://mobbin.com/screens/cd3a2038-bff8-4fc1-87ec-2bdf38a5fb96",
         },
         {
@@ -369,7 +369,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Trial paywall",
           whatWeAreDoing: "Listener entitlement framing (Partner-provisioned)",
-          relevance: "Trial intro and benefit bullets — study restraint for v1.",
+          relevance: "Trial intro and benefit bullets - study restraint for v1.",
           mobbinUrl: "https://mobbin.com/search/apps?q=calm+paywall",
         },
         {
@@ -377,7 +377,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Daily plan intro",
           whatWeAreDoing: "First-week onboarding with daily tasks",
-          relevance: "Letter + goal cards on day one — gentle habit formation.",
+          relevance: "Letter + goal cards on day one - gentle habit formation.",
           mobbinUrl: "https://mobbin.com/screens/8f17dd9c-e83a-4a54-a126-4eca4da4bd45",
         },
         {
@@ -405,7 +405,7 @@ export function buildInspirationCategories(highlights) {
       whatWeAreDoing:
         "Design the neurotype questionnaire, results presentation, and recommendation surfaces that group Sessions by listener profile.",
       description:
-        "Neurotype UI must feel trustworthy — clinical calm over gamified astrology. Progress, reassurance, and clear opt-outs.",
+        "Neurotype UI must feel trustworthy - clinical calm over gamified astrology. Progress, reassurance, and clear opt-outs.",
       sonoceaMapping: "PRD: Neurotype questionnaire · Groups by neurotype · recommendations",
       highlights: [16, 17, 18, 19, 28, 29, 86, 87, 88, 89],
       examples: [
@@ -414,7 +414,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Clinical intake",
           whatWeAreDoing: "Neurotype questionnaire single-select",
-          relevance: "Card-based symptom selection with 'why we ask' subcopy — medical trust pattern.",
+          relevance: "Card-based symptom selection with 'why we ask' subcopy - medical trust pattern.",
           mobbinUrl: "https://mobbin.com/screens/1e966f34-e223-4ed6-a63d-54c774ef2c04",
         },
         {
@@ -422,7 +422,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Multi-select intake",
           whatWeAreDoing: "Neurotype multi-factor assessment",
-          relevance: "'Select all that apply' with bordered cards — handles complex profiles.",
+          relevance: "'Select all that apply' with bordered cards - handles complex profiles.",
           mobbinUrl: "https://mobbin.com/screens/529b0ea8-3610-4a28-93d6-13231f1aaad8",
         },
         {
@@ -430,7 +430,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Body map selection",
           whatWeAreDoing: "Visual neurotype / state selection",
-          relevance: "Interactive body map for symptom areas — spatial alternative to list quizzes.",
+          relevance: "Interactive body map for symptom areas - spatial alternative to list quizzes.",
           mobbinUrl: "https://mobbin.com/screens/28579194-a284-411b-ae06-079a5aae598f",
         },
         {
@@ -438,7 +438,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Duration question",
           whatWeAreDoing: "Experience-level capture in questionnaire",
-          relevance: "Emoji metaphor for time ranges — approachable without trivializing.",
+          relevance: "Emoji metaphor for time ranges - approachable without trivializing.",
           mobbinUrl: "https://mobbin.com/screens/c5d35999-99dd-4583-be65-93db284351a7",
         },
         {
@@ -446,7 +446,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Likert scale",
           whatWeAreDoing: "Energy / regulation questionnaire items",
-          relevance: "Icon-backed frequency scale with progress bar — one question per screen.",
+          relevance: "Icon-backed frequency scale with progress bar - one question per screen.",
           mobbinUrl: "https://mobbin.com/screens/36a95b41-2c68-44be-942f-9249916a4699",
         },
         {
@@ -454,7 +454,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Chip multi-select",
           whatWeAreDoing: "Tag-based neurotype factor selection",
-          relevance: "Pill chips with checkmarks — scannable multi-select for many options.",
+          relevance: "Pill chips with checkmarks - scannable multi-select for many options.",
           mobbinUrl: "https://mobbin.com/screens/68a2e444-41e7-4588-8418-59a2e7198c6b",
         },
         {
@@ -462,7 +462,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Health history",
           whatWeAreDoing: "Optional sensitive history with opt-out",
-          relevance: "'Rather not say' and 'None of the above' — essential for clinical trust.",
+          relevance: "'Rather not say' and 'None of the above' - essential for clinical trust.",
           mobbinUrl: "https://mobbin.com/screens/6653caab-ef4a-4ffe-8c4e-61a78ca53d25",
         },
         {
@@ -470,7 +470,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Quiz pacing",
           whatWeAreDoing: "Multi-step questionnaire with progress",
-          relevance: "Progress bar + one question per screen — reduces cognitive load.",
+          relevance: "Progress bar + one question per screen - reduces cognitive load.",
           mobbinUrl: "https://mobbin.com/search/apps?q=noom+quiz",
         },
         {
@@ -478,7 +478,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Readiness scoring",
           whatWeAreDoing: "Neurotype results and performance mode adjacency",
-          relevance: "Readiness score presentation — performance behavioural mode reference.",
+          relevance: "Readiness score presentation - performance behavioural mode reference.",
           mobbinUrl: "https://mobbin.com/search/apps?q=whoop+readiness",
         },
         {
@@ -486,7 +486,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Readiness dashboard",
           whatWeAreDoing: "Neurotype results summary",
-          relevance: "Score + contributing factors — care mode adjacency.",
+          relevance: "Score + contributing factors - care mode adjacency.",
           mobbinUrl: "https://mobbin.com/search/apps?q=oura+readiness",
         },
         {
@@ -494,7 +494,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Plan recommendation",
           whatWeAreDoing: "Post-questionnaire session recommendations",
-          relevance: "Quiz results → personalized plan — handoff pattern.",
+          relevance: "Quiz results → personalized plan - handoff pattern.",
           mobbinUrl: "https://mobbin.com/search/apps?q=balance+meditation",
         },
         {
@@ -524,7 +524,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Today home",
           whatWeAreDoing: "Listener library home with daily session",
-          relevance: "One primary session + category tabs — sound-first home.",
+          relevance: "One primary session + category tabs - sound-first home.",
           mobbinUrl: "https://mobbin.com/apps/open-7fe5d7f7/ios",
           hasLocal: true,
         },
@@ -541,7 +541,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Mode entry points",
           whatWeAreDoing: "Behavioural mode collection entry",
-          relevance: "Soundscape modes as collection headers — regulation/performance/care adjacency.",
+          relevance: "Soundscape modes as collection headers - regulation/performance/care adjacency.",
           mobbinUrl: "https://mobbin.com/search/apps?q=endel",
         },
         {
@@ -557,7 +557,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Duration + teacher sort",
           whatWeAreDoing: "Collection sort and filter",
-          relevance: "Session rows with tag, duration, teacher — scannable list pattern.",
+          relevance: "Session rows with tag, duration, teacher - scannable list pattern.",
           mobbinUrl: "https://mobbin.com/screens/d3dcd25b-e11a-4ec2-98b7-a0de2fb6975c",
         },
         {
@@ -581,7 +581,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Course library",
           whatWeAreDoing: "Grouped sessions by program",
-          relevance: "Program-grouped content — parallel to Partner-assigned groups.",
+          relevance: "Program-grouped content - parallel to Partner-assigned groups.",
           mobbinUrl: "https://mobbin.com/search/apps?q=headspace+courses",
         },
         {
@@ -687,7 +687,7 @@ export function buildInspirationCategories(highlights) {
       whatWeAreDoing:
         "Design the listening player: minimal chrome, progress, repeat, sound blend controls, breathwork timer, and ambient visuals that recede behind audio.",
       description:
-        "Sound leads — UI chrome should recede during playback.",
+        "Sound leads - UI chrome should recede during playback.",
       sonoceaMapping: "PRD: Player (controls, progress, repeat, sound blends)",
       highlights: h.player,
       examples: [
@@ -705,7 +705,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Ambient player",
           whatWeAreDoing: "Full-screen generative player",
-          relevance: "Ambient visuals with minimal controls — soundscape-first.",
+          relevance: "Ambient visuals with minimal controls - soundscape-first.",
           mobbinUrl: "https://mobbin.com/screens/aa9fa7bb-dab0-4778-a2ab-917547841d40",
         },
         {
@@ -753,7 +753,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Breathing timer",
           whatWeAreDoing: "Ultra-minimal regulation timer",
-          relevance: "Bare-minimum breathing timer — regulation mode reference.",
+          relevance: "Bare-minimum breathing timer - regulation mode reference.",
           mobbinUrl: "https://mobbin.com/search/apps?q=oak+meditation",
         },
         {
@@ -769,7 +769,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Lyrics motion",
           whatWeAreDoing: "Ambient motion behind playback",
-          relevance: "Full-bleed artwork motion — visual reference for sound blends.",
+          relevance: "Full-bleed artwork motion - visual reference for sound blends.",
           mobbinUrl: "https://mobbin.com/search/apps?q=apple+music+lyrics",
         },
       ],
@@ -779,7 +779,7 @@ export function buildInspirationCategories(highlights) {
       label: "Post-session",
       title: "Reflection, feedback & completion states",
       whatWeAreDoing:
-        "Design post-session surfaces: PV reflection remeasure, Listener feedback, completion summaries, and optional share — without gamification noise.",
+        "Design post-session surfaces: PV reflection remeasure, Listener feedback, completion summaries, and optional share - without gamification noise.",
       description:
         "Measurement and feedback should feel clinical and optional. Streaks and badges are secondary to calm completion.",
       sonoceaMapping: "PRD: PV-02 reflection · Listener post-session feedback",
@@ -790,7 +790,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Session complete",
           whatWeAreDoing: "Post-session completion and return home",
-          relevance: "Quote card + stats + done state — restrained celebration.",
+          relevance: "Quote card + stats + done state - restrained celebration.",
           mobbinUrl: "https://mobbin.com/apps/open-7fe5d7f7/ios",
           hasLocal: true,
         },
@@ -807,7 +807,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Emoji feedback",
           whatWeAreDoing: "Quick session rating",
-          relevance: "5-emoji rating with optional skip — low friction.",
+          relevance: "5-emoji rating with optional skip - low friction.",
           mobbinUrl: "https://mobbin.com/screens/d3b7dff3-4f28-4a82-966a-99006d7a1d8d",
         },
         {
@@ -815,7 +815,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Reflection journal",
           whatWeAreDoing: "PV-02 reflection prompt after sample",
-          relevance: "Open text reflection with skip — thoughtful not mandatory.",
+          relevance: "Open text reflection with skip - thoughtful not mandatory.",
           mobbinUrl: "https://mobbin.com/screens/ffea3479-5c23-4fc8-9e87-88f9af196713",
         },
         {
@@ -823,7 +823,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Completion summary",
           whatWeAreDoing: "Session complete with share option",
-          relevance: "Time spent + share card — optional social export.",
+          relevance: "Time spent + share card - optional social export.",
           mobbinUrl: "https://mobbin.com/screens/494a351a-1ca4-4c8a-9e96-b1bf40155caa",
         },
         {
@@ -831,7 +831,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Reflection log",
           whatWeAreDoing: "PV-02 remeasure after sample",
-          relevance: "Same scale before/after — measurement continuity.",
+          relevance: "Same scale before/after - measurement continuity.",
           mobbinUrl: "https://mobbin.com/screens/17d2479f-0e07-463c-8f43-d216063d8340",
         },
         {
@@ -847,7 +847,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Activity log",
           whatWeAreDoing: "Session history and emotional tags",
-          relevance: "Named emotions + triggers after exercise — care mode logging.",
+          relevance: "Named emotions + triggers after exercise - care mode logging.",
           mobbinUrl: "https://mobbin.com/screens/e04f2e7b-fb79-486e-8f77-65d3eac8d740",
         },
         {
@@ -863,7 +863,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Streak milestone",
           whatWeAreDoing: "Optional streak surfaces (P2)",
-          relevance: "Milestone badge pattern — use sparingly.",
+          relevance: "Milestone badge pattern - use sparingly.",
           mobbinUrl: "https://mobbin.com/search/apps?q=headspace+streak",
         },
       ],
@@ -884,7 +884,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Challenge program",
           whatWeAreDoing: "Multi-day assigned program with daily stats",
-          relevance: "Challenge summary + program hero — daily cadence model.",
+          relevance: "Challenge summary + program hero - daily cadence model.",
           mobbinUrl: "https://mobbin.com/apps/open-7fe5d7f7/ios",
           hasLocal: true,
         },
@@ -893,7 +893,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Daily plan timeline",
           whatWeAreDoing: "Day N of assigned plan with checkmarks",
-          relevance: "Vertical timeline with completed steps — protocol progress.",
+          relevance: "Vertical timeline with completed steps - protocol progress.",
           mobbinUrl: "https://mobbin.com/screens/7e01327d-78a1-4805-b3a6-789a1e65d0fc",
         },
         {
@@ -901,7 +901,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Daily tracker",
           whatWeAreDoing: "Daily completion tracker within plan",
-          relevance: "Weekly tracker with completion state — assigned not self-serve.",
+          relevance: "Weekly tracker with completion state - assigned not self-serve.",
           mobbinUrl: "https://mobbin.com/screens/1a87dc4d-e65c-4877-a0dd-c4c67e145378",
         },
         {
@@ -909,7 +909,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Weekly plan modes",
           whatWeAreDoing: "Behavioural mode plan selection",
-          relevance: "Recover / Maintain / Prioritize Sleep modes — performance/care adjacency.",
+          relevance: "Recover / Maintain / Prioritize Sleep modes - performance/care adjacency.",
           mobbinUrl: "https://mobbin.com/screens/d2ed9e2b-52d2-45e0-a53b-6705c9d25f26",
         },
         {
@@ -917,7 +917,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Daily plan checklist",
           whatWeAreDoing: "Today's assigned sessions list",
-          relevance: "Plan for today with checkmarks — simple daily list.",
+          relevance: "Plan for today with checkmarks - simple daily list.",
           mobbinUrl: "https://mobbin.com/screens/8f17dd9c-e83a-4a54-a126-4eca4da4bd45",
         },
         {
@@ -925,7 +925,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Course + progress",
           whatWeAreDoing: "Daily lesson + habit progress combined",
-          relevance: "Today's course + today's progress sections — dual-track plan.",
+          relevance: "Today's course + today's progress sections - dual-track plan.",
           mobbinUrl: "https://mobbin.com/screens/23b0920b-3a38-49ec-b8fe-97b311de7c05",
         },
         {
@@ -933,7 +933,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Daily dashboard",
           whatWeAreDoing: "Morning/evening protocol slots",
-          relevance: "Morning prep + evening review cards — time-of-day cadence.",
+          relevance: "Morning prep + evening review cards - time-of-day cadence.",
           mobbinUrl: "https://mobbin.com/screens/f97f3994-4a60-4b79-96b5-ecb944e23697",
         },
         {
@@ -957,7 +957,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Personalized plan",
           whatWeAreDoing: "Adaptive weekly schedule post-questionnaire",
-          relevance: "Weekly plan from personalization — recommendation output.",
+          relevance: "Weekly plan from personalization - recommendation output.",
           mobbinUrl: "https://mobbin.com/search/apps?q=balance+plan",
         },
       ],
@@ -967,7 +967,7 @@ export function buildInspirationCategories(highlights) {
       label: "Profile & settings",
       title: "Account, support, about & sparse settings",
       whatWeAreDoing:
-        "Design profile hub, account settings, About Sonocea, feedback, and support — sparse hierarchy because listeners are here to listen.",
+        "Design profile hub, account settings, About Sonocea, feedback, and support - sparse hierarchy because listeners are here to listen.",
       description:
         "Settings should be accessible but premium. Minimize configuration surface area.",
       sonoceaMapping: "PRD: Profile/settings · About · Feedback · Support",
@@ -978,7 +978,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Profile hub",
           whatWeAreDoing: "Profile with recents and favorites",
-          relevance: "Stats, recents, favourites, guest pass — sparse but premium.",
+          relevance: "Stats, recents, favourites, guest pass - sparse but premium.",
           mobbinUrl: "https://mobbin.com/apps/open-7fe5d7f7/ios",
           hasLocal: true,
         },
@@ -1003,7 +1003,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Premium settings",
           whatWeAreDoing: "Sparse settings typography reference",
-          relevance: "Premium density and type — supporting reference.",
+          relevance: "Premium density and type - supporting reference.",
           mobbinUrl: "https://mobbin.com/search/apps?q=linear+settings",
         },
         {
@@ -1045,7 +1045,7 @@ export function buildInspirationCategories(highlights) {
       label: "Commerce",
       title: "Paywalls, credits & partner entitlements",
       whatWeAreDoing:
-        "Design Listener-facing entitlement cues, paywall patterns, credit wallets, and checkout — v1 billing is Partner-driven but UX still matters.",
+        "Design Listener-facing entitlement cues, paywall patterns, credit wallets, and checkout - v1 billing is Partner-driven but UX still matters.",
       description:
         "Study paywall restraint, promo codes, credit wallets, and cart sheets.",
       sonoceaMapping: "PRD: Partner bundles · seat pools · Listener entitlement cues",
@@ -1056,7 +1056,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Credits wallet",
           whatWeAreDoing: "Credit balance and purchase flow",
-          relevance: "Credit wallet, cart, redeem — parallel to Partner seat pools.",
+          relevance: "Credit wallet, cart, redeem - parallel to Partner seat pools.",
           mobbinUrl: "https://mobbin.com/apps/open-7fe5d7f7/ios",
           hasLocal: true,
         },
@@ -1073,7 +1073,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Credits access",
           whatWeAreDoing: "Credits-based session access",
-          relevance: "Credit balance → book session — seat pool parallel.",
+          relevance: "Credit balance → book session - seat pool parallel.",
           mobbinUrl: "https://mobbin.com/search/apps?q=classpass",
         },
         {
@@ -1089,7 +1089,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Promo code",
           whatWeAreDoing: "Partner promo code entry",
-          relevance: "Promo code field on paywall — Partner bundle codes.",
+          relevance: "Promo code field on paywall - Partner bundle codes.",
           mobbinUrl: "https://mobbin.com/search/apps?q=headspace+promo",
         },
         {
@@ -1105,7 +1105,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Family plan",
           whatWeAreDoing: "Org / family entitlement sharing",
-          relevance: "Shared plan messaging — org provisioning adjacency.",
+          relevance: "Shared plan messaging - org provisioning adjacency.",
           mobbinUrl: "https://mobbin.com/search/apps?q=apple+music+family",
         },
         {
@@ -1221,7 +1221,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Generative visuals",
           whatWeAreDoing: "Ambient motion during playback",
-          relevance: "Generative ambient visuals — sound blend motion reference.",
+          relevance: "Generative ambient visuals - sound blend motion reference.",
           mobbinUrl: "https://mobbin.com/search/apps?q=endel+visual",
         },
         {
@@ -1245,7 +1245,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Performance intensity",
           whatWeAreDoing: "Performance behavioural mode contrast",
-          relevance: "Bold type and intensity — performance mode reference.",
+          relevance: "Bold type and intensity - performance mode reference.",
           mobbinUrl: "https://mobbin.com/search/apps?q=nike+run+club",
         },
         {
@@ -1269,7 +1269,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Serif + dark mode",
           whatWeAreDoing: "Premium serif typography on dark",
-          relevance: "Serif headlines on black — clinical premium tone.",
+          relevance: "Serif headlines on black - clinical premium tone.",
           mobbinUrl: "https://mobbin.com/screens/c84e26a7-4671-4c65-acd9-5e2feb764591",
         },
         {
@@ -1277,7 +1277,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "3D illustration",
           whatWeAreDoing: "Hardware prep illustration style",
-          relevance: "3D earbud illustration on black — spatial audio cue.",
+          relevance: "3D earbud illustration on black - spatial audio cue.",
           mobbinUrl: "https://mobbin.com/screens/3ab98252-48a0-4b2e-a629-d0879b52288f",
         },
         {
@@ -1285,7 +1285,7 @@ export function buildInspirationCategories(highlights) {
           platform: "iOS",
           pattern: "Mono labels",
           whatWeAreDoing: "Uppercase mono legal and metadata labels",
-          relevance: "Uppercase mono for legal/metadata — component vocabulary.",
+          relevance: "Uppercase mono for legal/metadata - component vocabulary.",
           mobbinUrl: "https://mobbin.com/search/apps?q=linear",
         },
       ],

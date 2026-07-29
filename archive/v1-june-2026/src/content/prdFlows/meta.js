@@ -1,6 +1,6 @@
 export const PRD_FLOWS_META = {
   version: "1.0",
-  source: "Sonocea Mobile App — Version 1.0 (draft, Nov 2025)",
+  source: "Sonocea Mobile App - Version 1.0 (draft, Nov 2025)",
   designCanvas: "Sonocea Design Phase 2 (Paper)",
 };
 
@@ -27,14 +27,14 @@ export const PRD_ROLES = [
     id: "public",
     label: "Public visitor",
     surface: "Marketing surface (web / app shell)",
-    summary: "Unauthenticated visitor — education and CTAs only; no Session playback in v1.",
+    summary: "Unauthenticated visitor - education and CTAs only; no Session playback in v1.",
   },
 ];
 
 export const PROVISIONING_CHAIN = {
   title: "Admin → Partner → Listener",
   summary:
-    "Access is provisioned, not marketplace-open. Listeners never see the full catalog — only entitlements their Partner (or Sonocea acting as Partner) assigned.",
+    "Access is provisioned, not marketplace-open. Listeners never see the full catalog - only entitlements their Partner (or Sonocea acting as Partner) assigned.",
   stages: [
     {
       id: "admin-config",
@@ -61,7 +61,7 @@ export const FLOW_CATEGORIES = [
     label: "Listener · mobile",
     sectionId: "flows-listener",
     description:
-      "Core PRD mobile journeys — authentication, onboarding, library, playback, offline, feedback, support, and facilitator-led use.",
+      "Core PRD mobile journeys - authentication, onboarding, library, playback, offline, feedback, support, and facilitator-led use.",
   },
   {
     id: "listenerEdge",
@@ -74,14 +74,14 @@ export const FLOW_CATEGORIES = [
     id: "public",
     label: "Public · marketing",
     sectionId: "flows-public",
-    description: "General-public landing — SAT™ education, CTAs, mailing list; explicitly no Session playback.",
+    description: "General-public landing - SAT™ education, CTAs, mailing list; explicitly no Session playback.",
   },
   {
     id: "partner",
     label: "Partner · console",
     sectionId: "flows-partner",
     description:
-      "PRD Partner Console screens — branded login, invite flows, Listener roster, usage dashboards, notifications, and billing exports.",
+      "PRD Partner Console screens - branded login, invite flows, Listener roster, usage dashboards, notifications, and billing exports.",
   },
   {
     id: "admin",
@@ -95,7 +95,7 @@ export const FLOW_CATEGORIES = [
     label: "Billing · commercial",
     sectionId: "flows-billing",
     description:
-      "Appendix A rate-card models — site license seat pool, per-seat tiers, usage-based metering, CSV export, and ~1% reconciliation.",
+      "Appendix A rate-card models - site license seat pool, per-seat tiers, usage-based metering, CSV export, and ~1% reconciliation.",
   },
   {
     id: "platform",
@@ -108,7 +108,7 @@ export const FLOW_CATEGORIES = [
     label: "Clinical · context families",
     sectionId: "flows-clinical",
     description:
-      "Appendix E — seven use-case families with wireframed playback paths for listener-held and facilitator-controlled postures.",
+      "Appendix E - seven use-case families with wireframed playback paths for listener-held and facilitator-controlled postures.",
   },
 ];
 

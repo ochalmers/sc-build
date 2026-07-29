@@ -24,7 +24,7 @@ export default function ReferencesPage() {
           withGradient
         >
           <p className="mt-4 text-[13px] text-ink-500">
-            {referenceCount} curated examples across {screenCount} key screens — all sourced from Mobbin.
+            {referenceCount} curated examples across {screenCount} key screens - all sourced from Mobbin.
           </p>
         </PageHero>
 

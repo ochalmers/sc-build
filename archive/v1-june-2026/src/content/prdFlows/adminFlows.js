@@ -147,7 +147,7 @@ export const adminFlows = [
     id: "admin-content-restricted",
     title: "Professional-only content restriction",
     prdScreens: "Appendix E TLDR",
-    summary: "Some bundles restricted to professional use — not visible to client Listeners.",
+    summary: "Some bundles restricted to professional use - not visible to client Listeners.",
     role: "admin",
     surface: "web",
     steps: [

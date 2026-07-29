@@ -8,12 +8,12 @@ import {
 } from "./WireframePhone.jsx";
 import { WebWireframe, WfWebRow, WfWebBtn } from "./WebWireframe.jsx";
 
-/* ——— Additional mobile screens ——— */
+/* --- Additional mobile screens --- */
 
 function ScreenOnboardingStep2() {
   return (
     <WireframePhone label="Onboarding step 2">
-      <WfTag>Wireframe — onboarding</WfTag>
+      <WfTag>Wireframe - onboarding</WfTag>
       <div className="flex-1 px-5 pt-2">
         <div className="flex gap-1.5 pb-3">
           <div className="h-1 w-7 rounded-full bg-[#E4E4E7]" />
@@ -43,7 +43,7 @@ function ScreenLibraryFilter() {
   return (
     <WireframePhone label="Filtered library">
       <div className="px-5 pt-2">
-        <WfTag>Wireframe — library</WfTag>
+        <WfTag>Wireframe - library</WfTag>
         <h2 className="text-[18px] font-bold">Sessions</h2>
         <div className="mt-3 flex flex-wrap gap-1.5">
           <span className="rounded-full border border-[#18181B] bg-[#18181B] px-2.5 py-1 text-[9px] font-semibold text-white">
@@ -69,7 +69,7 @@ function ScreenLibraryEmpty() {
   return (
     <WireframePhone label="Empty library">
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <WfTag>Wireframe — library</WfTag>
+        <WfTag>Wireframe - library</WfTag>
         <div className="mt-6 h-16 w-16 rounded-2xl border-2 border-dashed border-[#D4D4D8] bg-[#F4F4F5]" />
         <p className="mt-4 text-[14px] font-semibold">No Sessions yet</p>
         <p className="mt-2 text-[11px] leading-relaxed text-[#71717A]">
@@ -87,7 +87,7 @@ function ScreenHome() {
   return (
     <WireframePhone label="Home tab">
       <div className="flex-1 px-5 pt-4">
-        <WfTag>Wireframe — home</WfTag>
+        <WfTag>Wireframe - home</WfTag>
         <h2 className="text-[18px] font-bold">Welcome back</h2>
         <p className="mt-2 text-[11px] text-[#71717A]">Continue your listening rhythm.</p>
         <div className="mt-5 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-4">
@@ -108,7 +108,7 @@ function ScreenProfile() {
   return (
     <WireframePhone label="Profile / You">
       <div className="flex-1 px-5 pt-2">
-        <WfTag>Wireframe — profile</WfTag>
+        <WfTag>Wireframe - profile</WfTag>
         <h2 className="text-[18px] font-bold">You</h2>
         <div className="mt-4 space-y-0">
           {["About Sonocea", "Help & support", "Listening profile", "Sign out"].map((r) => (
@@ -127,7 +127,7 @@ function ScreenProfile() {
 function ScreenPlayerPaused() {
   return (
     <WireframePhone label="Player paused" dark>
-      <WfTag>Wireframe — player</WfTag>
+      <WfTag>Wireframe - player</WfTag>
       <div className="mx-3 flex flex-1 flex-col rounded-[18px] bg-[#0A0A0A] p-3">
         <p className="text-[15px] font-bold text-[#FAFAFA]">Arrive · settle</p>
         <div className="my-3 flex flex-1 items-center justify-center rounded-xl border border-dashed border-[#3F3F46] bg-[#18181B] text-[10px] text-[#71717A]">
@@ -146,7 +146,7 @@ function ScreenPlayerPaused() {
 function ScreenInviteExpired() {
   return (
     <WireframePhone label="Invalid / expired invite">
-      <WfTag>Wireframe — error</WfTag>
+      <WfTag>Wireframe - error</WfTag>
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
         <p className="text-[15px] font-semibold">Invite unavailable</p>
         <p className="mt-2 text-[11px] leading-relaxed text-[#71717A]">
@@ -163,7 +163,7 @@ function ScreenInviteExpired() {
 function ScreenErrorRevoked() {
   return (
     <WireframePhone label="Access revoked">
-      <WfTag>Wireframe — error</WfTag>
+      <WfTag>Wireframe - error</WfTag>
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
         <p className="text-[15px] font-semibold">Access ended</p>
         <p className="mt-2 text-[11px] leading-relaxed text-[#71717A]">
@@ -180,7 +180,7 @@ function ScreenErrorRevoked() {
 function ScreenErrorNetwork() {
   return (
     <WireframePhone label="Network / buffering">
-      <WfTag>Wireframe — player</WfTag>
+      <WfTag>Wireframe - player</WfTag>
       <div className="mx-3 flex flex-1 flex-col rounded-[18px] bg-[#0A0A0A] p-3">
         <p className="text-[15px] font-bold text-[#FAFAFA]">Arrive · settle</p>
         <div className="my-3 flex flex-1 flex-col items-center justify-center rounded-xl border border-dashed border-[#3F3F46] bg-[#18181B] text-center">
@@ -196,7 +196,7 @@ function ScreenFacilitatorSelect() {
   return (
     <WireframePhone label="Facilitator selects Session">
       <div className="px-5 pt-2">
-        <WfTag>Wireframe — clinical</WfTag>
+        <WfTag>Wireframe - clinical</WfTag>
         <h2 className="text-[16px] font-bold">Choose for listener</h2>
         <p className="mt-1 text-[10px] text-[#71717A]">Metadata for staff selection</p>
       </div>
@@ -212,7 +212,7 @@ function ScreenFacilitatorSelect() {
 function ScreenPrivacyRequest() {
   return (
     <WireframePhone label="Privacy request">
-      <WfTag>Wireframe — privacy</WfTag>
+      <WfTag>Wireframe - privacy</WfTag>
       <div className="flex-1 px-5 pt-2">
         <h2 className="text-[16px] font-bold">Data & privacy</h2>
         <p className="mt-2 text-[11px] text-[#52525B]">Request export or deletion of your data.</p>
@@ -229,10 +229,10 @@ function ScreenMarketingCta() {
   return (
     <WireframePhone label="Public CTA form">
       <div className="flex-1 px-5 pt-4">
-        <WfTag>Wireframe — public CTA</WfTag>
+        <WfTag>Wireframe - public CTA</WfTag>
         <h2 className="text-[15px] font-bold">Get access</h2>
         <WfField label="Email" placeholder="you@email.com" />
-        <p className="mt-3 text-[10px] text-[#71717A]">No playback — interest capture only.</p>
+        <p className="mt-3 text-[10px] text-[#71717A]">No playback - interest capture only.</p>
       </div>
       <div className="px-5 pb-6">
         <WfButton>Submit</WfButton>
@@ -241,7 +241,7 @@ function ScreenMarketingCta() {
   );
 }
 
-/* ——— Web / console wireframes ——— */
+/* --- Web / console wireframes --- */
 
 function WebPartnerLogin() {
   return (

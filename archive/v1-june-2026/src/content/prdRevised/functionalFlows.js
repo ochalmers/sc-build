@@ -9,7 +9,7 @@ export const REVISED_FUNCTIONAL_FLOW_GROUPS = [
       {
         id: "fn-pv-discover",
         title: "Unauthenticated Discover path",
-        summary: "FR-001 — public visitors access Discover Sonocea without authentication.",
+        summary: "FR-001 - public visitors access Discover Sonocea without authentication.",
         steps: [
           { label: "Install", detail: "App Store / Play download." },
           { label: "Get Started", detail: "User selects Discover Sonocea." },
@@ -20,21 +20,21 @@ export const REVISED_FUNCTIONAL_FLOW_GROUPS = [
       {
         id: "fn-pv-single-session",
         title: "Curated sample enforcement",
-        summary: "FR-002 / FR-003 — one non-protocol session for unauthenticated users; licensed content protected.",
+        summary: "FR-002 / FR-003 - one non-protocol session for unauthenticated users; licensed content protected.",
         steps: [
           { label: "Session start", detail: "5-minute nervous system reset only." },
           { label: "Entitlement check", detail: "No protocol or Partner bundle content exposed." },
-          { label: "Replay gate", detail: "FR-006 — light auth required on return." },
+          { label: "Replay gate", detail: "FR-006 - light auth required on return." },
         ],
       },
       {
         id: "fn-pv-access-request",
         title: "Access request capture",
-        summary: "FR-005 — self or organization access request with demand-signal analytics.",
+        summary: "FR-005 - self or organization access request with demand-signal analytics.",
         steps: [
           { label: "Form", detail: "Contact details, organization optional, interest context." },
           { label: "Submit", detail: "No Listener entitlement created." },
-          { label: "Admin queue", detail: "SA-01 — data for follow-up prioritization." },
+          { label: "Admin queue", detail: "SA-01 - data for follow-up prioritization." },
         ],
         events: ["request_access_submitted"],
       },
@@ -106,7 +106,7 @@ export const REVISED_FUNCTIONAL_FLOW_GROUPS = [
         title: "Provisioned library",
         summary: "Library shows only Admin → Partner → Listener entitled content.",
         steps: [
-          { label: "Library load", detail: "Filtered catalog — no open marketplace." },
+          { label: "Library load", detail: "Filtered catalog - no open marketplace." },
           { label: "Session detail", detail: "Purpose, audience fit, benefits, differentiators." },
           { label: "Filters", detail: "Duration, use case, benefits metadata." },
         ],

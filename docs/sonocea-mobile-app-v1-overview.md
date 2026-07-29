@@ -1,6 +1,6 @@
-# Sonocea Mobile App — Product Overview (v1.0)
+# Sonocea Mobile App - Product Overview (v1.0)
 
-This document summarizes what the **Sonocea® Mobile App v1.0** is intended to be, based on the internal Product Requirements Document (*Sonocea Mobile App — Version 1.0*, draft for internal review, last updated November 12, 2025). It is a working draft for alignment across product, design, engineering, and GTM—not a substitute for the full PRD, legal review, or clinical claims.
+This document summarizes what the **Sonocea® Mobile App v1.0** is intended to be, based on the internal Product Requirements Document (*Sonocea Mobile App - Version 1.0*, draft for internal review, last updated November 12, 2025). It is a working draft for alignment across product, design, engineering, and GTM-not a substitute for the full PRD, legal review, or clinical claims.
 
 **Design collaboration:** Screen and system explorations for this phase are being developed in **Paper**, in the **Sonocea Design Phase 2** document (current working canvas). Keep this markdown aligned when IA, naming, or scope decisions change in that file.
 
@@ -10,9 +10,9 @@ This document summarizes what the **Sonocea® Mobile App v1.0** is intended to b
 
 **Vision:** Unleash the scientific power of sound to transform lives for the better.
 
-**Mission:** Power sonic experiences that unlock the potential of sound to enhance and improve lives worldwide—the **Sonic Revolution**.
+**Mission:** Power sonic experiences that unlock the potential of sound to enhance and improve lives worldwide-the **Sonic Revolution**.
 
-**Product proposition:** Sonocea delivers patented **sonic augmentation**—content experienced in the product as structured audio **Sessions** built on **Sonocea Sonic Augmentation Technology™ (SAT™)**. The PRD cites research (including University of Florida Medical School findings) describing short-session outcomes such as support for autonomic and emotional regulation; specific claims belong in regulated/compliance-reviewed materials, not in this overview.
+**Product proposition:** Sonocea delivers patented **sonic augmentation**-content experienced in the product as structured audio **Sessions** built on **Sonocea Sonic Augmentation Technology™ (SAT™)**. The PRD cites research (including University of Florida Medical School findings) describing short-session outcomes such as support for autonomic and emotional regulation; specific claims belong in regulated/compliance-reviewed materials, not in this overview.
 
 ---
 
@@ -25,12 +25,12 @@ End users (**Listeners**) use the app to:
 - Accept a **unique invite** or **Partner-mediated access**
 - Complete **onboarding** (including education about Sonocea and how to listen effectively)
 - Complete a **neurotype questionnaire** so the library can align recommendations with their profile
-- Browse a **library of Sessions** provisioned to them (never the full public catalog—only what Admin → Partner → Listener entitlements allow)
+- Browse a **library of Sessions** provisioned to them (never the full public catalog-only what Admin → Partner → Listener entitlements allow)
 - **Stream** Sessions securely and, where permitted, **download encrypted copies** for offline listening
 - Use an **on-brand player** with controls, progress, repeat modes, and visual treatments aligned to Sonocea brand (including “sound blends” style motion where specified)
 - Access **About**, **Support**, and **Feedback** flows, with policies linked in-app
 
-A **general-public marketing surface** may exist with logo, video, and explanation of the technology, but **no Session playback** for unauthenticated visitors—only CTAs (e.g., speak with a clinician, mailing list, partner integrations—exact CTAs were marked work-in-progress in the PRD).
+A **general-public marketing surface** may exist with logo, video, and explanation of the technology, but **no Session playback** for unauthenticated visitors-only CTAs (e.g., speak with a clinician, mailing list, partner integrations-exact CTAs were marked work-in-progress in the PRD).
 
 ---
 
@@ -58,12 +58,12 @@ v1 prioritizes **controlled distribution**, **IP protection**, and **measurable 
 
 ---
 
-## Core Mobile UX (PRD Screen List — Evolving)
+## Core Mobile UX (PRD Screen List - Evolving)
 
 The PRD lists primary mobile areas (exact IA may change with design):
 
 1. Splash / brand intro  
-2. Sign-up & login (invite or Partner code flow—final mechanics flagged as open questions)  
+2. Sign-up & login (invite or Partner code flow-final mechanics flagged as open questions)  
 3. Onboarding & science education  
 4. Neurotype questionnaire  
 5. Sessions library  
@@ -100,7 +100,7 @@ Summarized from functional and non-functional requirements:
 
 ## Clinical & Real-World Context (Design Lens)
 
-Appendix E frames Sessions as used across varied environments—from therapy offices to hospitals, neurodivergent education, palliative care, and postpartum. Implications called out in the PRD include **minimal steps to press play**, **offline and poor-network behavior**, optional **facilitator-controlled** use (phone as a shared clinical tool), and **metadata-rich** Session profiles (duration, audience, setting, benefits) so non-technical caregivers can choose appropriately. These inform UX priorities even when a given release does not implement every workflow.
+Appendix E frames Sessions as used across varied environments-from therapy offices to hospitals, neurodivergent education, palliative care, and postpartum. Implications called out in the PRD include **minimal steps to press play**, **offline and poor-network behavior**, optional **facilitator-controlled** use (phone as a shared clinical tool), and **metadata-rich** Session profiles (duration, audience, setting, benefits) so non-technical caregivers can choose appropriately. These inform UX priorities even when a given release does not implement every workflow.
 
 Seven **use-case families** called out in Appendix E (Regulation Companion, Inner Balance / therapist self-care, Pre-Procedure & Treatment Suites, Therapist Resource Platform, Neurodivergent Series, Comfort & Transition, Postpartum Bond & Regulation) share one platform but imply different **primary users** (who provisions or presses play) and **end users** (who listens). Design should stay flexible for **listener-held** vs **facilitator-controlled** playback.
 
@@ -138,21 +138,21 @@ Seven **use-case families** called out in Appendix E (Regulation Companion, Inne
 | **Retention & satisfaction** | Total listens and listening time (period + lifetime); trends; qualitative feedback |
 | **Partner & billing** | Provisioning funnel; active Listeners per Partner; hours/completions; **billable units** per plan (active seat, active Listener, billable minute/hour); seat pool utilization and overage; tiered usage; exportable billing report by Partner and date range |
 
-**Illustrative event names** (PRD examples—not final schema): `partner_created`, `partner_plan_updated`, `partner_bundle_assigned`, `rate_card_updated`, `invite_sent`, `invite_accepted`, `login`, `listener_provisioned`, `session_view`, `play_start`, `play_progress`, `play_complete`, `download_start`, `download_complete`, `download_play`, `seat_allocated`, `seat_released`, `usage_metered`, `feedback_prompt_shown`, `feedback_submitted_app`, `feedback_submitted_session`, `export_billing_csv`.
+**Illustrative event names** (PRD examples-not final schema): `partner_created`, `partner_plan_updated`, `partner_bundle_assigned`, `rate_card_updated`, `invite_sent`, `invite_accepted`, `login`, `listener_provisioned`, `session_view`, `play_start`, `play_progress`, `play_complete`, `download_start`, `download_complete`, `download_play`, `seat_allocated`, `seat_released`, `usage_metered`, `feedback_prompt_shown`, `feedback_submitted_app`, `feedback_submitted_session`, `export_billing_csv`.
 
 ---
 
-## Billing & Commercialization (Appendix A — Illustrative)
+## Billing & Commercialization (Appendix A - Illustrative)
 
-v1 targets **multiple models**: site license with a **seat pool**, **per-seat** pricing, and **usage-based** pricing with **configurable rate cards**. Numbers below are **examples from the PRD**, not commitments—finance/legal own final definitions.
+v1 targets **multiple models**: site license with a **seat pool**, **per-seat** pricing, and **usage-based** pricing with **configurable rate cards**. Numbers below are **examples from the PRD**, not commitments-finance/legal own final definitions.
 
-**Example 1 — Site license (seat pool)**  
+**Example 1 - Site license (seat pool)**  
 Plan type: `site_license` · USD · monthly · **100 included seats** · flat fee **$8,000** · overage **$100/seat** · mid-period activation proration rule (e.g., after day 15 at 50%) · effective dates from PRD example.
 
-**Example 2 — Per seat**  
+**Example 2 - Per seat**  
 Plan type: `per_seat` · USD · monthly · tiered unit pricing (e.g., 1–199 / 200–499 / 500+ seats at different rates) · minimum commit (e.g., 50 active seats).
 
-**Example 3 — Usage-based**  
+**Example 3 - Usage-based**  
 Plan type: `usage` · USD · monthly · metric e.g. **hours listened** · tiered $/hour bands · monthly minimum (e.g., 2,000 in the example).
 
 **CSV shape (high level):** Common headers such as `partner_id`, `partner_name`, `period_start`, `period_end`, `currency`, `plan_type`, `rate_card_version`. Plan-specific columns for seat license (included/used/peak/overage, fees), per-seat (active seats billed, tier, unit price), usage (metric, units, tier). Optional detail rows: listener id, masked email, content id, seconds listened, completed flag, device type, derived billable units.
@@ -163,14 +163,14 @@ Plan type: `usage` · USD · monthly · metric e.g. **hours listened** · tiered
 
 ## Essential Data Models (Names Only)
 
-Listener; Partner (plan, rate card, seats, usage rules); Invite; Content (metadata, tags, file refs, state); Provisioning / ProvisioningEvent; UsageRecord; optional RateCard, BillingAccount, Invoice—see PRD Section 10 for fields.
+Listener; Partner (plan, rate card, seats, usage rules); Invite; Content (metadata, tags, file refs, state); Provisioning / ProvisioningEvent; UsageRecord; optional RateCard, BillingAccount, Invoice-see PRD Section 10 for fields.
 
 ---
 
 ## Technical Architecture (High Level)
 
 - **Clients:** Native iOS/Android or cross-platform (open question).  
-- **API:** REST—auth, entitlement, catalog, telemetry, signed URLs, Partner provisioning.  
+- **API:** REST-auth, entitlement, catalog, telemetry, signed URLs, Partner provisioning.  
 - **Storage:** Object storage for audio + thumbnails; KMS for keys.  
 - **DB:** Relational core for users, invites, Partners, entitlements, events, billing facts.  
 - **CDN:** Edge delivery with tokenized URLs.  
@@ -201,7 +201,7 @@ Listener; Partner (plan, rate card, seats, usage rules); Invite; Content (metada
 
 ---
 
-## Planned Future Versions (PRD Roadmap — High Level)
+## Planned Future Versions (PRD Roadmap - High Level)
 
 | Version | Directionally planned |
 |---------|------------------------|
@@ -216,8 +216,8 @@ Anything listed here is **not** v1 scope unless explicitly pulled in.
 
 ## Source & Maintenance
 
-- **Primary source:** internal PRD *Sonocea Mobile App — Version 1.0* (draft).  
-- **Design source of truth (visual/IA):** Paper file **Sonocea Design Phase 2**—reconcile naming and flows with this doc when they diverge.  
+- **Primary source:** internal PRD *Sonocea Mobile App - Version 1.0* (draft).  
+- **Design source of truth (visual/IA):** Paper file **Sonocea Design Phase 2**-reconcile naming and flows with this doc when they diverge.  
 - **This file:** draft overview for the codebase/docs; update when the PRD, billing, or Paper explorations change.
 
 ---

@@ -11,36 +11,28 @@ const SURFACES = [
     surface: "Mobile · provisioned",
     description:
       "Invite redeem, onboarding, Home / Profile, session journey, player, reflection, and support.",
-    to: "/app/listener/invite",
+    to: "/app/listener/email",
     hint: `${DEMO_CREDENTIALS.listener.email} / ${DEMO_CREDENTIALS.listener.password} · invite ${DEMO_CREDENTIALS.listener.inviteCode}`,
-  },
-  {
-    id: "partner",
-    label: "Partner",
-    surface: "Web console",
-    description: "Scoped usage, roster visibility, and billing reconciliation CSV. No self-serve Listener invites in v1.",
-    to: "/app/partner",
-    hint: `${DEMO_CREDENTIALS.partner.email} / ${DEMO_CREDENTIALS.partner.password}`,
   },
   {
     id: "admin",
     label: "Admin",
     surface: "CMS + ops",
-    description: "Session CMS, Partner setup, invites & assignments, analytics and feedback inbox.",
+    description: "Dashboard, Session CMS, Organizations, invite links, multi-org export, and analytics.",
     to: "/app/admin",
     hint: `${DEMO_CREDENTIALS.admin.email} / ${DEMO_CREDENTIALS.admin.password}`,
   },
 ];
 
 export function AppLauncher() {
-  const { loginPartner, loginAdmin, logout, resetApp } = useAppStore();
+  const { loginAdmin, logout, resetApp } = useAppStore();
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
   // Fresh demo every time you land on the launcher.
   useEffect(() => {
     resetApp();
-    // Only on mount — avoid re-running when resetApp identity changes after reset.
+    // Only on mount - avoid re-running when resetApp identity changes after reset.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -49,17 +41,7 @@ export function AppLauncher() {
 
     if (surfaceId === "listener") {
       logout();
-      navigate("/app/listener/invite");
-      return;
-    }
-
-    if (surfaceId === "partner") {
-      const r = loginPartner({
-        email: DEMO_CREDENTIALS.partner.email,
-        password: DEMO_CREDENTIALS.partner.password,
-      });
-      if (!r.ok) return setError(r.error);
-      navigate("/app/partner");
+      navigate("/app/listener/email");
       return;
     }
 
@@ -76,10 +58,11 @@ export function AppLauncher() {
   return (
     <AppChrome
       simple
+      framed={false}
       title="app v2.0 prototypes"
-      subtitle="Semi-working build of the Mobile App PRD — Listener, Partner, and Admin. Demo state resets each time you return here."
+      subtitle="Semi-working build of the Mobile App PRD - Listener and Admin. Demo state resets each time you return here."
     >
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-2">
         {SURFACES.map((s) => (
           <article
             key={s.id}

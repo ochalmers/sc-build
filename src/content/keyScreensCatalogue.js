@@ -1,5 +1,5 @@
 /**
- * Key screens catalogue — four tiers, five layout concepts per screen.
+ * Key screens catalogue - four tiers, five layout concepts per screen.
  * Concept A is the canonical baseline from flows; B–E are exploration directions.
  */
 
@@ -19,12 +19,12 @@ export const KEY_SCREEN_TIERS = [
     label: "Core Product",
     title: "Core product",
     description:
-      "The daily listening loop — home, browse, detail, play, and completion. Each screen holds five layout directions; concept A is the flow baseline.",
+      "The daily listening loop - home, browse, detail, play, and completion. Each screen holds five layout directions; concept A is the flow baseline.",
     screens: [
       screen(
         "home",
         "Home",
-        "Primary hub answering what should I play now — resume, next session, and progress at a glance.",
+        "Primary hub answering what should I play now - resume, next session, and progress at a glance.",
         "library",
         [
           c(
@@ -52,9 +52,9 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Protocol day plan",
             "Ordered steps · completion ticks",
-            "Day N header with ordered checklist — tap any step to open detail and play. Sequence and completion read first.",
+            "Day N header with ordered checklist - tap any step to open detail and play. Sequence and completion read first.",
             "Regiment and workplace programmes where order matters.",
-            "Multi-day protocols are out of scope for v1 — show assigned order only.",
+            "Multi-day protocols are out of scope for v1 - show assigned order only.",
             "ks-home-protocol",
           ),
           c(
@@ -74,7 +74,7 @@ export const KEY_SCREEN_TIERS = [
             "Resume · science teaser · rows",
             "Resume card first, then a learn article teaser, then session rows. Science content rotates from the public visitor CMS.",
             "Science-curious listeners and credibility-forward partners.",
-            "Broadest home surface — most to build and maintain.",
+            "Broadest home surface - most to build and maintain.",
             "ks-home-learn",
           ),
         ],
@@ -82,7 +82,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "session-library",
         "Session Library",
-        "Full provisioned catalogue — every session assigned to this listener, filterable and scannable.",
+        "Full provisioned catalogue - every session assigned to this listener, filterable and scannable.",
         "library-dark",
         [
           c(
@@ -92,7 +92,7 @@ export const KEY_SCREEN_TIERS = [
             "Rows · duration · assigned badge",
             "Default list with duration, neurotype tags, and trailing play affordance. Category chips filter in place.",
             "8+ sessions where listeners compare before playing.",
-            "Long lists need virtualisation — provisioned sets are bounded but still scroll.",
+            "Long lists need virtualisation - provisioned sets are bounded but still scroll.",
             "library-dark",
           ),
           c(
@@ -100,7 +100,7 @@ export const KEY_SCREEN_TIERS = [
             "B",
             "Compact list",
             "Title · duration only",
-            "Reduced metadata — title and duration only, no artwork thumbnails. Fastest scan for repeat listeners.",
+            "Reduced metadata - title and duration only, no artwork thumbnails. Fastest scan for repeat listeners.",
             "Listeners who already know their assigned sessions.",
             "Harder to distinguish sessions at a glance.",
             "ks-library-compact",
@@ -112,7 +112,7 @@ export const KEY_SCREEN_TIERS = [
             "Morning · midday · evening",
             "Sessions grouped by time-of-day or use case with sticky section headers.",
             "Protocol-adjacent programmes with time-based listening.",
-            "Grouping logic must stay honest — not all partners assign by time.",
+            "Grouping logic must stay honest - not all partners assign by time.",
             "ks-library-grouped",
           ),
           c(
@@ -122,7 +122,7 @@ export const KEY_SCREEN_TIERS = [
             "2-column cards · filter chips",
             "2-column grid with artwork, title, and filter chips above. Visual browse before play.",
             "Visual learners and larger provisioned libraries.",
-            "Grid uses more vertical space — fewer rows above fold.",
+            "Grid uses more vertical space - fewer rows above fold.",
             "library-categories",
           ),
           c(
@@ -132,7 +132,7 @@ export const KEY_SCREEN_TIERS = [
             "Search bar · recent · favourites",
             "Prominent search with recent and saved shortcuts below. List results replace browse when typing.",
             "Power users with 15+ assigned sessions.",
-            "Search adds build scope — validate need before v1.",
+            "Search adds build scope - validate need before v1.",
             "favorites",
           ),
         ],
@@ -140,7 +140,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "session-detail",
         "Session Detail",
-        "Pre-play briefing — purpose, duration, neurotype fit, and benefits before the player opens.",
+        "Pre-play briefing - purpose, duration, neurotype fit, and benefits before the player opens.",
         "detail",
         [
           c(
@@ -149,7 +149,7 @@ export const KEY_SCREEN_TIERS = [
             "Hero + metadata",
             "Artwork · tags · sticky play",
             "Full-width artwork hero, title, duration pill, tag row, benefits bullets, and sticky Play CTA on scroll.",
-            "Default high-fidelity direction — sets expectations clearly.",
+            "Default high-fidelity direction - sets expectations clearly.",
             "Hero parallax should disable when reduced motion is on.",
             "detail",
           ),
@@ -169,8 +169,8 @@ export const KEY_SCREEN_TIERS = [
             "Minimal soundcard",
             "Square art · two lines · play",
             "Square artwork left, title and duration right, two-line description, full-width Play. No scroll for standard sessions.",
-            "Listeners who already know their library — confirm-only.",
-            "Long descriptions need expand — keep copy tight.",
+            "Listeners who already know their library - confirm-only.",
+            "Long descriptions need expand - keep copy tight.",
             "ks-detail-minimal",
           ),
           c(
@@ -180,7 +180,7 @@ export const KEY_SCREEN_TIERS = [
             "Narrative · 30s preview · play",
             "Narrative paragraph, inline 30-second preview player, then full Play. Helps first-time play of unfamiliar sessions.",
             "First play of unfamiliar assigned sessions.",
-            "Preview counts as a stream — needs analytics and stop-on-scroll.",
+            "Preview counts as a stream - needs analytics and stop-on-scroll.",
             "ks-detail-preview",
           ),
           c(
@@ -190,7 +190,7 @@ export const KEY_SCREEN_TIERS = [
             "Side-by-side · recommended badge",
             "When arriving from choose between similar, show side-by-side duration and benefit diff with recommended badge.",
             "Partners assigning overlapping sessions in the same category.",
-            "Compare mode is an edge case — keep single-session view simple.",
+            "Compare mode is an edge case - keep single-session view simple.",
             "ks-detail-compare",
           ),
         ],
@@ -198,7 +198,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "player",
         "Player",
-        "Full-screen listening with minimal chrome — sound leads, controls recede.",
+        "Full-screen listening with minimal chrome - sound leads, controls recede.",
         "player",
         [
           c(
@@ -207,7 +207,7 @@ export const KEY_SCREEN_TIERS = [
             "Full-bleed ambient",
             "Gradient art · play/pause · progress",
             "Edge-to-edge gradient artwork, centred play/pause, thin progress bar, swipe down to minimise.",
-            "Default brand moment — matches PRD hi-fi direction.",
+            "Default brand moment - matches PRD hi-fi direction.",
             "Busy animation during listen fights the calm product promise.",
             "player",
           ),
@@ -216,9 +216,9 @@ export const KEY_SCREEN_TIERS = [
             "B",
             "Timer-forward",
             "Large countdown · no scrubber",
-            "Large remaining-time numerals, small title, play/pause only — no scrubber for timed regulation sessions.",
+            "Large remaining-time numerals, small title, play/pause only - no scrubber for timed regulation sessions.",
             "Fixed-duration regulation and clinical sessions.",
-            "Listeners expect scrub on longer sessions — make it session-type aware.",
+            "Listeners expect scrub on longer sessions - make it session-type aware.",
             "ks-player-timer",
           ),
           c(
@@ -226,9 +226,9 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Breath-sync visual",
             "Subtle pulse · tap to toggle",
-            "Subtle expanding circle or waveform tied to audio envelope — not a literal breath pacer unless required.",
+            "Subtle expanding circle or waveform tied to audio envelope - not a literal breath pacer unless required.",
             "Sessions with guided pacing or breath cues.",
-            "Must respect reduced motion — static artwork fallback required.",
+            "Must respect reduced motion - static artwork fallback required.",
             "ks-player-breath",
           ),
           c(
@@ -238,7 +238,7 @@ export const KEY_SCREEN_TIERS = [
             "Collapsible transcript · play/pause",
             "Optional collapsible transcript for sessions with spoken guidance. Default collapsed; expands for accessibility.",
             "Instructed sessions and clinical clarity.",
-            "Transcript sync highlight is v2 — ship read-only first.",
+            "Transcript sync highlight is v2 - ship read-only first.",
             "ks-player-caption",
           ),
           c(
@@ -246,7 +246,7 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Mini-player browse",
             "Full player · persistent mini pill",
-            "On background, persistent mini-player pill above bottom nav — tap to expand. Supports browse-while-listening.",
+            "On background, persistent mini-player pill above bottom nav - tap to expand. Supports browse-while-listening.",
             "Learn + listen and library-first models.",
             "Mini player must not appear on onboarding surfaces.",
             "ks-player-mini",
@@ -256,7 +256,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "session-complete",
         "Session Complete",
-        "Completion moment — celebrate finish, route to reflection or back to library.",
+        "Completion moment - celebrate finish, route to reflection or back to library.",
         "completion",
         [
           c(
@@ -274,9 +274,9 @@ export const KEY_SCREEN_TIERS = [
             "B",
             "Reflection prompt",
             "How do you feel? · skip",
-            "Immediate mood scale before returning — mirrors public visitor reflection. Skippable in one tap.",
+            "Immediate mood scale before returning - mirrors public visitor reflection. Skippable in one tap.",
             "Continuity between public sample and provisioned app.",
-            "Never block return to library — feedback is optional.",
+            "Never block return to library - feedback is optional.",
             "feedback",
           ),
           c(
@@ -286,7 +286,7 @@ export const KEY_SCREEN_TIERS = [
             "Streak · minutes · next up",
             "Shows listening streak, minutes today, and suggested next session card.",
             "Habit-building workplace programmes.",
-            "Keep tone clinical — no streaks or gamification in v1.",
+            "Keep tone clinical - no streaks or gamification in v1.",
             "ks-completion-progress",
           ),
           c(
@@ -294,9 +294,9 @@ export const KEY_SCREEN_TIERS = [
             "D",
             "Partner message",
             "Care team note · continue",
-            "Optional partner-configured message: Well done — same time tomorrow? Single dismiss CTA.",
+            "Optional partner-configured message: Well done - same time tomorrow? Single dismiss CTA.",
             "B2B programmes with coach or clinician oversight.",
-            "Partner copy must be CMS-driven — no hard-coded messages.",
+            "Partner copy must be CMS-driven - no hard-coded messages.",
             "ks-completion-partner",
           ),
           c(
@@ -306,7 +306,7 @@ export const KEY_SCREEN_TIERS = [
             "2s fade · next session",
             "Brief completion animation then auto-opens next session in plan or returns to home.",
             "Protocol-led day plans with ordered steps.",
-            "Auto-advance needs cancel — accidental chaining is costly.",
+            "Auto-advance needs cancel - accidental chaining is costly.",
             "ks-completion-auto",
           ),
         ],
@@ -319,12 +319,12 @@ export const KEY_SCREEN_TIERS = [
     label: "Getting Users In",
     title: "Getting users in",
     description:
-      "Cold start through first listen — splash, guest entry, invite redemption, login, onboarding welcome, and listening guidance.",
+      "Cold start through first listen - splash, guest entry, invite redemption, login, onboarding welcome, and listening guidance.",
     screens: [
       screen(
         "splash",
         "Splash",
-        "Brand moment on cold start — loading, entitlement check, and route to the right entry path.",
+        "Brand moment on cold start - loading, entitlement check, and route to the right entry path.",
         "splash",
         [
           c(
@@ -333,8 +333,8 @@ export const KEY_SCREEN_TIERS = [
             "Wordmark hold",
             "Logo · fade · route",
             "Centred Sonocea wordmark on paper, brief hold, fade to next route. No animation beyond opacity.",
-            "Premium restraint — matches sound-first brand.",
-            "Feels static if load takes longer than 2s — need skeleton handoff.",
+            "Premium restraint - matches sound-first brand.",
+            "Feels static if load takes longer than 2s - need skeleton handoff.",
             "splash",
           ),
           c(
@@ -344,7 +344,7 @@ export const KEY_SCREEN_TIERS = [
             "Logo · subtle breathe",
             "Wordmark with subtle spectral breathe animation while auth and config resolve.",
             "Brand differentiation at first open.",
-            "Must honour prefers-reduced-motion — static fallback.",
+            "Must honour prefers-reduced-motion - static fallback.",
             "ks-splash-pulse",
           ),
           c(
@@ -364,7 +364,7 @@ export const KEY_SCREEN_TIERS = [
             "Logo · thin progress bar",
             "Wordmark with indeterminate progress bar when cold start exceeds 1.5s.",
             "Slow networks and large config fetches.",
-            "Progress bar implies determinism — use indeterminate only.",
+            "Progress bar implies determinism - use indeterminate only.",
             "ks-splash-load",
           ),
           c(
@@ -372,9 +372,9 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Skip to content",
             "Instant cut · returning user",
-            "No splash for returning authenticated users — straight to last route or home.",
-            "Daily reopen — respect listener time.",
-            "First-time users still need brand moment — gate by session count.",
+            "No splash for returning authenticated users - straight to last route or home.",
+            "Daily reopen - respect listener time.",
+            "First-time users still need brand moment - gate by session count.",
             "ks-splash-skip",
           ),
         ],
@@ -382,7 +382,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "welcome-guest",
         "Welcome / Guest Landing",
-        "Entry decision for unauthenticated visitors — discover the sample experience or sign in with an invite.",
+        "Entry decision for unauthenticated visitors - discover the sample experience or sign in with an invite.",
         "pv-get-started",
         [
           c(
@@ -391,8 +391,8 @@ export const KEY_SCREEN_TIERS = [
             "Dual path",
             "Discover · sign in",
             "Two equal paths: Try a sample session and Sign in with invite. Science credibility line above CTAs.",
-            "Mixed traffic — public curious and invited listeners.",
-            "Two equal CTAs can paralyse — test primary emphasis.",
+            "Mixed traffic - public curious and invited listeners.",
+            "Two equal CTAs can paralyse - test primary emphasis.",
             "pv-get-started",
           ),
           c(
@@ -402,7 +402,7 @@ export const KEY_SCREEN_TIERS = [
             "Hero · start listening",
             "Single primary Start listening CTA with sign in as tertiary text link. Sample is the default path.",
             "Marketing-driven acquisition and science demos.",
-            "Invited listeners may miss sign in — surface invite link clearly.",
+            "Invited listeners may miss sign in - surface invite link clearly.",
             "pv-discover",
           ),
           c(
@@ -410,9 +410,9 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Invite-first",
             "Partner context · redeem",
-            "Leads with Your organisation invited you — redeem code primary, discover secondary.",
+            "Leads with Your organisation invited you - redeem code primary, discover secondary.",
             "Partner email and QR campaigns.",
-            "Public discoverers may feel excluded — keep discover visible.",
+            "Public discoverers may feel excluded - keep discover visible.",
             "pv-invitation",
           ),
           c(
@@ -422,7 +422,7 @@ export const KEY_SCREEN_TIERS = [
             "Welcome back · continue",
             "Recognises returning device with Welcome back and Continue where you left off before auth paths.",
             "Clinic iPads and shared household devices.",
-            "Privacy — confirm identity before showing session data.",
+            "Privacy - confirm identity before showing session data.",
             "pv-returning-home",
           ),
           c(
@@ -430,9 +430,9 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Science gate",
             "Headline · evidence · enter",
-            "Short science headline and 20-word value prop above entry CTAs — borrows public visitor credibility.",
+            "Short science headline and 20-word value prop above entry CTAs - borrows public visitor credibility.",
             "Science-curious visitors from content marketing.",
-            "Adds scroll before action — keep copy under 40 words.",
+            "Adds scroll before action - keep copy under 40 words.",
             "ks-welcome-science",
           ),
         ],
@@ -440,7 +440,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "accept-invitation",
         "Accept Invitation",
-        "Deep-link entry from partner invite — redeem code, validate entitlement, route to account creation.",
+        "Deep-link entry from partner invite - redeem code, validate entitlement, route to account creation.",
         "pv-invitation",
         [
           c(
@@ -450,7 +450,7 @@ export const KEY_SCREEN_TIERS = [
             "Org name · code field · continue",
             "Partner mark above invite-code field and primary Continue. Organisation name and seat expiry as quiet metadata.",
             "Co-branded partner communications.",
-            "Partner logo max 48px — Sonocea wordmark stays primary.",
+            "Partner logo max 48px - Sonocea wordmark stays primary.",
             "pv-invitation",
           ),
           c(
@@ -470,7 +470,7 @@ export const KEY_SCREEN_TIERS = [
             "Segmented · returning users",
             "Segmented control: Redeem invite | Sign in. Returning listeners skip code entry.",
             "Shared devices serving multiple listeners.",
-            "Tab memory on return visits — persist last segment.",
+            "Tab memory on return visits - persist last segment.",
             "login",
           ),
           c(
@@ -488,9 +488,9 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Science teaser gate",
             "Value prop · code · continue",
-            "Short science teaser above invite field — bridges visitors who skimmed public content.",
+            "Short science teaser above invite field - bridges visitors who skimmed public content.",
             "Invited participants who discovered Sonocea publicly first.",
-            "Teaser must not repeat in onboarding — one-time only.",
+            "Teaser must not repeat in onboarding - one-time only.",
             "ks-invite-teaser",
           ),
         ],
@@ -498,7 +498,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "login",
         "Login",
-        "Returning listener sign in — email, Apple ID, and password with invite context when applicable.",
+        "Returning listener sign in - email, Apple ID, and password with invite context when applicable.",
         "login-empty",
         [
           c(
@@ -508,7 +508,7 @@ export const KEY_SCREEN_TIERS = [
             "Email · password · sign in",
             "Standard email and password with forgot password link. Invite context banner when arriving from redeem.",
             "Returning listeners on any platform.",
-            "Password fatigue in clinical cohorts — offer biometrics after first sign-in.",
+            "Password fatigue in clinical cohorts - offer biometrics after first sign-in.",
             "login-empty",
           ),
           c(
@@ -518,7 +518,7 @@ export const KEY_SCREEN_TIERS = [
             "Apple · email fallback",
             "Sign in with Apple as primary, email as text link. Minimal chrome, keyboard opens on email path.",
             "iPhone-heavy partner programmes.",
-            "Apple-only primary alienates Android — match platform.",
+            "Apple-only primary alienates Android - match platform.",
             "login",
           ),
           c(
@@ -526,7 +526,7 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Magic link",
             "Email · send link",
-            "Email only — send magic link, no password. Check your email holding state.",
+            "Email only - send magic link, no password. Check your email holding state.",
             "Low-friction clinical and older adult cohorts.",
             "Email deliverability and link expiry UX must be solid.",
             "ks-login-magic",
@@ -538,7 +538,7 @@ export const KEY_SCREEN_TIERS = [
             "Face ID · password fallback",
             "Returning device shows Face ID / Touch ID with Use password fallback. No email field until fallback.",
             "Daily reopen on personal devices.",
-            "First sign-in still needs full auth — gate by credential presence.",
+            "First sign-in still needs full auth - gate by credential presence.",
             "ks-login-biometric",
           ),
           c(
@@ -546,9 +546,9 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Organisation SSO",
             "SSO button · email fallback",
-            "Sign in with your organisation SSO when partner configures SAML — email fallback below.",
+            "Sign in with your organisation SSO when partner configures SAML - email fallback below.",
             "Enterprise workplace deployments.",
-            "SSO is partner-specific — hide when not configured.",
+            "SSO is partner-specific - hide when not configured.",
             "ks-login-sso",
           ),
         ],
@@ -556,7 +556,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "welcome-sonocea",
         "Welcome to Sonocea",
-        "Personalised onboarding welcome — what Sonocea is, how listening works, and what happens next.",
+        "Personalised onboarding welcome - what Sonocea is, how listening works, and what happens next.",
         "onboarding",
         [
           c(
@@ -566,7 +566,7 @@ export const KEY_SCREEN_TIERS = [
             "Swipe cards · dot progress",
             "Horizontal swipe cards: How listening works → Headphones → Your neurotype → Your library. Skip top-right.",
             "Familiar wellness-app onboarding pattern.",
-            "Cap at 4–6 steps — avoid gamified step counts.",
+            "Cap at 4–6 steps - avoid gamified step counts.",
             "onboarding",
           ),
           c(
@@ -576,7 +576,7 @@ export const KEY_SCREEN_TIERS = [
             "Vertical blocks · sticky CTA",
             "One continuous vertical scroll with headline blocks separated by hairlines. Sticky footer CTA after 60% scroll.",
             "Lowest cognitive load for regulation-focused listeners.",
-            "Long scroll on small phones — keep sections short.",
+            "Long scroll on small phones - keep sections short.",
             "onboarding-2",
           ),
           c(
@@ -586,7 +586,7 @@ export const KEY_SCREEN_TIERS = [
             "60s intro · tick boxes",
             "Short hosted video then interactive checklist: quiet space, headphones, 10+ minutes available.",
             "Partners wanting consistent onboarding message.",
-            "Video skippable after 10s — captions on by default.",
+            "Video skippable after 10s - captions on by default.",
             "onboarding-3",
           ),
           c(
@@ -596,7 +596,7 @@ export const KEY_SCREEN_TIERS = [
             "Assigned plan · how to use",
             "Structured brief: your listening plan, how to use Sonocea, when to listen, what to expect.",
             "Hospital and workplace prescribed listening.",
-            "No skip in regulated contexts — partner configurable.",
+            "No skip in regulated contexts - partner configurable.",
             "ks-onboard-clinical",
           ),
           c(
@@ -604,9 +604,9 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Conversational coach",
             "Chat bubbles · tap advance",
-            "Chat-bubble sequence from Sonocea guide — one message at a time with tap-to-advance. Personalised with first name.",
+            "Chat-bubble sequence from Sonocea guide - one message at a time with tap-to-advance. Personalised with first name.",
             "Younger neurodiverse cohorts.",
-            "Typing indicator max 800ms — do not fake long delays.",
+            "Typing indicator max 800ms - do not fake long delays.",
             "ks-onboard-chat",
           ),
         ],
@@ -614,7 +614,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "listening-guidance",
         "Listening Guidance",
-        "Operational listening literacy — headphones, environment, duration, and when to listen.",
+        "Operational listening literacy - headphones, environment, duration, and when to listen.",
         "guidance",
         [
           c(
@@ -624,7 +624,7 @@ export const KEY_SCREEN_TIERS = [
             "Headphones · space · duration",
             "Three illustrated cards: use headphones, find quiet space, allow full duration. Primary Continue when all acknowledged.",
             "First-time listeners before first playback.",
-            "Illustrations need text labels — not illustration-only.",
+            "Illustrations need text labels - not illustration-only.",
             "guidance",
           ),
           c(
@@ -634,7 +634,7 @@ export const KEY_SCREEN_TIERS = [
             "Tick to continue · no skip",
             "Interactive checklist items must be ticked before Continue enables. No honour system.",
             "Clinical contexts requiring explicit acknowledgement.",
-            "Too rigid for returning listeners — allow skip on repeat.",
+            "Too rigid for returning listeners - allow skip on repeat.",
             "ks-guidance-checklist",
           ),
           c(
@@ -652,9 +652,9 @@ export const KEY_SCREEN_TIERS = [
             "D",
             "Audio walkthrough",
             "30s audio guide · continue",
-            "Optional 30-second audio guide explaining how to listen — play/pause with continue when done.",
+            "Optional 30-second audio guide explaining how to listen - play/pause with continue when done.",
             "Listeners who struggle with text-heavy instructions.",
-            "Auto-play audio needs consent — default paused.",
+            "Auto-play audio needs consent - default paused.",
             "ks-guidance-audio",
           ),
           c(
@@ -664,7 +664,7 @@ export const KEY_SCREEN_TIERS = [
             "Clinician note · standard tips",
             "Partner-configured note from care team above standard headphone and environment tips.",
             "B2B programmes with specific listening protocols.",
-            "Partner copy length must be capped — link out for detail.",
+            "Partner copy length must be capped - link out for detail.",
             "ks-guidance-partner",
           ),
         ],
@@ -677,12 +677,12 @@ export const KEY_SCREEN_TIERS = [
     label: "Public Experience",
     title: "Public experience",
     description:
-      "Unauthenticated visitor journey — sample listening, reflection, science, and access request. Reuses patterns that may carry into the provisioned app.",
+      "Unauthenticated visitor journey - sample listening, reflection, science, and access request. Reuses patterns that may carry into the provisioned app.",
     screens: [
       screen(
         "public-landing",
         "Public Landing",
-        "Introduce the curated sample experience — what Sonocea offers before account creation.",
+        "Introduce the curated sample experience - what Sonocea offers before account creation.",
         "pv-get-started",
         [
           c(
@@ -692,7 +692,7 @@ export const KEY_SCREEN_TIERS = [
             "Headline · sample CTA",
             "Evidence-based headline, 2-line value prop, primary Try a 5-minute sample CTA.",
             "Content marketing and conference demos.",
-            "Keep above fold on iPhone SE — test copy length.",
+            "Keep above fold on iPhone SE - test copy length.",
             "pv-get-started",
           ),
           c(
@@ -700,7 +700,7 @@ export const KEY_SCREEN_TIERS = [
             "B",
             "Sound-first",
             "Waveform · start listening",
-            "Animated waveform hero with immediate Start listening — minimal copy.",
+            "Animated waveform hero with immediate Start listening - minimal copy.",
             "Sound-first brand differentiation.",
             "Animation must respect reduced motion.",
             "pv-discover",
@@ -710,9 +710,9 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Check-in first",
             "How are you feeling? · begin",
-            "Opens with nervous-system check-in before sample — personalises session recommendation.",
+            "Opens with nervous-system check-in before sample - personalises session recommendation.",
             "Demonstrating personalisation value publicly.",
-            "Adds friction before sample — make skippable.",
+            "Adds friction before sample - make skippable.",
             "pv-check-in",
           ),
           c(
@@ -720,9 +720,9 @@ export const KEY_SCREEN_TIERS = [
             "D",
             "Social proof",
             "Partner logos · sample CTA",
-            "Partner and clinical logos above sample CTA — credibility before experience.",
+            "Partner and clinical logos above sample CTA - credibility before experience.",
             "B2B sales-assisted visitor flows.",
-            "Logo wall needs permission — no fabricated endorsements.",
+            "Logo wall needs permission - no fabricated endorsements.",
             "ks-public-social",
           ),
           c(
@@ -732,7 +732,7 @@ export const KEY_SCREEN_TIERS = [
             "Continue sample · sign in",
             "Recognises prior sample progress with Continue your sample and sign in link.",
             "Multi-visit public visitors before access request.",
-            "Device storage for progress — clear privacy note.",
+            "Device storage for progress - clear privacy note.",
             "pv-returning-home",
           ),
         ],
@@ -740,7 +740,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "check-in",
         "Check-In",
-        "Baseline state capture before sample — how regulated or activated the visitor feels right now.",
+        "Baseline state capture before sample - how regulated or activated the visitor feels right now.",
         "pv-check-in",
         [
           c(
@@ -749,7 +749,7 @@ export const KEY_SCREEN_TIERS = [
             "Slider spectrum",
             "Dysregulated ← → regulated",
             "Single horizontal slider with labelled endpoints. PRD baseline uses four sliders (stress, energy, focus, restfulness).",
-            "Fast baseline capture — mirrors post-sample reflection.",
+            "Fast baseline capture - mirrors post-sample reflection.",
             "Endpoints need text labels for screen readers.",
             "pv-check-in",
           ),
@@ -758,9 +758,9 @@ export const KEY_SCREEN_TIERS = [
             "B",
             "Emoji faces",
             "Five faces · tap one",
-            "Five face icons from dysregulated to regulated — tap to select. Familiar pattern from wellness apps.",
+            "Five face icons from dysregulated to regulated - tap to select. Familiar pattern from wellness apps.",
             "Visitors uncomfortable with slider precision.",
-            "Faces must have text labels — not emoji-only.",
+            "Faces must have text labels - not emoji-only.",
             "ks-checkin-emoji",
           ),
           c(
@@ -768,9 +768,9 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Word chips",
             "Anxious · calm · focused · tired",
-            "Multi-select word chips — select all that apply. Maps to session recommendation.",
+            "Multi-select word chips - select all that apply. Maps to session recommendation.",
             "Nuanced self-report without clinical labels.",
-            "Chip selection UX on small screens — wrap cleanly.",
+            "Chip selection UX on small screens - wrap cleanly.",
             "ks-checkin-chips",
           ),
           c(
@@ -778,9 +778,9 @@ export const KEY_SCREEN_TIERS = [
             "D",
             "Body map",
             "Tap where you feel tension",
-            "Simple body outline — tap areas of tension. Optional for public v1.",
+            "Simple body outline - tap areas of tension. Optional for public v1.",
             "Somatic-focused regulation contexts.",
-            "High build cost — validate before committing.",
+            "High build cost - validate before committing.",
             "ks-checkin-body",
           ),
           c(
@@ -788,9 +788,9 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Skip with default",
             "Skip · recommend default session",
-            "Skip check-in uses default regulation session — no blocking gate.",
+            "Skip check-in uses default regulation session - no blocking gate.",
             "Low-friction demo environments.",
-            "Loses personalisation story — note in analytics.",
+            "Loses personalisation story - note in analytics.",
             "ks-checkin-skip",
           ),
         ],
@@ -798,7 +798,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "sample-session-player",
         "Sample Session Player",
-        "Five-minute public sample playback — core sound experience before sign-up.",
+        "Five-minute public sample playback - core sound experience before sign-up.",
         "pv-listening",
         [
           c(
@@ -816,9 +816,9 @@ export const KEY_SCREEN_TIERS = [
             "B",
             "Guided intro overlay",
             "10s intro · then play",
-            "Brief this is a sample overlay before playback starts — auto-dismiss or tap to skip.",
+            "Brief this is a sample overlay before playback starts - auto-dismiss or tap to skip.",
             "First-time visitors unfamiliar with structured sound.",
-            "Overlay timing — skippable after 3s minimum.",
+            "Overlay timing - skippable after 3s minimum.",
             "ks-sample-intro",
           ),
           c(
@@ -826,9 +826,9 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Headphones gate",
             "Plug in headphones · play",
-            "Headphones prompt inline before play enables — matches listening guidance intent.",
+            "Headphones prompt inline before play enables - matches listening guidance intent.",
             "Ensuring proper listening conditions in demos.",
-            "Bluetooth detection unreliable — honour system with copy.",
+            "Bluetooth detection unreliable - honour system with copy.",
             "pv-headphones",
           ),
           c(
@@ -836,9 +836,9 @@ export const KEY_SCREEN_TIERS = [
             "D",
             "Timer visible",
             "Countdown · sample ends",
-            "Prominent sample time remaining — sets expectation that this is a preview.",
+            "Prominent sample time remaining - sets expectation that this is a preview.",
             "Managing expectations before access request.",
-            "Countdown anxiety — keep visual calm.",
+            "Countdown anxiety - keep visual calm.",
             "ks-sample-timer",
           ),
           c(
@@ -848,7 +848,7 @@ export const KEY_SCREEN_TIERS = [
             "What you're hearing · play",
             "Collapsible what you're hearing science line during sample playback.",
             "Education-forward public journey.",
-            "Captions must not compete with listen — default collapsed.",
+            "Captions must not compete with listen - default collapsed.",
             "ks-sample-captions",
           ),
         ],
@@ -856,7 +856,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "reflection",
         "Reflection",
-        "Post-sample mood capture — before/after comparison and gentle route toward science or access.",
+        "Post-sample mood capture - before/after comparison and gentle route toward science or access.",
         "pv-reflection",
         [
           c(
@@ -865,7 +865,7 @@ export const KEY_SCREEN_TIERS = [
             "After-only scale",
             "How do you feel now?",
             "Single post-sample mood scale with Done and Explore science actions.",
-            "Fastest completion — lowest friction.",
+            "Fastest completion - lowest friction.",
             "Loses before/after story without check-in data.",
             "pv-reflection",
           ),
@@ -876,7 +876,7 @@ export const KEY_SCREEN_TIERS = [
             "Your shift · visual delta",
             "Shows check-in baseline vs now on same axis with visual delta arrow.",
             "Demonstrating value in partner demos.",
-            "Requires check-in data — graceful fallback if skipped.",
+            "Requires check-in data - graceful fallback if skipped.",
             "pv-check-in",
           ),
           c(
@@ -884,9 +884,9 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Optional note",
             "Mood · one-line journal",
-            "Mood scale plus optional 140-character note — private, not shared.",
+            "Mood scale plus optional 140-character note - private, not shared.",
             "Engaged visitors who want to capture the moment.",
-            "Keyboard cover on small phones — scroll affordance.",
+            "Keyboard cover on small phones - scroll affordance.",
             "ks-reflection-note",
           ),
           c(
@@ -906,7 +906,7 @@ export const KEY_SCREEN_TIERS = [
             "Mood · get access",
             "Mood capture then prominent Request access for your organisation CTA.",
             "B2B funnel terminus after positive sample.",
-            "Not all visitors are organisational buyers — keep science path.",
+            "Not all visitors are organisational buyers - keep science path.",
             "pv-request-access",
           ),
         ],
@@ -914,7 +914,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "science-overview",
         "Science Overview",
-        "Evidence-based explanation hub — how structured sound affects the nervous system.",
+        "Evidence-based explanation hub - how structured sound affects the nervous system.",
         "pv-science-home",
         [
           c(
@@ -923,8 +923,8 @@ export const KEY_SCREEN_TIERS = [
             "Topic cards",
             "Nervous system · sleep · focus",
             "Scannable topic cards linking to article detail. Reused in provisioned Learn tab.",
-            "Default science hub — single CMS source.",
-            "Article count must stay bounded — curate, don't dump.",
+            "Default science hub - single CMS source.",
+            "Article count must stay bounded - curate, don't dump.",
             "pv-science-home",
           ),
           c(
@@ -932,7 +932,7 @@ export const KEY_SCREEN_TIERS = [
             "B",
             "Single long read",
             "One scroll · anchor nav",
-            "One long-form article with sticky anchor nav — no topic grid.",
+            "One long-form article with sticky anchor nav - no topic grid.",
             "Conference kiosk and quick demo contexts.",
             "Harder to maintain one monolithic article.",
             "pv-topic-detail",
@@ -944,7 +944,7 @@ export const KEY_SCREEN_TIERS = [
             "60s explainer · read more",
             "Hosted video with three bullet summary and read the research link.",
             "Visual learners and partner presentations.",
-            "Video load on cellular — poster frame required.",
+            "Video load on cellular - poster frame required.",
             "ks-science-video",
           ),
           c(
@@ -954,7 +954,7 @@ export const KEY_SCREEN_TIERS = [
             "Common questions · evidence",
             "Accordion of common questions with citation footnotes.",
             "Skeptical clinical audiences.",
-            "Citations must be real — link to publications.",
+            "Citations must be real - link to publications.",
             "ks-science-faq",
           ),
           c(
@@ -962,7 +962,7 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Personalised teaser",
             "Based on your check-in",
-            "Science content filtered by check-in mood — e.g. regulation-focused articles first.",
+            "Science content filtered by check-in mood - e.g. regulation-focused articles first.",
             "Visitors who completed check-in.",
             "Fallback to default hub when check-in skipped.",
             "ks-science-personalised",
@@ -972,7 +972,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "request-access",
         "Request Access",
-        "Organisational interest form — capture buyer intent after positive sample experience.",
+        "Organisational interest form - capture buyer intent after positive sample experience.",
         "pv-request-access",
         [
           c(
@@ -982,7 +982,7 @@ export const KEY_SCREEN_TIERS = [
             "Org · email · role · submit",
             "Organisation name, work email, role, and submit. Confirmation screen with next steps.",
             "Fast B2B lead capture.",
-            "Validate work email format — no personal gmail emphasis.",
+            "Validate work email format - no personal gmail emphasis.",
             "pv-request-access",
           ),
           c(
@@ -992,7 +992,7 @@ export const KEY_SCREEN_TIERS = [
             "Step 1 · org → contact",
             "Two-step: organisation details then contact details. Progress indicator.",
             "Higher-quality leads with less form fatigue per step.",
-            "More screens in funnel — test completion rate.",
+            "More screens in funnel - test completion rate.",
             "ks-access-progressive",
           ),
           c(
@@ -1022,7 +1022,7 @@ export const KEY_SCREEN_TIERS = [
             "Email us · template",
             "Single CTA opens mailto with pre-filled template including sample completion timestamp.",
             "Fastest v1 ship without backend form.",
-            "Poor analytics — last resort only.",
+            "Poor analytics - last resort only.",
             "ks-access-mailto",
           ),
         ],
@@ -1035,12 +1035,12 @@ export const KEY_SCREEN_TIERS = [
     label: "Supporting",
     title: "Supporting",
     description:
-      "Account, credibility, and help surfaces — sparse hierarchy, premium tone. Listeners are here to listen, not configure.",
+      "Account, credibility, and help surfaces - sparse hierarchy, premium tone. Listeners are here to listen, not configure.",
     screens: [
       screen(
         "about-sonocea",
         "About Sonocea",
-        "Mission, science summary, team, version, and legal links — credibility without investor-deck length.",
+        "Mission, science summary, team, version, and legal links - credibility without investor-deck length.",
         "about",
         [
           c(
@@ -1050,7 +1050,7 @@ export const KEY_SCREEN_TIERS = [
             "Mission · science · legal",
             "Short mission, three science bullets, link to full science hub, legal links footer.",
             "Default credibility pack.",
-            "Scroll under 2 screens — scannable only.",
+            "Scroll under 2 screens - scannable only.",
             "about",
           ),
           c(
@@ -1060,7 +1060,7 @@ export const KEY_SCREEN_TIERS = [
             "What it is · what it isn't",
             "Structured facts: what Sonocea is, what it is not, evidence summary, contact.",
             "Clinical partner due diligence.",
-            "Not does not diagnose — plain language required.",
+            "Not does not diagnose - plain language required.",
             "ks-about-clinical",
           ),
           c(
@@ -1068,7 +1068,7 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Inline web",
             "Open sonocea.com/about",
-            "Single row in settings opens about page in in-app browser — no duplicate content.",
+            "Single row in settings opens about page in in-app browser - no duplicate content.",
             "Lowest build and maintenance cost.",
             "Offline shows cached paragraph only.",
             "ks-about-web",
@@ -1078,9 +1078,9 @@ export const KEY_SCREEN_TIERS = [
             "D",
             "Team voices",
             "Founder · scientist quote",
-            "Founder quote and lead scientist card — humanises brand.",
+            "Founder quote and lead scientist card - humanises brand.",
             "Premium brand building.",
-            "Photos optional — quote max 2 sentences.",
+            "Photos optional - quote max 2 sentences.",
             "ks-about-team",
           ),
           c(
@@ -1098,7 +1098,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "science-library",
         "Science Library",
-        "In-app science CMS — articles, topics, and citations for listeners and visitors.",
+        "In-app science CMS - articles, topics, and citations for listeners and visitors.",
         "science-support",
         [
           c(
@@ -1108,7 +1108,7 @@ export const KEY_SCREEN_TIERS = [
             "Cards · read time · topic",
             "Topic cards with read time and category. Same CMS as public science overview.",
             "Reuse across public and provisioned Learn tab.",
-            "Keep article count bounded — curate topics.",
+            "Keep article count bounded - curate topics.",
             "science-support",
           ),
           c(
@@ -1126,7 +1126,7 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Search science",
             "Search · filters · results",
-            "Search bar with topic filters — results list.",
+            "Search bar with topic filters - results list.",
             "Large article libraries in later phases.",
             "Search is v2 unless article count exceeds 20.",
             "ks-science-search",
@@ -1136,9 +1136,9 @@ export const KEY_SCREEN_TIERS = [
             "D",
             "Audio articles",
             "Listen · read · 5 min",
-            "Articles with optional audio narration — headphone icon on cards.",
+            "Articles with optional audio narration - headphone icon on cards.",
             "Accessibility and listen-first brand.",
-            "Narration production cost — start with top 5 articles.",
+            "Narration production cost - start with top 5 articles.",
             "ks-science-audio",
           ),
           c(
@@ -1146,7 +1146,7 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Partner pack",
             "Curated for your org",
-            "Partner-configured article subset — Your organisation's resources header.",
+            "Partner-configured article subset - Your organisation's resources header.",
             "B2B programmes with custom science packs.",
             "Fallback to full library when no partner config.",
             "pv-topic-detail",
@@ -1156,7 +1156,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "support",
         "Support",
-        "Help listeners resolve playback, access, and account issues — self-serve first, contact when stuck.",
+        "Help listeners resolve playback, access, and account issues - self-serve first, contact when stuck.",
         "support",
         [
           c(
@@ -1165,7 +1165,7 @@ export const KEY_SCREEN_TIERS = [
             "FAQ accordion",
             "Playback · account · plan",
             "Categorised FAQs with Contact us at bottom. Top articles pinned.",
-            "Self-serve first — reduces support volume.",
+            "Self-serve first - reduces support volume.",
             "Deep link from error states into relevant articles.",
             "support",
           ),
@@ -1175,8 +1175,8 @@ export const KEY_SCREEN_TIERS = [
             "Troubleshoot wizard",
             "Can't play → headphones → network",
             "Decision tree: cannot play → check headphones → check network → contact.",
-            "Playback issues — most common support topic.",
-            "Logs attach on final step — explain what's sent.",
+            "Playback issues - most common support topic.",
+            "Logs attach on final step - explain what's sent.",
             "ks-support-wizard",
           ),
           c(
@@ -1186,7 +1186,7 @@ export const KEY_SCREEN_TIERS = [
             "Access issue? · partner first",
             "Is this about access from your organisation? Partner contact card first, Sonocea technical second.",
             "B2B entitlement clarity.",
-            "Partner contact from CMS — seat ID copy button.",
+            "Partner contact from CMS - seat ID copy button.",
             "ks-support-partner",
           ),
           c(
@@ -1196,7 +1196,7 @@ export const KEY_SCREEN_TIERS = [
             "What happened? · submit",
             "Single form: what happened plus optional screenshot. Auto-include diagnostics.",
             "Fastest v1 ship.",
-            "No FAQ — higher ticket volume.",
+            "No FAQ - higher ticket volume.",
             "ks-support-form",
           ),
           c(
@@ -1204,7 +1204,7 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Contextual help",
             "Help icon per screen",
-            "No support tab — help icon on player, login, and profile opens contextual sheet.",
+            "No support tab - help icon on player, login, and profile opens contextual sheet.",
             "Minimal three-tab navigation models.",
             "Profile must aggregate all help entry points.",
             "ks-support-contextual",
@@ -1214,7 +1214,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "settings",
         "Settings",
-        "App preferences — notifications, audio, downloads, and legal links.",
+        "App preferences - notifications, audio, downloads, and legal links.",
         "settings",
         [
           c(
@@ -1224,7 +1224,7 @@ export const KEY_SCREEN_TIERS = [
             "Account · listening · notifications",
             "iOS-style inset grouped table with chevron rows. Destructive sign out at bottom.",
             "Familiar, fast to build, accessible.",
-            "Drill-down depth — keep max 2 levels.",
+            "Drill-down depth - keep max 2 levels.",
             "settings",
           ),
           c(
@@ -1232,7 +1232,7 @@ export const KEY_SCREEN_TIERS = [
             "B",
             "Toggle hub",
             "All toggles · one screen",
-            "Single screen with notification, cellular download, and haptics toggles — no drill-down.",
+            "Single screen with notification, cellular download, and haptics toggles - no drill-down.",
             "Player-first IA with minimal maintenance.",
             "Advanced settings link to web FAQ for edge cases.",
             "ks-settings-toggle",
@@ -1242,9 +1242,9 @@ export const KEY_SCREEN_TIERS = [
             "C",
             "Search settings",
             "Search · quick jump",
-            "Search bar filters settings rows — quick jump on long lists.",
+            "Search bar filters settings rows - quick jump on long lists.",
             "Future-proofing as settings grow.",
-            "Overkill for v1 toggle count — defer.",
+            "Overkill for v1 toggle count - defer.",
             "ks-settings-search",
           ),
           c(
@@ -1254,7 +1254,7 @@ export const KEY_SCREEN_TIERS = [
             "Playback · quality · downloads",
             "Settings centres audio: quality, download over cellular, sleep timer default.",
             "Listeners who care about playback quality.",
-            "Most listeners never open settings — don't block core flows.",
+            "Most listeners never open settings - don't block core flows.",
             "ks-settings-audio",
           ),
           c(
@@ -1262,9 +1262,9 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Notification-only",
             "Sparse · notifications + legal",
-            "Only notification prefs and legal links — everything else in profile.",
+            "Only notification prefs and legal links - everything else in profile.",
             "Three-tab minimal navigation.",
-            "Hides needed audio settings — link from player overflow.",
+            "Hides needed audio settings - link from player overflow.",
             "ks-settings-notify",
           ),
         ],
@@ -1272,7 +1272,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "account",
         "Account",
-        "Identity hub — name, organisation, neurotype summary, entitlement, and sign out.",
+        "Identity hub - name, organisation, neurotype summary, entitlement, and sign out.",
         "profile",
         [
           c(
@@ -1282,7 +1282,7 @@ export const KEY_SCREEN_TIERS = [
             "Account · neurotype · partner",
             "Inset grouped list: account details, neurotype summary, provisioning partner, sign out.",
             "Familiar settings pattern.",
-            "Neurotype editable — re-runs recommendation sort only.",
+            "Neurotype editable - re-runs recommendation sort only.",
             "profile",
           ),
           c(
@@ -1292,7 +1292,7 @@ export const KEY_SCREEN_TIERS = [
             "Stats · quick actions",
             "Header with initials avatar, listening stats cards, quick actions grid.",
             "Motivational without gamification.",
-            "No leaderboards — private stats only.",
+            "No leaderboards - private stats only.",
             "ks-account-stats",
           ),
           c(
@@ -1301,7 +1301,7 @@ export const KEY_SCREEN_TIERS = [
             "Minimal account sheet",
             "Email · partner · sign out",
             "Single screen, no drill-down: email, partner, neurotype chip, notification toggle, sign out.",
-            "Player-first IA — max 6 rows visible.",
+            "Player-first IA - max 6 rows visible.",
             "Advanced settings link opens web FAQ.",
             "ks-account-minimal",
           ),
@@ -1330,7 +1330,7 @@ export const KEY_SCREEN_TIERS = [
       screen(
         "privacy-policies",
         "Privacy & Policies",
-        "Privacy policy, terms of use, licences, and data rights — plain language with legal depth available.",
+        "Privacy policy, terms of use, licences, and data rights - plain language with legal depth available.",
         "about",
         [
           c(
@@ -1350,7 +1350,7 @@ export const KEY_SCREEN_TIERS = [
             "Summary · full document",
             "Plain-language summary accordion with View full document link per policy.",
             "Listeners who won't read legalese.",
-            "Summaries need legal review — not marketing copy.",
+            "Summaries need legal review - not marketing copy.",
             "ks-privacy-summary",
           ),
           c(
@@ -1360,7 +1360,7 @@ export const KEY_SCREEN_TIERS = [
             "Download · delete account",
             "GDPR-forward: export my data and delete account requests prominent.",
             "EU and clinical data sensitivity.",
-            "Delete routes through support in v1 — set expectations.",
+            "Delete routes through support in v1 - set expectations.",
             "ks-privacy-export",
           ),
           c(
@@ -1378,9 +1378,9 @@ export const KEY_SCREEN_TIERS = [
             "E",
             "Web-only legal",
             "Opens sonocea.com/legal",
-            "All legal content on web — single row opens browser.",
+            "All legal content on web - single row opens browser.",
             "Lowest maintenance.",
-            "Offline gap — show short static summary.",
+            "Offline gap - show short static summary.",
             "ks-privacy-web",
           ),
         ],

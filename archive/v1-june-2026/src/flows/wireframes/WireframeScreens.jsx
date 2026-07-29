@@ -33,7 +33,7 @@ function ScreenSplash() {
 function ScreenLogin({ partner = false }) {
   return (
     <WireframePhone label={partner ? "Partner code entry" : "Enter invite"}>
-      <WfTag>Wireframe — login</WfTag>
+      <WfTag>Wireframe - login</WfTag>
       <div className="flex-1 px-5 pt-2">
         <h2 className="text-[18px] font-bold leading-tight">
           {partner ? "Partner code" : "Enter your invite"}
@@ -66,7 +66,7 @@ function ScreenLogin({ partner = false }) {
 function ScreenOnboarding() {
   return (
     <WireframePhone label="Science education">
-      <WfTag>Wireframe — onboarding</WfTag>
+      <WfTag>Wireframe - onboarding</WfTag>
       <div className="flex-1 px-5 pt-2">
         <div className="flex gap-1.5 pb-3">
           <div className="h-1 w-7 rounded-full bg-[#18181B]" />
@@ -97,7 +97,7 @@ function ScreenNeurotype() {
   ];
   return (
     <WireframePhone label="Neurotype questionnaire">
-      <WfTag>Wireframe — neurotype</WfTag>
+      <WfTag>Wireframe - neurotype</WfTag>
       <div className="flex-1 px-5 pt-2">
         <h2 className="text-[18px] font-bold">Your listening profile</h2>
         <p className="mt-2 text-[11px] text-[#52525B]">
@@ -133,7 +133,7 @@ function ScreenLibrary() {
   return (
     <WireframePhone label="Sessions library">
       <div className="flex items-center justify-between px-5 pt-1">
-        <WfTag>Wireframe — library</WfTag>
+        <WfTag>Wireframe - library</WfTag>
         <div className="h-7 w-7 rounded-lg border border-dashed border-[#D4D4D8] bg-[#FAFAFA]" />
       </div>
       <div className="px-5">
@@ -169,7 +169,7 @@ function ScreenFavorites() {
   return (
     <WireframePhone label="Favorites">
       <div className="px-5 pt-2">
-        <WfTag>Wireframe — favorites</WfTag>
+        <WfTag>Wireframe - favorites</WfTag>
         <h2 className="text-[18px] font-bold">Saved Sessions</h2>
       </div>
       <div className="mt-2 flex-1">
@@ -192,7 +192,7 @@ function ScreenDetail({ download = false, downloaded = false }) {
         Artwork / waveform still
       </div>
       <div className="flex-1 px-5 pt-3">
-        <WfTag>Wireframe — session detail</WfTag>
+        <WfTag>Wireframe - session detail</WfTag>
         <h2 className="text-[17px] font-bold">Arrive · settle</h2>
         <div className="mt-2 flex flex-wrap gap-1.5">
           {["14 min", "Regulation", "Your profile"].map((c) => (
@@ -202,7 +202,7 @@ function ScreenDetail({ download = false, downloaded = false }) {
           ))}
         </div>
         <p className="mt-3 text-[11px] leading-relaxed text-[#52525B]">
-          Purpose, audience fit, benefits — clinical-friendly description placeholder.
+          Purpose, audience fit, benefits - clinical-friendly description placeholder.
         </p>
         {downloaded ? (
           <p className="mt-3 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] px-3 py-2 text-[10px] font-semibold text-[#52525B]">
@@ -221,7 +221,7 @@ function ScreenDetail({ download = false, downloaded = false }) {
 function ScreenPlayer({ offline = false }) {
   return (
     <WireframePhone label={offline ? "Offline playback" : "Player"} dark>
-      <WfTag>Wireframe — player</WfTag>
+      <WfTag>Wireframe - player</WfTag>
       <div className="mx-3 mb-3 flex flex-1 flex-col rounded-[18px] bg-[#0A0A0A] p-3">
         <div className="flex items-center justify-between text-[9px] font-semibold uppercase tracking-wider text-[#A1A1AA]">
           <span>Now playing</span>
@@ -262,7 +262,7 @@ function ScreenPlayer({ offline = false }) {
 function ScreenFeedback({ app = false }) {
   return (
     <WireframePhone label={app ? "App experience feedback" : "Post-session feedback"}>
-      <WfTag>Wireframe — feedback</WfTag>
+      <WfTag>Wireframe - feedback</WfTag>
       <div className="flex-1 px-5 pt-2">
         <h2 className="text-[16px] font-bold">
           {app ? "How is the app experience?" : "How was this Session?"}
@@ -294,7 +294,7 @@ function ScreenAbout() {
     <WireframePhone label="About Sonocea">
       <div className="flex-1 px-5 pt-2">
         <div className="flex items-center justify-between">
-          <WfTag>Wireframe — about</WfTag>
+          <WfTag>Wireframe - about</WfTag>
           <span className="text-[12px] font-semibold">Done</span>
         </div>
         <div className="mt-3 h-14 w-14 rounded-2xl border-2 border-dashed border-[#D4D4D8] bg-[#E4E4E7]" />
@@ -327,7 +327,7 @@ function ScreenSupport() {
   return (
     <WireframePhone label="Support">
       <div className="flex-1 px-5 pt-2">
-        <WfTag>Wireframe — support</WfTag>
+        <WfTag>Wireframe - support</WfTag>
         <h2 className="text-[18px] font-bold">Help</h2>
         <p className="mt-2 text-[11px] leading-relaxed text-[#52525B]">
           Account access, playback, downloads, and privacy requests.
@@ -355,13 +355,13 @@ function ScreenMarketing() {
   return (
     <WireframePhone label="Public marketing (no playback)">
       <div className="flex flex-1 flex-col px-5 pt-4">
-        <WfTag>Wireframe — public</WfTag>
+        <WfTag>Wireframe - public</WfTag>
         <div className="mt-4 flex h-32 items-center justify-center rounded-2xl border-2 border-dashed border-[#D4D4D8] bg-[#F4F4F5] text-[11px] text-[#71717A]">
           Logo / video / SAT™ explain
         </div>
         <h2 className="mt-5 text-[16px] font-bold">The science of sound</h2>
         <p className="mt-2 text-[11px] leading-relaxed text-[#52525B]">
-          Education only — no Session playback until invite redemption.
+          Education only - no Session playback until invite redemption.
         </p>
       </div>
       <div className="space-y-2 px-5 pb-6">

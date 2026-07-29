@@ -37,7 +37,7 @@ export default function InteractiveDemoSection() {
             </h2>
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-ink-600">
               One structural system: contrast, density, intensity, and mode change how surfaces,
-              type, motion, and waveform read — not a different app.
+              type, motion, and waveform read - not a different app.
             </p>
             <div className="mt-10">
               <PhonePreview />

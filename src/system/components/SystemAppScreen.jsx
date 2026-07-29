@@ -1,7 +1,7 @@
 import { SystemTabBar } from "./SystemTabBar.jsx";
 
 /**
- * App chrome — Figma GTM frame (403×874 logical px).
+ * App chrome - Figma GTM frame (403×874 logical px).
  * Colour and imagery are delegated to CSS vars / child slots.
  * Primary navigation is bottom tabs only (Home · Profile).
  */

@@ -142,7 +142,7 @@ export default function PrototypePlayer() {
                 }}
               />
               <p className="mt-6 text-[12px] leading-relaxed text-ink-500">
-                Or use the phone preview to start from Get Started — tap Discover, Accept invitation, or Login.
+                Or use the phone preview to start from Get Started - tap Discover, Accept invitation, or Login.
               </p>
             </div>
 

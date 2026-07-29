@@ -1,4 +1,4 @@
-/** Directional samples — 1.5px stroke, rounded caps; matches Figma icon weight */
+/** Directional samples - 1.5px stroke, rounded caps; matches Figma icon weight */
 export function IconSound({ className = "h-5 w-5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>

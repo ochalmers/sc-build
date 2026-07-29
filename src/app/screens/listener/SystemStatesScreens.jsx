@@ -129,7 +129,7 @@ function StatePreview({ stateId }) {
   );
 }
 
-/** 12 · System States — edge-case review surface */
+/** 12 · System States - edge-case review surface */
 export function ListenerSystemStates() {
   const { role, user, onboardingComplete, neurotypeId } = useAppStore();
   const [searchParams, setSearchParams] = useSearchParams();

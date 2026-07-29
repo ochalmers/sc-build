@@ -1,5 +1,5 @@
 /**
- * Flows page content — listener-led MVP journeys (organisation-assigned model).
+ * Flows page content - listener-led MVP journeys (organisation-assigned model).
  * Every step with a screenKey maps to a wireframe preview in the storyboard.
  */
 
@@ -7,7 +7,7 @@ export const FLOWS_HERO = {
   eyebrow: "UX Review · July 2026",
   title: "Application Flows",
   intro:
-    "Invite-only, organisation-led listener journeys — from invitation through programme progress. Use the left navigation to jump between flows.",
+    "Invite-only, organisation-led listener journeys - from invitation through programme progress. Use the left navigation to jump between flows.",
 };
 
 /** MVP bottom navigation for the provisioned listener app. */
@@ -37,16 +37,18 @@ export const FLOW_SECTIONS = [
     title: "Invitation & Authentication",
     purpose: "Securely onboard invited listeners from a partner organisation.",
     audience: "listener",
-    appPath: "/app/listener/invite",
+    appPath: "/app/listener/email",
     appSteps: [
+      { label: "Invitation email", path: "/app/listener/email" },
+      { label: "App Store", path: "/app/listener/app-store" },
       { label: "Welcome", path: "/app/listener/invite" },
       { label: "Sign in", path: "/app/listener/login" },
     ],
     steps: [
       { label: "Organisation sends invitation", screenKey: "partner-invite" },
-      { label: "Invitation Email / SMS" },
-      { label: "Open Invite Link", screenKey: "pv-invitation" },
-      { label: "Accept Invitation", screenKey: "pv-invitation" },
+      { label: "Invitation email" },
+      { label: "App Store download" },
+      { label: "Welcome", screenKey: "pv-invitation" },
       { label: "Create Password / Login", screenKey: "login-create" },
       { label: "Account Verification", screenKey: "login" },
       { label: "Authentication Complete", screenKey: "auth-success" },
@@ -57,32 +59,43 @@ export const FLOW_SECTIONS = [
     id: "first-time-experience",
     number: "02",
     title: "First-Time Experience",
-    purpose: "Introduce Sonocea and explain how to get the best listening experience.",
+    purpose:
+      "Welcome → understand Sonocea → personalise (goal, moment, sensitivity, time, reminders) → appearance → prepare → invite to listen.",
     audience: "listener",
     appPath: "/app/listener/onboarding?phase=loading",
     appSteps: [
       { label: "Loading", path: "/app/listener/onboarding?phase=loading" },
-      { label: "Welcome", path: "/app/listener/onboarding?phase=welcome" },
-      { label: "What is Sonocea?", path: "/app/listener/onboarding?phase=about" },
-      { label: "Before you begin", path: "/app/listener/onboarding?phase=prep" },
-      { label: "Tell us about yourself", path: "/app/listener/onboarding?phase=identity" },
-      { label: "Support goals", path: "/app/listener/onboarding?phase=support" },
-      { label: "When you listen", path: "/app/listener/onboarding?phase=timing" },
-      { label: "Preparing", path: "/app/listener/onboarding?phase=preparing" },
+      { label: "Welcome + preferred name", path: "/app/listener/onboarding?phase=welcome" },
+      { label: "Welcome bridge", path: "/app/listener/onboarding?phase=welcome-bridge" },
+      { label: "About Sonocea", path: "/app/listener/onboarding?phase=about" },
+      { label: "Learn more about you", path: "/app/listener/onboarding?phase=personalise-intro" },
+      { label: "What they want", path: "/app/listener/onboarding?phase=outcomes" },
+      { label: "When they might use it", path: "/app/listener/onboarding?phase=context" },
+      { label: "Sensory sensitivity", path: "/app/listener/onboarding?phase=sensory" },
+      { label: "Listening time", path: "/app/listener/onboarding?phase=timing" },
+      { label: "Notifications", path: "/app/listener/onboarding?phase=notifications" },
+      { label: "Appearance", path: "/app/listener/onboarding?phase=appearance" },
+      { label: "Preparing your first session", path: "/app/listener/onboarding?phase=preparing" },
+      { label: "Ready to listen", path: "/app/listener/onboarding?phase=ready" },
     ],
     steps: [
       { label: "Opening experience", screenKey: "onboarding" },
-      { label: "Welcome to Sonocea", screenKey: "onboarding" },
-      { label: "What is Sonocea?", screenKey: "onboarding-intro" },
-      { label: "Structured Sound", screenKey: "onboarding-2" },
-      { label: "Grounded in Science", screenKey: "onboarding" },
-      { label: "Designed for Everyday Use", screenKey: "onboarding" },
-      { label: "Before you begin", screenKey: "guidance" },
-      { label: "Tell us about yourself", screenKey: "neurotype" },
-      { label: "Support goals", screenKey: "neurotype" },
-      { label: "When you listen", screenKey: "neurotype" },
-      { label: "Preparing experience", screenKey: "onboarding-complete" },
-      { label: "Go to Home", screenKey: "home" },
+      { label: "Welcome + preferred name", screenKey: "onboarding" },
+      { label: "Welcome bridge", screenKey: "onboarding" },
+      { label: "A different kind of listening", screenKey: "onboarding-intro" },
+      { label: "Designed for different moments", screenKey: "onboarding-2" },
+      { label: "Built on science", screenKey: "onboarding" },
+      { label: "Nothing to learn. Just listen.", screenKey: "onboarding" },
+      { label: "Now let’s learn more about you", screenKey: "onboarding" },
+      { label: "What they want", screenKey: "neurotype" },
+      { label: "When they might use it", screenKey: "neurotype" },
+      { label: "Sensory sensitivity", screenKey: "neurotype" },
+      { label: "Listening time", screenKey: "neurotype" },
+      { label: "Notifications", screenKey: "neurotype" },
+      { label: "Choose appearance", screenKey: "neurotype" },
+      { label: "Preparing your first session", screenKey: "onboarding-complete" },
+      { label: "Ready to listen", screenKey: "onboarding" },
+      { label: "First session or Home", screenKey: "home" },
     ],
   },
   {
@@ -95,7 +108,8 @@ export const FLOW_SECTIONS = [
     steps: [
       { label: "Home", screenKey: "home" },
       { label: "Continue Listening", screenKey: "home-continue" },
-      { label: "Assigned Sessions", screenKey: "home" },
+      { label: "Upcoming Sessions", screenKey: "home" },
+      { label: "View Programme", path: "/app/listener/programme" },
       { label: "Recommended Next Session", screenKey: "home-recommend" },
       { label: "Programme Progress", screenKey: "home-progress" },
       { label: "Recent Activity", screenKey: "home-activity" },
@@ -106,14 +120,15 @@ export const FLOW_SECTIONS = [
     id: "assigned-programme",
     number: "04",
     title: "Assigned Programme",
-    purpose: "Allow listeners to view every session assigned by their organisation.",
+    purpose: "Allow listeners to browse the full programme in list or calendar view.",
     audience: "listener",
-    appPath: "/app/listener/assigned",
+    appPath: "/app/listener/programme",
     steps: [
-      { label: "Assigned Programme", screenKey: "assigned" },
-      { label: "Current Sessions", screenKey: "assigned-current" },
-      { label: "Upcoming Sessions", screenKey: "assigned-upcoming" },
-      { label: "Completed Sessions", screenKey: "assigned-completed" },
+      { label: "Programme", path: "/app/listener/programme" },
+      { label: "List view", path: "/app/listener/programme" },
+      { label: "Calendar view", path: "/app/listener/programme" },
+      { label: "About Sonocea", path: "/app/listener/programme" },
+      { label: "Your programme", path: "/app/listener/programme" },
       { label: "Select Session", screenKey: "detail-overview" },
       { label: "Session Detail", screenKey: "detail" },
     ],
@@ -129,7 +144,9 @@ export const FLOW_SECTIONS = [
       { label: "Session Detail", screenKey: "detail" },
       { label: "Session Information", screenKey: "detail-overview" },
       { label: "Expected Benefits", screenKey: "detail-available" },
+      { label: "Tags & cues", screenKey: "detail" },
       { label: "Preparation Guidance", screenKey: "guidance" },
+      { label: "Before check-in", path: "/app/listener/check-in/ses-arrive" },
       { label: "Start Session", screenKey: "detail-available" },
       { label: "Loading", screenKey: "system-loading" },
       { label: "Player", screenKey: "player-idle" },
@@ -156,16 +173,19 @@ export const FLOW_SECTIONS = [
     id: "reflection-completion",
     number: "07",
     title: "Reflection & Completion",
-    purpose: "Capture post-session reflection and encourage continued engagement.",
+    purpose: "Capture before/after wellbeing check-ins and encourage continued engagement.",
     audience: "listener",
     appPath: "/app/listener/feedback/ses-arrive",
+    appSteps: [
+      { label: "Before check-in", path: "/app/listener/check-in/ses-arrive" },
+      { label: "After check-in", path: "/app/listener/feedback/ses-arrive" },
+    ],
     steps: [
+      { label: "Before check-in", path: "/app/listener/check-in/ses-arrive" },
       { label: "Session Complete", screenKey: "completion" },
-      { label: "Reflection", screenKey: "completion-reflection" },
-      { label: "Wellbeing Check-In", screenKey: "feedback-rating" },
+      { label: "After check-in", screenKey: "feedback-rating" },
+      { label: "Before vs after", screenKey: "feedback-submitted" },
       { label: "Optional Notes", screenKey: "feedback" },
-      { label: "Submit Reflection", screenKey: "feedback-submitted" },
-      { label: "Recommended Next Session", screenKey: "home-recommend" },
       { label: "Return Home", screenKey: "home" },
     ],
   },
@@ -173,16 +193,15 @@ export const FLOW_SECTIONS = [
     id: "progress",
     number: "08",
     title: "Progress",
-    purpose: "Show progress through the assigned programme.",
+    purpose: "Show streak, weekly listening aim, programme completion, goals, and how they felt.",
     audience: "listener",
     appPath: "/app/listener/progress",
     steps: [
       { label: "Progress", screenKey: "progress" },
-      { label: "Programme Overview", screenKey: "progress-overview" },
-      { label: "Completed Sessions", screenKey: "progress-completed" },
+      { label: "Streak & week", screenKey: "progress-overview" },
+      { label: "Your goals", screenKey: "progress-goals" },
+      { label: "How you felt", screenKey: "progress-reflections" },
       { label: "Listening History", screenKey: "progress-history" },
-      { label: "Reflections", screenKey: "progress-reflections" },
-      { label: "Programme Completion", screenKey: "progress-complete" },
     ],
   },
   {
@@ -267,3 +286,277 @@ export const FLOW_NAV_SECTIONS = FLOW_SECTIONS.map((section) => ({
   audience: section.audience,
   appPath: section.appPath,
 }));
+
+/**
+ * Combined-tab Admin setup wizard - linear desktop journey matching the
+ * create-org → create programme → invite team (SMS/email) → invitation email.
+ * All steps render inside one desktop shell at /app/admin/setup?step=
+ */
+export const ADMIN_SETUP_STEPS = [
+  { id: "login", label: "Admin sign-in", nav: null },
+  { id: "home", label: "Overview · home", nav: "overview" },
+  { id: "orgs-list", label: "Organisations", nav: "organizations" },
+  { id: "org-name", label: "Organisation · name", nav: "organizations", phase: "org", orgStep: 1 },
+  { id: "org-details", label: "Organisation · details", nav: "organizations", phase: "org", orgStep: 2 },
+  { id: "org-branding", label: "Organisation · logo", nav: "organizations", phase: "org", orgStep: 3 },
+  { id: "dashboard", label: "Organisation · ready", nav: "organizations" },
+  { id: "programme-pick", label: "Programme · choose", nav: "programmes", phase: "programme", programmeStep: 1 },
+  { id: "programme-customize", label: "Programme · customise", nav: "programmes", phase: "programme" },
+  { id: "dashboard-programme", label: "Dashboard · programme ready", nav: "overview" },
+  { id: "users-method", label: "Team · method", nav: "participants", phase: "users" },
+  { id: "users-enter", label: "Team · details", nav: "participants", phase: "users" },
+  { id: "users-review", label: "Team · select", nav: "participants", phase: "users" },
+  { id: "invite-channel", label: "Invite · channel", nav: "participants", phase: "users" },
+  { id: "invite-review", label: "Invite · confirm", nav: "participants", phase: "users" },
+  { id: "invites-sent", label: "Invites sent", nav: "participants", phase: "users" },
+  { id: "dashboard-live", label: "Dashboard · live", nav: "overview" },
+  { id: "programme-detail", label: "Programme detail", nav: "programmes" },
+  { id: "handoff", label: "Handoff to Listener", nav: null },
+];
+
+export function adminSetupPath(stepId) {
+  return `/app/admin/setup?step=${stepId}`;
+}
+
+/** @type {FlowSection[]} */
+export const ADMIN_FLOW_SECTIONS = [
+  {
+    id: "admin-sign-in",
+    number: "01",
+    title: "Admin sign-in",
+    purpose: "Sign into the Admin desktop console.",
+    audience: "admin",
+    appPath: adminSetupPath("login"),
+    steps: [{ label: "Admin login" }],
+  },
+  {
+    id: "admin-home",
+    number: "02",
+    title: "Dashboard",
+    purpose: "Platform home after sign-in - live organisations excluding Preston North End.",
+    audience: "admin",
+    appPath: adminSetupPath("home"),
+    steps: [{ label: "Overview · organisations" }],
+  },
+  {
+    id: "admin-create-org",
+    number: "03",
+    title: "Create organisation",
+    purpose: "From Organisations → Create New - name, details, and logo branding (Preston North End).",
+    audience: "admin",
+    appPath: adminSetupPath("orgs-list"),
+    appSteps: [
+      { label: "Organisations · Create New", path: adminSetupPath("orgs-list") },
+      { label: "Organisation name", path: adminSetupPath("org-name") },
+      { label: "Organisation details", path: adminSetupPath("org-details") },
+      { label: "Add logo", path: adminSetupPath("org-branding") },
+    ],
+    steps: [
+      { label: "Open Organisations and Create New" },
+      { label: "Enter organisation name" },
+      { label: "Add contact & programme details" },
+      { label: "Add logo & create" },
+    ],
+  },
+  {
+    id: "admin-dashboard",
+    number: "04",
+    title: "Programme dashboard",
+    purpose: "Empty-state dashboard for the new organisation - prompt to create a programme.",
+    audience: "admin",
+    appPath: adminSetupPath("dashboard"),
+    steps: [{ label: "Get started · create programme" }],
+  },
+  {
+    id: "admin-assign-programme",
+    number: "05",
+    title: "Create programme",
+    purpose:
+      "Choose a programme template or build a custom one - assigning it makes the sessions appear on Listener home.",
+    audience: "admin",
+    appPath: adminSetupPath("programme-pick"),
+    appSteps: [
+      { label: "Choose programme", path: adminSetupPath("programme-pick") },
+      { label: "Customise sessions", path: adminSetupPath("programme-customize") },
+    ],
+    steps: [
+      { label: "Browse or create custom" },
+      { label: "Customise session sequence" },
+    ],
+  },
+  {
+    id: "admin-programme-ready",
+    number: "06",
+    title: "Programme ready",
+    purpose: "Programme is assigned - next invite the full team.",
+    audience: "admin",
+    appPath: adminSetupPath("dashboard-programme"),
+    steps: [{ label: "Invite team members" }],
+  },
+  {
+    id: "admin-add-users",
+    number: "07",
+    title: "Choose team members",
+    purpose:
+      "Add the team (~30 people) via CSV or manual entry, mark admins, then select who to invite.",
+    audience: "admin",
+    appPath: adminSetupPath("users-method"),
+    appSteps: [
+      { label: "Choose method", path: adminSetupPath("users-method") },
+      { label: "Enter team", path: adminSetupPath("users-enter") },
+      { label: "Select invitees", path: adminSetupPath("users-review") },
+    ],
+    steps: [
+      { label: "Upload CSV or add manually" },
+      { label: "Enter name, email, and mobile" },
+      { label: "Select who to invite" },
+    ],
+  },
+  {
+    id: "admin-send-invites",
+    number: "08",
+    title: "Send invites",
+    purpose: "Choose email, SMS, or both - then confirm and send.",
+    audience: "admin",
+    appPath: adminSetupPath("invite-channel"),
+    appSteps: [
+      { label: "Choose channel", path: adminSetupPath("invite-channel") },
+      { label: "Review & send", path: adminSetupPath("invite-review") },
+      { label: "Invites sent", path: adminSetupPath("invites-sent") },
+    ],
+    steps: [
+      { label: "Choose email, SMS, or both" },
+      { label: "Confirm recipients and send" },
+      { label: "Confirm delivery" },
+    ],
+  },
+  {
+    id: "admin-live",
+    number: "09",
+    title: "Live programme",
+    purpose: "Dashboard and programme detail once Post-Training Recovery is live and the team is invited.",
+    audience: "admin",
+    appPath: adminSetupPath("dashboard-live"),
+    appSteps: [
+      { label: "Dashboard · live", path: adminSetupPath("dashboard-live") },
+      { label: "Programme detail", path: adminSetupPath("programme-detail") },
+    ],
+    steps: [
+      { label: "Review live dashboard" },
+      { label: "Open programme detail" },
+    ],
+  },
+];
+
+/** Combined review rail: Admin setup wizard, then the unchanged Listener flow. */
+export const COMBINED_FLOW_SECTIONS = [
+  ...ADMIN_FLOW_SECTIONS,
+  ...FLOW_SECTIONS.map((section, index) => ({
+    ...section,
+    id: `listener-${section.id}`,
+    number: String(ADMIN_FLOW_SECTIONS.length + index + 1).padStart(2, "0"),
+  })),
+];
+
+const ANON_INVITE = "SONOCEA-RIVER";
+const anonAuthPath = (path) => `${path}?code=${encodeURIComponent(ANON_INVITE)}`;
+
+/**
+ * Anonymous / direct-access Combined flow - intentionally short:
+ * sign in → create group → send invite → listener journey.
+ */
+export const ANONYMOUS_ADMIN_FLOW_SECTIONS = [
+  {
+    id: "admin-sign-in",
+    number: "01",
+    title: "Admin sign-in",
+    purpose: "Sign into the Admin console to set up anonymous access.",
+    audience: "admin",
+    appPath: adminSetupPath("login"),
+    steps: [{ label: "Admin login" }],
+  },
+  {
+    id: "admin-create-group",
+    number: "02",
+    title: "Create group",
+    purpose:
+      "Name a direct-access group - listeners join privately with no organisation co-brand.",
+    audience: "admin",
+    appPath: adminSetupPath("org-name"),
+    appSteps: [
+      { label: "Name the group", path: adminSetupPath("org-name") },
+    ],
+    steps: [
+      { label: "Name the group" },
+    ],
+  },
+  {
+    id: "admin-send-invites",
+    number: "03",
+    title: "Send invites",
+    purpose: "Add listeners and send Sonocea invites (email / SMS) with anonymous invite codes.",
+    audience: "admin",
+    appPath: adminSetupPath("users-enter"),
+    appSteps: [
+      { label: "Add listeners", path: adminSetupPath("users-enter") },
+      { label: "Choose channel", path: adminSetupPath("invite-channel") },
+      { label: "Review & send", path: adminSetupPath("invite-review") },
+      { label: "Invites sent", path: adminSetupPath("invites-sent") },
+    ],
+    steps: [
+      { label: "Add listeners to invite" },
+      { label: "Choose email or SMS" },
+      { label: "Confirm and send" },
+      { label: "Confirm delivery" },
+    ],
+  },
+];
+
+/** Listener sections for anonymous Combined - invite code baked into auth paths. */
+export const ANONYMOUS_LISTENER_FLOW_SECTIONS = FLOW_SECTIONS.map((section, index) => {
+  const base = {
+    ...section,
+    id: `listener-${section.id}`,
+    number: String(ANONYMOUS_ADMIN_FLOW_SECTIONS.length + index + 1).padStart(2, "0"),
+  };
+
+  if (section.id === "invitation-authentication") {
+    return {
+      ...base,
+      purpose: "Anonymous listener joins from a Sonocea invite - no organisation co-brand.",
+      appPath: anonAuthPath("/app/listener/email"),
+      appSteps: [
+        { label: "Invitation email", path: anonAuthPath("/app/listener/email") },
+        { label: "App Store", path: anonAuthPath("/app/listener/app-store") },
+        { label: "Welcome", path: anonAuthPath("/app/listener/invite") },
+        { label: "Sign in", path: anonAuthPath("/app/listener/login") },
+      ],
+    };
+  }
+  if (section.id === "home") {
+    return {
+      ...base,
+      purpose:
+        "Home shaped by onboarding - goals, moments, and timing drive next session and copy.",
+    };
+  }
+  if (section.id === "assigned-programme") {
+    return {
+      ...base,
+      purpose: "Browse sessions ordered around what you shared in onboarding.",
+    };
+  }
+  if (section.id === "organisation") {
+    return {
+      ...base,
+      title: "Your plan",
+      purpose: "Preference-led plan summary - no organisation page branding.",
+    };
+  }
+  return base;
+});
+
+export const ANONYMOUS_COMBINED_FLOW_SECTIONS = [
+  ...ANONYMOUS_ADMIN_FLOW_SECTIONS,
+  ...ANONYMOUS_LISTENER_FLOW_SECTIONS,
+];

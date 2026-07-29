@@ -27,7 +27,7 @@ export default function ConceptsPage() {
                 Hero explorations for the Sonocea marketing site.
               </p>
               <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink-600">
-                Seven GTM hero directions from the Figma file — image crops, layout balance, and glitch-slice
+                Seven GTM hero directions from the Figma file - image crops, layout balance, and glitch-slice
                 treatments. Use the chapter menu to jump between concepts. v06 is built live from the selected
                 Figma frame; others are reference captures for comparison.
               </p>

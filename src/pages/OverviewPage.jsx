@@ -279,7 +279,7 @@ export default function OverviewPage() {
           </div>
         </PageHero>
 
-        {/* Section 02 — Source Documents */}
+        {/* Section 02 - Source Documents */}
         <PageSection
           id="overview-documents"
           label="Source Documents"
@@ -289,17 +289,17 @@ export default function OverviewPage() {
           <DocumentCards />
         </PageSection>
 
-        {/* Section 03 — Product Overview */}
+        {/* Section 03 - Product Overview */}
         <PageSection
           id="overview-product"
           label="Product Overview"
           title="Product Overview"
-          description="How a visitor becomes a listener — and what happens after."
+          description="How a visitor becomes a listener - and what happens after."
         >
           <EcosystemDiagram />
         </PageSection>
 
-        {/* Section 04 — User Types */}
+        {/* Section 04 - User Types */}
         <PageSection
           id="overview-roles"
           label="User Types"
@@ -309,7 +309,7 @@ export default function OverviewPage() {
           <UserTypeCards />
         </PageSection>
 
-        {/* Section 05 — Current Build Focus */}
+        {/* Section 05 - Current Build Focus */}
         <PageSection
           id="overview-focus"
           label="Build Focus"
@@ -319,17 +319,17 @@ export default function OverviewPage() {
           <BuildFocusTimeline />
         </PageSection>
 
-        {/* Section 06 — Workspace Structure */}
+        {/* Section 06 - Workspace Structure */}
         <PageSection
           id="overview-workspace"
           label="Workspace"
           title="Workspace Structure"
-          description="Five sections — each with a clear purpose."
+          description="Five sections - each with a clear purpose."
         >
           <WorkspaceCards />
         </PageSection>
 
-        {/* Section 07 — What's Next */}
+        {/* Section 07 - What's Next */}
         <PageSection
           id="overview-next"
           label="Next Steps"

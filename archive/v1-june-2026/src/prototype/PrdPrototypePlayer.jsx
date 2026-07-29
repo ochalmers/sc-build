@@ -173,7 +173,7 @@ export default function PrdPrototypePlayer() {
                 </div>
 
                 <p className="text-[12px] leading-relaxed text-ink-500">
-                  Tap the buttons on each screen to advance — mirroring the PRD journeys. On the player screen,
+                  Tap the buttons on each screen to advance - mirroring the PRD journeys. On the player screen,
                   tap the controls to finish the session.
                 </p>
               </div>

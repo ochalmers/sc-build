@@ -6,11 +6,11 @@
 
 export const INSPIRATION_META = {
   title: "Design inspiration",
-  subtitle: "What we are designing — and how each reference helps",
+  subtitle: "What we are designing - and how each reference helps",
   description:
     "Organised by Sonocea v1 design tasks from the June 2026 PRDs. Each category states what we are building, maps to PRD screens, shows archived Open iOS flows where we have them, and lists cross-app examples with explicit relevance notes.",
   sourceNote:
-    "Primary local archive: Open iOS (Sep 2025 Mobbin export, 210 screens). Cross-app links open Mobbin — use Mobbin MCP in Cursor to pull more on demand.",
+    "Primary local archive: Open iOS (Sep 2025 Mobbin export, 210 screens). Cross-app links open Mobbin - use Mobbin MCP in Cursor to pull more on demand.",
 };
 
 export const INSPIRATION_NAV = [
@@ -37,14 +37,14 @@ export function openScreenUrl(index) {
   return `/inspiration/open-ios-sep-2025/Open%20ios%20Sep%202025%20${index}.png`;
 }
 
-/** Named step-by-step flows — Open iOS screen indices with labels. */
+/** Named step-by-step flows - Open iOS screen indices with labels. */
 export const OPEN_REFERENCE_FLOWS = {
   "inspiration-pv-discover": [
     {
       id: "open-headphone-prep",
       title: "Headphone & environment prep",
       summary:
-        "Pre-play checklist before audio starts — maps to Public Visitor headphone prompt and Listener session prep.",
+        "Pre-play checklist before audio starts - maps to Public Visitor headphone prompt and Listener session prep.",
       sonoceaTask: "PV-02 headphone prompt · pre-session environment cue",
       steps: [
         { index: 1, label: "Editorial splash", detail: "Full-bleed portrait sets tone" },
@@ -56,7 +56,7 @@ export const OPEN_REFERENCE_FLOWS = {
       id: "open-sample-to-home",
       title: "Daily session entry → play",
       summary:
-        "One primary session per day with clear CTA — parallel to Public Visitor 5-minute reset entry.",
+        "One primary session per day with clear CTA - parallel to Public Visitor 5-minute reset entry.",
       sonoceaTask: "PV-02 5-minute reset · Listener library home",
       steps: [
         { index: 46, label: "Today", detail: "Daily meditation hero" },
@@ -71,7 +71,7 @@ export const OPEN_REFERENCE_FLOWS = {
       id: "open-goals-education",
       title: "Goals & intent education",
       summary:
-        "Progressive intent capture with reassurance copy — model for SAT™ science education without lecture carousels.",
+        "Progressive intent capture with reassurance copy - model for SAT™ science education without lecture carousels.",
       sonoceaTask: "PV-03 science home · Listener onboarding science",
       steps: [
         { index: 16, label: "Goal intro", detail: "Why we ask" },
@@ -85,7 +85,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-brand-splash",
       title: "Brand splash → account entry",
-      summary: "Editorial hero imagery, spaced logotype, and restrained outline CTAs — premium first impression without clutter.",
+      summary: "Editorial hero imagery, spaced logotype, and restrained outline CTAs - premium first impression without clutter.",
       steps: [
         { index: 0, label: "Splash", detail: "Minimal logotype on black" },
         { index: 1, label: "Editorial splash", detail: "Full-bleed portrait photography" },
@@ -95,7 +95,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-email-signup",
       title: "Email signup path",
-      summary: "Single-field forms with underline inputs, floating next button, and inline validation — clinical calm over wizard steps.",
+      summary: "Single-field forms with underline inputs, floating next button, and inline validation - clinical calm over wizard steps.",
       steps: [
         { index: 3, label: "Enter email", detail: "Empty field state" },
         { index: 4, label: "Email validated", detail: "Checkmark + filled address" },
@@ -109,7 +109,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-profile-onboarding",
       title: "Profile setup & preferences",
-      summary: "Progressive identity capture after auth — name, username, and goal-setting without carousel overload.",
+      summary: "Progressive identity capture after auth - name, username, and goal-setting without carousel overload.",
       steps: [
         { index: 8, label: "Name", detail: "First / last name" },
         { index: 9, label: "Profile photo", detail: "Avatar selection" },
@@ -124,7 +124,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-paywall-onboarding",
       title: "Subscription & trial paywall",
-      summary: "Annual vs monthly framing, promo codes, and benefit bullets — study restraint before Listener entitlement UX.",
+      summary: "Annual vs monthly framing, promo codes, and benefit bullets - study restraint before Listener entitlement UX.",
       steps: [
         { index: 20, label: "Welcome", detail: "Begin CTA on black" },
         { index: 21, label: "Trial intro", detail: "Value proposition" },
@@ -139,7 +139,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-payment-setup",
       title: "Payment info capture",
-      summary: "Dark-surface card form with legal links — relevant for future Listener billing surfaces.",
+      summary: "Dark-surface card form with legal links - relevant for future Listener billing surfaces.",
       steps: [
         { index: 30, label: "Add payment", detail: "Card number fields" },
         { index: 31, label: "Billing details", detail: "Address capture" },
@@ -154,7 +154,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-today-home",
       title: "Today home → daily session",
-      summary: "Sound-first home with blurred hero, streak tracker, and category tabs — one primary session per day.",
+      summary: "Sound-first home with blurred hero, streak tracker, and category tabs - one primary session per day.",
       steps: [
         { index: 46, label: "Today", detail: "Daily meditation hero" },
         { index: 47, label: "Session preview", detail: "Instructor + duration" },
@@ -179,7 +179,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-filter-search",
       title: "Filter sheet → results",
-      summary: "Teacher chips, intensity filters, and result count — curated discovery without infinite scroll.",
+      summary: "Teacher chips, intensity filters, and result count - curated discovery without infinite scroll.",
       steps: [
         { index: 120, label: "Filter sheet", detail: "Breathe / Move / Meditate tabs" },
         { index: 121, label: "Search results", detail: "3 results with chips" },
@@ -194,7 +194,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-program-detail",
       title: "Program overview",
-      summary: "Hero imagery, social proof, tag chips, and start CTA — sets expectations before play.",
+      summary: "Hero imagery, social proof, tag chips, and start CTA - sets expectations before play.",
       steps: [
         { index: 130, label: "Program hero", detail: "Stress Cleanse program" },
         { index: 45, label: "Challenge summary", detail: "Daily practice stats" },
@@ -206,7 +206,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-session-detail",
       title: "Session detail & actions",
-      summary: "Download, favourite, share, and teacher row — offline and social affordances on detail.",
+      summary: "Download, favourite, share, and teacher row - offline and social affordances on detail.",
       steps: [
         { index: 47, label: "Session card", detail: "Hero + play" },
         { index: 48, label: "Metadata", detail: "Tags and description" },
@@ -236,7 +236,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-breathwork-player",
       title: "Breathwork session controls",
-      summary: "Guided breath pacing with minimal chrome — sound leads, UI recedes.",
+      summary: "Guided breath pacing with minimal chrome - sound leads, UI recedes.",
       steps: [
         { index: 60, label: "Breathwork tab", detail: "Mode switcher" },
         { index: 61, label: "Pattern select", detail: "Rhythm options" },
@@ -250,7 +250,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-goal-quiz",
       title: "Goals & experience questionnaire",
-      summary: "Multi-step intent capture with progress — model for neurotype questionnaire pacing.",
+      summary: "Multi-step intent capture with progress - model for neurotype questionnaire pacing.",
       steps: [
         { index: 16, label: "Goal intro", detail: "Why we ask" },
         { index: 17, label: "Primary goal", detail: "Single select" },
@@ -276,7 +276,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-profile-hub",
       title: "Profile hub & social",
-      summary: "Life score, offline mode, guest pass, and follower stats — sparse but premium account surface.",
+      summary: "Life score, offline mode, guest pass, and follower stats - sparse but premium account surface.",
       steps: [
         { index: 170, label: "Profile home", detail: "Stats + quick actions" },
         { index: 171, label: "Life score", detail: "Readiness radar" },
@@ -289,7 +289,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-settings",
       title: "Settings & account",
-      summary: "Sparse settings hierarchy — listeners are here to listen, not configure.",
+      summary: "Sparse settings hierarchy - listeners are here to listen, not configure.",
       steps: [
         { index: 130, label: "Settings entry", detail: "From profile" },
         { index: 131, label: "Account", detail: "Email + password" },
@@ -305,7 +305,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-credits-wallet",
       title: "Credits wallet & purchase",
-      summary: "Credit balance, single-credit purchase sheet, and cart — parallel to Partner seat pools.",
+      summary: "Credit balance, single-credit purchase sheet, and cart - parallel to Partner seat pools.",
       steps: [
         { index: 145, label: "Credit product", detail: "$36 single credit" },
         { index: 146, label: "Details expanded", detail: "Guest allowance" },
@@ -336,7 +336,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-health-integrations",
       title: "Apple Health & wearables",
-      summary: "Permission screens, device pairing, and sync status — trust-building for future health adjacency.",
+      summary: "Permission screens, device pairing, and sync status - trust-building for future health adjacency.",
       steps: [
         { index: 195, label: "Location", detail: "Place input" },
         { index: 196, label: "Health connect", detail: "Apple Health prompt" },
@@ -356,7 +356,7 @@ export const OPEN_REFERENCE_FLOWS = {
       id: "open-daily-practice",
       title: "Daily practice completion",
       summary:
-        "Streak stats, quote cards, and share/done actions — post-session reflection without gamification noise.",
+        "Streak stats, quote cards, and share/done actions - post-session reflection without gamification noise.",
       sonoceaTask: "PV-02 reflection remeasure · Listener post-session feedback",
       steps: [
         { index: 70, label: "Quote card", detail: "Daily inspiration" },
@@ -369,7 +369,7 @@ export const OPEN_REFERENCE_FLOWS = {
       id: "open-achievement-milestone",
       title: "Milestone & activity feed",
       summary:
-        "Grouped activity and achievement badges — study restraint for optional Listener progress cues.",
+        "Grouped activity and achievement badges - study restraint for optional Listener progress cues.",
       sonoceaTask: "Listener feedback · optional streak surfaces",
       steps: [
         { index: 55, label: "Notifications", detail: "Activity feed" },
@@ -383,7 +383,7 @@ export const OPEN_REFERENCE_FLOWS = {
       id: "open-challenge-program",
       title: "Challenge program & daily practice",
       summary:
-        "Assigned multi-day program with daily stats — maps to Partner-assigned Regiment / Protocol.",
+        "Assigned multi-day program with daily stats - maps to Partner-assigned Regiment / Protocol.",
       sonoceaTask: "Listener assigned Protocol · daily cadence",
       steps: [
         { index: 45, label: "Challenge summary", detail: "Daily practice stats" },
@@ -396,7 +396,7 @@ export const OPEN_REFERENCE_FLOWS = {
       id: "open-weekly-plan",
       title: "Personalized weekly plan",
       summary:
-        "Recommended plan from questionnaire answers — adaptive schedule without infinite content.",
+        "Recommended plan from questionnaire answers - adaptive schedule without infinite content.",
       sonoceaTask: "Listener Protocol view · neurotype-led plan",
       steps: [
         { index: 29, label: "Recommendations", detail: "Personalized plan" },
@@ -409,7 +409,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-dark-editorial",
       title: "Dark editorial surfaces",
-      summary: "Full-bleed photography, spaced typography, and pill CTAs — primary tonal reference for Sonocea.",
+      summary: "Full-bleed photography, spaced typography, and pill CTAs - primary tonal reference for Sonocea.",
       steps: [
         { index: 0, label: "Black splash", detail: "Logotype only" },
         { index: 1, label: "Portrait hero", detail: "Macro photography" },
@@ -425,7 +425,7 @@ export const OPEN_REFERENCE_FLOWS = {
     {
       id: "open-typography-cta",
       title: "Typography & CTA patterns",
-      summary: "Outline pills, floating arrows, and uppercase labels — reusable component vocabulary.",
+      summary: "Outline pills, floating arrows, and uppercase labels - reusable component vocabulary.",
       steps: [
         { index: 2, label: "Outline CTA", detail: "Create with Apple" },
         { index: 3, label: "Underline input", detail: "Single-field form" },

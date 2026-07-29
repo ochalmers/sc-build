@@ -264,7 +264,7 @@ export default function SiteArchitecturePage() {
           id="arch-sitemap"
           label="Sitemap"
           title="Information architecture"
-          description="Proposed top-level structure for the public marketing site. Paths are indicative — final URLs to be confirmed."
+          description="Proposed top-level structure for the public marketing site. Paths are indicative - final URLs to be confirmed."
         >
           <SitemapTree />
 

@@ -1,5 +1,5 @@
 /**
- * Typography roles — one family stack; sizes and tracking stay consistent across modes.
+ * Typography roles - one family stack; sizes and tracking stay consistent across modes.
  * (Modes may shift density/contrast; they do not swap type families.)
  *
  * App roles mirror Figma GTM Home (node 1:54800); workspace roles serve the design programme site.
@@ -47,7 +47,7 @@ export const typeRoles = {
   },
 };
 
-/** Figma GTM app — structural type scale (colour applied via CSS vars in components) */
+/** Figma GTM app - structural type scale (colour applied via CSS vars in components) */
 export const appTypeRoles = {
   eyebrow: {
     size: "0.75rem",

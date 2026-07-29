@@ -1,5 +1,5 @@
 /**
- * Primary navigation — organised around the June 2026 revised PRDs.
+ * Primary navigation - organised around the June 2026 revised PRDs.
  * Foundations (design system, marketing, site architecture) are supporting work
  * from before the programme reset; product surfaces sit at the top level.
  */
@@ -11,7 +11,7 @@ export const FOUNDATIONS_PAGES = [
   { label: "Inspiration", to: "/inspiration" },
 ];
 
-/** @deprecated Legacy routes — redirect to PRD surfaces. Kept for redirects only. */
+/** @deprecated Legacy routes - redirect to PRD surfaces. Kept for redirects only. */
 export const LEGACY_ROUTES = {
   flows: "/flows/revised",
   flowsLite: "/flows/revised",
@@ -39,7 +39,7 @@ export const PRD_HUB_LINKS = [
     label: "Public Visitor PRD",
     subtitle: "Store download · discover journey · curated sample",
     download: "/assets/prd/sonocea-prd-public-visitor-june-2026.pdf",
-    downloadLabel: "Sonocea PRD — Public Visitor (June 2026).pdf",
+    downloadLabel: "Sonocea PRD - Public Visitor (June 2026).pdf",
     flows: "/flows/revised#revised-pv-flows-golden",
     design: "/designs/prd#prd-designs-public",
   },

@@ -20,7 +20,7 @@ function TreeNode({ node, depth = 0 }) {
           <span className="w-5 shrink-0" aria-hidden />
         )}
         <span className="font-mono text-[13px] text-ink-800">{node.path}</span>
-        {node.label ? <span className="text-[12px] text-ink-500">— {node.label}</span> : null}
+        {node.label ? <span className="text-[12px] text-ink-500">- {node.label}</span> : null}
       </div>
       {hasChildren && open ? (
         <ul>

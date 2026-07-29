@@ -15,7 +15,7 @@ function DesignSystemSection() {
       <div className="max-w-2xl space-y-4">
         <p className="text-[15px] leading-relaxed text-ink-600">
           Structural styles are sourced from the Figma GTM Home screen. Colour and imagery are
-          excluded from tokens — surfaces bind via behavioural mode CSS variables.
+          excluded from tokens - surfaces bind via behavioural mode CSS variables.
         </p>
         <a
           href={`https://www.figma.com/design/${FIGMA_REFERENCE.fileKey}/Sonocea-App--GTM-?node-id=${FIGMA_REFERENCE.nodeId.replace(":", "-")}`}
@@ -23,7 +23,7 @@ function DesignSystemSection() {
           target="_blank"
           rel="noreferrer"
         >
-          Figma reference — {FIGMA_REFERENCE.screenName}
+          Figma reference - {FIGMA_REFERENCE.screenName}
         </a>
       </div>
 

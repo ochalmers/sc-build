@@ -1,4 +1,4 @@
-/** Clickable PRD prototype — screen registry and flow definitions. */
+/** Clickable PRD prototype - screen registry and flow definitions. */
 
 export const PRD_PROTOTYPE_META = {
   title: "PRD clickable prototype",
@@ -9,7 +9,7 @@ export const PRD_PROTOTYPE_FLOWS = [
   {
     id: "public-visitor",
     label: "Public Visitor",
-    description: "Discover Sonocea golden route — check-in, sample, science, register interest.",
+    description: "Discover Sonocea golden route - check-in, sample, science, register interest.",
     start: "pv-get-started",
     steps: [
       "pv-get-started",
@@ -49,7 +49,7 @@ export const PRD_PROTOTYPE_FLOWS = [
   {
     id: "listener-login",
     label: "Listener (login)",
-    description: "Direct login path — skip public discover journey.",
+    description: "Direct login path - skip public discover journey.",
     start: "pv-get-started",
     steps: [
       "pv-get-started",

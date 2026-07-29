@@ -1,13 +1,15 @@
 import { PROTOTYPE_CTA, WORKSPACE_PAGES } from "../content/workspace.js";
 
 /**
- * v2 primary navigation — five sections, no dropdowns.
+ * v2 primary navigation - five sections, no dropdowns.
  */
 
 export const MAIN_NAV = [
   { label: WORKSPACE_PAGES.overview.navLabel, to: WORKSPACE_PAGES.overview.path },
   { label: WORKSPACE_PAGES.plan.navLabel, to: WORKSPACE_PAGES.plan.path },
   { label: WORKSPACE_PAGES.flows.navLabel, to: WORKSPACE_PAGES.flows.path },
+  { label: WORKSPACE_PAGES.endToEnd.navLabel, to: WORKSPACE_PAGES.endToEnd.path },
+  { label: WORKSPACE_PAGES.appWireframes.navLabel, to: WORKSPACE_PAGES.appWireframes.path },
   { label: WORKSPACE_PAGES.design.navLabel, to: WORKSPACE_PAGES.design.path },
   { label: WORKSPACE_PAGES.keyScreens.navLabel, to: WORKSPACE_PAGES.keyScreens.path },
   { label: WORKSPACE_PAGES.copy.navLabel, to: WORKSPACE_PAGES.copy.path },

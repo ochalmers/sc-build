@@ -82,7 +82,7 @@ export default function FlowsSideNav() {
 
   return (
     <>
-      {/* Desktop sticky rail — inset to match SiteNav gutter */}
+      {/* Desktop sticky rail - inset to match SiteNav gutter */}
       <aside
         className="pointer-events-none absolute bottom-0 left-0 top-0 hidden lg:block"
         style={{ width: `calc(30px + ${FLOWS_SIDEBAR_W})` }}

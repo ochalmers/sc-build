@@ -18,14 +18,21 @@ export function PartnerHome() {
 
   return (
     <AppChrome
-      title={partner?.name ?? "Partner console"}
-      subtitle="Scoped usage and billing reconciliation. Listener management is notified through Admin — Partners do not self-serve invites in v1."
+      title={partner?.name ?? "Organization console"}
+      subtitle="Scoped usage and billing reconciliation. Invite links are generated in Admin and shared with Listeners."
+      framed={false}
       nav={
         <>
-          <ConsoleNavLink to="/app/partner" active={location.pathname === "/app/partner"}>
+          <ConsoleNavLink
+            to="/app/organization"
+            active={location.pathname === "/app/organization" || location.pathname === "/app/partner"}
+          >
             Usage
           </ConsoleNavLink>
-          <ConsoleNavLink to="/app/partner/billing" active={location.pathname.includes("billing")}>
+          <ConsoleNavLink
+            to="/app/organization/billing"
+            active={location.pathname.includes("billing")}
+          >
             Billing
           </ConsoleNavLink>
         </>
@@ -68,8 +75,12 @@ export function PartnerHome() {
           {roster.map((l) => (
             <li key={l.id} className="flex items-center justify-between gap-4 px-5 py-4">
               <div>
-                <p className="text-[14px] text-white">{l.name}</p>
-                <p className="mt-0.5 text-[12px] text-white/45">{l.email}</p>
+                <p className="text-[14px] text-white">{l.displayName || l.name}</p>
+                <p className="mt-0.5 text-[12px] text-white/45">
+                  {l.isAnonymous ? "Anonymous" : l.email}
+                  {l.onboardingComplete ? " · Onboarded" : " · Awaiting onboarding"}
+                  {l.listenTime ? ` · Prefers ${l.listenTime}` : ""}
+                </p>
               </div>
               <span className="rounded-full border border-white/15 px-2.5 py-1 text-[11px] capitalize text-white/70">
                 {l.status}
@@ -78,9 +89,9 @@ export function PartnerHome() {
           ))}
         </ul>
         <p className="mt-4 text-[13px] text-white/40">
-          To add Listeners, ask Sonocea Admin —{" "}
-          <Link to="/app/admin" className="text-white/70 underline-offset-2 hover:underline">
-            open Admin demo
+          To add Listeners, generate invite links in Admin -{" "}
+          <Link to="/app/admin/invites" className="text-white/70 underline-offset-2 hover:underline">
+            open invite links
           </Link>
           .
         </p>
@@ -102,13 +113,14 @@ export function PartnerBilling() {
   return (
     <AppChrome
       title="Billing reconciliation"
-      subtitle={`Model: ${partner?.billingModel ?? "—"}. Export is mocked for demo iteration.`}
+      subtitle={`Model: ${partner?.billingModel ?? "-"}. Organization-scoped export for this account; full multi-org exports live in Admin.`}
+      framed={false}
       nav={
         <>
-          <ConsoleNavLink to="/app/partner" active={location.pathname === "/app/partner"}>
+          <ConsoleNavLink to="/app/organization" active={false}>
             Usage
           </ConsoleNavLink>
-          <ConsoleNavLink to="/app/partner/billing" active>
+          <ConsoleNavLink to="/app/organization/billing" active>
             Billing
           </ConsoleNavLink>
         </>
@@ -138,7 +150,7 @@ export function PartnerBilling() {
           onClick={() => {
             const rows = [
               ["metric", "value"],
-              ["partner", partner?.name ?? ""],
+              ["organization", partner?.name ?? ""],
               ["model", partner?.billingModel ?? ""],
               ["seats_used", String(partner?.seatsUsed ?? "")],
               ["seats_total", String(partner?.seats ?? "")],
@@ -149,7 +161,7 @@ export function PartnerBilling() {
             const url = URL.createObjectURL(blob);
             const a = document.createElement("a");
             a.href = url;
-            a.download = `${partner?.id ?? "partner"}-usage.csv`;
+            a.download = `${partner?.id ?? "organization"}-usage.csv`;
             a.click();
             URL.revokeObjectURL(url);
           }}

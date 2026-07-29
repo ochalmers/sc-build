@@ -49,7 +49,7 @@ export default function JourneySection({
           <JourneyOverviewStrip labels={journey.overviewLabels} />
         </div>
 
-        {/* 03. Wireframe Journey — hero of the section */}
+        {/* 03. Wireframe Journey - hero of the section */}
         <div className="mt-12 rounded-3xl border border-ink-200/30 bg-[radial-gradient(ellipse_120%_80%_at_50%_0%,rgba(255,255,255,0.9),rgba(249,248,246,0.4)_60%,transparent)] px-2 py-10 md:px-4 md:py-14">
           <WireframeStoryboard steps={journey.steps} />
         </div>

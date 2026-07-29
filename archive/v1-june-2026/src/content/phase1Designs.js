@@ -35,7 +35,7 @@ import {
 import DesignSystemShowcase from "../designs/phase1/screens/system/DesignSystemShowcase.jsx";
 
 export const PHASE1_META = {
-  source: "Sonocea App — Phase 1 concept package",
+  source: "Sonocea App - Phase 1 concept package",
   frame: "Dark primary · light reference screens · wireframe admin/partner",
   figmaNode: "10:41163",
   scope: {
@@ -57,7 +57,7 @@ export const PHASE1_SECTIONS = [
     id: "listener",
     label: "Core listener",
     title: "Listener screens (01–13)",
-    description: "13 fully designed screens — dark mode primary. Each row groups variants of the same screen.",
+    description: "13 fully designed screens - dark mode primary. Each row groups variants of the same screen.",
     layout: "rows",
     rows: [
       {
@@ -213,7 +213,7 @@ export const PHASE1_SECTIONS = [
     id: "partner",
     label: "Partner",
     title: "Partner screens",
-    description: "Minimal wireframes — login, dashboard, invite, and listener list.",
+    description: "Minimal wireframes - login, dashboard, invite, and listener list.",
     layout: "rows",
     rows: [
       {
@@ -246,7 +246,7 @@ export const PHASE1_SECTIONS = [
     id: "admin",
     label: "Admin",
     title: "Admin screens",
-    description: "Wireframe-level — session management, listener management, and analytics.",
+    description: "Wireframe-level - session management, listener management, and analytics.",
     layout: "rows",
     rows: [
       {
@@ -299,7 +299,7 @@ export const PHASE1_SECTIONS = [
       {
         id: "empty-states",
         title: "Empty states",
-        purpose: "No content yet — library, favorites, or assignments.",
+        purpose: "No content yet - library, favorites, or assignments.",
         states: ["No sessions", "No favorites", "No assignments"],
         concepts: [
           concept("empty-sessions", "No sessions", "Library with no content.", LibraryScreen, { variant: "empty" }),
@@ -347,7 +347,7 @@ export const PHASE1_SECTIONS = [
     id: "themes",
     label: "Themes",
     title: "Light mode references",
-    description: "Light theme reference screens — Library, Session detail, and Player.",
+    description: "Light theme reference screens - Library, Session detail, and Player.",
     layout: "rows",
     rows: [
       {
@@ -380,11 +380,11 @@ export const PHASE1_SECTIONS = [
     description: "Onboarding → Library → Session detail → Player → Feedback.",
     layout: "flow",
     concepts: [
-      concept("flow-onboarding", "Onboarding", "Step 1 — introduction.", OnboardingIntroScreen, { step: 0 }),
-      concept("flow-library", "Library", "Step 2 — discover sessions.", LibraryScreen, { variant: "default" }),
-      concept("flow-detail", "Session detail", "Step 3 — understand session.", SessionDetailConcept, { variant: "available" }),
-      concept("flow-player", "Player", "Step 4 — listening.", PlayerConcept, { variant: "playing" }),
-      concept("flow-feedback", "Feedback", "Step 5 — post-session reflection.", FeedbackScreen, { variant: "rating" }),
+      concept("flow-onboarding", "Onboarding", "Step 1 - introduction.", OnboardingIntroScreen, { step: 0 }),
+      concept("flow-library", "Library", "Step 2 - discover sessions.", LibraryScreen, { variant: "default" }),
+      concept("flow-detail", "Session detail", "Step 3 - understand session.", SessionDetailConcept, { variant: "available" }),
+      concept("flow-player", "Player", "Step 4 - listening.", PlayerConcept, { variant: "playing" }),
+      concept("flow-feedback", "Feedback", "Step 5 - post-session reflection.", FeedbackScreen, { variant: "rating" }),
     ],
   },
 ];

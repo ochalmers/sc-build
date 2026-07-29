@@ -35,7 +35,7 @@ body{
   html{scroll-behavior:auto}
 }
 
-/* Spectral design system — ambient motion (honours reduced-motion below) */
+/* Spectral design system - ambient motion (honours reduced-motion below) */
 @keyframes spectral-breathe{
   0%,100%{opacity:.5;transform:scale(1)}
   50%{opacity:.88;transform:scale(1.04)}

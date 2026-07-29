@@ -2,13 +2,13 @@ export const SITE_ARCHITECTURE_META = {
   title: "Sonocea Marketing Website",
   subtitle: "Site architecture & information design",
   description:
-    "A working map for the public-facing website that promotes the Sonocea mobile app — explaining the science, building trust, and routing the right audiences to access without open consumer signup.",
+    "A working map for the public-facing website that promotes the Sonocea mobile app - explaining the science, building trust, and routing the right audiences to access without open consumer signup.",
   status: "Pre-reset reference · may need refresh post–June 2026 PRDs",
 };
 
 export const SITE_ARCHITECTURE_PURPOSE = {
   role:
-    "The marketing website is the primary public front door for Sonocea. It educates, builds credibility, and directs people toward the right next step — without offering Session playback or open app signup in v1.",
+    "The marketing website is the primary public front door for Sonocea. It educates, builds credibility, and directs people toward the right next step - without offering Session playback or open app signup in v1.",
   goals: [
     "Explain what Sonocea is and how Sonic Augmentation Technology™ (SAT™) works",
     "Communicate the listener experience without exposing proprietary audio",
@@ -160,14 +160,14 @@ export const SITE_ARCHITECTURE_PAGES = [
     priority: "P0",
     purpose: "Establish brand, explain the proposition at a glance, and route visitors to the right pathway.",
     sections: [
-      "Hero — vision-led headline, atmospheric visual, primary CTA",
-      "What Sonocea is — SAT™ in plain language",
-      "How it works — short three-step explainer (discover · listen · reflect)",
-      "Applications axis — Care · Regulation · Performance",
-      "App preview — device mockup or video (no playback)",
+      "Hero - vision-led headline, atmospheric visual, primary CTA",
+      "What Sonocea is - SAT™ in plain language",
+      "How it works - short three-step explainer (discover · listen · reflect)",
+      "Applications axis - Care · Regulation · Performance",
+      "App preview - device mockup or video (no playback)",
       "Social proof / credibility markers",
-      "Access pathways — invite · clinician · partner · updates",
-      "Footer — legal, contact, app store links",
+      "Access pathways - invite · clinician · partner · updates",
+      "Footer - legal, contact, app store links",
     ],
     ctas: ["Get the app", "How to get access", "Join updates"],
     notes: "GTM hero direction v06 (glitch slice) is a candidate treatment for this page.",
@@ -179,13 +179,13 @@ export const SITE_ARCHITECTURE_PAGES = [
     priority: "P0",
     purpose: "Show what the listener experience looks and feels like before download.",
     sections: [
-      "Hero — mobile-first product story",
-      "Core journeys — onboarding, library, player, feedback",
+      "Hero - mobile-first product story",
+      "Core journeys - onboarding, library, player, feedback",
       "Invite-only access model explained",
       "Neurotype-aligned recommendations overview",
       "Offline listening where permitted",
       "App store download CTAs",
-      "FAQ — access, devices, privacy basics",
+      "FAQ - access, devices, privacy basics",
     ],
     ctas: ["Download on App Store", "Download on Google Play", "I have an invite"],
   },
@@ -211,7 +211,7 @@ export const SITE_ARCHITECTURE_PAGES = [
     priority: "P1",
     purpose: "Organise use cases around the three behavioural modes.",
     sections: [
-      "Mode overview — Care · Regulation · Performance",
+      "Mode overview - Care · Regulation · Performance",
       "Example session types per mode",
       "Who each mode serves",
       "Links to mode detail pages",
@@ -226,7 +226,7 @@ export const SITE_ARCHITECTURE_PAGES = [
     purpose: "Explain the partner provisioning model and route to Partner Console or sales.",
     sections: [
       "Partner programme overview",
-      "How provisioning works — Admin → Partner → Listener",
+      "How provisioning works - Admin → Partner → Listener",
       "Partner Console capabilities (high level)",
       "Billing models overview",
       "Integration pathways (e.g. co-branded entry)",
@@ -239,13 +239,13 @@ export const SITE_ARCHITECTURE_PAGES = [
     title: "Get access",
     path: "/access",
     priority: "P0",
-    purpose: "Central routing hub for all access pathways — no open signup.",
+    purpose: "Central routing hub for all access pathways - no open signup.",
     sections: [
-      "Pathway selector — four routes",
-      "I have an invite — app download + redemption guidance",
-      "Talk to a clinician — education + enquiry form",
-      "Partner enquiry — organisation interest form",
-      "Join mailing list — email capture + confirmation",
+      "Pathway selector - four routes",
+      "I have an invite - app download + redemption guidance",
+      "Talk to a clinician - education + enquiry form",
+      "Partner enquiry - organisation interest form",
+      "Join mailing list - email capture + confirmation",
     ],
     ctas: ["Download app", "Submit enquiry", "Join mailing list"],
     notes: "Matches PRD public flows: marketing landing, clinician CTA, mailing list, partner integration.",
@@ -327,7 +327,7 @@ export const SITE_ARCHITECTURE_JOURNEYS = [
 export const SITE_ARCHITECTURE_PRINCIPLES = [
   {
     title: "Educate, don't demo audio",
-    body: "The site explains Sessions and SAT™ visually and in copy — visitors cannot stream or download proprietary audio on the web.",
+    body: "The site explains Sessions and SAT™ visually and in copy - visitors cannot stream or download proprietary audio on the web.",
   },
   {
     title: "Route, don't gatekeep confusingly",
@@ -335,7 +335,7 @@ export const SITE_ARCHITECTURE_PRINCIPLES = [
   },
   {
     title: "Premium and calm",
-    body: "Visual language should match the app — atmospheric, scientific, human. Not generic wellness or corporate SaaS.",
+    body: "Visual language should match the app - atmospheric, scientific, human. Not generic wellness or corporate SaaS.",
   },
   {
     title: "Invite-first access model",
@@ -389,10 +389,10 @@ export const SITE_ARCHITECTURE_PHASES = [
 
 export const SITE_ARCHITECTURE_OPEN_QUESTIONS = [
   "Should the marketing site be a separate domain or subdomain from Partner Console?",
-  "Which partner integration CTAs ship in v1 (e.g. Unyte) — PRD marks these WIP",
+  "Which partner integration CTAs ship in v1 (e.g. Unyte) - PRD marks these WIP",
   "App store links only, or also a lightweight invite redemption web flow?",
   "How much session artwork and sound-blend visual language appears on marketing pages?",
-  "Press kit — what assets and approvals are needed before publish?",
+  "Press kit - what assets and approvals are needed before publish?",
   "Analytics stack and consent model for the public site",
 ];
 

@@ -104,7 +104,7 @@ export const USER_STORY_GROUPS = [
     sectionId: "stories-partner",
     label: "Partner",
     intro:
-      "Authorized organizations running controlled pilots — provision Listeners, assign bundles, and export scoped billing data.",
+      "Authorized organizations running controlled pilots - provision Listeners, assign bundles, and export scoped billing data.",
     stories: [
       {
         id: "partner-provision-listeners",
@@ -150,7 +150,7 @@ export const USER_STORY_GROUPS = [
     sectionId: "stories-listener",
     label: "Listener",
     intro:
-      "Invite-only end user on mobile — redeem access, complete onboarding, and play provisioned Sessions in-app.",
+      "Invite-only end user on mobile - redeem access, complete onboarding, and play provisioned Sessions in-app.",
     stories: [
       {
         id: "listener-redeem",
@@ -219,7 +219,7 @@ export const USER_STORY_GROUPS = [
         ],
         surfaces: ["Mobile · player"],
         prdRef: "§User Stories · Listener #5 · §Playback",
-        excluded: ["Encrypted offline downloads — out of scope in PRD LITE"],
+        excluded: ["Encrypted offline downloads - out of scope in PRD LITE"],
       },
       {
         id: "listener-trust-support",
@@ -254,7 +254,7 @@ export const USER_STORY_GROUPS = [
     sectionId: "stories-guest",
     label: "Guest",
     intro:
-      "Uninvited app store visitor — education and interest capture only; no Session access.",
+      "Uninvited app store visitor - education and interest capture only; no Session access.",
     stories: [
       {
         id: "guest-learn",

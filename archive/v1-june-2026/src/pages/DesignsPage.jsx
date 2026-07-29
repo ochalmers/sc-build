@@ -11,7 +11,7 @@ function Phase1Content({ showIntro = true }) {
     <>
       {showIntro ? (
         <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-ink-600">
-        Full Phase 1 concept package — 13 listener screens (dark primary), 4 partner wireframes, admin
+        Full Phase 1 concept package - 13 listener screens (dark primary), 4 partner wireframes, admin
         management views, 12-session artwork system, state patterns, light-mode references, design system
         primitives, and the core prototype flow.
         </p>
@@ -36,7 +36,7 @@ function Phase1Content({ showIntro = true }) {
 function PhasePlaceholder({ label, isCompact = false }) {
   return (
     <p className={`max-w-2xl text-[15px] leading-relaxed text-ink-600 ${isCompact ? "mt-4" : "mt-4"}`}>
-      Placeholder — screens for this phase will be added as design work is completed.
+      Placeholder - screens for this phase will be added as design work is completed.
     </p>
   );
 }
@@ -111,7 +111,7 @@ export default function DesignsPage() {
                 {showAll
                   ? "High-fidelity design work organised in four phases. Browse all phases here, or open a single phase for a focused view."
                   : activePhase?.to === "/designs/phase-1"
-                    ? "Phase 1 concept package — listener, partner, admin, artwork, states, and prototype flow. Screens are grouped by type so variants sit side by side."
+                    ? "Phase 1 concept package - listener, partner, admin, artwork, states, and prototype flow. Screens are grouped by type so variants sit side by side."
                     : "Design screens for this phase will appear here as work is completed."}
               </p>
               {!showAll && activePhase?.to !== "/designs/phase-1" ? (

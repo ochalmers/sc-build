@@ -1,12 +1,12 @@
 /**
- * Design page content — visual language, components and screen catalogue.
+ * Design page content - visual language, components and screen catalogue.
  */
 
 export const DESIGN_HERO = {
   eyebrow: "Living Design Workspace · June 2026",
   title: "Design",
   intro:
-    "The complete visual language for Sonocea App v2.0 — canonical tokens and behavioural modes, a living component library, and every key screen with wireframes and hi-fi references.",
+    "The complete visual language for Sonocea App v2.0 - canonical tokens and behavioural modes, a living component library, and every key screen with wireframes and hi-fi references.",
   ctas: {
     primary: { label: "View Core Flows", to: "/flows" },
     secondary: { label: "View References", to: "/references" },
@@ -14,11 +14,11 @@ export const DESIGN_HERO = {
 };
 
 export const DESIGN_SYSTEM_LAYERS = [
-  { id: "typography", title: "Typography", purpose: "Aeonik editorial hierarchy — calm, readable, sound-first.", preview: "Display · Heading · Body · Caption · Mono", docLink: "#design-system", componentCount: 5, status: "in-progress" },
+  { id: "typography", title: "Typography", purpose: "Aeonik editorial hierarchy - calm, readable, sound-first.", preview: "Display · Heading · Body · Caption · Mono", docLink: "#design-system", componentCount: 5, status: "in-progress" },
   { id: "colour", title: "Colour System", purpose: "Ink and paper neutrals with restrained accent palette.", preview: "Ink · Paper · Accent clay · Indigo · Teal", docLink: "#design-system", componentCount: 12, status: "ready" },
   { id: "spacing", title: "Spacing", purpose: "4px base grid with generous editorial rhythm.", preview: "4 · 8 · 12 · 16 · 24 · 32 · 48 · 64", docLink: "#design-system", componentCount: 8, status: "ready" },
   { id: "grid", title: "Grid", purpose: "12-column responsive grid for mobile-first layouts.", preview: "Mobile 4-col · Tablet 8-col · Max content 1400px", docLink: "#design-system", componentCount: 3, status: "draft" },
-  { id: "radius", title: "Border Radius", purpose: "Rounded cards and pills — soft, premium feel.", preview: "sm 8px · md 12px · lg 16px · xl 20px · full", docLink: "#design-system", componentCount: 5, status: "ready" },
+  { id: "radius", title: "Border Radius", purpose: "Rounded cards and pills - soft, premium feel.", preview: "sm 8px · md 12px · lg 16px · xl 20px · full", docLink: "#design-system", componentCount: 5, status: "ready" },
   { id: "elevation", title: "Elevation", purpose: "Subtle depth through borders and soft shadows.", preview: "Flat · Card · Floating · Modal", docLink: "#design-system", componentCount: 4, status: "draft" },
   { id: "icons", title: "Icons", purpose: "Consistent stroke icons for navigation and controls.", preview: "24px grid · 1.5px stroke · Rounded caps", docLink: "#design-system", componentCount: 32, status: "in-progress" },
   { id: "illustrations", title: "Illustrations", purpose: "Abstract sound-wave and neural imagery.", preview: "Onboarding · Empty states · Science", docLink: "#design-system", componentCount: 6, status: "planned" },
@@ -31,8 +31,8 @@ export const COMPONENT_CATEGORIES = [
     id: "navigation",
     label: "Navigation",
     components: [
-      { id: "tab-bar", name: "Tab Bar", purpose: "Primary app navigation — Home, Profile.", variants: ["Default", "With badge"], properties: ["activeTab", "items", "onChange"], states: ["Default", "Active", "Disabled"], usageNotes: ["Fixed bottom on authenticated screens", "Two tabs only — no top logo or hamburger menu"], developerNotes: ["Safe area inset bottom required"], status: "draft" },
-      { id: "nav-header", name: "Nav Header", purpose: "Screen title with back action.", variants: ["Default", "Large title", "Modal"], properties: ["title", "showBack", "actions"], states: ["Default", "Scrolled"], usageNotes: ["Use large title on hub screens", "Not a brand bar — logo lives out of chrome"], developerNotes: ["Collapse on scroll optional"], status: "draft" },
+      { id: "tab-bar", name: "Tab Bar", purpose: "Primary app navigation - Home, Profile.", variants: ["Default", "With badge"], properties: ["activeTab", "items", "onChange"], states: ["Default", "Active", "Disabled"], usageNotes: ["Fixed bottom on authenticated screens", "Two tabs only - no top logo or hamburger menu"], developerNotes: ["Safe area inset bottom required"], status: "draft" },
+      { id: "nav-header", name: "Nav Header", purpose: "Screen title with back action.", variants: ["Default", "Large title", "Modal"], properties: ["title", "showBack", "actions"], states: ["Default", "Scrolled"], usageNotes: ["Use large title on hub screens", "Not a brand bar - logo lives out of chrome"], developerNotes: ["Collapse on scroll optional"], status: "draft" },
     ],
   },
   {
@@ -47,7 +47,8 @@ export const COMPONENT_CATEGORIES = [
     id: "inputs",
     label: "Inputs",
     components: [
-      { id: "slider", name: "Slider", purpose: "Check-in and feedback rating input.", variants: ["Single", "Labeled", "Stepped"], properties: ["min", "max", "value", "label", "onChange"], states: ["Default", "Active", "Disabled"], usageNotes: ["Used in Check-In and Feedback flows"], developerNotes: ["Persist value locally until submit"], status: "draft" },
+      { id: "slider", name: "Slider", purpose: "Continuous value input where a scale is appropriate.", variants: ["Single", "Labeled", "Stepped"], properties: ["min", "max", "value", "label", "onChange"], states: ["Default", "Active", "Disabled"], usageNotes: ["Use the stepped 1–5 feel slider for before/after settledness check-ins"], developerNotes: ["Persist value locally until submit"], status: "draft" },
+      { id: "settledness-check", name: "Settledness Check", purpose: "Five-point before/after state check-in focused on regulation, not mood.", variants: ["Before", "After"], properties: ["value", "note", "onChange", "onContinue"], states: ["Default", "Selected", "Disabled"], usageNotes: ["Same 1–5 scale before and after for like-for-like comparison", "Use the shared feel range slider, not stacked option cards"], developerNotes: ["Store 1–5 rating; optional note; default mid-scale"], status: "ready" },
       { id: "text-field", name: "Text Field", purpose: "Form input for registration and access requests.", variants: ["Default", "Password", "Multiline"], properties: ["label", "value", "error", "placeholder"], states: ["Default", "Focused", "Error", "Disabled"], usageNotes: [], developerNotes: ["Inline validation on blur"], status: "draft" },
     ],
   },
@@ -78,7 +79,7 @@ export const COMPONENT_CATEGORIES = [
     id: "player",
     label: "Player",
     components: [
-      { id: "waveform", name: "Waveform Module", purpose: "Visual audio representation during playback.", variants: ["Playing", "Paused", "Buffering", "Idle"], properties: ["amplitude", "progress", "isPlaying"], states: ["Playing", "Paused", "Buffering", "Completed"], usageNotes: ["Core brand moment — highest fidelity required"], developerNotes: ["Sync with audio engine progress", "Honour reduced motion"], status: "draft" },
+      { id: "waveform", name: "Waveform Module", purpose: "Visual audio representation during playback.", variants: ["Playing", "Paused", "Buffering", "Idle"], properties: ["amplitude", "progress", "isPlaying"], states: ["Playing", "Paused", "Buffering", "Completed"], usageNotes: ["Core brand moment - highest fidelity required"], developerNotes: ["Sync with audio engine progress", "Honour reduced motion"], status: "draft" },
       { id: "player-controls", name: "Player Controls", purpose: "Play, pause, exit and progress.", variants: ["Full", "Compact", "Lock screen"], properties: ["isPlaying", "progress", "onPlay", "onPause", "onExit"], states: ["Playing", "Paused", "Buffering", "Interrupted"], usageNotes: [], developerNotes: ["Now Playing integration"], status: "draft" },
     ],
   },
@@ -152,7 +153,7 @@ function screen(id, title, purpose, components = [], status = "draft", screenKey
     primaryActions: extras.primaryActions ?? ["Continue"],
     secondaryActions: extras.secondaryActions ?? [],
     statesRequired: extras.statesRequired ?? ["Default", "Loading"],
-    responsiveNotes: extras.responsiveNotes ?? "Mobile-first — single column layout.",
+    responsiveNotes: extras.responsiveNotes ?? "Mobile-first - single column layout.",
     accessibilityNotes: extras.accessibilityNotes ?? "VoiceOver labels on all interactive elements.",
     developerNotes: extras.developerNotes ?? ["See Flows page for behavioural spec"],
     implementationStatus: status,
@@ -167,7 +168,7 @@ export const SCREEN_CATALOGUE = [
     label: "App Entry",
     screens: [
       screen("splash", "Splash", "Brand moment on cold start.", ["Brand logo"], "ready", "splash"),
-      screen("get-started", "Get Started", "Entry decision — discover or sign in.", ["Primary Button", "Secondary Button"], "ready", "pv-get-started"),
+      screen("get-started", "Get Started", "Entry decision - discover or sign in.", ["Primary Button", "Secondary Button"], "ready", "pv-get-started"),
       screen("path-selection", "Path Selection", "Route to public visitor or authentication.", ["Info Card", "Primary Button"], "draft", "pv-discover"),
     ],
   },
@@ -199,7 +200,7 @@ export const SCREEN_CATALOGUE = [
     id: "listener",
     label: "Listener Experience",
     screens: [
-      screen("home", "Home", "Primary hub — next session and progress.", ["Session Card", "Progress Ring", "Tab Bar"], "ready", "library", {
+      screen("home", "Home", "Primary hub - next session and progress.", ["Session Card", "Progress Ring", "Tab Bar"], "ready", "library", {
         developerNotes: ["Uses library wireframe with home variant", "Highlight next session prominently"],
       }),
       screen("library", "Library", "All assigned sessions.", ["Session List", "Session Card", "Tab Bar"], "ready", "library-dark"),
@@ -209,7 +210,7 @@ export const SCREEN_CATALOGUE = [
         developerNotes: ["Sync waveform with audio engine", "Honour reduced motion"],
       }),
       screen("session-complete", "Session Complete", "Completion celebration.", ["Primary Button"], "ready", "completion"),
-      screen("feedback", "Feedback", "Post-session rating and notes.", ["Slider", "Text Field", "Primary Button"], "ready", "feedback"),
+      screen("feedback", "Feedback", "Post-session settledness check and notes.", ["Settledness Check", "Text Field", "Primary Button"], "ready", "feedback"),
     ],
   },
   {
@@ -217,10 +218,10 @@ export const SCREEN_CATALOGUE = [
     label: "Public Visitor",
     screens: [
       screen("pv-welcome", "Welcome", "Introduce curated sample experience.", ["Primary Button", "Secondary Button"], "ready", "pv-get-started"),
-      screen("check-in", "Check-In", "Baseline state capture.", ["Slider", "Primary Button"], "ready", "pv-check-in"),
+      screen("check-in", "Check-In", "Baseline settledness capture.", ["Settledness Check", "Primary Button"], "ready", "pv-check-in"),
       screen("headphones", "Headphones", "Audio setup guidance.", ["Info Card", "Primary Button"], "ready", "pv-headphones"),
       screen("public-session", "Public Session", "5-minute sample playback.", ["Waveform Module", "Player Controls"], "ready", "pv-listening"),
-      screen("reflection", "Reflection", "Post-sample mood capture.", ["Slider", "Primary Button"], "ready", "pv-reflection"),
+      screen("reflection", "Reflection", "Post-sample settledness remeasure.", ["Settledness Check", "Primary Button"], "ready", "pv-reflection"),
       screen("science", "Science", "Evidence-based explanation.", ["Info Card", "Primary Button"], "ready", "pv-science-home"),
       screen("request-access", "Request Access", "Organisational interest form.", ["Text Field", "Primary Button"], "ready", "pv-request-access"),
     ],
@@ -247,7 +248,7 @@ export const INTERACTION_STATES = [
   { id: "success", title: "Success", purpose: "Action completed.", visual: "Toast or inline confirmation.", recovery: "Auto-dismiss.", componentUsage: ["Toast"], developerNotes: [] },
   { id: "disabled", title: "Disabled", purpose: "Action unavailable.", visual: "Reduced opacity, no interaction.", recovery: "Enable when conditions met.", componentUsage: ["Primary Button", "Secondary Button"], developerNotes: [] },
   { id: "active", title: "Active", purpose: "Selected or current item.", visual: "Filled background or accent border.", recovery: "N/A", componentUsage: ["Tab Bar", "Status Tag"], developerNotes: [] },
-  { id: "focused", title: "Focused", purpose: "Keyboard or accessibility focus.", visual: "Focus ring — 2px accent.", recovery: "N/A", componentUsage: ["All interactive"], developerNotes: ["WCAG focus visible"] },
+  { id: "focused", title: "Focused", purpose: "Keyboard or accessibility focus.", visual: "Focus ring - 2px accent.", recovery: "N/A", componentUsage: ["All interactive"], developerNotes: ["WCAG focus visible"] },
   { id: "playing", title: "Playing", purpose: "Audio actively playing.", visual: "Animated waveform, pause icon.", recovery: "N/A", componentUsage: ["Waveform Module", "Player Controls"], developerNotes: [] },
   { id: "paused", title: "Paused", purpose: "Playback paused.", visual: "Static waveform, play icon.", recovery: "Tap play to resume.", componentUsage: ["Player Controls"], developerNotes: [] },
   { id: "buffering", title: "Buffering", purpose: "Stream loading.", visual: "Subtle pulse on waveform.", recovery: "Auto-resolve when buffered.", componentUsage: ["Waveform Module"], developerNotes: [] },
@@ -259,7 +260,7 @@ export const INTERACTION_STATES = [
 ];
 
 export const MOTION_PRINCIPLES = [
-  { id: "page-transitions", title: "Page Transitions", purpose: "Navigate between screens.", timing: "Enter 300ms · Exit 220ms", duration: "220–300ms", easing: "cubic-bezier(0.22, 1, 0.36, 1)", accessibility: "Respect prefers-reduced-motion — instant cut" },
+  { id: "page-transitions", title: "Page Transitions", purpose: "Navigate between screens.", timing: "Enter 300ms · Exit 220ms", duration: "220–300ms", easing: "cubic-bezier(0.22, 1, 0.36, 1)", accessibility: "Respect prefers-reduced-motion - instant cut" },
   { id: "navigation", title: "Navigation", purpose: "Tab and stack transitions.", timing: "250ms", duration: "250ms", easing: "ease-out", accessibility: "No motion on tab switch when reduced" },
   { id: "button-feedback", title: "Button Feedback", purpose: "Press confirmation.", timing: "120ms scale", duration: "120ms", easing: "ease-out", accessibility: "Opacity change only when reduced" },
   { id: "player-animation", title: "Player Animation", purpose: "Waveform and playback visualisation.", timing: "Continuous · 60fps", duration: "Session duration", easing: "Linear loop", accessibility: "Static waveform when reduced motion" },

@@ -1,5 +1,5 @@
 /**
- * Phone chrome for design previews — full-bleed content, no system header.
+ * Phone chrome for design previews - full-bleed content, no system header.
  * @param {"hifi" | "wireframe"} variant
  */
 export function DesignAppScreen({ children, className = "", variant = "hifi" }) {

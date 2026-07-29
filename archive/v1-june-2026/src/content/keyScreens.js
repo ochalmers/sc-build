@@ -1,4 +1,4 @@
-/** Key screen catalogue — Phase 3/4 wireframe scope with triple version slots. */
+/** Key screen catalogue - Phase 3/4 wireframe scope with triple version slots. */
 
 export const VERSION_LABELS = ["PRD", "PRD Lite", "Design"];
 
@@ -73,7 +73,7 @@ export const LISTENER_SCREENS = [
     id: "listening-guidance",
     num: "06",
     title: "Listening Guidance",
-    purpose: "How to get best results — headphones, environment, duration",
+    purpose: "How to get best results - headphones, environment, duration",
     variants: [
       { label: "PRD", wireframeId: "listening-guidance" },
       { label: "PRD Lite", wireframeId: "listening-guidance" },
@@ -84,7 +84,7 @@ export const LISTENER_SCREENS = [
     id: "recommended-profile",
     num: "07",
     title: "Recommended Profile",
-    purpose: 'Present outcome — "You appear to align most closely with…"',
+    purpose: 'Present outcome - "You appear to align most closely with…"',
     variants: [
       { label: "PRD", wireframeId: "recommended-profile" },
       { label: "PRD Lite", wireframeId: "recommended-profile" },
@@ -169,7 +169,7 @@ export const PARTNER_SCREENS = {
   id: "partner",
   label: "Partner",
   title: "Partner screens",
-  description: "Minimal console surfaces — invite, roster, and activation metrics.",
+  description: "Minimal console surfaces - invite, roster, and activation metrics.",
   screens: [
     {
       id: "partner-login",
@@ -279,7 +279,7 @@ export const UI_STATES = {
   id: "states",
   label: "States",
   title: "Empty · loading · error · success",
-  description: "Dedicated reference section — most important for implementation handoff.",
+  description: "Dedicated reference section - most important for implementation handoff.",
   screens: [
     {
       id: "empty-states",

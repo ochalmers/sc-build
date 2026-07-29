@@ -1,11 +1,11 @@
-/** Public Visitor flows from June 2026 PRD — with wireframe IDs for golden route and layers. */
+/** Public Visitor flows from June 2026 PRD - with wireframe IDs for golden route and layers. */
 
 export const PUBLIC_VISITOR_FLOW_GROUPS = [
   {
     id: "entry",
     sectionId: "revised-pv-flows-entry",
     label: "Entry routing",
-    description: "Layer 0 — how a store download chooses their path before authentication.",
+    description: "Layer 0 - how a store download chooses their path before authentication.",
     flows: [
       {
         id: "pv-get-started",
@@ -18,7 +18,7 @@ export const PUBLIC_VISITOR_FLOW_GROUPS = [
           {
             id: "s1",
             label: "Splash / brand intro",
-            detail: "Sonocea brand moment — routes to Get Started.",
+            detail: "Sonocea brand moment - routes to Get Started.",
             wireframeId: "splash",
           },
           {
@@ -34,20 +34,20 @@ export const PUBLIC_VISITOR_FLOW_GROUPS = [
         id: "pv-invitation-path",
         title: "Accept Invitation",
         prdScreens: "Public Visitor · §2 · FR-007",
-        summary: "Invited participant previews Sonocea, then enters sign-up flow — bypasses full public journey after auth.",
+        summary: "Invited participant previews Sonocea, then enters sign-up flow - bypasses full public journey after auth.",
         role: "invitedParticipant",
         surface: "mobile",
         steps: [
           {
             id: "s1",
             label: "Invitation intro",
-            detail: "Brief welcome — organization or Sonocea invite context.",
+            detail: "Brief welcome - organization or Sonocea invite context.",
             wireframeId: "pv-invitation",
           },
           {
             id: "s2",
             label: "Sign-up / login",
-            detail: "OAuth and invite binding — transitions to Listener onboarding.",
+            detail: "OAuth and invite binding - transitions to Listener onboarding.",
             wireframeId: "login",
             events: ["invite_accepted", "login"],
           },
@@ -65,7 +65,7 @@ export const PUBLIC_VISITOR_FLOW_GROUPS = [
           {
             id: "s2",
             label: "Member home",
-            detail: "Library or onboarding — no public sample required.",
+            detail: "Library or onboarding - no public sample required.",
             wireframeId: "library",
           },
         ],
@@ -80,7 +80,7 @@ export const PUBLIC_VISITOR_FLOW_GROUPS = [
     flows: [
       {
         id: "pv-golden-route",
-        title: "Discover Sonocea — first visit",
+        title: "Discover Sonocea - first visit",
         prdScreens: "Public Visitor · §2 Golden Route",
         summary:
           "Experience before explanation: check-in, headphones, 5-minute reset, reflection, science, register interest.",
@@ -109,7 +109,7 @@ export const PUBLIC_VISITOR_FLOW_GROUPS = [
           {
             id: "s4",
             label: "5-minute nervous system reset",
-            detail: "Single curated non-clinical listening sample — no licensed protocols.",
+            detail: "Single curated non-clinical listening sample - no licensed protocols.",
             wireframeId: "pv-listening",
             events: ["five_minute_session_started", "five_minute_session_completed"],
           },
@@ -129,7 +129,7 @@ export const PUBLIC_VISITOR_FLOW_GROUPS = [
           {
             id: "s7",
             label: "Explore the science",
-            detail: "Topic library — ANS, SAT™, Sonostasis®, use cases, research.",
+            detail: "Topic library - ANS, SAT™, Sonostasis®, use cases, research.",
             wireframeId: "pv-topic-detail",
             events: ["science_article_viewed"],
           },
@@ -148,13 +148,13 @@ export const PUBLIC_VISITOR_FLOW_GROUPS = [
     id: "returning",
     sectionId: "revised-pv-flows-returning",
     label: "Returning public visitor",
-    description: "Layer 4 — persistent navigation after first-time UX.",
+    description: "Layer 4 - persistent navigation after first-time UX.",
     flows: [
       {
         id: "pv-returning-home",
         title: "Returning Public Home",
         prdScreens: "Public Visitor · §2 Layer 4 · FR-006",
-        summary: "Daily reset, science, research, applications, our story — light auth to replay sample.",
+        summary: "Daily reset, science, research, applications, our story - light auth to replay sample.",
         role: "publicVisitor",
         surface: "mobile",
         steps: [
@@ -168,7 +168,7 @@ export const PUBLIC_VISITOR_FLOW_GROUPS = [
           {
             id: "s2",
             label: "Daily Reset",
-            detail: "Check-in + short listening — requires light authentication to replay (FR-006).",
+            detail: "Check-in + short listening - requires light authentication to replay (FR-006).",
             wireframeId: "pv-check-in",
           },
           {
@@ -185,7 +185,7 @@ export const PUBLIC_VISITOR_FLOW_GROUPS = [
     id: "errors",
     sectionId: "revised-pv-flows-errors",
     label: "Error & edge states",
-    description: "Public Visitor §9 — degraded paths that protect trust.",
+    description: "Public Visitor §9 - degraded paths that protect trust.",
     flows: [
       {
         id: "pv-offline",
@@ -203,7 +203,7 @@ export const PUBLIC_VISITOR_FLOW_GROUPS = [
         id: "pv-audio-unavailable",
         title: "Audio unavailable",
         prdScreens: "Public Visitor · §9",
-        summary: "Sample cannot load — user directed to science content or request access.",
+        summary: "Sample cannot load - user directed to science content or request access.",
         role: "publicVisitor",
         surface: "mobile",
         steps: [

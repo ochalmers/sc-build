@@ -1,14 +1,15 @@
 /**
- * Sonocea logo mark — four-quadrant symbol (wordmark is SystemBrandLogo).
+ * Sonocea logo mark - four-quadrant symbol (wordmark is SystemBrandLogo).
  * Uses currentColor so it adapts to light/dark and tab active state.
  */
-export function SystemLogoMark({ className = "h-[26px] w-auto", title }) {
+export function SystemLogoMark({ className = "h-[26px] w-auto", title, style }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 58 77"
       fill="none"
       className={className}
+      style={style}
       aria-hidden={title ? undefined : true}
       role={title ? "img" : undefined}
     >

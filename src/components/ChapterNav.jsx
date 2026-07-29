@@ -102,7 +102,7 @@ export default function ChapterNav() {
             aria-expanded={open}
             aria-controls={panelId}
             aria-haspopup="true"
-            aria-label={open ? "Close section menu" : `Open section menu — ${activeLabel}`}
+            aria-label={open ? "Close section menu" : `Open section menu - ${activeLabel}`}
           >
             <span className="flex h-8 w-8 shrink-0 items-center justify-center text-white/90">
               <ListIcon />

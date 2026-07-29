@@ -29,7 +29,7 @@ export default function ConceptSection({ concept }) {
           <div className="relative aspect-[1440/800] min-h-[min(800px,90dvh)] w-full">
             <img
               src={concept.preview}
-              alt={`${concept.title} — Figma reference`}
+              alt={`${concept.title} - Figma reference`}
               className="h-full w-full object-cover object-top"
               decoding="async"
             />

@@ -89,7 +89,7 @@ export function WelcomeScreen({ variant = "guest" }) {
 
 const INVITE_STATES = {
   empty: { value: "", message: null, state: "default" },
-  valid: { value: "SON-7K2M-9P4X", message: "Code recognised — continue to redeem.", state: "valid" },
+  valid: { value: "SON-7K2M-9P4X", message: "Code recognised - continue to redeem.", state: "valid" },
   invalid: { value: "SON-XXXX-XXXX", message: "This code isn't valid. Check and try again.", state: "invalid" },
   expired: { value: "SON-OLD1-EXP2", message: "This invite has expired. Contact your provider.", state: "expired" },
 };
@@ -123,7 +123,7 @@ export function InviteScreen({ variant = "empty", prototypeActions = {} }) {
 const ONBOARDING_STEPS = [
   {
     title: "What is Sonocea?",
-    body: "Patented sonic augmentation — structured audio Sessions designed to support regulation, recovery, and focus.",
+    body: "Patented sonic augmentation - structured audio Sessions designed to support regulation, recovery, and focus.",
   },
   {
     title: "How it works",
@@ -308,7 +308,7 @@ export function RecommendedProfileScreen({ prototypeActions = {} }) {
           You appear to align most closely with…
         </h1>
         <p className="mt-4 text-[18px] font-medium" style={{ color: "#B0C0FF" }}>
-          Regulation — Calm
+          Regulation - Calm
         </p>
         <p className="mt-3 text-[12px] leading-relaxed" style={{ color: DARK_MUTED }}>
           Sessions in this family support nervous system balance and emotional grounding.

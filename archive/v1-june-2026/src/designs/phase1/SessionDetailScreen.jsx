@@ -49,7 +49,7 @@ export default function SessionDetailScreen() {
         <p className="text-[12px] leading-[1.4] tracking-[-0.25px] text-[#DDD]">
           A sound-based session designed to regulate your nervous system and ground your state. Blending sonic
           augmentation with breath pacing and calming textures, this short experience is tailored to help you shift
-          from stress to stillness. Perfect for transitions, overwhelm, or winding down—no prior experience needed.
+          from stress to stillness. Perfect for transitions, overwhelm, or winding down-no prior experience needed.
         </p>
       </div>
       <AppTabBar active="today" variant="dark" />

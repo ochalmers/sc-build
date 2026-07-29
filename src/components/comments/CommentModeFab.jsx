@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useComments } from "../../comments/CommentStore.jsx";
 
 /**
- * Fixed comment-mode control — Figma-style toggle to place pins.
+ * Fixed comment-mode control - Figma-style toggle to place pins.
  */
 export default function CommentModeFab() {
   const {

@@ -11,7 +11,7 @@ export default function KeyScreensGrid() {
       <div className="rounded-2xl border border-ink-950/10 bg-ink-950/[0.03] px-5 py-4">
         <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-600">Key Screens Overview</p>
         <p className="mt-1 max-w-3xl text-[13px] leading-relaxed text-ink-700">
-          {allScreens.length} screens across {SCREEN_CATALOGUE.length} flow groups — each with a low-fidelity wireframe.
+          {allScreens.length} screens across {SCREEN_CATALOGUE.length} flow groups - each with a low-fidelity wireframe.
           Expand any screen below for full specs, hi-fi preview, and implementation notes.
         </p>
       </div>

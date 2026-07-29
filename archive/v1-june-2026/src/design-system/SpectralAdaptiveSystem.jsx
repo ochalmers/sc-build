@@ -139,7 +139,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
     };
   }, [spectralMode]);
 
-  /** 12-col environmental wall — static classes for Tailwind JIT */
+  /** 12-col environmental wall - static classes for Tailwind JIT */
   const ENV_WALL_CLASS = [
     "md:col-start-1 md:col-end-8 md:row-start-1 md:row-end-3",
     "md:col-start-8 md:col-end-13 md:row-start-1 md:row-end-2",
@@ -207,7 +207,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
         </div>
       </div>
 
-      {/* ——— Section 1 · Hero ——— */}
+      {/* --- Section 1 · Hero --- */}
       <section
         className="relative flex min-h-[min(92vh,920px)] flex-col justify-end overflow-hidden px-5 pb-20 pt-28 md:px-12 md:pb-28 md:pt-36"
         style={{
@@ -250,7 +250,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
           </h2>
           <p className="mt-10 max-w-[40rem] text-[clamp(1.05rem,2.2vw,1.25rem)] leading-[1.65] opacity-82">
             The Sonocea visual system explores how sound can be translated through atmosphere, diffusion and
-            adaptive spectral behaviour — creating emotionally rich environments that remain calm, accessible
+            adaptive spectral behaviour - creating emotionally rich environments that remain calm, accessible
             and regulation-focused.
           </p>
           <ul className="mt-14 flex max-w-[48rem] flex-wrap gap-x-3 gap-y-2">
@@ -270,7 +270,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
         </div>
       </section>
 
-      {/* ——— Section 2 · Strategic evolution ——— */}
+      {/* --- Section 2 · Strategic evolution --- */}
       <section
         className="px-5 py-24 md:px-12 md:py-32"
         style={{ background: spectral.surface, color: spectral.text }}
@@ -281,7 +281,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
             Why the palette evolved
           </h3>
           <p className="mt-8 max-w-[36rem] text-[15px] leading-[1.75] opacity-72">
-            A strategic shift from chromatic loudness to atmospheric discipline — the same intent for the
+            A strategic shift from chromatic loudness to atmospheric discipline - the same intent for the
             nervous system, expressed with less fatigue and more room for feeling.
           </p>
 
@@ -368,7 +368,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
         </div>
       </section>
 
-      {/* ——— Section 3 · Environmental wall ——— */}
+      {/* --- Section 3 · Environmental wall --- */}
       <section className="py-24 md:py-32" style={{ background: spectral.canvas, color: spectral.text }}>
         <div className="mx-auto max-w-[92rem] px-5 md:px-12">
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] opacity-45">03</p>
@@ -376,8 +376,8 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
             Environmental colour references
           </h3>
           <p className="mt-8 max-w-[40rem] text-[15px] leading-[1.75] opacity-72">
-            The palette is inspired by how light behaves environmentally and emotionally — refracted, submerged,
-            dusk-split — not by flat branding primaries. These are atmospheric compositions (CSS studies), not
+            The palette is inspired by how light behaves environmentally and emotionally - refracted, submerged,
+            dusk-split - not by flat branding primaries. These are atmospheric compositions (CSS studies), not
             lifestyle photography.
           </p>
         </div>
@@ -410,7 +410,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
         </div>
       </section>
 
-      {/* ——— Section 4 · Living foundations ——— */}
+      {/* --- Section 4 · Living foundations --- */}
       <section className="px-5 py-24 md:px-12 md:py-32" style={{ background: spectral.surface, color: spectral.text }}>
         <div className="mx-auto max-w-[88rem]">
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] opacity-45">04</p>
@@ -418,7 +418,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
             Foundational environments
           </h3>
           <p className="mt-8 max-w-[42rem] text-[15px] leading-[1.75] opacity-72">
-            Two anchors dominate the experience — everything else is layered atmosphere. Typography, surfaces and
+            Two anchors dominate the experience - everything else is layered atmosphere. Typography, surfaces and
             glow behave as they would in product: soft hierarchy, diffused spectral lift, no muddy neutrals.
           </p>
 
@@ -500,7 +500,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
                 Night session
               </p>
               <p className="relative mt-3 max-w-[28ch] text-[14px] leading-relaxed opacity-68">
-                Depth through bloom — sound moving through darkness, not neon UI chrome.
+                Depth through bloom - sound moving through darkness, not neon UI chrome.
               </p>
               <div className="relative mt-12 space-y-4">
                 <div
@@ -544,7 +544,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
         </div>
       </section>
 
-      {/* ——— Section 5 · Spectral behaviour (immersive, not chips) ——— */}
+      {/* --- Section 5 · Spectral behaviour (immersive, not chips) --- */}
       <section className="py-24 md:py-36" style={{ background: spectral.canvas, color: spectral.text }}>
         <div className="mx-auto max-w-[88rem] px-5 md:px-12">
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] opacity-45">05</p>
@@ -552,12 +552,12 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
             Spectral system
           </h3>
           <p className="mt-8 max-w-[40rem] text-[15px] leading-[1.75] opacity-72">
-            Accents emerge through glow, diffusion and transparency — sound-tinted atmosphere, not a row of
+            Accents emerge through glow, diffusion and transparency - sound-tinted atmosphere, not a row of
             pastel tokens.
           </p>
         </div>
 
-        {/* Neutral continuum — single immersive band */}
+        {/* Neutral continuum - single immersive band */}
         <div className="mx-auto mt-20 max-w-[100rem] px-3 md:px-8">
           <p className="mb-4 px-2 text-[10px] font-semibold uppercase tracking-[0.22em] opacity-40">Neutral continuum</p>
           <div
@@ -576,7 +576,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
           </div>
         </div>
 
-        {/* Spectral keys — full-width blurred lanes */}
+        {/* Spectral keys - full-width blurred lanes */}
         <div className="mx-auto mt-16 max-w-[100rem] space-y-4 px-3 md:mt-24 md:px-8">
           <p className="px-2 text-[10px] font-semibold uppercase tracking-[0.22em] opacity-40">Spectral keys</p>
           {spectral.spectral.map((s, i) => (
@@ -646,7 +646,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
         </div>
       </section>
 
-      {/* ——— Section 6 · Adaptive states ——— */}
+      {/* --- Section 6 · Adaptive states --- */}
       <section className="px-5 py-24 md:px-12 md:py-36" style={{ background: spectral.surface, color: spectral.text }}>
         <div className="mx-auto max-w-[92rem]">
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] opacity-45">06</p>
@@ -656,7 +656,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
             Multiple states.
           </h3>
           <p className="mt-10 max-w-[44rem] text-[15px] leading-[1.75] opacity-72">
-            Care, Regulation and Performance adapt contrast, glow, motion, density and hierarchy — they are not
+            Care, Regulation and Performance adapt contrast, glow, motion, density and hierarchy - they are not
             separate themes. The foundation stays continuous; behaviour bends.
           </p>
 
@@ -729,7 +729,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
         </div>
       </section>
 
-      {/* ——— Section 7 · Product translation ——— */}
+      {/* --- Section 7 · Product translation --- */}
       <section className="py-24 md:py-36" style={{ background: spectral.canvas, color: spectral.text }}>
         <div className="mx-auto max-w-[96rem] px-5 md:px-12">
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] opacity-45">07</p>
@@ -737,7 +737,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
             Product translation
           </h3>
           <p className="mt-8 max-w-[40rem] text-[15px] leading-[1.75] opacity-72">
-            Surfaces at real scale — where spectral behaviour proves it is not a decorative layer but the emotional
+            Surfaces at real scale - where spectral behaviour proves it is not a decorative layer but the emotional
             condition of the app.
           </p>
 
@@ -770,7 +770,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
                   Evening drift
                 </h4>
                 <p className="mt-6 max-w-[34ch] text-[16px] leading-relaxed opacity-82">
-                  Full-field gradient · peripheral bloom · waveform as sonic residue — calm enough for regulation,
+                  Full-field gradient · peripheral bloom · waveform as sonic residue - calm enough for regulation,
                   legible enough for return visits.
                 </p>
               </div>
@@ -813,7 +813,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
                   Continuity without clutter
                 </p>
                 <p className="mt-5 max-w-[36ch] text-[14px] leading-relaxed opacity-78">
-                  Cards breathe on the foundation; spectral wash signals importance — never loud tiles.
+                  Cards breathe on the foundation; spectral wash signals importance - never loud tiles.
                 </p>
               </div>
               <div className="mt-12 grid grid-cols-2 gap-4">
@@ -861,7 +861,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
                   Quiet clarity
                 </p>
                 <p className="mt-4 max-w-[32ch] text-[13px] leading-relaxed opacity-78">
-                  Trends read through rhythm and spacing — colour stays atmospheric.
+                  Trends read through rhythm and spacing - colour stays atmospheric.
                 </p>
               </div>
               <div className="mt-10 h-36 rounded-[4px]" style={{ background: "rgba(0,0,0,0.12)" }} />
@@ -879,7 +879,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
                   Sonic waveform
                 </p>
                 <p className="mt-6 max-w-[34ch] text-[14px] leading-relaxed opacity-78">
-                  Thin strokes · phase drift · colour borrowed from spectral keys — sonic, not decorative.
+                  Thin strokes · phase drift · colour borrowed from spectral keys - sonic, not decorative.
                 </p>
               </div>
               <div className="mt-10 flex h-32 items-end justify-center gap-[5px] opacity-90">
@@ -900,7 +900,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
             </div>
           </div>
 
-          {/* Breathing visualisation — full width */}
+          {/* Breathing visualisation - full width */}
           <div
             className="relative mt-10 overflow-hidden rounded-[4px] px-8 py-16 md:px-16 md:py-24"
             style={{
@@ -921,7 +921,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
                 Breathing visualisation
               </p>
               <p className="mx-auto mt-6 max-w-[36rem] text-[clamp(1.15rem,2.2vw,1.35rem)] font-medium leading-snug tracking-[-0.02em]">
-                Rings expand on a slow inhale — motion stays sub-threshold, legible as calm signal.
+                Rings expand on a slow inhale - motion stays sub-threshold, legible as calm signal.
               </p>
             </div>
             <BreathingRings spectral={spectral} reduced={reduceMotion} />
@@ -929,7 +929,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
         </div>
       </section>
 
-      {/* ——— Section 8 · Sensory accessibility ——— */}
+      {/* --- Section 8 · Sensory accessibility --- */}
       <section className="px-5 py-28 md:px-16 md:py-40" style={{ background: spectral.surface, color: spectral.text }}>
         <div className="mx-auto max-w-[46rem]">
           <p className="text-[10px] font-semibold uppercase tracking-[0.28em] opacity-45">08</p>
@@ -942,13 +942,13 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
             and softened spectral behaviour.
           </p>
           <p className="mt-8 text-[17px] leading-[1.75] opacity-78">
-            It is designed to support a wider range of sensory and emotional conditions — without claiming
+            It is designed to support a wider range of sensory and emotional conditions - without claiming
             universal coverage or treating accessibility as a checklist layer.
           </p>
         </div>
       </section>
 
-      {/* ——— Section 9 · Motion & atmosphere ——— */}
+      {/* --- Section 9 · Motion & atmosphere --- */}
       <section className="relative overflow-hidden py-28 md:py-44" style={{ background: spectral.canvas, color: spectral.text }}>
         <div className="pointer-events-none absolute inset-0 opacity-70">
           <div
@@ -967,7 +967,7 @@ export function SpectralAdaptiveSystem({ id = "ds-spectral-palette" }) {
             Motion &amp; atmosphere
           </h3>
           <p className="mt-10 text-[15px] leading-[1.8] opacity-72">
-            Subtle spectral drift, blurred waveform motion, refracted veil and ambient bloom — tuned under the
+            Subtle spectral drift, blurred waveform motion, refracted veil and ambient bloom - tuned under the
             distraction threshold. Sonic intelligence: motion implies listening conditions, not interface novelty.
             Reduced-motion settings quiet these layers.
           </p>

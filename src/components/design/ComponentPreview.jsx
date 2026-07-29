@@ -82,7 +82,7 @@ const COMPONENT_PREVIEWS = {
   "session-card": () => (
     <PreviewFrame>
       <div className="w-full max-w-[260px]">
-        <SystemSessionCard title="Regulation — Morning" />
+        <SystemSessionCard title="Regulation - Morning" />
       </div>
     </PreviewFrame>
   ),
@@ -127,7 +127,7 @@ const COMPONENT_PREVIEWS = {
         className="w-full max-w-[280px] rounded-lg border px-3 py-2 text-[12px]"
         style={{ borderColor: "var(--proto-border)", background: "var(--proto-surface)", color: "var(--proto-text)" }}
       >
-        You&apos;re offline — changes will sync when reconnected.
+        You&apos;re offline - changes will sync when reconnected.
       </div>
     </PreviewFrame>
   ),

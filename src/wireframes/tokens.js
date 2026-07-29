@@ -1,4 +1,4 @@
-/** Muted wireframe palette — aligned with site ink/paper tokens */
+/** Muted wireframe palette - aligned with site ink/paper tokens */
 export const WF = {
   bg: "#F9F8F6",
   surface: "#FFFFFF",
@@ -18,7 +18,7 @@ export const WF = {
   warning: "#8A8278",
 };
 
-/** Dark wireframe palette — same structure, no colour gradients */
+/** Dark wireframe palette - same structure, no colour gradients */
 export const WF_DARK = {
   bg: "#2E2E2C",
   surface: "#3A3A38",

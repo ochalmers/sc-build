@@ -1,5 +1,5 @@
 /**
- * Spacing scale (px). Density multipliers express behavioural mode — subtle shifts on one scale.
+ * Spacing scale (px). Density multipliers express behavioural mode - subtle shifts on one scale.
  */
 
 export const spacingPx = {
@@ -32,7 +32,7 @@ export const safeArea = {
 };
 
 /**
- * Density multipliers for layout — applied with spacing tokens, not separate grids.
+ * Density multipliers for layout - applied with spacing tokens, not separate grids.
  * Care: more open · Performance: slightly tighter
  */
 export const densityByMode = {

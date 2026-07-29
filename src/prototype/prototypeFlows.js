@@ -1,4 +1,4 @@
-/** Low-fi clickable prototype — screen registry and flow definitions. */
+/** Low-fi clickable prototype - screen registry and flow definitions. */
 
 export const PROTOTYPE_META = {
   title: "Low-fi clickable prototype",
@@ -9,7 +9,7 @@ export const PROTOTYPE_FLOWS = [
   {
     id: "public-visitor",
     label: "Public Visitor",
-    description: "Discover Sonocea — check-in, sample session, science, register interest.",
+    description: "Discover Sonocea - check-in, sample session, science, register interest.",
     start: "pv-get-started",
     steps: [
       "pv-get-started",
@@ -49,7 +49,7 @@ export const PROTOTYPE_FLOWS = [
   {
     id: "listener-login",
     label: "Listener (login)",
-    description: "Direct login path — skip public discover journey.",
+    description: "Direct login path - skip public discover journey.",
     start: "pv-get-started",
     steps: [
       "pv-get-started",

@@ -9,6 +9,15 @@
   font-display: swap;
 }
 
+/* Aeonik Pro Regular only - map medium/bold requests to 400 to avoid faux-bold. */
+@font-face{
+  font-family: "Aeonik";
+  src: url("/AeonikPro-Regular.otf") format("opentype");
+  font-weight: 500 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root{
   --paper: 247 246 243;
   --ink: 18 18 18;
@@ -36,7 +45,49 @@ body{
   html{scroll-behavior:auto}
 }
 
-/* Spectral design system — ambient motion (honours reduced-motion below) */
+/* App screen enter - 100ms fade-in on in-app page / step changes */
+@keyframes app-screen-in{
+  from{opacity:0}
+  to{opacity:1}
+}
+.app-screen-enter{
+  animation:app-screen-in 100ms linear both;
+}
+/*
+  Phone frame fill: grid row is at least the scrollport tall and grows with
+  content. Children stretch to that row so min-h-full + mt-auto CTAs work.
+*/
+.app-screen-enter--fill{
+  display:grid;
+  grid-template-rows:minmax(100%,max-content);
+  min-height:100%;
+}
+.app-screen-enter--fill > *{
+  min-height:100%;
+}
+@media (prefers-reduced-motion: reduce){
+  .app-screen-enter{
+    animation:none !important;
+    opacity:1 !important;
+  }
+}
+
+/* Feeling check-in screens - soft fade + rise */
+@keyframes feel-check-in-in{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.feel-check-in-enter{
+  animation:feel-check-in-in 520ms cubic-bezier(0.22,1,0.36,1) 40ms both;
+}
+
+@media (prefers-reduced-motion: reduce){
+  .feel-check-in-enter{
+    animation:none !important;
+  }
+}
+
+/* Spectral design system - ambient motion (honours reduced-motion below) */
 @keyframes spectral-breathe{
   0%,100%{opacity:.5;transform:scale(1)}
   50%{opacity:.88;transform:scale(1.04)}

@@ -1,13 +1,13 @@
 # Sonocea System Prototype
 
-Internal workspace: **one** brand and product system that adapts through contrast, density, and intensity — not separate themes or apps.
+Internal workspace: **one** brand and product system that adapts through contrast, density, and intensity - not separate themes or apps.
 
 ## Routes
 
 | Path | Content |
 |------|---------|
 | `/` | Interactive behavioural prototype (personas, controls, live phone mockup). |
-| `/design-system` | **Design system reference** — tokens, principles, components, assets. |
+| `/design-system` | **Design system reference** - tokens, principles, components, assets. |
 | `/system` | Redirects to `/design-system`. |
 
 ## Design system (reusable)
@@ -15,9 +15,9 @@ Internal workspace: **one** brand and product system that adapts through contras
 Canonical tokens and components live under **`src/system/`**. See **`src/system/README.md`** for a full map.
 
 - **Colours:** `src/system/tokens/colors.js` (re-exported from `src/config/basePalette.js` for older imports).
-- **Modes:** `src/system/modes.js` — Care / Regulation / Performance (transforms + documentation copy).
-- **Components:** `src/system/components/` — buttons, cards, inputs, waveform module, etc. Use with `ModeChrome` or `resolvePalette()` CSS variables.
-- **Exportable assets:** `public/assets/system/` — palette strip, waveform SVG, folder structure for imagery and icons.
+- **Modes:** `src/system/modes.js` - Care / Regulation / Performance (transforms + documentation copy).
+- **Components:** `src/system/components/` - buttons, cards, inputs, waveform module, etc. Use with `ModeChrome` or `resolvePalette()` CSS variables.
+- **Exportable assets:** `public/assets/system/` - palette strip, waveform SVG, folder structure for imagery and icons.
 
 ## Behavioural modes
 

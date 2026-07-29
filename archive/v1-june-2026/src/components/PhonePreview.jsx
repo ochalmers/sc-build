@@ -339,7 +339,7 @@ export default function PhonePreview() {
         className="max-w-md text-center text-[11px] leading-relaxed"
         style={{ color: "var(--proto-text-muted)" }}
       >
-        Same structure across modes — contrast, density, and pacing shift with behaviour.
+        Same structure across modes - contrast, density, and pacing shift with behaviour.
       </p>
     </div>
   );

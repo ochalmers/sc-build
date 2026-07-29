@@ -49,7 +49,7 @@ export default function FlowsPage() {
                 ))}
               </div>
               <p className="mt-3 text-[13px] leading-relaxed text-ink-500">
-                Invite-only, organisation-led model — Home, Profile.
+                Invite-only, organisation-led model - Home, Profile.
               </p>
             </div>
           </PageHero>

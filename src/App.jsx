@@ -9,6 +9,8 @@ import KeyScreensPage from "./pages/KeyScreensPage.jsx";
 import ReferencesPage from "./pages/ReferencesPage.jsx";
 import ProductApp from "./app/ProductApp.jsx";
 import CopyPage from "./pages/CopyPage.jsx";
+import EndToEndPage from "./pages/EndToEndPage.jsx";
+import AppWireframesPage from "./pages/AppWireframesPage.jsx";
 import { CommentProvider } from "./comments/CommentStore.jsx";
 import CommentModeFab from "./components/comments/CommentModeFab.jsx";
 
@@ -20,6 +22,8 @@ export default function App() {
         <Route path="/" element={<OverviewPage />} />
         <Route path="/plan" element={<PlanPage />} />
         <Route path="/flows" element={<FlowsPage />} />
+        <Route path="/end-to-end" element={<EndToEndPage />} />
+        <Route path="/app-wireframes" element={<AppWireframesPage />} />
         <Route path="/design" element={<DesignPage />} />
         <Route path="/key-screens" element={<KeyScreensPage />} />
         <Route path="/copy" element={<CopyPage />} />

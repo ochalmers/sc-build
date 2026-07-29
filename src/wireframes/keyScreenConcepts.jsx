@@ -38,7 +38,7 @@ import {
 } from "./primitives.jsx";
 import { getWireframePalette } from "./tokens.js";
 
-/* ——— Tier 1: Core product ——— */
+/* --- Tier 1: Core product --- */
 
 export function WfHomePlayerFirst() {
   const palette = getWireframePalette("dark");
@@ -48,7 +48,7 @@ export function WfHomePlayerFirst() {
         <WfTag>Today</WfTag>
         <WfPlaceholder size="icon" className="!h-24 !w-24" />
         <p className={`mt-4 ${WF_TYPE.titleSm}`} style={{ color: palette.text }}>
-          Arrive · settle
+          Session 1
         </p>
         <p className={WF_TYPE.bodySm} style={{ color: palette.placeholder }}>
           Resume · 05:18 left
@@ -76,9 +76,9 @@ export function WfHomeProtocol() {
         </h2>
         <div className="mt-4 space-y-2">
           {[
-            { n: "1", t: "Arrive · settle", done: true },
-            { n: "2", t: "Focus reset", done: false },
-            { n: "3", t: "Wind down", done: false },
+            { n: "1", t: "Session 1", done: true },
+            { n: "2", t: "Session 3", done: false },
+            { n: "3", t: "Session 4", done: false },
           ].map((s) => (
             <div
               key={s.n}
@@ -108,7 +108,7 @@ export function WfHomeProtocol() {
 }
 
 export function WfHomeGrid() {
-  const sessions = ["Arrive · settle", "Deep unwind", "Focus reset", "Wind down"];
+  const sessions = ["Session 1", "Session 2", "Session 3", "Session 4"];
   return (
     <WireframeScreen>
       <WfScreenHeader />
@@ -169,7 +169,7 @@ export function WfHomeLearnHub() {
             Continue
           </p>
           <p className={`mt-1 ${WF_TYPE.label}`} style={{ color: WF.text }}>
-            Arrive · settle
+            Session 1
           </p>
         </div>
         <div className="mt-3 rounded-xl border p-3" style={{ borderColor: WF.border }}>
@@ -182,8 +182,8 @@ export function WfHomeLearnHub() {
         </div>
       </div>
       <div className="mt-1 flex-1 overflow-hidden">
-        <WfListRow title="Deep unwind" meta="22 min" />
-        <WfListRow title="Focus reset" meta="18 min" />
+        <WfListRow title="Session 2" meta="22 min" />
+        <WfListRow title="Session 3" meta="18 min" />
       </div>
       <WfTabBar active="home" />
     </WireframeScreen>
@@ -200,7 +200,7 @@ export function WfLibraryCompact() {
         </h2>
       </div>
       <div className="mt-2 flex-1">
-        {["Arrive · settle · 14 min", "Deep unwind · 22 min", "Focus reset · 18 min", "Wind down · 15 min"].map(
+        {["Session 1 · 14 min", "Session 2 · 22 min", "Session 3 · 18 min", "Session 4 · 15 min"].map(
           (t) => (
             <div key={t} className="border-b px-5 py-3" style={{ borderColor: WF.border }}>
               <p className={WF_TYPE.body} style={{ color: WF.text }}>
@@ -217,8 +217,8 @@ export function WfLibraryCompact() {
 
 export function WfLibraryGrouped() {
   const groups = [
-    { label: "Morning", items: ["Arrive · settle", "Focus reset"] },
-    { label: "Evening", items: ["Deep unwind", "Wind down"] },
+    { label: "Morning", items: ["Session 1", "Session 3"] },
+    { label: "Evening", items: ["Session 2", "Session 4"] },
   ];
   return (
     <WireframeScreen>
@@ -288,7 +288,7 @@ export function WfDetailMinimal() {
           <WfPlaceholder size="sm" className="!h-16 !w-16 shrink-0" />
           <div>
             <h2 className={WF_TYPE.titleSm} style={{ color: WF.text }}>
-              Arrive · settle
+              Session 1
             </h2>
             <p className={WF_TYPE.bodySm} style={{ color: WF.textMuted }}>
               14 min · Regulation
@@ -296,7 +296,7 @@ export function WfDetailMinimal() {
           </div>
         </div>
         <p className={`mt-4 ${WF_TYPE.body}`} style={{ color: WF.textSecondary }}>
-          Brief purpose line — confirm before play.
+          Brief purpose line - confirm before play.
         </p>
       </WfScreenBody>
       <WfScreenFooter>
@@ -311,7 +311,7 @@ export function WfDetailPreview() {
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Session detail</WfTag>
-        <WfHeadline className="!px-0 mt-2" title="Arrive · settle" subtitle="Narrative introduction to this session." />
+        <WfHeadline className="!px-0 mt-2" title="Session 1" subtitle="Narrative introduction to this session." />
         <div className="mt-4 rounded-xl border p-3" style={{ borderColor: WF.border, background: WF.surfaceMuted }}>
           <p className={WF_TYPE.bodySm} style={{ color: WF.textMuted }}>
             30s preview
@@ -339,10 +339,10 @@ export function WfDetailCompare() {
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Compare</WfTag>
-        <WfHeadline className="!px-0 mt-2" title="Choose a session" subtitle="Similar sessions — pick the best fit." />
+        <WfHeadline className="!px-0 mt-2" title="Choose a session" subtitle="Similar sessions - pick the best fit." />
         <div className="mt-4 grid grid-cols-2 gap-2">
           {[
-            { t: "Arrive · settle", rec: true },
+            { t: "Session 1", rec: true },
             { t: "Gentle reset", rec: false },
           ].map((s) => (
             <div
@@ -385,7 +385,7 @@ export function WfPlayerTimer() {
           remaining
         </p>
         <p className={`mt-4 ${WF_TYPE.label}`} style={{ color: palette.text }}>
-          Arrive · settle
+          Session 1
         </p>
         <div className="mt-6">
           <WfIcon shape="controlLg" style={{ background: palette.fill, borderColor: palette.fill }} />
@@ -408,7 +408,7 @@ export function WfPlayerBreath() {
           <div className="h-20 w-20 rounded-full" style={{ background: palette.surface }} />
         </div>
         <p className={`mt-4 ${WF_TYPE.label}`} style={{ color: palette.text }}>
-          Arrive · settle
+          Session 1
         </p>
         <p className={WF_TYPE.bodySm} style={{ color: palette.placeholder }}>
           Subtle pulse · tap to toggle
@@ -454,9 +454,9 @@ export function WfPlayerMiniBrowse() {
     <WireframeScreen tone="dark">
       <WfScreenBody className="px-5 pt-4">
         <WfTag>Library</WfTag>
-        <WfListRow title="Deep unwind" meta="22 min" />
-        <WfListRow title="Focus reset" meta="18 min" />
-        <WfListRow title="Wind down" meta="15 min" />
+        <WfListRow title="Session 2" meta="22 min" />
+        <WfListRow title="Session 3" meta="18 min" />
+        <WfListRow title="Session 4" meta="15 min" />
       </WfScreenBody>
       <div
         className="mx-4 mb-2 flex items-center gap-3 rounded-full border px-3 py-2"
@@ -465,7 +465,7 @@ export function WfPlayerMiniBrowse() {
         <WfPlaceholder size="square" className="!h-8 !w-8" />
         <div className="min-w-0 flex-1">
           <p className={WF_TYPE.bodySm} style={{ color: palette.text }}>
-            Arrive · settle
+            Session 1
           </p>
           <p style={{ color: palette.placeholder, fontSize: 10 }}>
             05:18 left
@@ -506,7 +506,7 @@ export function WfCompletionProgress() {
             Next up
           </p>
           <p className={`mt-1 ${WF_TYPE.body}`} style={{ color: WF.text }}>
-            Focus reset · 18 min
+            Session 3 · 18 min
           </p>
         </div>
       </WfScreenBody>
@@ -563,7 +563,7 @@ export function WfCompletionAuto() {
   );
 }
 
-/* ——— Tier 2: Getting users in ——— */
+/* --- Tier 2: Getting users in --- */
 
 export function WfSplashPulse() {
   const palette = getWireframePalette("dark");
@@ -625,12 +625,12 @@ export function WfSplashSkip() {
           Good morning
         </h2>
         <p className={`mt-1 ${WF_TYPE.bodySm}`} style={{ color: WF.textMuted }}>
-          Returning listener — straight to home
+          Returning listener - straight to home
         </p>
       </div>
       <div className="mt-3 flex-1">
-        <WfListRow title="Arrive · settle" meta="Resume · 05:18 left" />
-        <WfListRow title="Deep unwind" meta="22 min" />
+        <WfListRow title="Session 1" meta="Resume · 05:18 left" />
+        <WfListRow title="Session 2" meta="22 min" />
       </div>
       <WfTabBar active="home" />
     </WireframeScreen>
@@ -692,7 +692,7 @@ export function WfInviteTeaser() {
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Invitation</WfTag>
         <p className={`${WF_TYPE.body}`} style={{ color: WF.textSecondary }}>
-          Structured sound sessions backed by clinical research — activate your invite below.
+          Structured sound sessions backed by clinical research - activate your invite below.
         </p>
         <div className="mt-4">
           <WfField label="Invite code" placeholder="INV-XXXX-XXXX" />
@@ -710,7 +710,7 @@ export function WfLoginMagic() {
     <WireframeScreen>
       <WfScreenBody className="px-5 pt-6">
         <WfTag>Sign in</WfTag>
-        <WfHeadline className="!px-0 mt-2" title="Email sign-in" subtitle="We'll send a secure link — no password needed." />
+        <WfHeadline className="!px-0 mt-2" title="Email sign-in" subtitle="We'll send a secure link - no password needed." />
         <div className="mt-4">
           <WfField label="Email" placeholder="you@email.com" />
         </div>
@@ -782,7 +782,7 @@ export function WfOnboardClinical() {
 
 export function WfOnboardChat() {
   const messages = [
-    { from: "guide", text: "Hi Alex — welcome to Sonocea." },
+    { from: "guide", text: "Hi Alex - welcome to Sonocea." },
     { from: "guide", text: "I'll show you how listening works in under a minute." },
   ];
   return (
@@ -919,7 +919,7 @@ export function WfGuidancePartner() {
   );
 }
 
-/* ——— Tier 3: Public experience ——— */
+/* --- Tier 3: Public experience --- */
 
 export function WfPublicSocial() {
   return (
@@ -1090,7 +1090,7 @@ export function WfSampleCaptions() {
             What you&apos;re hearing
           </p>
           <p className={WF_TYPE.bodySm} style={{ color: palette.text }}>
-            Precision-composed SAT™ supporting autonomic regulation — not binaural beats or generic relaxation.
+            Precision-composed SAT™ supporting autonomic regulation - not binaural beats or generic relaxation.
           </p>
         </div>
       </WfScreenBody>
@@ -1258,7 +1258,7 @@ export function WfAccessMailto() {
   );
 }
 
-/* ——— Tier 4: Supporting ——— */
+/* --- Tier 4: Supporting --- */
 
 export function WfAboutClinical() {
   return (
@@ -1311,7 +1311,7 @@ export function WfAboutTeam() {
             Founder
           </p>
           <p className={`mt-2 ${WF_TYPE.body}`} style={{ color: WF.textSecondary }}>
-            &ldquo;Decades of neuroscience research — from Stephen Porges to today.&rdquo;
+            &ldquo;Decades of neuroscience research - from Stephen Porges to today.&rdquo;
           </p>
         </div>
         <div className="mt-3 rounded-xl border p-4" style={{ borderColor: WF.border }}>

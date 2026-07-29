@@ -98,7 +98,7 @@ export const userStories = [
       systemResponse:
         "Efficient density, precise labels, minimal ornament, waveform reads as signal not decoration.",
       whyItMatters:
-        "The session is a tool switch, not a retreat — clarity over comfort cues.",
+        "The session is a tool switch, not a retreat - clarity over comfort cues.",
     },
   },
 ];

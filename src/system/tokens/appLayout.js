@@ -1,5 +1,5 @@
 /**
- * App layout & component geometry — extracted from Figma GTM Home (node 1:54800).
+ * App layout & component geometry - extracted from Figma GTM Home (node 1:54800).
  * Reference: https://www.figma.com/design/lmo2RrohjwEiyyZj7SEGHM/Sonocea-App--GTM-?node-id=1-54800
  *
  * Colour and imagery are intentionally omitted; bind surfaces via resolvePalette / CSS vars.

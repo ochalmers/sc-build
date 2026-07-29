@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ModeChrome } from "../../system/components/ModeChrome.jsx";
 import { IconProfile } from "../../system/components/SampleIcons.jsx";
@@ -6,20 +7,21 @@ import { appTypeClasses } from "../../system/tokens/typography.js";
 import { useAppStore } from "../context/AppStore.jsx";
 import { LISTENER_MVP_NAV } from "../../content/flows.js";
 import PinComments from "../../components/comments/PinComments.jsx";
+import { resolveAppearance } from "../utils/appearance.js";
 
-/** Fixed iPhone-class frame — content scrolls; chrome stays put. */
+/** Fixed iPhone-class frame - content scrolls; chrome stays put. */
 export const LISTENER_FRAME = { width: 390, height: 812 };
 
 const DARK_APPEARANCE = {
-  "--proto-bg": "#141312",
-  "--proto-surface": "#1c1b19",
-  "--proto-surface-elevated": "#262422",
-  "--proto-text": "#f3f2ee",
-  "--proto-text-muted": "#9a9690",
-  "--proto-accent": "#d2cdc4",
-  "--proto-accent-soft": "#7a7670",
-  "--proto-border": "#3a3834",
-  "--proto-wave": "#a8b0aa",
+  "--proto-bg": "#141414",
+  "--proto-surface": "#1c1c1c",
+  "--proto-surface-elevated": "#262626",
+  "--proto-text": "#f3f3f3",
+  "--proto-text-muted": "#9a9a9a",
+  "--proto-accent": "#d0d0d0",
+  "--proto-accent-soft": "#787878",
+  "--proto-border": "#3a3a3a",
+  "--proto-wave": "#a8a8a8",
 };
 
 const TAB_ICONS = {
@@ -29,7 +31,8 @@ const TAB_ICONS = {
 
 /**
  * Phone-framed Listener surface. Uses design-system ModeChrome for palette.
- * Primary navigation is bottom tabs only (Home · Profile) — no top logo/menu.
+ * Primary navigation is bottom tabs only (Home · Profile) - no top logo/menu.
+ * Full page fades in (100ms) on route and in-screen step changes.
  */
 export function ListenerFrame({
   mode = "regulation",
@@ -38,13 +41,24 @@ export function ListenerFrame({
   hideTabBar,
   activeTab = "home",
   onTabChange,
-  /** Edge-to-edge content (session detail / player) — no chrome padding. */
+  /** Edge-to-edge content (session detail / player) - no chrome padding. */
   bleed = false,
+  /** Extra key segment for in-screen state transitions (e.g. feedback sent). */
+  screenKey,
 }) {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
   const { appearance } = useAppStore();
-  const isDark = appearance === "dark";
+  const [clock, setClock] = useState(() => Date.now());
+
+  useEffect(() => {
+    if (appearance !== "adapt") return undefined;
+    const id = window.setInterval(() => setClock(Date.now()), 60_000);
+    return () => window.clearInterval(id);
+  }, [appearance]);
+
+  const isDark = resolveAppearance(appearance, new Date(clock)) === "dark";
+  const enterKey = `${pathname}${search}${screenKey != null ? `:${screenKey}` : ""}`;
 
   function handleTabChange(id) {
     if (onTabChange) {
@@ -58,8 +72,13 @@ export function ListenerFrame({
   return (
     <ModeChrome mode={mode} className="flex w-full justify-center">
       <PinComments scopeKey={`app:${pathname}${search}`}>
+        {/*
+          Keyed page shell - full phone fades in (~100ms) on route / step change
+          so Home → programme / session / profile / player reads as one transition.
+        */}
         <div
-          className="relative flex flex-col overflow-hidden rounded-[2rem] shadow-[0_24px_80px_rgba(18,18,18,0.18)] ring-1 ring-black/5"
+          key={enterKey}
+          className="app-screen-enter relative flex flex-col overflow-hidden rounded-[2rem] shadow-[0_24px_80px_rgba(18,18,18,0.18)] ring-1 ring-black/5"
           style={{
             width: LISTENER_FRAME.width,
             height: LISTENER_FRAME.height,
@@ -70,14 +89,37 @@ export function ListenerFrame({
           }}
         >
           <div
-            className={`relative min-h-0 flex-1 overflow-y-auto overscroll-contain ${
-              bleed ? "p-0" : "px-5 pb-4 pt-6"
+            className={`relative h-0 min-h-0 flex-1 overflow-y-auto overscroll-contain ${
+              bleed ? "p-0" : "px-4 pb-2 pt-3"
             }`}
           >
-            {children}
+            {/*
+              h-0 + flex-1 gives the scrollport a definite height so min-h-full
+              on the fill wrapper (and screen roots) can fill the phone.
+            */}
+            <div className="app-screen-enter--fill">
+              {children}
+            </div>
           </div>
 
-          {footer}
+          {footer ? (
+            <div className="relative shrink-0">
+              <div
+                className="pointer-events-none absolute inset-x-0 bottom-full h-12"
+                style={{
+                  background:
+                    "linear-gradient(to top, var(--proto-bg) 0%, color-mix(in srgb, var(--proto-bg) 70%, transparent) 55%, transparent 100%)",
+                }}
+                aria-hidden
+              />
+              <div
+                className="space-y-1 px-4 pb-5 pt-2"
+                style={{ background: "var(--proto-bg)" }}
+              >
+                {footer}
+              </div>
+            </div>
+          ) : null}
           {!hideTabBar && !footer ? (
             <ListenerTabBar activeTab={activeTab} onTabChange={handleTabChange} />
           ) : null}

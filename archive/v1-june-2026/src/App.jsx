@@ -29,7 +29,7 @@ export default function App() {
       <Route path="/prototype" element={<Navigate to="/designs/prd" replace />} />
       <Route path="/prototype/prd" element={<Navigate to="/designs/prd" replace />} />
 
-      {/* Foundations — pre-reset reference */}
+      {/* Foundations - pre-reset reference */}
       <Route path="/design-system" element={<DesignSystemPage />} />
       <Route path="/marketing" element={<MarketingCollateralPage />} />
       <Route path="/site-architecture" element={<SiteArchitecturePage />} />

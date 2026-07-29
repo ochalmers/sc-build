@@ -56,7 +56,7 @@ export default function HeroSection() {
               className="rounded-xl border border-ink-200/75 bg-white/60 px-4 py-3 text-[13px] text-ink-700"
             >
               <span className="mr-1 text-ink-400" aria-hidden>
-                —
+                -
               </span>
               <span>{line}</span>
             </li>

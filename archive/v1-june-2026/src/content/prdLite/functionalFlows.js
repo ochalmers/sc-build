@@ -1,4 +1,4 @@
-/** Functional flows derived from PRD LITE §Functional Requirements — narrative, no wireframes. */
+/** Functional flows derived from PRD LITE §Functional Requirements - narrative, no wireframes. */
 
 export const FUNCTIONAL_FLOW_GROUPS = [
   {
@@ -110,7 +110,7 @@ export const FUNCTIONAL_FLOW_GROUPS = [
       {
         id: "listener-guest-shell",
         title: "Guest discovery (no entitlement)",
-        summary: "Uninvited visitor learns about Sonocea and requests access — no playback.",
+        summary: "Uninvited visitor learns about Sonocea and requests access - no playback.",
         steps: [
           { label: "Store install", detail: "Download without invite." },
           { label: "Marketing shell", detail: "Logo, video, SAT™ education." },
@@ -139,7 +139,7 @@ export const FUNCTIONAL_FLOW_GROUPS = [
           "Signed time-limited content URLs",
           "Rapid remote revoke invalidates active streams",
         ],
-        excluded: ["Encrypted offline downloads — PRD LITE out of scope"],
+        excluded: ["Encrypted offline downloads - PRD LITE out of scope"],
       },
       {
         id: "playback-revoke",

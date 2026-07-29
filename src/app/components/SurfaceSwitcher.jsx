@@ -1,42 +1,38 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { DEMO_CREDENTIALS } from "../data/catalog.js";
 import { useAppStore } from "../context/AppStore.jsx";
+import { isCombinedStyleSurface, useReviewSurface } from "../context/SurfaceContext.jsx";
 
 const SURFACES = [
   { id: "listener", label: "Listener" },
-  { id: "partner", label: "Partner" },
   { id: "admin", label: "Admin" },
+  { id: "combined", label: "Combined" },
+  { id: "anonymous", label: "Anonymous" },
 ];
 
-function surfaceFromPath(pathname) {
-  if (pathname.startsWith("/app/partner")) return "partner";
+function surfaceFromPath(pathname, stored) {
+  // Prefer explicit Combined / Anonymous mode even while browsing listener/admin paths.
+  if (isCombinedStyleSurface(stored)) return stored;
   if (pathname.startsWith("/app/admin")) return "admin";
   return "listener";
 }
 
-/** Pill switcher — same control on Listener, Partner, and Admin. */
+/** Pill switcher - Listener, Admin, Combined (org), Anonymous (direct-access). */
 export function SurfaceSwitcher() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { loginPartner, loginAdmin, logout } = useAppStore();
-  const active = surfaceFromPath(pathname);
+  const { loginAdmin, logout } = useAppStore();
+  const { surface: storedSurface, setSurface } = useReviewSurface();
+  const active = surfaceFromPath(pathname, storedSurface);
 
   function goToSurface(next) {
     if (next === active) return;
 
-    // Navigate first so route guards never bounce us via /app → Listener mid-switch.
+    setSurface(next);
+
     if (next === "listener") {
       logout();
-      navigate("/app/listener/invite", { replace: true });
-      return;
-    }
-
-    if (next === "partner") {
-      navigate("/app/partner", { replace: true });
-      loginPartner({
-        email: DEMO_CREDENTIALS.partner.email,
-        password: DEMO_CREDENTIALS.partner.password,
-      });
+      navigate("/app/listener/email", { replace: true });
       return;
     }
 
@@ -46,6 +42,18 @@ export function SurfaceSwitcher() {
         email: DEMO_CREDENTIALS.admin.email,
         password: DEMO_CREDENTIALS.admin.password,
       });
+      return;
+    }
+
+    if (next === "combined") {
+      logout();
+      navigate("/app/admin/setup?step=login", { replace: true });
+      return;
+    }
+
+    if (next === "anonymous") {
+      logout();
+      navigate("/app/admin/setup?step=login", { replace: true });
     }
   }
 
@@ -56,7 +64,7 @@ export function SurfaceSwitcher() {
       aria-label="App surface"
     >
       {SURFACES.map((surface) => {
-        const isActive = surface.id === active;
+        const isActive = active === surface.id;
         return (
           <button
             key={surface.id}

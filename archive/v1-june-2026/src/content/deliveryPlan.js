@@ -2,7 +2,7 @@ export const DELIVERY_PLAN_META = {
   title: "Sonocea Mobile App v1.0",
   subtitle: "Four-Stage Design Delivery Plan",
   description:
-    "Design programme kicking off the week of July 7, 2026 — aligned to the June revised PRDs. Phase 1 delivers the full PRD-identified flow catalogue plus two high-fidelity concepts by July 11, with four consecutive working weeks through to prototype and handoff.",
+    "Design programme kicking off the week of July 7, 2026 - aligned to the June revised PRDs. Phase 1 delivers the full PRD-identified flow catalogue plus two high-fidelity concepts by July 11, with four consecutive working weeks through to prototype and handoff.",
   dateRange: "July 7 – August 1, 2026",
   programmeStart: "July 7, 2026",
   programmeEnd: "August 1, 2026",
@@ -39,7 +39,7 @@ export const DELIVERY_PLAN_PRODUCT_AREAS = [
     role: "Public Visitor",
     surface: "Unauthenticated app",
     summary:
-      "Store download, discover journey, 5-minute curated sample, science content, and access-request capture — before organisational verification.",
+      "Store download, discover journey, 5-minute curated sample, science content, and access-request capture - before organisational verification.",
     priority: true,
   },
   {

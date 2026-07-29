@@ -59,7 +59,7 @@ import {
   WfDesktopTable,
 } from "./webPrimitives.jsx";
 
-/* ——— Entry & splash ——— */
+/* --- Entry & splash --- */
 
 export function WfSplash() {
   return (
@@ -120,7 +120,7 @@ export function WfGetStarted({ variant = "default", prototypeActions = {} }) {
         <WfHeadline
           className="!px-0 mt-8"
           title={ENTRY.getStartedTitle}
-          subtitle={publicLanding ? "Try a curated sample — no account required." : ENTRY.getStartedSubtitle}
+          subtitle={publicLanding ? "Try a curated sample - no account required." : ENTRY.getStartedSubtitle}
         />
         {publicLanding ? (
           <div className="mt-5 space-y-2">
@@ -182,7 +182,7 @@ export function WfInvitation({ prototypeActions = {} }) {
   );
 }
 
-/* ——— Auth ——— */
+/* --- Auth --- */
 
 export function WfAccessCode({ variant = "empty", prototypeActions = {} }) {
   const states = {
@@ -196,7 +196,7 @@ export function WfAccessCode({ variant = "empty", prototypeActions = {} }) {
     valid: {
       value: "INV-7K2M-9P4X",
       state: "valid",
-      message: "Code recognised — continue to redeem.",
+      message: "Code recognised - continue to redeem.",
       title: AUTH.accessCodeTitle,
       subtitle: AUTH.accessCodeSubtitle,
     },
@@ -267,7 +267,7 @@ export function WfAuthSuccess() {
   );
 }
 
-/* ——— Public visitor ——— */
+/* --- Public visitor --- */
 
 export function WfCheckIn({ variant = "before", prototypeActions = {} }) {
   const after = variant === "after";
@@ -526,7 +526,7 @@ export function WfReturningHome() {
   );
 }
 
-/* ——— Onboarding ——— */
+/* --- Onboarding --- */
 
 export function WfOnboarding({ step = 0, variant, prototypeActions = {} }) {
   if (variant === "intro") {
@@ -731,7 +731,7 @@ export function WfOnboardingComplete() {
   );
 }
 
-/* ——— Core listening ——— */
+/* --- Core listening --- */
 
 export function WfLibrary({ variant = "home", prototypeActions = {} }) {
   if (variant === "empty" || variant === "no-assigned") {
@@ -827,10 +827,10 @@ export function WfLibrary({ variant = "home", prototypeActions = {} }) {
           </p>
         </div>
         <div className="mt-2 flex-1 overflow-hidden">
-          <WfListRow title="Arrive · settle" meta="14 min · Assigned" />
-          <WfListRow title="Deep unwind" meta="20 min · Assigned" />
+          <WfListRow title="Session 1" meta="14 min · Assigned" />
+          <WfListRow title="Session 2" meta="20 min · Assigned" />
           <WfListRow title="Gentle arrival" meta="12 min · Assigned" />
-          <WfListRow title="Wind down" meta="15 min · Assigned" />
+          <WfListRow title="Session 4" meta="15 min · Assigned" />
         </div>
         <WfTabBar active="sessions" />
       </WireframeScreen>
@@ -937,15 +937,15 @@ export function WfFavorites() {
         <WfHeadline className="!px-0 mt-2" title="Sonocea Favorites" subtitle="Sessions you've bookmarked for quick access." />
       </WfScreenBody>
       <div className="flex-1">
-        <WfListRow title="Arrive · settle" meta="14 min · Favourite" />
-        <WfListRow title="Deep unwind" meta="22 min · Favourite" />
+        <WfListRow title="Session 1" meta="14 min · Favourite" />
+        <WfListRow title="Session 2" meta="22 min · Favourite" />
       </div>
       <WfTabBar active="profile" />
     </WireframeScreen>
   );
 }
 
-/** Listener Home — personalised programme overview (MVP tab). */
+/** Listener Home - personalised programme overview (MVP tab). */
 export function WfHome({ variant = "default", prototypeActions = {} }) {
   const showContinue = variant === "default" || variant === "continue";
   const highlight =
@@ -1002,7 +1002,7 @@ export function WfHome({ variant = "default", prototypeActions = {} }) {
             Recommended next
           </p>
           <p className={`mt-2 ${WF_TYPE.label}`} style={{ color: WF.text }}>
-            Inner Balance
+            Session 3
           </p>
           <p className={WF_TYPE.bodySm} style={{ color: WF.textMuted }}>
             18 min · Daily regulation
@@ -1034,8 +1034,8 @@ export function WfHome({ variant = "default", prototypeActions = {} }) {
             <p className={`${WF_TYPE.bodySm} uppercase tracking-wider`} style={{ color: WF.textMuted }}>
               Recent activity
             </p>
-            <WfListRow title="Arrive" meta="Completed · Yesterday" />
-            <WfListRow title="Settle" meta="Completed · 3 days ago" />
+            <WfListRow title="Session 1" meta="Completed · Yesterday" />
+            <WfListRow title="Session 2" meta="Completed · 3 days ago" />
           </div>
         ) : (
           <div className="mt-4">
@@ -1059,13 +1059,13 @@ export function WfHome({ variant = "default", prototypeActions = {} }) {
   );
 }
 
-/** Assigned programme — current / upcoming / completed. */
+/** Assigned programme - current / upcoming / completed. */
 export function WfAssigned({ variant = "default", prototypeActions = {} }) {
   const sections = {
     default: [
       { title: "Current", rows: SESSIONS.library.slice(0, 2) },
       { title: "Upcoming", rows: SESSIONS.library.slice(2, 4) },
-      { title: "Completed", rows: [{ title: "Arrive", meta: "12 min · Done" }] },
+      { title: "Completed", rows: [{ title: "Session 1", meta: "12 min · Done" }] },
     ],
     current: [{ title: "Current", rows: SESSIONS.library.slice(0, 3) }],
     upcoming: [{ title: "Upcoming", rows: SESSIONS.library.slice(1, 4) }],
@@ -1073,8 +1073,8 @@ export function WfAssigned({ variant = "default", prototypeActions = {} }) {
       {
         title: "Completed",
         rows: [
-          { title: "Arrive", meta: "12 min · Done" },
-          { title: "Settle", meta: "15 min · Done" },
+          { title: "Session 1", meta: "12 min · Done" },
+          { title: "Session 2", meta: "15 min · Done" },
         ],
       },
     ],
@@ -1168,21 +1168,21 @@ export function WfProgrammeProgress({ variant = "default" }) {
       <div className="mt-2 flex-1 overflow-hidden">
         {variant === "reflections" ? (
           <>
-            <WfListRow title="Arrive" meta="Felt settled · Note added" />
-            <WfListRow title="Settle" meta="Rated 4 · Skip note" />
+            <WfListRow title="Session 1" meta="Felt settled · Note added" />
+            <WfListRow title="Session 2" meta="Rated 4 · Skip note" />
           </>
         ) : variant === "history" || variant === "completed" ? (
           <>
-            <WfListRow title="Arrive" meta="Yesterday · 12 min" />
-            <WfListRow title="Settle" meta="3 days ago · 15 min" />
-            <WfListRow title="Inner Balance" meta="Last week · 18 min" />
+            <WfListRow title="Session 1" meta="Yesterday · 12 min" />
+            <WfListRow title="Session 2" meta="3 days ago · 15 min" />
+            <WfListRow title="Session 3" meta="Last week · 18 min" />
           </>
         ) : (
           <>
-            <WfListRow title="Arrive" meta="Completed" />
-            <WfListRow title="Settle" meta="Completed" />
-            <WfListRow title="Inner Balance" meta="Current" />
-            <WfListRow title="Access" meta="Upcoming" />
+            <WfListRow title="Session 1" meta="Completed" />
+            <WfListRow title="Session 2" meta="Completed" />
+            <WfListRow title="Session 3" meta="Current" />
+            <WfListRow title="Session 4" meta="Upcoming" />
           </>
         )}
       </div>
@@ -1197,7 +1197,7 @@ export function WfOrganisation({ variant = "default" }) {
     default: {
       tag: "Organisation",
       title: "Preston North End",
-      subtitle: "Performance Programme — provisioned listening for your squad.",
+      subtitle: "Performance Programme - provisioned listening for your squad.",
       rows: ["About the programme", "Programme objectives", "Organisation details", "Support contact"],
     },
     programme: {
@@ -1446,7 +1446,7 @@ export function WfCompletionReflection() {
         <WfHeadline
           className="!px-0"
           title={CHECK_IN.afterTitle}
-          subtitle="Post-session reflection — compare to your check-in."
+          subtitle="Post-session reflection - compare to your check-in."
         />
         <div className="mt-6 space-y-4">
           <WfSlider label={CHECK_IN.sliders[0]} value={32} />
@@ -1535,7 +1535,7 @@ export function WfFeedback({ variant = "form", prototypeActions = {} }) {
   );
 }
 
-/* ——— Supporting ——— */
+/* --- Supporting --- */
 
 export function WfAbout({ variant = "default" }) {
   if (variant === "privacy") {
@@ -1673,7 +1673,7 @@ export function WfResearch() {
   );
 }
 
-/* ——— Error states ——— */
+/* --- Error states --- */
 
 export function WfError({ variant = "network" }) {
   const configs = {
@@ -1726,7 +1726,7 @@ export function WfError({ variant = "network" }) {
   );
 }
 
-/* ——— System states ——— */
+/* --- System states --- */
 
 export function WfSystemLoading() {
   return (
@@ -1754,7 +1754,7 @@ export function WfSystemLoading() {
   );
 }
 
-/* ——— Partner / admin (desktop web wireframes) ——— */
+/* --- Partner / admin (desktop web wireframes) --- */
 
 export function WfPartnerLogin() {
   return (
@@ -1807,7 +1807,7 @@ export function WfPartnerDashboard({ variant = "default" }) {
       </div>
       <p className="mt-4 text-[9px] font-medium uppercase tracking-wide text-ink-400">Recent activity</p>
       <div className="mt-2">
-        <WfDesktopTable rows={["Jane D. completed Evening calm", "Alex M. accepted invite", "Sam K. assigned Focus flow"]} showStatus={false} />
+        <WfDesktopTable rows={["Jane D. completed Session 1", "Alex M. accepted invite", "Sam K. assigned Session 3"]} showStatus={false} />
       </div>
     </DesktopWireframeShell>
   );
@@ -1829,7 +1829,7 @@ export function WfPartnerListenerDetail() {
       </div>
       <p className="mt-4 text-[9px] font-medium uppercase tracking-wide text-ink-400">Assigned sessions</p>
       <div className="mt-2">
-        <WfDesktopTable rows={["Evening calm", "Deep reset", "Focus flow"]} />
+        <WfDesktopTable rows={["Session 1", "Session 5", "Session 3"]} />
       </div>
       <WfDesktopActions>
         <WfDesktopButton>Assign sessions</WfDesktopButton>
@@ -1843,7 +1843,7 @@ export function WfAdminTable({ title = "Management", variant = "default" }) {
   const rowSets = {
     default: ["Row one", "Row two", "Row three"],
     organisations: ["Clinic A · 48 listeners", "Clinic B · 22 listeners", "Clinic C · 15 listeners"],
-    assignment: ["Evening calm → Clinic A", "Deep reset → Clinic B", "Focus flow → Clinic A"],
+    assignment: ["Session 1 → Clinic A", "Session 5 → Clinic B", "Session 3 → Clinic A"],
     analytics: ["Completion rate · 78%", "Avg. sessions · 4.2", "Active listeners · 156"],
   };
   const rows = rowSets[variant] ?? rowSets.default;

@@ -15,7 +15,7 @@ export default function KeyScreensPage() {
       <main className={PAGE_MAIN}>
         <PageHero id="key-screens-intro" title={page.title} description={page.description}>
           <p className="mt-4 max-w-2xl text-[14px] leading-relaxed text-ink-500">
-            Each screen is organised into four tiers with five wireframe concept slots — A is the
+            Each screen is organised into four tiers with five wireframe concept slots - A is the
             canonical baseline from flows; B through E are open layout directions. Core navigation
             proposals sit above the screen catalogue.
           </p>
@@ -48,7 +48,7 @@ export default function KeyScreensPage() {
           id="key-screens-nav"
           label="Navigation"
           title="Core navigation concepts"
-          description="Five wireframe proposals for how authenticated listeners move through the app. The variable is bottom navigation — tab count, destinations, and whether play/resume is always one tap away."
+          description="Five wireframe proposals for how authenticated listeners move through the app. The variable is bottom navigation - tab count, destinations, and whether play/resume is always one tap away."
           fullWidth
         >
           <CoreNavOptionsGrid />

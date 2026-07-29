@@ -72,7 +72,7 @@ export default function FlowsPage() {
               <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink-600">
                 Mapped from PRD v1.0 Sections 4–16 and Appendices A/B/E. Mobile screens align with Paper
                 artboards (WF · 01–11); Partner Console and Admin CMS use web wireframes. Scroll
-                horizontally through each journey — platform-only flows without screens stay narrative.
+                horizontally through each journey - platform-only flows without screens stay narrative.
               </p>
 
               <dl className="mt-12 grid gap-4 sm:grid-cols-3">
@@ -119,7 +119,7 @@ export default function FlowsPage() {
           id="flows-listener"
           label="Listener · mobile"
           title="Listener mobile journeys"
-          description="Primary v1 experience — wireframe screens step by step, matching Paper WF · 01–11."
+          description="Primary v1 experience - wireframe screens step by step, matching Paper WF · 01–11."
         >
           <ScreenSequenceStrip />
           <div className="mt-16">
@@ -157,7 +157,7 @@ export default function FlowsPage() {
           id="flows-scope"
           label="Boundaries"
           title="Explicitly out of scope for v1"
-          description="Roadmap items may appear in later versions — they are not commitments in this release."
+          description="Roadmap items may appear in later versions - they are not commitments in this release."
         >
           <ul className="flex flex-wrap gap-3">
             {V1_OUT_OF_SCOPE.map((item) => (

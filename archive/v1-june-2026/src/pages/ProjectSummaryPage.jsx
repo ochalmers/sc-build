@@ -15,7 +15,7 @@ function BulletList({ items }) {
             {item.term ? (
               <>
                 <span className="font-medium text-ink-900">{item.term}</span>
-                <span className="text-ink-600"> — {item.detail}</span>
+                <span className="text-ink-600"> - {item.detail}</span>
               </>
             ) : (
               item.detail

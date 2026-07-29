@@ -3,7 +3,7 @@ export const publicFlows = [
     id: "public-marketing-landing",
     title: "Marketing landing (no playback)",
     prdScreens: "§3 Mobile · §4",
-    summary: "Logo, video, SAT™ explanation — explicitly no Session listening.",
+    summary: "Logo, video, SAT™ explanation - explicitly no Session listening.",
     role: "public",
     surface: "web",
     steps: [
@@ -40,7 +40,7 @@ export const publicFlows = [
     id: "public-partner-integration",
     title: "Partner integration CTA",
     prdScreens: "§3 CTAs (WIP)",
-    summary: "Third-party partner pathways (e.g. Unyte) — exact mechanics TBD.",
+    summary: "Third-party partner pathways (e.g. Unyte) - exact mechanics TBD.",
     role: "public",
     surface: "web",
     steps: [

@@ -2,7 +2,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { AppStoreProvider } from "./context/AppStore.jsx";
 import { AppShell } from "./components/AppShell.jsx";
 import { ListenerStage } from "./components/ListenerStage.jsx";
-import { ListenerEntry, ListenerInvite, ListenerLogin } from "./screens/listener/AuthScreens.jsx";
+import { AdminStage } from "./components/AdminStage.jsx";
+import { ListenerEntry, ListenerInvite, ListenerInviteEmail, ListenerAppStore, ListenerLogin } from "./screens/listener/AuthScreens.jsx";
 import { ListenerNeurotype, ListenerOnboarding } from "./screens/listener/OnboardingScreens.jsx";
 import {
   ListenerAssigned,
@@ -10,11 +11,13 @@ import {
   ListenerHome,
   ListenerLibrary,
   ListenerOrganisation,
+  ListenerProgramme,
   ListenerProgress,
   ListenerSessionDetail,
 } from "./screens/listener/LibraryScreens.jsx";
 import {
   ListenerAbout,
+  ListenerCheckIn,
   ListenerFeedback,
   ListenerPlayer,
   ListenerProfile,
@@ -24,15 +27,27 @@ import { ListenerSystemStates } from "./screens/listener/SystemStatesScreens.jsx
 import { PartnerBilling, PartnerHome } from "./screens/partner/PartnerScreens.jsx";
 import {
   AdminAnalytics,
+  AdminExport,
   AdminHome,
   AdminInvites,
+  AdminListeners,
   AdminPartners,
   AdminSessions,
 } from "./screens/admin/AdminScreens.jsx";
+import { AdminLoginScreen } from "./screens/admin/AdminLoginScreen.jsx";
+import { AdminSetupFlow } from "./screens/admin/AdminSetupFlow.jsx";
 import { RequireAdmin, RequirePartner } from "./components/RequireRole.jsx";
 
+function AdminPage({ children }) {
+  return (
+    <AdminStage>
+      <RequireAdmin>{children}</RequireAdmin>
+    </AdminStage>
+  );
+}
+
 /**
- * Working Mobile App PRD destination — Listener (mobile), Partner & Admin (web).
+ * Working Mobile App PRD destination - Listener (mobile), Admin (web), Combined review.
  * Mounted at /app/* outside the design-workspace SiteChrome.
  */
 export default function ProductApp() {
@@ -40,16 +55,19 @@ export default function ProductApp() {
     <AppStoreProvider>
       <AppShell>
         <Routes>
-          <Route index element={<Navigate to="/app/listener/invite" replace />} />
+          <Route index element={<Navigate to="/app/listener/email" replace />} />
 
-          {/* Listener — phone-staged */}
+          {/* Listener - phone-staged */}
           <Route path="listener" element={<ListenerStage />}>
             <Route index element={<ListenerEntry />} />
+            <Route path="email" element={<ListenerInviteEmail />} />
+            <Route path="app-store" element={<ListenerAppStore />} />
             <Route path="login" element={<ListenerLogin />} />
             <Route path="invite" element={<ListenerInvite />} />
             <Route path="onboarding" element={<ListenerOnboarding />} />
             <Route path="neurotype" element={<ListenerNeurotype />} />
             <Route path="home" element={<ListenerHome />} />
+            <Route path="programme" element={<ListenerProgramme />} />
             <Route path="assigned" element={<ListenerAssigned />} />
             <Route path="progress" element={<ListenerProgress />} />
             <Route path="organisation" element={<ListenerOrganisation />} />
@@ -57,6 +75,7 @@ export default function ProductApp() {
             <Route path="favorites" element={<ListenerFavorites />} />
             <Route path="session/:sessionId" element={<ListenerSessionDetail />} />
             <Route path="player/:sessionId" element={<ListenerPlayer />} />
+            <Route path="check-in/:sessionId" element={<ListenerCheckIn />} />
             <Route path="feedback/:sessionId" element={<ListenerFeedback />} />
             <Route path="profile" element={<ListenerProfile />} />
             <Route path="about" element={<ListenerAbout />} />
@@ -64,9 +83,11 @@ export default function ProductApp() {
             <Route path="system-states" element={<ListenerSystemStates />} />
           </Route>
 
-          {/* Partner */}
+          {/* Organization console (legacy /partner paths redirect) */}
+          <Route path="partner" element={<Navigate to="/app/organization" replace />} />
+          <Route path="partner/billing" element={<Navigate to="/app/organization/billing" replace />} />
           <Route
-            path="partner"
+            path="organization"
             element={
               <RequirePartner>
                 <PartnerHome />
@@ -74,7 +95,7 @@ export default function ProductApp() {
             }
           />
           <Route
-            path="partner/billing"
+            path="organization/billing"
             element={
               <RequirePartner>
                 <PartnerBilling />
@@ -82,49 +103,107 @@ export default function ProductApp() {
             }
           />
 
-          {/* Admin */}
+          {/* Combined Admin setup wizard - one desktop shell, linear steps */}
+          <Route
+            path="admin/setup"
+            element={
+              <AdminStage>
+                <AdminSetupFlow />
+              </AdminStage>
+            }
+          />
+          {/* Admin - login kept for deep-links; Combined starts at setup */}
+          <Route
+            path="admin/login"
+            element={
+              <AdminStage>
+                <AdminLoginScreen />
+              </AdminStage>
+            }
+          />
           <Route
             path="admin"
             element={
-              <RequireAdmin>
+              <AdminPage>
                 <AdminHome />
-              </RequireAdmin>
+              </AdminPage>
             }
           />
           <Route
             path="admin/sessions"
             element={
-              <RequireAdmin>
+              <AdminPage>
                 <AdminSessions />
-              </RequireAdmin>
+              </AdminPage>
             }
           />
           <Route
-            path="admin/partners"
+            path="admin/content"
             element={
-              <RequireAdmin>
+              <AdminPage>
+                <AdminSessions key="content" />
+              </AdminPage>
+            }
+          />
+          <Route
+            path="admin/programmes"
+            element={
+              <AdminPage>
+                <AdminSessions key="programmes" initialTab="groups" />
+              </AdminPage>
+            }
+          />
+          <Route path="admin/partners" element={<Navigate to="/app/admin/organizations" replace />} />
+          <Route
+            path="admin/organizations"
+            element={
+              <AdminPage>
                 <AdminPartners />
-              </RequireAdmin>
+              </AdminPage>
+            }
+          />
+          <Route
+            path="admin/listeners"
+            element={
+              <AdminPage>
+                <AdminListeners />
+              </AdminPage>
             }
           />
           <Route
             path="admin/invites"
             element={
-              <RequireAdmin>
+              <AdminPage>
                 <AdminInvites />
-              </RequireAdmin>
+              </AdminPage>
+            }
+          />
+          <Route
+            path="admin/export"
+            element={
+              <AdminPage>
+                <AdminExport />
+              </AdminPage>
+            }
+          />
+          <Route
+            path="admin/settings"
+            element={
+              <AdminPage>
+                <AdminExport />
+              </AdminPage>
             }
           />
           <Route
             path="admin/analytics"
             element={
-              <RequireAdmin>
+              <AdminPage>
                 <AdminAnalytics />
-              </RequireAdmin>
+              </AdminPage>
             }
           />
 
-          <Route path="*" element={<Navigate to="/app/listener/invite" replace />} />
+          <Route path="*" element={<Navigate to="/app/listener/email" replace />} />
         </Routes>
       </AppShell>
     </AppStoreProvider>

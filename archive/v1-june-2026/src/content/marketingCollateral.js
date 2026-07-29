@@ -2,7 +2,7 @@ export const MARKETING_COLLATERAL_META = {
   title: "Marketing collateral",
   subtitle: "Launch asset checklist",
   description:
-    "Everything needed to launch Sonocea v1 — from App Store presence and promotional video through to partner sales materials and paid advertising. Track status here as assets are briefed, produced, and approved.",
+    "Everything needed to launch Sonocea v1 - from App Store presence and promotional video through to partner sales materials and paid advertising. Track status here as assets are briefed, produced, and approved.",
   status: "Pre-reset reference · align with June 2026 PRDs",
 };
 
@@ -36,7 +36,7 @@ export const MARKETING_COLLATERAL_CATEGORIES = [
         id: "hero-promo-video",
         title: "Hero promotional video",
         description:
-          "Primary brand film explaining Sonocea, SAT™, and the invite-only listener experience — for homepage hero, partner decks, and events.",
+          "Primary brand film explaining Sonocea, SAT™, and the invite-only listener experience - for homepage hero, partner decks, and events.",
         formats: ["16:9 master (4K)", "9:16 social cut", "Muted loop variant for web"],
         specs: ["60–90s full cut", "15s and 30s cut-downs", "Captions / SRT", "No Session audio in public cut"],
         deliverables: ["Master ProRes/MP4", "Web-optimised H.264", "Thumbnail stills", "Caption files"],
@@ -47,9 +47,9 @@ export const MARKETING_COLLATERAL_CATEGORIES = [
         id: "app-store-preview",
         title: "App Store preview video",
         description:
-          "Short in-app walkthrough for Apple App Store and Google Play — onboarding, library, and player without proprietary audio.",
+          "Short in-app walkthrough for Apple App Store and Google Play - onboarding, library, and player without proprietary audio.",
         formats: ["iPhone 6.7\" (1290×2796)", "Optional iPad", "Google Play preview"],
-        specs: ["15–30 seconds", "Device frame or full-bleed UI", "No voiceover required — on-screen copy OK"],
+        specs: ["15–30 seconds", "Device frame or full-bleed UI", "No voiceover required - on-screen copy OK"],
         deliverables: ["iOS preview MP4", "Android preview MP4", "Poster frame"],
         priority: "P0",
         status: "planned",
@@ -87,7 +87,7 @@ export const MARKETING_COLLATERAL_CATEGORIES = [
       {
         id: "app-icon",
         title: "App icon",
-        description: "Master icon mark for home screen and store listings — iOS and Android adaptive.",
+        description: "Master icon mark for home screen and store listings - iOS and Android adaptive.",
         formats: ["1024×1024 PNG (iOS)", "Adaptive icon layers (Android)", "Favicon / web app manifest"],
         specs: ["No transparency on iOS master", "Readable at 29pt", "Dark and light context tests"],
         deliverables: ["Icon master", "Platform export set", "Brand guidelines page"],
@@ -98,13 +98,13 @@ export const MARKETING_COLLATERAL_CATEGORIES = [
         id: "splash-screen",
         title: "App splash / launch screen",
         description:
-          "Native launch screen and optional motion handoff from cold start — aligns with in-app splash designs.",
+          "Native launch screen and optional motion handoff from cold start - aligns with in-app splash designs.",
         formats: ["iOS LaunchScreen storyboard assets", "Android splash XML", "Optional Lottie"],
-        specs: ["Matches Phase 1 splash concepts", "Fast load — static minimum", "Dark primary"],
+        specs: ["Matches Phase 1 splash concepts", "Fast load - static minimum", "Dark primary"],
         deliverables: ["Static assets per density", "Engineering handoff spec"],
         priority: "P0",
         status: "planned",
-        notes: "Hi-fi concepts exist in Phase 1 designs — production assets needed.",
+        notes: "Hi-fi concepts exist in Phase 1 designs - production assets needed.",
       },
       {
         id: "ios-screenshots",
@@ -121,7 +121,7 @@ export const MARKETING_COLLATERAL_CATEGORIES = [
         title: "Google Play screenshots & feature graphic",
         description: "Play Store visual set plus 1024×500 feature graphic.",
         formats: ["Phone screenshots", "7\" / 10\" tablet if applicable", "Feature graphic 1024×500"],
-        specs: ["Minimum 2 screenshots", "Feature graphic — no excessive text"],
+        specs: ["Minimum 2 screenshots", "Feature graphic - no excessive text"],
         deliverables: ["PNG exports", "Feature graphic master"],
         priority: "P0",
         status: "planned",
@@ -177,7 +177,7 @@ export const MARKETING_COLLATERAL_CATEGORIES = [
       {
         id: "lifestyle-imagery",
         title: "Product & lifestyle photography",
-        description: "Premium stills aligned with persona direction — listening contexts, devices, environments.",
+        description: "Premium stills aligned with persona direction - listening contexts, devices, environments.",
         formats: ["Web hero", "Print-ready TIFF optional", "Square crops for social"],
         specs: ["Consistent with persona deck", "Diverse representation", "No clinical setting overclaim"],
         deliverables: ["Image bank (min. 12 selects)", "Usage rights cleared"],
@@ -205,7 +205,7 @@ export const MARKETING_COLLATERAL_CATEGORIES = [
       {
         id: "paid-social",
         title: "Paid social ad sets",
-        description: "Creative templates for Meta, LinkedIn, and optional TikTok — invite and partner angles.",
+        description: "Creative templates for Meta, LinkedIn, and optional TikTok - invite and partner angles.",
         formats: ["1080×1080", "1080×1920", "1200×628"],
         specs: ["3–5 concept variants", "CTA: Learn more / Request access", "No Session playback"],
         deliverables: ["Static templates", "Motion variants where briefed", "Copy matrix"],
@@ -281,8 +281,8 @@ export const MARKETING_COLLATERAL_CATEGORIES = [
       },
       {
         id: "session-artwork-marketing",
-        title: "Session artwork — marketing use",
-        description: "Curated session covers and category colours for website and ads — never full audio.",
+        title: "Session artwork - marketing use",
+        description: "Curated session covers and category colours for website and ads - never full audio.",
         formats: ["16:9 hero crops", "1:1 tiles", "Blurred / abstract variants"],
         specs: ["12-session system from design", "Category colour logic documented"],
         deliverables: ["Approved marketing subset", "Usage restrictions doc"],
@@ -310,7 +310,7 @@ export const MARKETING_COLLATERAL_CATEGORIES = [
       {
         id: "invite-email",
         title: "Listener invite email",
-        description: "Email sent when a Listener is provisioned — redeem code and app download.",
+        description: "Email sent when a Listener is provisioned - redeem code and app download.",
         formats: ["HTML + plain text", "SMS snippet optional"],
         specs: ["Partner white-label variant", "Clear redemption steps"],
         deliverables: ["Admin-triggered template", "Partner-branded variant"],
@@ -337,13 +337,13 @@ export const MARKETING_COLLATERAL_CATEGORIES = [
       {
         id: "partner-pitch-deck",
         title: "Partner pitch deck",
-        description: "Sales deck for organisational and clinical partners — provisioning model and ROI framing.",
+        description: "Sales deck for organisational and clinical partners - provisioning model and ROI framing.",
         formats: ["16:9 Keynote/PDF", "Speaker notes"],
         specs: ["Align with investor deck where possible", "No unreleased roadmap promises"],
         deliverables: ["Master deck", "PDF export", "One-slide leave-behind"],
         priority: "P1",
         status: "planned",
-        notes: "Investor deck exists — partner variant may fork from it.",
+        notes: "Investor deck exists - partner variant may fork from it.",
       },
       {
         id: "session-catalog",

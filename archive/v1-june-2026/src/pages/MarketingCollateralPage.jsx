@@ -146,7 +146,7 @@ export default function MarketingCollateralPage() {
                     className="rounded-full border border-ink-200/70 bg-white/60 px-3 py-1.5"
                   >
                     <span className="font-medium text-ink-800">{val.label}</span>
-                    <span className="text-ink-500"> — {val.note}</span>
+                    <span className="text-ink-500"> - {val.note}</span>
                   </span>
                 ))}
               </div>

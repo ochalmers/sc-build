@@ -1,5 +1,5 @@
 /**
- * Plan page content — four-phase design delivery programme (July 2026).
+ * Plan page content - four-phase design delivery programme (July 2026).
  */
 
 export const PLAN_META = {
@@ -62,7 +62,7 @@ export const PLAN_PHASES = [
       "Session Library list, filters and empty states",
       "Session Detail screen with metadata and actions",
       "Audio player controls and playback states",
-      "Core component library — buttons, cards, navigation",
+      "Core component library - buttons, cards, navigation",
     ],
     signOff: ["MVP scope", "Information architecture", "Core flow catalogue", "Wireframe structure"],
     gateDate: "Jul 12",
@@ -75,14 +75,14 @@ export const PLAN_PHASES = [
     status: "upcoming",
     goal: "Lock every authenticated listener screen in approved wireframes, ready for visual design.",
     deliverables: [
-      "Revised wireframes — Home, Library, Detail, Player",
-      "Listener onboarding flow — welcome, permissions, first session",
+      "Revised wireframes - Home, Library, Detail, Player",
+      "Listener onboarding flow - welcome, permissions, first session",
       "Session completion and feedback screens",
       "Settings, About and Support screens",
       "Navigation model with tab bar and deep-link behaviour",
       "Screen-by-screen content structure and copy placement",
-      "Expanded component library — forms, lists, modals",
-      "Interaction states — loading, empty, error, offline",
+      "Expanded component library - forms, lists, modals",
+      "Interaction states - loading, empty, error, offline",
     ],
     engineeringOutcome:
       "Engineering receives approved wireframes for every authenticated listener screen and can build the complete in-app experience end-to-end.",
@@ -97,10 +97,10 @@ export const PLAN_PHASES = [
     status: "upcoming",
     goal: "Define how Sonocea looks and behaves, and deliver the public visitor discovery journey.",
     deliverables: [
-      "Visual direction — typography, colour, imagery principles",
-      "Design system v1 — tokens, components, spacing scale",
+      "Visual direction - typography, colour, imagery principles",
+      "Design system v1 - tokens, components, spacing scale",
       "Light and dark mode specifications",
-      "Session artwork system — generation rules and display patterns",
+      "Session artwork system - generation rules and display patterns",
       "Public Welcome and Check-In screens",
       "Public Listening Session experience",
       "Science and Request Access screens",
@@ -119,14 +119,14 @@ export const PLAN_PHASES = [
     status: "upcoming",
     goal: "Apply the final visual system to all screens and prepare the production handoff package.",
     deliverables: [
-      "High-fidelity screens — all authenticated and public flows",
+      "High-fidelity screens - all authenticated and public flows",
       "Clickable prototype covering primary user journeys",
       "Empty, error and offline state designs for every screen",
-      "Accessibility specifications — contrast, touch targets, labels",
+      "Accessibility specifications - contrast, touch targets, labels",
       "Interaction and handoff notes for engineering",
-      "State documentation — all component variants",
+      "State documentation - all component variants",
       "Final design QA pass across all screens",
-      "Asset export — icons, illustrations, artwork templates",
+      "Asset export - icons, illustrations, artwork templates",
     ],
     engineeringOutcome:
       "Engineering receives a complete, production-ready design package with annotated screens, prototype links and exported assets for development and QA.",
@@ -167,10 +167,10 @@ export const DESIGN_DELIVERABLES = [
     status: "complete",
     statusLabel: "Complete",
     items: [
-      "Information architecture — app sections and navigation hierarchy",
-      "Route map — deep links, tab routes and screen transitions",
-      "Core user flows — listen, discover, authenticate, complete session",
-      "Screen inventory — 40+ screens mapped to user roles",
+      "Information architecture - app sections and navigation hierarchy",
+      "Route map - deep links, tab routes and screen transitions",
+      "Core user flows - listen, discover, authenticate, complete session",
+      "Screen inventory - 40+ screens mapped to user roles",
     ],
   },
   {
@@ -179,10 +179,10 @@ export const DESIGN_DELIVERABLES = [
     status: "in-progress",
     statusLabel: "In Progress",
     items: [
-      "Core listener journeys — Home → Library → Detail → Player",
+      "Core listener journeys - Home → Library → Detail → Player",
       "Onboarding and authentication wireframes",
-      "Edge case flows — empty library, expired session, offline",
-      "Player behaviour — play, pause, skip, background audio",
+      "Edge case flows - empty library, expired session, offline",
+      "Player behaviour - play, pause, skip, background audio",
     ],
   },
   {
@@ -191,11 +191,11 @@ export const DESIGN_DELIVERABLES = [
     status: "in-progress",
     statusLabel: "In Progress",
     items: [
-      "High-fidelity screens — Authentication, Home, Library, Detail, Player",
-      "Component library — buttons, cards, navigation, forms",
-      "Design tokens — typography, colour, spacing, radius",
-      "Motion specifications — transitions, loading, playback animations",
-      "Accessibility — contrast ratios, touch targets, screen reader labels",
+      "High-fidelity screens - Authentication, Home, Library, Detail, Player",
+      "Component library - buttons, cards, navigation, forms",
+      "Design tokens - typography, colour, spacing, radius",
+      "Motion specifications - transitions, loading, playback animations",
+      "Accessibility - contrast ratios, touch targets, screen reader labels",
     ],
   },
 ];

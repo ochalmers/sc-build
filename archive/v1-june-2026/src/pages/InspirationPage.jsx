@@ -101,7 +101,7 @@ export default function InspirationPage() {
                     App journey overview
                   </p>
                   <p className="mt-2 max-w-2xl text-[13px] leading-relaxed text-ink-600">
-                    Six end-to-end flows spanning access, onboarding, library, player, detail, and commerce —
+                    Six end-to-end flows spanning access, onboarding, library, player, detail, and commerce -
                     scroll horizontally through each sequence. Click any screen to enlarge.
                   </p>
                 </div>
@@ -170,7 +170,7 @@ export default function InspirationPage() {
                     All screens in this category · {highlightIndices.length}
                   </p>
                   <p className="mt-2 text-[12px] text-ink-500">
-                    Every archived screen mapped to this PRD surface — click to enlarge.
+                    Every archived screen mapped to this PRD surface - click to enlarge.
                   </p>
                   <div className="mt-6 rounded-2xl border border-ink-200/80 bg-paper-100/50 p-5 md:p-6">
                     <InspirationCategoryGrid indices={highlightIndices} initialVisible={highlightIndices.length} />
@@ -187,7 +187,7 @@ export default function InspirationPage() {
           id="inspiration-open-gallery"
           label="Full archive"
           title="Open · complete screen archive"
-          description="All 210 iOS screens from Open (Sep 2025) — breathwork and meditation app with the closest tonal match to Sonocea's premium, dark, sound-first direction."
+          description="All 210 iOS screens from Open (Sep 2025) - breathwork and meditation app with the closest tonal match to Sonocea's premium, dark, sound-first direction."
         >
           <InspirationFullGallery indices={OPEN_ALL_INDICES} />
         </FlowSection>

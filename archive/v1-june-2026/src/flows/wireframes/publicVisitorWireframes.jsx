@@ -10,7 +10,7 @@ function SliderRow({ label }) {
     <div className="space-y-1.5">
       <div className="flex justify-between text-[10px] text-[#52525B]">
         <span>{label}</span>
-        <span className="text-[#A1A1AA]">—</span>
+        <span className="text-[#A1A1AA]">-</span>
       </div>
       <div className="h-1.5 rounded-full bg-[#E4E4E7]">
         <div className="h-full w-1/2 rounded-full bg-[#18181B]" />
@@ -26,7 +26,7 @@ function ScreenGetStarted() {
         <WfTag>Public Visitor · Layer 0</WfTag>
         <h2 className="mt-4 text-[18px] font-bold leading-tight">Welcome to Sonocea</h2>
         <p className="mt-2 text-[11px] leading-relaxed text-[#52525B]">
-          Experience structured sound — or sign in with your invitation.
+          Experience structured sound - or sign in with your invitation.
         </p>
       </div>
       <div className="space-y-2 px-5 pb-6">
@@ -129,7 +129,7 @@ function ScreenScienceHome() {
         <WfTag>Public Visitor · science</WfTag>
         <h2 className="mt-4 text-[16px] font-bold">How Sonocea works</h2>
         <p className="mt-2 text-[11px] leading-relaxed text-[#52525B]">
-          What you just experienced — and the science behind structured sound.
+          What you just experienced - and the science behind structured sound.
         </p>
         <div className="mt-4 space-y-2">
           {topics.map((t) => (
@@ -221,7 +221,7 @@ function ScreenInvitation() {
           Your organization has provisioned Sonocea access. Activate your account to begin listening.
         </p>
         <div className="mt-5 rounded-xl border border-[#E4E4E7] bg-[#FAFAFA] p-4 text-[11px] text-[#52525B]">
-          Brief intro to Sonocea before sign-up — may preview public content (IP-01).
+          Brief intro to Sonocea before sign-up - may preview public content (IP-01).
         </div>
       </div>
       <div className="space-y-2 px-5 pb-6">

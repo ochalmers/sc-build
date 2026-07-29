@@ -113,7 +113,7 @@ function ComponentCard({ component }) {
                 </div>
               ) : null}
               <div className="flex flex-wrap gap-3 pt-2 text-[11px] text-ink-400">
-                <span>Code — src/system/components/</span>
+                <span>Code - src/system/components/</span>
               </div>
             </div>
             <ComponentPreview componentId={component.id} label={component.name} />
@@ -186,7 +186,7 @@ function ScreenDesignCard({ screen: scr }) {
             </div>
             <div>
               <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">Secondary Actions</p>
-              <p className="mt-1 text-[13px] text-ink-600">{scr.secondaryActions.length ? scr.secondaryActions.join(", ") : "—"}</p>
+              <p className="mt-1 text-[13px] text-ink-600">{scr.secondaryActions.length ? scr.secondaryActions.join(", ") : "-"}</p>
             </div>
             <div>
               <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">Responsive Notes</p>
@@ -206,7 +206,7 @@ function ScreenDesignCard({ screen: scr }) {
             </ul>
           </div>
           <div className="mt-4 flex flex-wrap gap-4 text-[11px] text-ink-400">
-            <span>Wireframe key — {scr.screenKey}</span>
+            <span>Wireframe key - {scr.screenKey}</span>
             <Link to="/flows" className="font-medium text-ink-600 underline-offset-4 hover:underline">
               View in flows →
             </Link>
@@ -225,9 +225,9 @@ function ScreenCatalogue() {
       <KeyScreensGrid />
       <div className="space-y-4">
       <div className="rounded-2xl border border-ink-950/10 bg-ink-950/[0.03] px-5 py-3">
-        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-600">Layer 02 — Screen Catalogue</p>
+        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-600">Layer 02 - Screen Catalogue</p>
         <p className="mt-1 text-[13px] text-ink-700">
-          {SCREEN_CATALOGUE.reduce((n, g) => n + g.screens.length, 0)} screens grouped by flow — expand for wireframe, hi-fi preview, and implementation specs.
+          {SCREEN_CATALOGUE.reduce((n, g) => n + g.screens.length, 0)} screens grouped by flow - expand for wireframe, hi-fi preview, and implementation specs.
         </p>
       </div>
       {SCREEN_CATALOGUE.map((group) => {
@@ -369,7 +369,7 @@ export default function DesignPage() {
           id="design-system"
           label="Layer 01"
           title="Design System"
-          description="Canonical tokens, behavioural modes, typography, colour, spacing, motion — with live previews."
+          description="Canonical tokens, behavioural modes, typography, colour, spacing, motion - with live previews."
         >
           <DesignSystemGrid />
         </PageSection>
@@ -378,7 +378,7 @@ export default function DesignPage() {
           id="design-components"
           label="Components"
           title="Component Library"
-          description="Living component inventory — grouped by category with live previews and specs."
+          description="Living component inventory - grouped by category with live previews and specs."
         >
           <ComponentLibrary />
         </PageSection>
@@ -387,7 +387,7 @@ export default function DesignPage() {
           id="design-catalogue"
           label="Screens"
           title="Screen Catalogue"
-          description="Every key screen with wireframes and hi-fi references — grouped by flow with full implementation specs."
+          description="Every key screen with wireframes and hi-fi references - grouped by flow with full implementation specs."
         >
           <ScreenCatalogue />
         </PageSection>
@@ -396,7 +396,7 @@ export default function DesignPage() {
           id="design-states"
           label="States"
           title="Interaction States"
-          description="Dedicated interaction library — loading, empty, error, playback and recovery."
+          description="Dedicated interaction library - loading, empty, error, playback and recovery."
         >
           <InteractionStateLibrary />
         </PageSection>
@@ -405,7 +405,7 @@ export default function DesignPage() {
           id="design-motion"
           label="Motion"
           title="Motion"
-          description="Motion principles — timing, easing and accessibility considerations."
+          description="Motion principles - timing, easing and accessibility considerations."
         >
           <MotionDocs />
         </PageSection>

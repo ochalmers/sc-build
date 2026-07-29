@@ -1,9 +1,10 @@
 /**
- * Sonocea App v2.0 — workspace information architecture.
+ * Sonocea App v2.0 - workspace information architecture.
  * Page structure only; section content is added incrementally.
  */
 
 import { FLOW_NAV_SECTIONS } from "./flows.js";
+import { E2E_NAV_SECTIONS } from "./endToEnd/index.js";
 
 export const WORKSPACE_META = {
   product: "Sonocea App v2.0",
@@ -45,7 +46,7 @@ export const WORKSPACE_PAGES = {
     eyebrow: "Design",
     title: "Design Delivery Roadmap",
     description:
-      "Engineering handoff milestones — what design deliverables are coming, when they land, and what they unblock.",
+      "Engineering handoff milestones - what design deliverables are coming, when they land, and what they unblock.",
     purpose: "Communicate design deliverables and engineering handoff milestones.",
     introId: "plan-intro",
     sections: [
@@ -63,10 +64,34 @@ export const WORKSPACE_PAGES = {
     navLabel: "Flows",
     eyebrow: "UX Review",
     title: "Flows",
-    description: "Invite-only listener journeys — Home and Profile bottom navigation — plus organisation and system states.",
+    description: "Invite-only listener journeys - Home and Profile bottom navigation - plus organisation and system states.",
     purpose: "Showcase complete user journeys as design review storyboards with left-hand flow navigation.",
     introId: "flows-intro",
     sections: FLOW_NAV_SECTIONS,
+  },
+
+  endToEnd: {
+    path: "/end-to-end",
+    navLabel: "End to End",
+    eyebrow: "Product Architecture",
+    title: "End-to-End Wireframe Flow",
+    description:
+      "A comprehensive design board of the Sonocea service - Admin through Partner, Programme, Invitation, App, and Reporting.",
+    purpose: "Review product architecture and UX coverage with the Sonocea team.",
+    introId: "e2e-intro",
+    sections: E2E_NAV_SECTIONS,
+  },
+
+  appWireframes: {
+    path: "/app-wireframes",
+    navLabel: "App Wireframes",
+    eyebrow: "Mobile App PRD · §4 + §5",
+    title: "App Wireframes",
+    description:
+      "Open App–fidelity Listener screens and Sonocea Admin flows - Session CMS, Partners, invites, and usage insights.",
+    purpose: "Provide copy-ready, high-fidelity wireframes of every PRD mobile screen and Admin console flow.",
+    introId: "wireframes-intro",
+    sections: [],
   },
 
   design: {
@@ -93,7 +118,7 @@ export const WORKSPACE_PAGES = {
     eyebrow: "Wireframe Exploration",
     title: "Key Screens",
     description:
-      "Every canonical screen with room for five layout concepts — plus five proposals for core app navigation.",
+      "Every canonical screen with room for five layout concepts - plus five proposals for core app navigation.",
     purpose:
       "Compare wireframe directions side by side before committing to hi-fi design.",
     introId: "key-screens-intro",
@@ -125,7 +150,8 @@ export const WORKSPACE_PAGES = {
     navLabel: "References",
     eyebrow: "Supporting Material",
     title: "References",
-    description: "Curated Mobbin screens that directly inform product decisions.",
+    description:
+      "Curated Mobbin screens for invite entry, onboarding, personalisation, listen-prep, and the core Listener loop - every thumbnail links out to Mobbin.",
     purpose: "Collect supporting material used throughout the project.",
     introId: "references-intro",
     sections: [

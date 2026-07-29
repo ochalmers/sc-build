@@ -10,11 +10,11 @@ const sampleCards = ["Track title", "Track title", "Track title"];
 
 /**
  * Structural reference for Figma GTM Home (node 1:54800).
- * Layout, type, spacing and component geometry only — no colour or imagery.
+ * Layout, type, spacing and component geometry only - no colour or imagery.
  */
 export function HomeScreenReference({
   eyebrow = "Morning session",
-  title = "Reset & Arrive",
+  title = "Session 1",
   tags = sampleTags,
   sectionLabel = "More for You",
   cards = sampleCards,

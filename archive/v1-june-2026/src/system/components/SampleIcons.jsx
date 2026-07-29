@@ -1,4 +1,4 @@
-/** Directional samples — 1.5px stroke, rounded caps, 2px corner radius on bounding icons */
+/** Directional samples - 1.5px stroke, rounded caps, 2px corner radius on bounding icons */
 export function IconSound({ className = "h-5 w-5" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden>

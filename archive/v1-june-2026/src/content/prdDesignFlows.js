@@ -1,5 +1,5 @@
 /**
- * PRD design flows — every journey from both June 2026 PRDs with
+ * PRD design flows - every journey from both June 2026 PRDs with
  * hi-fi screen mapping for the Design catalogue page.
  */
 
@@ -10,7 +10,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
     label: "Public Visitor · Entry",
     title: "Layer 0 entry routing",
     description:
-      "How a store download chooses their path before authentication — Discover, Accept Invitation, or Login.",
+      "How a store download chooses their path before authentication - Discover, Accept Invitation, or Login.",
     flows: [
       {
         id: "flow-pv-get-started",
@@ -23,7 +23,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
           {
             num: 1,
             label: "Splash",
-            detail: "Brand intro — routes unauthenticated users to Get Started.",
+            detail: "Brand intro - routes unauthenticated users to Get Started.",
             screenKey: "splash",
           },
           {
@@ -46,13 +46,13 @@ export const PRD_DESIGN_FLOW_GROUPS = [
           {
             num: 1,
             label: "Invitation intro",
-            detail: "Brief welcome — organisation or Sonocea invite context.",
+            detail: "Brief welcome - organisation or Sonocea invite context.",
             screenKey: "pv-invitation",
           },
           {
             num: 2,
             label: "Redeem access",
-            detail: "Invite code recognised — transitions to Listener onboarding.",
+            detail: "Invite code recognised - transitions to Listener onboarding.",
             screenKey: "login",
             events: ["invite_accepted"],
           },
@@ -62,7 +62,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
         id: "flow-pv-login",
         title: "Login",
         summary:
-          "Returning or invited user authenticates directly to provisioned Listener experience — no public sample required.",
+          "Returning or invited user authenticates directly to provisioned Listener experience - no public sample required.",
         prdRef: "Public Visitor PRD · §2 · FR-007",
         role: "Listener",
         steps: [
@@ -75,7 +75,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
           {
             num: 2,
             label: "Sessions library",
-            detail: "Provisioned home — assigned sessions ready to play.",
+            detail: "Provisioned home - assigned sessions ready to play.",
             screenKey: "library",
           },
         ],
@@ -88,11 +88,11 @@ export const PRD_DESIGN_FLOW_GROUPS = [
     label: "Public Visitor · Golden route",
     title: "First-time Discover journey",
     description:
-      "Experience before explanation — the guiding path for Public Visitors who choose Discover Sonocea. Target: 60%+ complete the 5-minute sample.",
+      "Experience before explanation - the guiding path for Public Visitors who choose Discover Sonocea. Target: 60%+ complete the 5-minute sample.",
     flows: [
       {
         id: "flow-pv-golden",
-        title: "Discover Sonocea — first visit",
+        title: "Discover Sonocea - first visit",
         summary:
           "Check-in, headphones, 5-minute nervous system reset, reflection, science bridge, topic exploration, and access request.",
         prdRef: "Public Visitor PRD · §2 Golden Route",
@@ -101,7 +101,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
           {
             num: 1,
             label: "Welcome",
-            detail: "Calm entry — user chose Discover on Get Started.",
+            detail: "Calm entry - user chose Discover on Get Started.",
             screenKey: "pv-get-started",
           },
           {
@@ -114,13 +114,13 @@ export const PRD_DESIGN_FLOW_GROUPS = [
           {
             num: 3,
             label: "Headphones",
-            detail: "Environment prep — quiet place, headphones on.",
+            detail: "Environment prep - quiet place, headphones on.",
             screenKey: "pv-headphones",
           },
           {
             num: 4,
             label: "5-minute reset",
-            detail: "Single curated non-clinical sample — sound leads, UI recedes.",
+            detail: "Single curated non-clinical sample - sound leads, UI recedes.",
             screenKey: "pv-listening",
             events: ["five_minute_session_started", "five_minute_session_completed"],
           },
@@ -140,7 +140,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
           {
             num: 7,
             label: "Explore the science",
-            detail: "Topic library — ANS, SAT™, Sonostasis®, research.",
+            detail: "Topic library - ANS, SAT™, Sonostasis®, research.",
             screenKey: "pv-science-home",
             events: ["science_article_viewed"],
           },
@@ -159,7 +159,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
     id: "prd-flows-returning",
     sectionId: "prd-designs-returning",
     label: "Public Visitor · Returning",
-    title: "Layer 4 — returning public home",
+    title: "Layer 4 - returning public home",
     description:
       "Persistent navigation after first-time UX. Light authentication required to replay the 5-minute reset (FR-006).",
     flows: [
@@ -167,14 +167,14 @@ export const PRD_DESIGN_FLOW_GROUPS = [
         id: "flow-pv-returning",
         title: "Returning Public Home",
         summary:
-          "Daily reset, science content, and access request — familiar tab structure without full Listener entitlement.",
+          "Daily reset, science content, and access request - familiar tab structure without full Listener entitlement.",
         prdRef: "Public Visitor PRD · Layer 4 · FR-006",
         role: "Public Visitor",
         steps: [
           {
             num: 1,
             label: "Public home",
-            detail: "Welcome back — daily reset card and education rails.",
+            detail: "Welcome back - daily reset card and education rails.",
             screenKey: "pv-returning-home",
             events: ["return_visit"],
           },
@@ -187,7 +187,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
           {
             num: 3,
             label: "Science topic",
-            detail: "Educational article — browsable without full sign-in.",
+            detail: "Educational article - browsable without full sign-in.",
             screenKey: "pv-topic-hifi",
             events: ["science_article_viewed"],
           },
@@ -201,20 +201,20 @@ export const PRD_DESIGN_FLOW_GROUPS = [
     label: "Mobile App · Listener",
     title: "Provisioned Listener journeys",
     description:
-      "Invite-only core experience mapped to Mobile App v1.0 [REVISED] §4 — onboarding through playback and feedback.",
+      "Invite-only core experience mapped to Mobile App v1.0 [REVISED] §4 - onboarding through playback and feedback.",
     flows: [
       {
         id: "flow-listener-core",
         title: "Core Listener journey",
         summary:
-          "End-to-end path after invite redemption — the primary build target for v1.0 mobile.",
+          "End-to-end path after invite redemption - the primary build target for v1.0 mobile.",
         prdRef: "Mobile App PRD · §4 screens #2–10",
         role: "Listener",
         steps: [
           {
             num: 1,
             label: "Redeem invite",
-            detail: "Access code validated — Partner affiliation bound.",
+            detail: "Access code validated - Partner affiliation bound.",
             screenKey: "login",
           },
           {
@@ -232,19 +232,19 @@ export const PRD_DESIGN_FLOW_GROUPS = [
           {
             num: 4,
             label: "Neurotype assessment",
-            detail: "Questionnaire for session alignment — clinical calm pacing.",
+            detail: "Questionnaire for session alignment - clinical calm pacing.",
             screenKey: "neurotype",
           },
           {
             num: 5,
             label: "Recommended profile",
-            detail: "Outcome screen — regulation family and session suggestions.",
+            detail: "Outcome screen - regulation family and session suggestions.",
             screenKey: "profile",
           },
           {
             num: 6,
             label: "Sessions library",
-            detail: "Provisioned sessions as gradient cards — curated, not marketplace.",
+            detail: "Provisioned sessions as gradient cards - curated, not marketplace.",
             screenKey: "library",
           },
           {
@@ -256,7 +256,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
           {
             num: 8,
             label: "Player",
-            detail: "Full-screen ambient playback — controls recede, sound leads.",
+            detail: "Full-screen ambient playback - controls recede, sound leads.",
             screenKey: "player",
             events: ["play_start", "play_complete"],
           },
@@ -281,7 +281,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
           { num: 3, label: "Your journey", detail: "Assessment → library → listening practice.", screenKey: "onboarding-3" },
           { num: 4, label: "Neurotype Q2", detail: "Which best describes your neurotype?", screenKey: "neurotype" },
           { num: 5, label: "Profile complete", detail: "Recommendations ready.", screenKey: "neurotype-complete" },
-          { num: 6, label: "Profile reveal", detail: "Regulation — Calm alignment.", screenKey: "profile" },
+          { num: 6, label: "Profile reveal", detail: "Regulation - Calm alignment.", screenKey: "profile" },
         ],
       },
       {
@@ -293,7 +293,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
         steps: [
           { num: 1, label: "Library", detail: "Assigned sessions with play affordance.", screenKey: "library" },
           { num: 2, label: "Favorites", detail: "Saved sessions for quick return.", screenKey: "favorites" },
-          { num: 3, label: "Session detail", detail: "Sleep — about, duration, regulation tags.", screenKey: "detail" },
+          { num: 3, label: "Session detail", detail: "Sleep - about, duration, regulation tags.", screenKey: "detail" },
           { num: 4, label: "Player", detail: "Ambient full-screen with glass controls.", screenKey: "player" },
           { num: 5, label: "Feedback", detail: "How was your session?", screenKey: "feedback" },
         ],
@@ -305,7 +305,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
     sectionId: "prd-designs-ops",
     label: "Partner Console",
     title: "Organisation provisioning",
-    description: "Web MVP for Partners — invite listeners, view scoped usage, billing reconciliation.",
+    description: "Web MVP for Partners - invite listeners, view scoped usage, billing reconciliation.",
     flows: [
       {
         id: "flow-partner-provision",
@@ -327,7 +327,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
     sectionId: "prd-designs-admin",
     label: "Admin CMS",
     title: "Platform operations",
-    description: "Sonocea Admin — content upload, listener management, analytics, and billing data.",
+    description: "Sonocea Admin - content upload, listener management, analytics, and billing data.",
     flows: [
       {
         id: "flow-admin-content",
@@ -348,7 +348,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
     sectionId: "prd-designs-errors",
     label: "Error states",
     title: "Degraded paths",
-    description: "Public Visitor §9 and Mobile App error handling — protect trust without alarming users.",
+    description: "Public Visitor §9 and Mobile App error handling - protect trust without alarming users.",
     flows: [
       {
         id: "flow-pv-errors",
@@ -357,7 +357,7 @@ export const PRD_DESIGN_FLOW_GROUPS = [
         prdRef: "Public Visitor PRD · §9",
         role: "Public Visitor",
         steps: [
-          { num: 1, label: "Connection issue", detail: "Clear retry affordance — check network.", screenKey: "error-network" },
+          { num: 1, label: "Connection issue", detail: "Clear retry affordance - check network.", screenKey: "error-network" },
           { num: 2, label: "Session unavailable", detail: "Fallback to science content or request access.", screenKey: "error-session" },
           { num: 3, label: "Resume listening", detail: "Return to player after interrupt.", screenKey: "pv-listening-alt" },
         ],

@@ -8,7 +8,7 @@ export const motionPrinciples = [
   "Never compete with audio feedback or session focus.",
 ];
 
-/** Base durations (ms) — tune per context; modes scale via resolvePalette layout/motion */
+/** Base durations (ms) - tune per context; modes scale via resolvePalette layout/motion */
 export const motionDuration = {
   instant: 120,
   fast: 200,
@@ -17,7 +17,7 @@ export const motionDuration = {
   waveformCycle: 3200,
 };
 
-/** Easing — restrained; avoid bouncy / elastic curves */
+/** Easing - restrained; avoid bouncy / elastic curves */
 export const motionEase = {
   out: [0.22, 1, 0.36, 1],
   linear: [0, 0, 1, 1],

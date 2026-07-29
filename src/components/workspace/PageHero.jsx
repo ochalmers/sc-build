@@ -10,8 +10,8 @@ import {
 } from "./pageLayout.js";
 
 /**
- * Shared workspace page intro — consistent padding, title scale, and lede.
- * @param {boolean} flushStart — left-align in the column (Flows sidebar layout); otherwise center.
+ * Shared workspace page intro - consistent padding, title scale, and lede.
+ * @param {boolean} flushStart - left-align in the column (Flows sidebar layout); otherwise center.
  */
 export default function PageHero({
   id,

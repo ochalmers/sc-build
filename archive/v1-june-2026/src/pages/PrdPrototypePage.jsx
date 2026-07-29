@@ -1,7 +1,7 @@
 import SiteNav from "../components/SiteNav.jsx";
 import PrdPrototypePlayer from "../prototype/PrdPrototypePlayer.jsx";
 
-/** Minimal chrome — no chapter nav so the phone prototype stays focused. */
+/** Minimal chrome - no chapter nav so the phone prototype stays focused. */
 export default function PrdPrototypePage() {
   return (
     <div className="min-h-dvh bg-paper-200 text-ink-950">

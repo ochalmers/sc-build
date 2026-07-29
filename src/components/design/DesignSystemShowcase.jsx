@@ -116,16 +116,16 @@ function TypographyPanel() {
   return (
     <SectionPanel
       title="Typography"
-      description="Aeonik across editorial workspace and app surfaces. One family stack — modes adjust density and contrast, not typeface."
+      description="Aeonik across editorial workspace and app surfaces. One family stack - modes adjust density and contrast, not typeface."
     >
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="space-y-5">
           <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">Workspace scale</p>
-          <p className={typeClasses.display}>Display — calm hierarchy</p>
-          <p className={typeClasses.heading}>Heading — section titles</p>
-          <p className={typeClasses.body}>Body — readable at 15px with relaxed leading for long-form specs.</p>
-          <p className={typeClasses.label}>Label — section markers</p>
-          <p className={typeClasses.caption}>Caption — metadata and footnotes</p>
+          <p className={typeClasses.display}>Display - calm hierarchy</p>
+          <p className={typeClasses.heading}>Heading - section titles</p>
+          <p className={typeClasses.body}>Body - readable at 15px with relaxed leading for long-form specs.</p>
+          <p className={typeClasses.label}>Label - section markers</p>
+          <p className={typeClasses.caption}>Caption - metadata and footnotes</p>
         </div>
         <ModeChrome mode="regulation" className="space-y-5 rounded-xl border border-ink-200/60 p-5">
           <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">App scale (GTM Home)</p>
@@ -155,7 +155,7 @@ function ColourPanel() {
   return (
     <SectionPanel
       title="Colour System"
-      description="Ink and paper neutrals with restrained accent. One base palette — behavioural modes apply transforms, not separate brands."
+      description="Ink and paper neutrals with restrained accent. One base palette - behavioural modes apply transforms, not separate brands."
     >
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
         {Object.entries(basePalette).map(([name, hex]) => (
@@ -206,7 +206,7 @@ function SpacingPanel() {
 function RadiusElevationPanel() {
   return (
     <div className="grid gap-6 lg:grid-cols-2">
-      <SectionPanel title="Border Radius" description="Rounded cards and pills — soft, premium feel.">
+      <SectionPanel title="Border Radius" description="Rounded cards and pills - soft, premium feel.">
         <div className="flex flex-wrap gap-4">
           {RADIUS_STEPS.map(({ label, px }) => (
             <div key={label} className="flex flex-col items-center gap-2">
@@ -274,7 +274,7 @@ function IconsMotionPanel() {
 function ReferenceScreenPanel() {
   return (
     <SectionPanel
-      title="Reference Screen — GTM Home"
+      title="Reference Screen - GTM Home"
       description="Structural styles sourced from Figma. Colour and imagery bind via behavioural mode CSS variables."
     >
       <a
@@ -283,7 +283,7 @@ function ReferenceScreenPanel() {
         target="_blank"
         rel="noreferrer"
       >
-        Figma — {FIGMA_REFERENCE.screenName}
+        Figma - {FIGMA_REFERENCE.screenName}
       </a>
       <div className="flex flex-col items-start gap-10 xl:flex-row xl:items-start">
         <ModeChrome mode="regulation" className="mx-auto w-fit shrink-0 rounded-[2rem] border border-ink-200/80 p-3 xl:mx-0">
@@ -347,7 +347,7 @@ export default function DesignSystemShowcase() {
   return (
     <div className="space-y-6">
       <div className="rounded-2xl border border-ink-950/10 bg-ink-950/[0.03] px-5 py-4">
-        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-600">Layer 01 — Design System</p>
+        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-600">Layer 01 - Design System</p>
         <p className="mt-1 max-w-3xl text-[13px] leading-relaxed text-ink-700">
           One canonical token set expressed through three behavioural modes. Structural geometry from Figma GTM Home;
           colour and imagery adapt per context without breaking the system.

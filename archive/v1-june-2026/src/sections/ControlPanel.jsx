@@ -45,7 +45,7 @@ export default function ControlPanel() {
     <div className="flex flex-col gap-8 rounded-2xl border border-ink-200/80 bg-white/80 p-6 shadow-[0_14px_44px_rgba(8,8,8,.07)] backdrop-blur-sm md:p-8">
       <p className="text-[14px] leading-relaxed text-ink-600">
         Behaviour mode sets sensible defaults for contrast, density, and intensity. Adjust sliders to
-        override — one palette, multiple behavioural expressions.
+        override - one palette, multiple behavioural expressions.
       </p>
 
       <div className="rounded-2xl border border-ink-200/70 bg-paper-100/60 p-4">

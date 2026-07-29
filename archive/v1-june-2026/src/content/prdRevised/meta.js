@@ -12,7 +12,7 @@ export const PRD_REVISED_META = {
     status: "Draft for internal review",
     author: "Ryan Schmaltz",
     lastUpdated: "June 28, 2026",
-    source: "Sonocea PRD — Public Visitor · June 28, 2026",
+    source: "Sonocea PRD - Public Visitor · June 28, 2026",
   },
   designCanvas: "Sonocea Design Phase 2 (Paper)",
 };
@@ -20,7 +20,7 @@ export const PRD_REVISED_META = {
 export const PRD_RELATIONSHIP = {
   title: "How these PRDs fit together",
   summary:
-    "The revised Mobile App v1.0 PRD defines the provisioned Listener, Partner, and Admin experience. The Public Visitor PRD is a companion document that replaces the earlier “marketing-only, no playback” public shell with a curated first-time experience — including a single non-clinical listening sample.",
+    "The revised Mobile App v1.0 PRD defines the provisioned Listener, Partner, and Admin experience. The Public Visitor PRD is a companion document that replaces the earlier “marketing-only, no playback” public shell with a curated first-time experience - including a single non-clinical listening sample.",
   points: [
     {
       label: "Mobile App v1.0 [REVISED]",
@@ -28,7 +28,7 @@ export const PRD_RELATIONSHIP = {
     },
     {
       label: "Public Visitor PRD",
-      body: "Discover Sonocea path for store downloads before organizational verification — education, 5-minute nervous system reset, science content, and access-request capture.",
+      body: "Discover Sonocea path for store downloads before organizational verification - education, 5-minute nervous system reset, science content, and access-request capture.",
     },
     {
       label: "Entry routing",
@@ -36,7 +36,7 @@ export const PRD_RELATIONSHIP = {
     },
     {
       label: "Prior PRD delta",
-      body: "Nov 2025 v1.0 positioned public visitors as education-only with no Session playback. June 2026 revision adds one curated listening sample, check-in/reflection sliders, and a returning-visitor home — while still protecting licensed protocols.",
+      body: "Nov 2025 v1.0 positioned public visitors as education-only with no Session playback. June 2026 revision adds one curated listening sample, check-in/reflection sliders, and a returning-visitor home - while still protecting licensed protocols.",
     },
   ],
 };
@@ -64,7 +64,7 @@ export const PRD_REVISED_ROLES = [
     surface: "Mobile app (iOS / Android)",
     prd: "Mobile App v1.0 [REVISED]",
     summary:
-      "Authenticated end user with provisioned Sessions — onboarding, neurotype alignment, library, player, feedback, and support.",
+      "Authenticated end user with provisioned Sessions - onboarding, neurotype alignment, library, player, feedback, and support.",
   },
   {
     id: "partner",

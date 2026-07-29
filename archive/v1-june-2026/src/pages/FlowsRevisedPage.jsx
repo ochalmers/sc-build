@@ -227,12 +227,12 @@ export default function FlowsRevisedPage() {
         <FlowSection
           id="revised-stories"
           label="Step 2"
-          title="What do they need? — user stories, ranked"
+          title="What do they need? - user stories, ranked"
           description="Every story tagged P0 / P1 / P2 and sorted so the must-haves lead. P0 is the spine we build first."
         >
           <PriorityLegend />
 
-          <SectionLead step="A">Public Visitor — ranked</SectionLead>
+          <SectionLead step="A">Public Visitor - ranked</SectionLead>
           <div className="space-y-6">
             {publicRanked.map((story, idx) => (
               <UserStoryCard key={story.id} story={story} index={idx} />
@@ -240,9 +240,9 @@ export default function FlowsRevisedPage() {
           </div>
 
           <div className="mt-16">
-            <SectionLead step="B">Mobile App — ranked</SectionLead>
+            <SectionLead step="B">Mobile App - ranked</SectionLead>
             <p className="-mt-4 mb-8 max-w-2xl text-[13px] text-ink-600">
-              Listener, Partner and Admin stories interleaved by priority — the true build order.
+              Listener, Partner and Admin stories interleaved by priority - the true build order.
             </p>
             <div className="space-y-6">
               {mobileRanked.map((story, idx) => (
@@ -260,12 +260,12 @@ export default function FlowsRevisedPage() {
         <FlowSection
           id="revised-flows"
           label="Step 3"
-          title="How does it flow? — the UX journeys"
+          title="How does it flow? - the UX journeys"
           description="The sequence a person actually moves through. Public Visitor first, then the provisioned Mobile App."
         >
           <div className="mb-12 rounded-2xl border border-ink-200/80 bg-white/55 p-6">
             <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">
-              Public Visitor golden route — at a glance
+              Public Visitor golden route - at a glance
             </p>
             <div className="mt-5 overflow-x-auto pb-2">
               <div className="flex min-w-[40rem] items-center gap-2">
@@ -328,7 +328,7 @@ export default function FlowsRevisedPage() {
         <FlowSection
           id="revised-screens"
           label="Step 4"
-          title="What screens result? — the primary screen list"
+          title="What screens result? - the primary screen list"
           description="The screens each surface needs, ranked by the same priority. This is the bridge into Design, where we ideate the UI."
         >
           <div className="space-y-14">
@@ -339,7 +339,7 @@ export default function FlowsRevisedPage() {
 
           <div className="mt-14">
             <h3 className="text-[13px] font-medium uppercase tracking-[0.14em] text-ink-500">
-              Public Visitor screens — current wireframes
+              Public Visitor screens - current wireframes
             </h3>
             <div className="mt-6 flex flex-wrap justify-center gap-6">
               {["pv-get-started", "pv-check-in", "pv-listening", "pv-request-access"].map((id) => (
@@ -350,7 +350,7 @@ export default function FlowsRevisedPage() {
 
           <div className="mt-14">
             <h3 className="text-[13px] font-medium uppercase tracking-[0.14em] text-ink-500">
-              Mobile App (Listener) screens — current wireframes
+              Mobile App (Listener) screens - current wireframes
             </h3>
             <div className="mt-6 flex flex-wrap justify-center gap-6">
               {["library", "detail", "player", "neurotype"].map((id) => (
@@ -366,7 +366,7 @@ export default function FlowsRevisedPage() {
               <Link to="/designs/ideation#ideation-core-ui" className="text-accent-clay underline decoration-accent-clay/40 underline-offset-2">
                 Ideation section
               </Link>{" "}
-              explores five different options for the core UI — including what lives in the bottom tab nav.
+              explores five different options for the core UI - including what lives in the bottom tab nav.
             </p>
           </div>
 
@@ -389,7 +389,7 @@ export default function FlowsRevisedPage() {
           id="revised-reference"
           label="Reference"
           title="Clinical contexts & scope"
-          description="Supporting context for the flows above — not part of the top-to-bottom read."
+          description="Supporting context for the flows above - not part of the top-to-bottom read."
           className="border-b-0"
         >
           <div className="grid gap-4 md:grid-cols-2">

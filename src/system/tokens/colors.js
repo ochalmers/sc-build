@@ -1,21 +1,21 @@
 /**
- * Canonical Sonocea colour tokens — one base palette.
+ * Canonical Sonocea colour tokens - one base palette.
  * Behaviour modes apply transforms (see ../modes.js + utils/resolvePalette.js); they are not separate palettes.
  */
 
 export const basePalette = {
-  background: "#f2f1ed",
-  surface: "#ebeae5",
+  background: "#f3f2f0",
+  surface: "#ebeae8",
   surfaceElevated: "#ffffff",
   textPrimary: "#171716",
   textSecondary: "#6e6d68",
-  accentPrimary: "#3d4a44",
-  accentSoft: "#8f9b95",
-  border: "#dcd9d2",
-  waveformBase: "#5a6862",
+  accentPrimary: "#2c2a27",
+  accentSoft: "#9a9690",
+  border: "#dcdad6",
+  waveformBase: "#6a6864",
 };
 
-/** Semantic aliases — map product language to base tokens */
+/** Semantic aliases - map product language to base tokens */
 export const colorSemantic = {
   bg: "background",
   surfaceDefault: "surface",

@@ -1,5 +1,5 @@
 /**
- * Phone chrome for hi-fi design concepts — full-bleed content, no system header.
+ * Phone chrome for hi-fi design concepts - full-bleed content, no system header.
  */
 export function DesignAppScreen({ children, className = "" }) {
   return (

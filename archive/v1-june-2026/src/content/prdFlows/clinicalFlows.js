@@ -11,7 +11,7 @@ export const clinicalFlows = [
     id: "clinical-regulation",
     title: "Regulation Companion (2.a)",
     prdScreens: "Appendix E · §2.a",
-    summary: "Therapists in-session; clients listen — arrive, settle, access therapy (~15 min).",
+    summary: "Therapists in-session; clients listen - arrive, settle, access therapy (~15 min).",
     role: "listener",
     surface: "mobile",
     steps: [
@@ -37,7 +37,7 @@ export const clinicalFlows = [
     id: "clinical-pre-procedure",
     title: "Pre-Procedure & Treatment Suites (2.c)",
     prdScreens: "Appendix E · §2.c",
-    summary: "Hospitals — arrive, prepare, endure phases; 10–45+ min; poor network critical.",
+    summary: "Hospitals - arrive, prepare, endure phases; 10–45+ min; poor network critical.",
     role: "listener",
     surface: "mobile",
     steps: [
@@ -65,7 +65,7 @@ export const clinicalFlows = [
     id: "clinical-neurodivergent",
     title: "Neurodivergent Series (2.e)",
     prdScreens: "Appendix E · §2.e",
-    summary: "Parents, schools, clinicians — age bands and support level labeling.",
+    summary: "Parents, schools, clinicians - age bands and support level labeling.",
     role: "listener",
     surface: "mobile",
     steps: [
@@ -79,7 +79,7 @@ export const clinicalFlows = [
     id: "clinical-comfort",
     title: "Comfort & Transition Suite (2.f)",
     prdScreens: "Appendix E · §2.f",
-    summary: "Palliative/hospice — ultra-slow programs, continuous duration, minimal interaction.",
+    summary: "Palliative/hospice - ultra-slow programs, continuous duration, minimal interaction.",
     role: "listener",
     surface: "mobile",
     steps: [
@@ -93,7 +93,7 @@ export const clinicalFlows = [
     id: "clinical-postpartum",
     title: "Postpartum Bond & Regulation (2.g)",
     prdScreens: "Appendix E · §2.g",
-    summary: "Feeding, skin-to-skin, nighttime settling — one-hand operation, offline homes/wards.",
+    summary: "Feeding, skin-to-skin, nighttime settling - one-hand operation, offline homes/wards.",
     role: "listener",
     surface: "mobile",
     steps: [

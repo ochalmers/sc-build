@@ -74,7 +74,7 @@ function PersonaCard({ persona }) {
         <div className="border-t border-ink-200/60 bg-paper-100/40 lg:border-l lg:border-t-0">
           <img
             src={image}
-            alt={`${title} — brand persona slide`}
+            alt={`${title} - brand persona slide`}
             className="h-full w-full object-cover object-top"
             loading="lazy"
           />

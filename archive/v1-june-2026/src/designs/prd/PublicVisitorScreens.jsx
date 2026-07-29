@@ -56,7 +56,7 @@ export function PvGetStartedScreen({ prototypeActions = {} }) {
         <Phase1Logo className="h-7 w-auto" />
         <ScreenHeader
           title="Welcome to Sonocea"
-          subtitle="Experience structured sound — or sign in with your invitation."
+          subtitle="Experience structured sound - or sign in with your invitation."
         />
       </div>
       <div className="relative z-10 space-y-2.5 px-5 pb-10">
@@ -191,7 +191,7 @@ export function PvScienceHomeScreen({ prototypeActions = {} }) {
       <div className="flex flex-1 flex-col px-5 pt-12 pb-4">
         <ScreenHeader
           title="How Sonocea works"
-          subtitle="What you just experienced — and the science behind structured sound."
+          subtitle="What you just experienced - and the science behind structured sound."
         />
         <div className="mt-6 space-y-2">
           {SCIENCE_TOPICS.map((topic) => (
@@ -239,7 +239,7 @@ export function PvTopicDetailScreen({ prototypeActions = {} }) {
           ))}
         </div>
         <p className="mt-6 text-[12px] leading-relaxed" style={{ color: DARK_MUTED }}>
-          Structured sound can influence autonomic regulation — distinct from generic relaxation audio.
+          Structured sound can influence autonomic regulation - distinct from generic relaxation audio.
         </p>
       </div>
       <div className="relative z-10 px-5 pb-10">
@@ -285,7 +285,7 @@ export function PvInvitationScreen({ prototypeActions = {} }) {
           className="mt-6 rounded-xl p-4 text-[12px] leading-relaxed"
           style={{ background: "rgba(255,255,255,0.06)", color: DARK_MUTED, border: "1px solid rgba(255,255,255,0.1)" }}
         >
-          Brief intro to Sonocea before sign-up — you may preview public content first (IP-01).
+          Brief intro to Sonocea before sign-up - you may preview public content first (IP-01).
         </div>
       </div>
       <div className="relative z-10 space-y-2.5 px-5 pb-10">
@@ -347,7 +347,7 @@ export function PvExperiencedScreen({ prototypeActions = {} }) {
       <div className="flex flex-1 flex-col px-5 pt-12">
         <ScreenHeader
           title="What you just experienced"
-          subtitle="A brief nervous system reset using structured sound — not meditation, not generic relaxation."
+          subtitle="A brief nervous system reset using structured sound - not meditation, not generic relaxation."
         />
         <div
           className="mt-6 rounded-xl p-4 text-[12px] leading-relaxed"

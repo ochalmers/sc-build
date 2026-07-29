@@ -1,5 +1,5 @@
 /**
- * Spacing scale (px). Density multipliers express behavioural mode — subtle shifts on one scale.
+ * Spacing scale (px). Density multipliers express behavioural mode - subtle shifts on one scale.
  */
 
 export const spacingPx = {
@@ -31,7 +31,7 @@ export const safeArea = {
   minBottom: spacingPx[6],
 };
 
-/** App screen rhythm — Figma GTM Home (node 1:54800) */
+/** App screen rhythm - Figma GTM Home (node 1:54800) */
 export const appSpacing = {
   insetX: spacingPx[4],
   sectionGap: spacingPx[4],
@@ -44,7 +44,7 @@ export const appSpacing = {
 };
 
 /**
- * Density multipliers for layout — applied with spacing tokens, not separate grids.
+ * Density multipliers for layout - applied with spacing tokens, not separate grids.
  * Care: more open · Performance: slightly tighter
  */
 export const densityByMode = {

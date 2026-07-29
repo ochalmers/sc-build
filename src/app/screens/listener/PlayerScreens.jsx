@@ -1,16 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
-import { formatDuration, NEUROTYPE_OPTIONS } from "../../data/catalog.js";
+import {
+  FEEL_LABELS,
+  LISTEN_STREAK_DAYS,
+  listenDaysInWindow,
+  listenerGreetingName,
+  NEUROTYPE_OPTIONS,
+} from "../../data/catalog.js";
 import { useAppStore } from "../../context/AppStore.jsx";
 import { ListenerFrame } from "../../components/ListenerFrame.jsx";
 import { AppBody, AppButton, AppTitle } from "../../components/ui.jsx";
+import { FadeBridgeScreen } from "../../components/FadeBridge.jsx";
 import {
   formatPlayTime,
-  GrainOverlay,
-  sessionAbout,
   sessionAtmosphere,
-  sessionBenefitLines,
-  sessionBestExperienced,
+  sessionBeforeYouBegin,
+  sessionDescription,
+  sessionHeadline,
 } from "../../components/SessionAtmosphere.jsx";
 
 function modeFromNeurotype(neurotypeId) {
@@ -19,32 +25,142 @@ function modeFromNeurotype(neurotypeId) {
 
 const HOME_PATH = "/app/listener/home";
 
-/** Demo playback pacing — ~5s real time per catalog minute (12min → ~60s). */
-const DEMO_MS_PER_CATALOG_MIN = 5000;
-const DEMO_TICK_MS = 500;
-const DEMO_MIN_MS = 60000;
+/** Engaging 1–5 feel slider shared by before/after check-ins. */
+function FeelSlider({ value, onChange }) {
+  const label = value != null ? FEEL_LABELS[value] : "Slide to check in";
+  const pct = value != null ? ((value - 1) / 4) * 100 : 50;
+
+  return (
+    <div className="mt-8 w-full text-center">
+      <p
+        className="text-[2.5rem] font-medium leading-none tracking-[-0.04em] tabular-nums"
+        style={{ color: "var(--proto-text)" }}
+      >
+        {value ?? "—"}
+      </p>
+      <p className="mt-3 text-[15px] font-medium tracking-tight" style={{ color: "var(--proto-text)" }}>
+        {label}
+      </p>
+
+      <div className="relative mt-8 px-1">
+        <input
+          type="range"
+          min={1}
+          max={5}
+          step={1}
+          value={value ?? 3}
+          onChange={(e) => onChange(Number(e.target.value))}
+          aria-label="How do you feel, from 1 unsettled to 5 settled"
+          className="feel-slider w-full"
+          style={{ "--feel-pct": `${pct}%` }}
+        />
+        <div
+          className="mt-3 flex justify-between text-[11px]"
+          style={{ color: "var(--proto-text-muted)" }}
+        >
+          <span>Unsettled</span>
+          <span>Settled</span>
+        </div>
+      </div>
+
+      <style>{`
+        .feel-slider {
+          -webkit-appearance: none;
+          appearance: none;
+          height: 6px;
+          border-radius: 999px;
+          outline: none;
+          cursor: pointer;
+          background: linear-gradient(
+            to right,
+            var(--proto-text) 0%,
+            var(--proto-text) var(--feel-pct),
+            color-mix(in srgb, var(--proto-border) 80%, transparent) var(--feel-pct),
+            color-mix(in srgb, var(--proto-border) 80%, transparent) 100%
+          );
+        }
+        .feel-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 28px;
+          height: 28px;
+          border-radius: 999px;
+          background: var(--proto-bg, #fff);
+          border: 2px solid var(--proto-text);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+          margin-top: -11px;
+        }
+        .feel-slider::-moz-range-thumb {
+          width: 28px;
+          height: 28px;
+          border-radius: 999px;
+          background: var(--proto-bg, #fff);
+          border: 2px solid var(--proto-text);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+        }
+        .feel-slider::-webkit-slider-runnable-track {
+          height: 6px;
+          border-radius: 999px;
+        }
+        .feel-slider::-moz-range-track {
+          height: 6px;
+          border-radius: 999px;
+          background: transparent;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+/** Vertically centred check-in / feedback layout with a soft fade-up. */
+function FeelCheckInPane({ title, body, children, actions }) {
+  return (
+    <div className="feel-check-in-enter flex h-full min-h-full flex-col items-center justify-center px-1 py-6 text-center">
+      <div className="flex w-full max-w-full flex-col items-center">
+        <AppTitle className="mx-auto max-w-[18ch] text-center text-[1.75rem] leading-[1.1]">
+          {title}
+        </AppTitle>
+        {body ? (
+          <AppBody className="mx-auto mt-3 max-w-[32ch] text-center text-[15px] leading-snug">
+            {body}
+          </AppBody>
+        ) : null}
+        {children}
+        {actions ? <div className="mt-10 w-full space-y-3">{actions}</div> : null}
+      </div>
+    </div>
+  );
+}
+
+/** Demo playback - full session preview completes in ~5s. */
+const DEMO_TOTAL_MS = 5000;
+const DEMO_TICK_MS = 100;
 
 /**
- * Simulated secure player — progress is local only (no real audio extract).
+ * Simulated secure player - progress is local only (no real audio extract).
  * Finish → brief complete state → feedback, then home.
  */
 export function ListenerPlayer() {
   const { sessionId } = useParams();
   const navigate = useNavigate();
-  const { role, user, getSession, recordListen, neurotypeId } = useAppStore();
+  const { role, user, getSession, recordListen, neurotypeId, listenHistory, listeners } =
+    useAppStore();
   const session = getSession(sessionId);
+  const listenerId =
+    listeners.find((l) => l.email === user?.email)?.id ??
+    listeners.find((l) => l.inviteCode === user?.inviteCode)?.id ??
+    null;
 
   const [playing, setPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
   const [finished, setFinished] = useState(false);
   const [infoOpen, setInfoOpen] = useState(false);
   const recordedRef = useRef(false);
-  const feedbackTimerRef = useRef(null);
+  const isFirstCompletionRef = useRef(null);
 
   useEffect(() => {
     if (!playing || finished) return undefined;
-    const totalMs = Math.max(DEMO_MIN_MS, (session?.durationMin ?? 15) * DEMO_MS_PER_CATALOG_MIN);
-    const step = 100 / (totalMs / DEMO_TICK_MS);
+    const step = 100 / (DEMO_TOTAL_MS / DEMO_TICK_MS);
     const id = setInterval(() => {
       setProgress((p) => {
         const next = Math.min(100, p + step);
@@ -56,7 +172,7 @@ export function ListenerPlayer() {
       });
     }, DEMO_TICK_MS);
     return () => clearInterval(id);
-  }, [playing, finished, session?.durationMin]);
+  }, [playing, finished]);
 
   useEffect(() => {
     if (finished && session && !recordedRef.current) {
@@ -69,17 +185,6 @@ export function ListenerPlayer() {
       });
     }
   }, [finished, session, recordListen]);
-
-  // After completion, gently continue into feedback unless the listener exits first.
-  useEffect(() => {
-    if (!finished || !session) return undefined;
-    feedbackTimerRef.current = window.setTimeout(() => {
-      navigate(`/app/listener/feedback/${session.id}`, { replace: true });
-    }, 2800);
-    return () => {
-      if (feedbackTimerRef.current) window.clearTimeout(feedbackTimerRef.current);
-    };
-  }, [finished, session, navigate]);
 
   if (role !== "listener" || !user) return <Navigate to="/app/listener" replace />;
   if (!session) {
@@ -96,15 +201,11 @@ export function ListenerPlayer() {
   const mode = session.mode || modeFromNeurotype(neurotypeId);
   const timeLabel = formatPlayTime(progress, session.durationMin);
 
-  function clearFeedbackTimer() {
-    if (feedbackTimerRef.current) {
-      window.clearTimeout(feedbackTimerRef.current);
-      feedbackTimerRef.current = null;
-    }
+  function goFeedback() {
+    navigate(`/app/listener/feedback/${session.id}`, { replace: true });
   }
 
   function goHome(recordPartial = false) {
-    clearFeedbackTimer();
     if (recordPartial && !finished && progress > 5) {
       recordListen({
         sessionId: session.id,
@@ -116,102 +217,72 @@ export function ListenerPlayer() {
     navigate(HOME_PATH, { replace: true });
   }
 
-  function goFeedback() {
-    clearFeedbackTimer();
-    navigate(`/app/listener/feedback/${session.id}`, { replace: true });
-  }
-
-  function completeNow() {
-    setInfoOpen(false);
-    setProgress(100);
-    setPlaying(false);
-    setFinished(true);
-  }
-
-  function scrub(deltaPct) {
-    setProgress((p) => Math.min(100, Math.max(0, p + deltaPct)));
-  }
-
   function toggleInfo() {
     setInfoOpen((o) => !o);
   }
 
   if (finished) {
+    if (isFirstCompletionRef.current === null) {
+      const priorCompletions = listenHistory.filter((h) => {
+        if ((h.progressPct ?? 0) < 90) return false;
+        if (!listenerId) return true;
+        return !h.listenerId || h.listenerId === listenerId;
+      }).length;
+      isFirstCompletionRef.current = priorCompletions === 0;
+    }
+    const isFirstCompletion = isFirstCompletionRef.current;
     return (
-      <ListenerFrame mode={mode} hideTabBar bleed>
-        <div className="relative flex h-full min-h-full flex-col text-white">
-          <div
-            className="absolute inset-0"
-            style={{ background: sessionAtmosphere(mode, "complete") }}
-            aria-hidden
-          />
-          <GrainOverlay opacity={0.4} />
-          <button
-            type="button"
-            className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center text-white/70"
-            aria-label="Close"
-            onClick={() => goHome()}
-          >
-            <CloseIcon />
-          </button>
-
-          <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-8 text-center">
-            <h1 className="text-[2rem] font-medium leading-tight tracking-[-0.03em]">Session complete</h1>
-            <p className="mt-4 max-w-[28ch] text-[14px] leading-relaxed text-white/60">
-              Take a moment to notice how you&apos;re feeling before continuing.
-            </p>
-            <button
-              type="button"
-              className="mt-10 rounded-full border border-white/20 px-6 py-2.5 text-[13px] text-white/85"
-              onClick={goFeedback}
-            >
-              Continue
-            </button>
-          </div>
-
-          <div className="relative z-10 px-8 pb-10">
-            <div className="h-px w-full bg-white/15">
-              <div className="h-full w-[32%] bg-white/70" />
-            </div>
-          </div>
-        </div>
-      </ListenerFrame>
+      <FadeBridgeScreen
+        phrases={
+          isFirstCompletion
+            ? [
+                [
+                  { text: "Well", line: 0 },
+                  { text: "done.", line: 0 },
+                ],
+                [
+                  { text: "You've", line: 0 },
+                  { text: "completed", line: 0 },
+                  { text: "your", line: 1 },
+                  { text: "first", line: 1 },
+                  { text: "session.", line: 1 },
+                ],
+              ]
+            : [
+                [
+                  { text: "Well", line: 0 },
+                  { text: "done.", line: 0 },
+                ],
+                [
+                  { text: "Your", line: 0 },
+                  { text: "session", line: 0 },
+                  { text: "is", line: 1 },
+                  { text: "complete.", line: 1 },
+                ],
+              ]
+        }
+        onDone={goFeedback}
+      />
     );
   }
 
   return (
     <ListenerFrame mode={mode} hideTabBar bleed>
-      <div className="relative flex h-full min-h-full flex-col text-white">
-        <div
-          className="absolute inset-0"
-          style={{ background: sessionAtmosphere(mode, "player") }}
-          aria-hidden
-        />
-        <GrainOverlay opacity={0.38} />
-        {/* Soft vertical wash — like the reference texture */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-40"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              90deg,
-              transparent 0px,
-              transparent 18px,
-              rgba(255,255,255,0.03) 18px,
-              rgba(255,255,255,0.03) 19px
-            )`,
-          }}
-          aria-hidden
-        />
-
-        <div className="relative z-10 flex items-start justify-between px-5 pt-5">
+      <div
+        className="relative flex h-full min-h-full flex-col text-white"
+        style={{ background: sessionAtmosphere(mode, "player") }}
+      >
+        <div className="relative z-10 flex items-center justify-between px-5 pt-5">
           <button
             type="button"
-            className="min-w-0 pr-4 text-left"
+            className={`min-w-0 pr-4 text-left ${playing ? "flex h-9 items-center" : ""}`}
             onClick={toggleInfo}
             aria-expanded={infoOpen}
             aria-controls="session-info-drawer"
           >
-            <p className="truncate text-[14px] font-medium tracking-tight text-white/90">{session.title}</p>
+            <p className="truncate text-[16px] font-medium leading-none tracking-tight text-white/90">
+              {session.title}
+            </p>
             {!playing ? (
               <p className="mt-1 text-[11px] uppercase tracking-[0.14em] text-white/40">Paused</p>
             ) : null}
@@ -258,15 +329,7 @@ export function ListenerPlayer() {
             </p>
           </div>
 
-          <div className="flex items-center justify-center gap-12">
-            <button
-              type="button"
-              className="flex h-11 w-11 items-center justify-center text-white/85"
-              aria-label="Skip back"
-              onClick={() => scrub(-8)}
-            >
-              <SkipIcon flip />
-            </button>
+          <div className="flex items-center justify-center">
             <button
               type="button"
               className="flex h-[52px] w-[52px] items-center justify-center"
@@ -275,14 +338,6 @@ export function ListenerPlayer() {
             >
               {playing ? <PauseIcon /> : <PlayIcon />}
             </button>
-            <button
-              type="button"
-              className="flex h-11 w-11 items-center justify-center text-white/85"
-              aria-label="Skip forward"
-              onClick={() => scrub(8)}
-            >
-              <SkipIcon />
-            </button>
           </div>
         </div>
 
@@ -290,14 +345,15 @@ export function ListenerPlayer() {
           open={infoOpen}
           session={session}
           onClose={() => setInfoOpen(false)}
-          onSkipToEnd={completeNow}
         />
       </div>
     </ListenerFrame>
   );
 }
 
-function SessionInfoDrawer({ open, session, onClose, onSkipToEnd }) {
+function SessionInfoDrawer({ open, session, onClose }) {
+  const beforeItems = sessionBeforeYouBegin(session);
+
   return (
     <div
       className={`absolute inset-0 z-30 flex flex-col justify-end ${
@@ -320,7 +376,7 @@ function SessionInfoDrawer({ open, session, onClose, onSkipToEnd }) {
         role="dialog"
         aria-modal="true"
         aria-label={`${session.title} session info`}
-        className={`relative flex max-h-[72%] flex-col rounded-t-[1.5rem] border-t border-white/10 bg-[#161512]/96 text-white shadow-[0_-20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`relative flex max-h-[72%] flex-col rounded-t-[1.5rem] border-t border-white/10 bg-[#161616]/96 text-white shadow-[0_-20px_60px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           open ? "translate-y-0" : "translate-y-full"
         }`}
       >
@@ -335,12 +391,17 @@ function SessionInfoDrawer({ open, session, onClose, onSkipToEnd }) {
           </button>
           <div className="flex w-full items-start justify-between gap-3 px-5 pb-3 pt-1">
             <div className="min-w-0">
-              <p className="text-[11px] uppercase tracking-[0.14em] text-white/40">
-                {session.useCase} · {formatDuration(session.durationMin)}
-              </p>
-              <h2 className="mt-1 text-[1.35rem] font-medium tracking-[-0.02em] text-white">
+              <h2 className="text-[1.35rem] font-medium tracking-[-0.02em] text-white">
                 {session.title}
               </h2>
+              <p className="mt-2 text-[15px] font-medium leading-snug tracking-[-0.01em] text-white/90">
+                {sessionHeadline(session)}
+              </p>
+              {sessionDescription(session) ? (
+                <p className="mt-2 max-w-[34ch] text-[13px] leading-relaxed text-white/55">
+                  {sessionDescription(session)}
+                </p>
+              ) : null}
             </div>
             <button
               type="button"
@@ -354,39 +415,18 @@ function SessionInfoDrawer({ open, session, onClose, onSkipToEnd }) {
         </div>
 
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-8">
-          <DrawerSection label="About this session">
-            <p className="text-[13px] leading-relaxed text-white/65">{sessionAbout(session)}</p>
-          </DrawerSection>
-
-          <DrawerSection label="Benefits">
-            <ul className="space-y-2">
-              {sessionBenefitLines(session).map((line) => (
-                <li key={line} className="flex gap-2.5 text-[13px] leading-snug text-white/65">
-                  <span className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-white/40" aria-hidden />
-                  <span>{line}</span>
-                </li>
-              ))}
-            </ul>
-          </DrawerSection>
-
-          <DrawerSection label="Best experienced">
-            <ul className="space-y-2">
-              {sessionBestExperienced(session).map((item) => (
-                <li key={item} className="flex gap-2.5 text-[13px] leading-snug text-white/65">
-                  <span className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-white/40" aria-hidden />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </DrawerSection>
-
-          <button
-            type="button"
-            className="mt-6 w-full rounded-full border border-white/15 px-4 py-2.5 text-[12px] text-white/55"
-            onClick={onSkipToEnd}
-          >
-            Skip to end (demo)
-          </button>
+          {beforeItems.length > 0 ? (
+            <DrawerSection label="Before you begin">
+              <ul className="space-y-2">
+                {beforeItems.slice(0, 3).map((item) => (
+                  <li key={item} className="flex gap-2.5 text-[13px] leading-snug text-white/65">
+                    <span className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-white/40" aria-hidden />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </DrawerSection>
+          ) : null}
         </div>
       </div>
     </div>
@@ -422,27 +462,6 @@ function MoreIcon() {
   );
 }
 
-function SkipIcon({ flip }) {
-  return (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 22 22"
-      fill="none"
-      aria-hidden
-      style={flip ? { transform: "scaleX(-1)" } : undefined}
-    >
-      <path
-        d="M7 5v12M16 5l-7 6 7 6"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function PauseIcon() {
   return (
     <svg width="52" height="52" viewBox="0 0 52 52" fill="none" aria-hidden>
@@ -461,30 +480,107 @@ function PlayIcon() {
   );
 }
 
-export function ListenerFeedback() {
+function FeelNoteField({ value, onChange }) {
+  return (
+    <label className="mt-8 block w-full text-left">
+      <span className="flex items-baseline justify-between gap-2 text-[13px]">
+        <span style={{ color: "var(--proto-text)" }}>Anything you’d like to note?</span>
+        <span style={{ color: "var(--proto-text-muted)" }}>Optional</span>
+      </span>
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        rows={2}
+        className="mt-2 w-full resize-none rounded-xl border px-3.5 py-3 text-left text-[14px] outline-none"
+        style={{
+          borderColor: "var(--proto-border)",
+          background: "var(--proto-surface)",
+          color: "var(--proto-text)",
+        }}
+        placeholder="A few words is enough…"
+      />
+    </label>
+  );
+}
+
+export function ListenerCheckIn() {
   const { sessionId } = useParams();
   const navigate = useNavigate();
   const { role, user, getSession, submitFeedback, neurotypeId } = useAppStore();
   const session = getSession(sessionId);
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState(3);
   const [note, setNote] = useState("");
-  const [sent, setSent] = useState(false);
-
-  useEffect(() => {
-    if (!sent) return undefined;
-    const id = window.setTimeout(() => {
-      navigate(HOME_PATH, { replace: true });
-    }, 1400);
-    return () => window.clearTimeout(id);
-  }, [sent, navigate]);
 
   if (role !== "listener" || !user) return <Navigate to="/app/listener" replace />;
 
   const mode = session?.mode || modeFromNeurotype(neurotypeId);
+  const playerPath = `/app/listener/player/${sessionId}`;
 
-  function goHome() {
+  function goPlayer(checkInPairId) {
+    navigate(playerPath, {
+      replace: true,
+      state: checkInPairId ? { checkInPairId } : undefined,
+    });
+  }
+
+  function send() {
+    if (!session || rating == null) return;
+    const pairId = `${session.id}-${Date.now()}`;
+    submitFeedback({
+      sessionId: session.id,
+      rating,
+      note,
+      at: Date.now(),
+      phase: "before",
+      pairId,
+    });
+    goPlayer(pairId);
+  }
+
+  return (
+    <ListenerFrame mode={mode} hideTabBar screenKey="before-check-in">
+      <FeelCheckInPane
+        title="Before you begin, tell us how you’re feeling"
+        body="Choose what feels closest. We’ll ask you again after the session so you can notice if anything has changed."
+        actions={
+          <>
+            <AppButton fullWidth disabled={rating == null} onClick={send}>
+              Continue
+            </AppButton>
+            <AppButton fullWidth variant="ghost" onClick={() => goPlayer()}>
+              Skip
+            </AppButton>
+          </>
+        }
+      >
+        <FeelSlider value={rating} onChange={setRating} />
+        <FeelNoteField value={note} onChange={setNote} />
+      </FeelCheckInPane>
+    </ListenerFrame>
+  );
+}
+
+export function ListenerFeedback() {
+  const { sessionId } = useParams();
+  const navigate = useNavigate();
+  const { role, user, getSession, submitFeedback, feedback, neurotypeId, onboardingPrefs } =
+    useAppStore();
+  const session = getSession(sessionId);
+  const [rating, setRating] = useState(3);
+  const [note, setNote] = useState("");
+  const [sent, setSent] = useState(false);
+
+  const beforeEntry = feedback.find((f) => f.sessionId === sessionId && f.phase === "before");
+
+  function finishToHome() {
     navigate(HOME_PATH, { replace: true });
   }
+
+  if (role !== "listener" || !user) return <Navigate to="/app/listener" replace />;
+
+  const mode = session?.mode || modeFromNeurotype(neurotypeId);
+  const greetingName =
+    listenerGreetingName(user) || onboardingPrefs?.preferredName?.trim() || null;
 
   function send() {
     if (!session || rating == null) return;
@@ -493,80 +589,59 @@ export function ListenerFeedback() {
       rating,
       note,
       at: Date.now(),
+      phase: "after",
+      ...(beforeEntry?.pairId ? { pairId: beforeEntry.pairId } : {}),
     });
     setSent(true);
   }
 
+  if (sent) {
+    return (
+      <FadeBridgeScreen
+        phrases={[
+          greetingName
+            ? [
+                { text: "See", line: 0 },
+                { text: "you", line: 0 },
+                { text: "at", line: 0 },
+                { text: "your", line: 0 },
+                { text: "next", line: 1 },
+                { text: "session,", line: 1 },
+                { text: `${greetingName}.`, line: 1 },
+              ]
+            : [
+                { text: "See", line: 0 },
+                { text: "you", line: 0 },
+                { text: "at", line: 0 },
+                { text: "your", line: 0 },
+                { text: "next", line: 1 },
+                { text: "session.", line: 1 },
+              ],
+        ]}
+        onDone={finishToHome}
+      />
+    );
+  }
+
   return (
-    <ListenerFrame mode={mode} hideTabBar>
-      <div className="flex flex-1 flex-col pb-6 pt-4">
-        <AppTitle className="mt-2">How do you feel now?</AppTitle>
-        <AppBody className="mt-3">
-          {session
-            ? `A quick check-in after ${session.title}. You can skip this anytime.`
-            : "A quick check-in. You can skip this anytime."}
-        </AppBody>
-
-        {sent ? (
-          <div className="mt-12">
-            <AppTitle className="text-[1.35rem]">Thank you</AppTitle>
-            <AppBody className="mt-3">Taking you home…</AppBody>
-            <AppButton className="mt-10" fullWidth onClick={goHome}>
-              Back to Home
-            </AppButton>
-          </div>
-        ) : (
+    <ListenerFrame mode={mode} hideTabBar screenKey="after-check-in">
+      <FeelCheckInPane
+        title="How do you feel now?"
+        body="Choose what feels closest. There’s no right answer. This simply helps you notice how you feel after listening."
+        actions={
           <>
-            <div className="mt-10 flex justify-between gap-2">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <button
-                  key={n}
-                  type="button"
-                  onClick={() => setRating(n)}
-                  className="flex h-12 w-12 items-center justify-center rounded-full border text-[15px] font-medium"
-                  style={{
-                    borderColor: rating === n ? "var(--proto-text)" : "var(--proto-border)",
-                    background: rating === n ? "var(--proto-text)" : "transparent",
-                    color: rating === n ? "var(--proto-bg)" : "var(--proto-text)",
-                  }}
-                >
-                  {n}
-                </button>
-              ))}
-            </div>
-            <p className="mt-2 text-center text-[11px]" style={{ color: "var(--proto-text-muted)" }}>
-              1 unsettled · 5 settled
-            </p>
-
-            <label className="mt-8 block">
-              <span className="text-[13px]" style={{ color: "var(--proto-text-muted)" }}>
-                Note (optional)
-              </span>
-              <textarea
-                value={note}
-                onChange={(e) => setNote(e.target.value)}
-                rows={3}
-                className="mt-2 w-full resize-none rounded-xl border px-3.5 py-3 text-[14px] outline-none"
-                style={{
-                  borderColor: "var(--proto-border)",
-                  background: "var(--proto-surface)",
-                  color: "var(--proto-text)",
-                }}
-                placeholder="Anything worth noting…"
-              />
-            </label>
-
-            <div className="mt-auto space-y-3 pt-10">
-              <AppButton fullWidth disabled={rating == null} onClick={send}>
-                Submit
-              </AppButton>
-              <AppButton fullWidth variant="ghost" onClick={goHome}>
-                Skip
-              </AppButton>
-            </div>
+            <AppButton fullWidth disabled={rating == null} onClick={send}>
+              Continue
+            </AppButton>
+            <AppButton fullWidth variant="ghost" onClick={finishToHome}>
+              Skip
+            </AppButton>
           </>
-        )}
-      </div>
+        }
+      >
+        <FeelSlider value={rating} onChange={setRating} />
+        <FeelNoteField value={note} onChange={setNote} />
+      </FeelCheckInPane>
     </ListenerFrame>
   );
 }
@@ -578,11 +653,9 @@ export function ListenerProfile() {
     user,
     neurotypeId,
     listenHistory,
-    favoriteIds,
     feedback,
     logout,
     partners,
-    setNeurotype,
     appearance,
     setAppearance,
   } = useAppStore();
@@ -592,6 +665,9 @@ export function ListenerProfile() {
   const mode = modeFromNeurotype(neurotypeId);
   const partner = partners.find((p) => p.id === user.partnerId);
   const completed = listenHistory.filter((h) => h.progressPct >= 90).length;
+  const { listenedDays } = listenDaysInWindow(listenHistory, LISTEN_STREAK_DAYS);
+  const greeting =
+    user.isAnonymous && !user.displayName ? "You" : listenerGreetingName(user) || user.displayName || user.name || "You";
 
   return (
     <ListenerFrame
@@ -599,9 +675,9 @@ export function ListenerProfile() {
       activeTab="profile"
     >
       <div className="pb-6 pt-2">
-        <AppTitle className="text-[1.5rem]">{user.name}</AppTitle>
+        <AppTitle className="text-[1.5rem]">{greeting}</AppTitle>
         <AppBody className="mt-2">
-          {user.email}
+          {user.isAnonymous ? "Private account" : user.email}
           <br />
           {partner?.name}
         </AppBody>
@@ -609,8 +685,8 @@ export function ListenerProfile() {
         <dl className="mt-8 grid grid-cols-3 gap-2">
           {[
             { label: "Completed", value: completed },
-            { label: "Saved", value: favoriteIds.length },
-            { label: "Check-ins", value: feedback.length },
+            { label: "Days", value: listenedDays },
+            { label: "Ratings", value: feedback.length },
           ].map((stat) => (
             <div
               key={stat.label}
@@ -631,13 +707,11 @@ export function ListenerProfile() {
           <p className="text-[14px] font-medium" style={{ color: "var(--proto-text)" }}>
             Appearance
           </p>
-          <div
-            className="flex rounded-xl border p-1"
-            style={{ borderColor: "var(--proto-border)", background: "var(--proto-surface)" }}
-          >
+          <div className="space-y-2">
             {[
               { id: "light", label: "Light" },
               { id: "dark", label: "Dark" },
+              { id: "adapt", label: "Adapt to time of day" },
             ].map((opt) => {
               const on = appearance === opt.id;
               return (
@@ -645,13 +719,40 @@ export function ListenerProfile() {
                   key={opt.id}
                   type="button"
                   onClick={() => setAppearance(opt.id)}
-                  className="flex-1 rounded-lg py-2.5 text-[13px] font-medium transition-colors"
+                  className="flex w-full items-center justify-between rounded-xl border px-3.5 py-3 text-left transition-colors"
                   style={{
-                    background: on ? "var(--proto-text)" : "transparent",
-                    color: on ? "var(--proto-bg)" : "var(--proto-text-muted)",
+                    borderColor: on ? "var(--proto-text)" : "var(--proto-border)",
+                    background: on
+                      ? "color-mix(in srgb, var(--proto-text) 6%, var(--proto-surface))"
+                      : "var(--proto-surface)",
+                    color: "var(--proto-text)",
                   }}
+                  aria-pressed={on}
                 >
-                  {opt.label}
+                  <span className="text-[13px] font-medium">{opt.label}</span>
+                  {on ? (
+                    <span
+                      className="flex h-5 w-5 items-center justify-center rounded-full"
+                      style={{ background: "var(--proto-text)", color: "var(--proto-bg)" }}
+                      aria-hidden
+                    >
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path
+                          d="M2 5.2L4.1 7.3L8.2 2.8"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  ) : (
+                    <span
+                      className="h-5 w-5 rounded-full"
+                      style={{ border: "1px solid var(--proto-border)" }}
+                      aria-hidden
+                    />
+                  )}
                 </button>
               );
             })}
@@ -659,31 +760,8 @@ export function ListenerProfile() {
         </div>
 
         <div className="mt-8 space-y-2">
-          <p className="text-[14px] font-medium" style={{ color: "var(--proto-text)" }}>
-            Listening preference
-          </p>
-          {NEUROTYPE_OPTIONS.map((opt) => (
-            <button
-              key={opt.id}
-              type="button"
-              onClick={() => setNeurotype(opt.id)}
-              className="w-full rounded-xl border px-3 py-2.5 text-left text-[13px]"
-              style={{
-                borderColor: neurotypeId === opt.id ? "var(--proto-text)" : "var(--proto-border)",
-                color: "var(--proto-text)",
-              }}
-            >
-              {opt.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="mt-8 space-y-2">
           <AppButton fullWidth variant="secondary" onClick={() => navigate("/app/listener/organisation")}>
             Organisation
-          </AppButton>
-          <AppButton fullWidth variant="secondary" onClick={() => navigate("/app/listener/favorites")}>
-            Favorites
           </AppButton>
           <AppButton fullWidth variant="secondary" onClick={() => navigate("/app/listener/about")}>
             About Sonocea
@@ -750,7 +828,7 @@ export function ListenerSupport() {
           style={{ borderColor: "var(--proto-border)", background: "var(--proto-surface)" }}
         >
           <p className="text-[13px]" style={{ color: "var(--proto-text)" }}>
-            Demo note: this is a working product shell — support messages aren’t sent.
+            Demo note: this is a working product shell - support messages aren’t sent.
           </p>
         </div>
         <AppButton className="mt-8" fullWidth variant="secondary" onClick={() => navigate("/app/listener/profile")}>

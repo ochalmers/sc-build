@@ -36,9 +36,9 @@ export function AppButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`rounded-xl px-5 py-3 text-[13px] font-medium tracking-tight transition-opacity disabled:opacity-40 ${
-        fullWidth ? "w-full" : ""
-      } ${className}`}
+      className={`rounded-full px-5 text-[14px] font-normal tracking-tight transition-opacity disabled:opacity-40 ${
+        variant === "ghost" ? "py-2" : "py-3.5"
+      } ${fullWidth ? "w-full" : ""} ${className}`}
       style={styles}
     >
       {children}
@@ -49,20 +49,24 @@ export function AppButton({
 export function AppField({ label, type = "text", value, onChange, placeholder, autoComplete, hint }) {
   return (
     <label className="block">
-      <span className="text-[11px] font-medium uppercase tracking-[0.12em]" style={{ color: "var(--proto-text-muted)" }}>
-        {label}
-      </span>
+      {label ? (
+        <span className="text-[11px] font-normal uppercase tracking-[0.12em]" style={{ color: "var(--proto-text-muted)" }}>
+          {label}
+        </span>
+      ) : null}
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         autoComplete={autoComplete}
-        className="mt-2 w-full rounded-xl border px-3.5 py-3 text-[14px] outline-none focus:border-[var(--proto-accent)]"
+        aria-label={label || placeholder || "Text field"}
+        className={`${label ? "mt-2" : ""} h-12 w-full rounded-2xl border px-3.5 text-[14px] outline-none focus:border-[var(--proto-accent)]`}
         style={{
           borderColor: "var(--proto-border)",
           background: "var(--proto-surface-elevated, var(--proto-surface))",
           color: "var(--proto-text)",
+          lineHeight: "3rem",
         }}
       />
       {hint ? (
@@ -77,7 +81,7 @@ export function AppField({ label, type = "text", value, onChange, placeholder, a
 export function AppEyebrow({ children, className = "" }) {
   return (
     <p
-      className={`text-[11px] font-medium uppercase tracking-[0.14em] ${className}`}
+      className={`text-[11px] font-normal uppercase tracking-[0.14em] ${className}`}
       style={{ color: "var(--proto-text-muted)" }}
     >
       {children}
@@ -88,7 +92,7 @@ export function AppEyebrow({ children, className = "" }) {
 export function AppTitle({ children, className = "" }) {
   return (
     <h1
-      className={`text-[1.75rem] font-medium leading-[1.1] tracking-[-0.03em] ${className}`}
+      className={`text-[1.75rem] font-normal leading-[1.1] tracking-[-0.03em] ${className}`}
       style={{ color: "var(--proto-text)" }}
     >
       {children}

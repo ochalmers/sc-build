@@ -1,12 +1,12 @@
 /**
- * Overview page content — Sonocea App v2.0 landing page.
+ * Overview page content - Sonocea App v2.0 landing page.
  */
 
 export const OVERVIEW_HERO = {
   eyebrow: "Design Programme · Phase 02 · June 2026",
   title: "Sonocea App v2.0",
   intro:
-    "The single source of truth for designing and building the Sonocea mobile application — aligned across product, design and engineering.",
+    "The single source of truth for designing and building the Sonocea mobile application - aligned across product, design and engineering.",
   contains: [
     "Product planning",
     "User journeys",
@@ -29,7 +29,7 @@ export const SOURCE_DOCUMENTS = [
     description:
       "Defines the experience for unauthenticated users discovering Sonocea for the first time.",
     download: "/assets/prd/sonocea-prd-public-visitor-june-2026.pdf",
-    downloadLabel: "Sonocea PRD — Public Visitor (June 2026).pdf",
+    downloadLabel: "Sonocea PRD - Public Visitor (June 2026).pdf",
     flows: "/flows#flows-public-visitor",
     wireframes: "/flows#flows-public-visitor",
   },
@@ -49,7 +49,7 @@ export const SOURCE_DOCUMENTS = [
 export const PRODUCT_ECOSYSTEM = [
   {
     stage: "Sonocea App",
-    explanation: "The mobile product — one app, two modes of access.",
+    explanation: "The mobile product - one app, two modes of access.",
   },
   {
     stage: "Public Visitor",
@@ -102,7 +102,7 @@ export const USER_TYPES = [
   },
   {
     role: "Admin",
-    purpose: "Operate the platform — content, partners and system configuration.",
+    purpose: "Operate the platform - content, partners and system configuration.",
     goals: ["Manage sessions", "Configure partners", "Monitor analytics", "Handle billing"],
     permissions: ["Full CMS access", "Partner management", "Public visitor analytics", "System configuration"],
   },
@@ -160,7 +160,7 @@ export const WORKSPACE_SECTIONS = [
     to: "/",
     why: "Orient new team members and stakeholders to the programme.",
     content: "Product context, PRDs, roles, build status and quick-start guides.",
-    forDevs: "Start here — understand what exists and where to go next.",
+    forDevs: "Start here - understand what exists and where to go next.",
   },
   {
     label: "Plan",
@@ -174,7 +174,7 @@ export const WORKSPACE_SECTIONS = [
     to: "/flows",
     why: "Document how the application behaves end to end.",
     content: "Architecture, user journeys, screen logic and error states.",
-    forDevs: "The behavioural spec — read before implementing any feature.",
+    forDevs: "The behavioural spec - read before implementing any feature.",
   },
   {
     label: "Design",
@@ -188,7 +188,7 @@ export const WORKSPACE_SECTIONS = [
     to: "/references",
     why: "Collect inspiration, research and technical context.",
     content: "Curated Mobbin screens for player, discovery, onboarding, and navigation patterns.",
-    forDevs: "Supporting material — not product definition, but useful context.",
+    forDevs: "Supporting material - not product definition, but useful context.",
   },
 ];
 
@@ -196,7 +196,7 @@ export const WHATS_NEXT = [
   {
     label: "Working app",
     to: "/app",
-    description: "Semi-working Mobile App PRD — Listener, Partner, and Admin.",
+    description: "Semi-working Mobile App PRD - Listener, Partner, and Admin.",
   },
   {
     label: "Plan",

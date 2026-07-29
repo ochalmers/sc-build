@@ -3,7 +3,7 @@ import { DEMO_CREDENTIALS } from "../data/catalog.js";
 import { useAppStore } from "../context/AppStore.jsx";
 
 /**
- * Ensures the demo role is active for Partner/Admin routes.
+ * Ensures the demo role is active for Organization/Admin routes.
  * Avoids Navigate-to-/app races that bounce users to Listener while switching surfaces.
  */
 export function RequirePartner({ children }) {
@@ -19,7 +19,7 @@ export function RequirePartner({ children }) {
 
   if (role !== "partner" || !user) {
     return (
-      <div className="px-5 py-12 text-[13px] text-white/50 md:px-8">Opening partner console…</div>
+      <div className="px-5 py-12 text-[13px] text-white/50 md:px-8">Opening organization console…</div>
     );
   }
 

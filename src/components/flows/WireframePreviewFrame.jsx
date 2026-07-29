@@ -1,7 +1,7 @@
 import { DesignAppScreen } from "../../designs/DesignAppScreen.jsx";
 import PinComments from "../comments/PinComments.jsx";
 
-/** Fixed width for mobile wireframe previews — keeps storyboards and flow strips aligned. */
+/** Fixed width for mobile wireframe previews - keeps storyboards and flow strips aligned. */
 export const WIREFRAME_PREVIEW_WIDTH = "280px";
 
 /** Fixed width for desktop / web console wireframes. */

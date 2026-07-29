@@ -15,7 +15,7 @@ export const partnerFlows = [
     id: "partner-welcome",
     title: "Welcome & console home",
     prdScreens: "§4 Partner Console #2",
-    summary: "Welcome screen with primary CTAs — provision Listener, view usage.",
+    summary: "Welcome screen with primary CTAs - provision Listener, view usage.",
     role: "partner",
     surface: "web",
     steps: [
@@ -41,7 +41,7 @@ export const partnerFlows = [
     id: "partner-invite-sms",
     title: "Send invite · SMS",
     prdScreens: "§7 Partner Console",
-    summary: "SMS provisioning path — same entitlement assignment as email.",
+    summary: "SMS provisioning path - same entitlement assignment as email.",
     role: "partner",
     surface: "web",
     steps: [
@@ -91,7 +91,7 @@ export const partnerFlows = [
     id: "partner-usage-dashboard",
     title: "Usage dashboard",
     prdScreens: "§4 Partner Console #5 · §5 Partner #3",
-    summary: "Active Listeners, hours, completions, billable metrics — Partner-scoped only.",
+    summary: "Active Listeners, hours, completions, billable metrics - Partner-scoped only.",
     role: "partner",
     surface: "web",
     steps: [
@@ -130,7 +130,7 @@ export const partnerFlows = [
     id: "partner-self-care",
     title: "Partner-only self-care Sessions",
     prdScreens: "§5 Partner #5 · Appendix E 2.b",
-    summary: "Therapist-only content not shareable with Listeners — Inner Balance use case.",
+    summary: "Therapist-only content not shareable with Listeners - Inner Balance use case.",
     role: "partner",
     surface: "web",
     steps: [

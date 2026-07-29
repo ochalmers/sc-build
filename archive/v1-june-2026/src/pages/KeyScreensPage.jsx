@@ -53,7 +53,7 @@ export default function KeyScreensPage() {
                 Key screen wireframes
               </h1>
               <p className="mt-4 text-[18px] font-medium tracking-tight text-ink-700">
-                Low-fidelity artboards for PRD and PRD Lite — three version slots per screen.
+                Low-fidelity artboards for PRD and PRD Lite - three version slots per screen.
               </p>
               <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink-600">
                 Canonical v1 design package scope: 13 Listener screens, 4 Partner, 3–4 Admin, 12 session
@@ -82,7 +82,7 @@ export default function KeyScreensPage() {
           id="listener-screens"
           label="Core listener"
           title="Listener screens (01–13)"
-          description="Screens to fully design. Each row holds three version slots — typically state variants, PRD vs Lite, or a reserved Design column."
+          description="Screens to fully design. Each row holds three version slots - typically state variants, PRD vs Lite, or a reserved Design column."
         >
           <div className="space-y-10">
             {LISTENER_SCREENS.map((screen) => (
@@ -121,7 +121,7 @@ export default function KeyScreensPage() {
           id="session-artwork"
           label="Session artwork"
           title="Category system · 12 example sessions"
-          description="Each category has a distinct colour tone. Every session receives unique artwork — build a system, not a single cover."
+          description="Each category has a distinct colour tone. Every session receives unique artwork - build a system, not a single cover."
         >
           <div className="space-y-12">
             {SESSION_ARTWORK.categories.map((cat) => (
@@ -170,7 +170,7 @@ export default function KeyScreensPage() {
           id="design-system"
           label="Design system"
           title="Component primitives"
-          description="Buttons, inputs, cards, navigation, and player controls — foundation for hi-fi Phase 4."
+          description="Buttons, inputs, cards, navigation, and player controls - foundation for hi-fi Phase 4."
         >
           <DsPrimitivesStrip />
         </FlowSection>

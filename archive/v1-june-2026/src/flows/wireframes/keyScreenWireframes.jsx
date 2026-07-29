@@ -8,7 +8,7 @@ import {
 } from "./WireframePhone.jsx";
 import { WebWireframe, WfWebRow, WfWebBtn } from "./WebWireframe.jsx";
 
-/* ——— Listener: auth & onboarding ——— */
+/* --- Listener: auth & onboarding --- */
 
 export function ScreenSplashDark() {
   return (
@@ -28,7 +28,7 @@ export function ScreenWelcomeGuest() {
   return (
     <WireframePhone label="Welcome · guest">
       <div className="flex flex-1 flex-col px-5 pt-4">
-        <WfTag>Wireframe — welcome</WfTag>
+        <WfTag>Wireframe - welcome</WfTag>
         <div className="mt-4 flex h-28 items-center justify-center rounded-2xl border-2 border-dashed border-[#D4D4D8] bg-[#F4F4F5] text-[10px] text-[#71717A]">
           Brand / SAT™ intro
         </div>
@@ -49,7 +49,7 @@ export function ScreenWelcomeInvited() {
   return (
     <WireframePhone label="Welcome · invited">
       <div className="flex flex-1 flex-col px-5 pt-4">
-        <WfTag>Wireframe — welcome</WfTag>
+        <WfTag>Wireframe - welcome</WfTag>
         <p className="mt-2 rounded-lg border border-[#E4E4E7] bg-[#FAFAFA] px-3 py-2 text-[10px] text-[#52525B]">
           Invite from <span className="font-semibold">Partner Clinic</span>
         </p>
@@ -69,7 +69,7 @@ export function ScreenWelcomeInvited() {
 export function ScreenInviteEmpty() {
   return (
     <WireframePhone label="Invite · empty">
-      <WfTag>Wireframe — invite</WfTag>
+      <WfTag>Wireframe - invite</WfTag>
       <div className="flex-1 px-5 pt-2">
         <h2 className="text-[18px] font-bold">Access code</h2>
         <p className="mt-2 text-[11px] text-[#52525B]">Redeem your Partner or personal invite.</p>
@@ -87,7 +87,7 @@ export function ScreenInviteEmpty() {
 export function ScreenInviteValid() {
   return (
     <WireframePhone label="Invite · valid">
-      <WfTag>Wireframe — invite</WfTag>
+      <WfTag>Wireframe - invite</WfTag>
       <div className="flex-1 px-5 pt-2">
         <h2 className="text-[18px] font-bold">Access code</h2>
         <div className="mt-4 rounded-[10px] border-2 border-[#18181B] px-3 py-2.5 text-[12px] font-semibold">
@@ -107,7 +107,7 @@ export function ScreenInviteValid() {
 export function ScreenInviteInvalid() {
   return (
     <WireframePhone label="Invite · invalid">
-      <WfTag>Wireframe — invite</WfTag>
+      <WfTag>Wireframe - invite</WfTag>
       <div className="flex-1 px-5 pt-2">
         <h2 className="text-[18px] font-bold">Access code</h2>
         <div className="mt-4 rounded-[10px] border-2 border-[#DC2626] px-3 py-2.5 text-[12px]">
@@ -126,7 +126,7 @@ export function ScreenInviteInvalid() {
 export function ScreenOnboardingIntro3() {
   return (
     <WireframePhone label="Onboarding · how it works">
-      <WfTag>Wireframe — onboarding</WfTag>
+      <WfTag>Wireframe - onboarding</WfTag>
       <div className="flex-1 px-5 pt-2">
         <div className="flex gap-1.5 pb-3">
           <div className="h-1 w-7 rounded-full bg-[#E4E4E7]" />
@@ -156,7 +156,7 @@ export function ScreenOnboardingIntro3() {
 export function ScreenNeurotypeProgress() {
   return (
     <WireframePhone label="Neurotype · progress">
-      <WfTag>Wireframe — neurotype</WfTag>
+      <WfTag>Wireframe - neurotype</WfTag>
       <div className="flex-1 px-5 pt-2">
         <div className="flex items-center justify-between text-[10px] text-[#71717A]">
           <span>Question 2 of 5</span>
@@ -189,7 +189,7 @@ export function ScreenNeurotypeProgress() {
 export function ScreenNeurotypeComplete() {
   return (
     <WireframePhone label="Neurotype · complete">
-      <WfTag>Wireframe — neurotype</WfTag>
+      <WfTag>Wireframe - neurotype</WfTag>
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
         <div className="h-14 w-14 rounded-full border-2 border-[#18181B] bg-[#FAFAFA]" />
         <p className="mt-4 text-[15px] font-semibold">Profile captured</p>
@@ -212,7 +212,7 @@ export function ScreenListeningGuidance() {
   ];
   return (
     <WireframePhone label="Listening guidance">
-      <WfTag>Wireframe — guidance</WfTag>
+      <WfTag>Wireframe - guidance</WfTag>
       <div className="flex-1 px-5 pt-2">
         <h2 className="text-[17px] font-bold">Get the best results</h2>
         <p className="mt-2 text-[11px] text-[#52525B]">Quick tips before your first Session.</p>
@@ -238,7 +238,7 @@ export function ScreenListeningGuidance() {
 export function ScreenRecommendedProfile() {
   return (
     <WireframePhone label="Recommended profile">
-      <WfTag>Wireframe — outcome</WfTag>
+      <WfTag>Wireframe - outcome</WfTag>
       <div className="flex-1 px-5 pt-2">
         <h2 className="text-[17px] font-bold">Your listening profile</h2>
         <p className="mt-2 text-[11px] text-[#52525B]">
@@ -260,13 +260,13 @@ export function ScreenRecommendedProfile() {
   );
 }
 
-/* ——— Library & session ——— */
+/* --- Library & session --- */
 
 export function ScreenLibrarySearch() {
   return (
     <WireframePhone label="Library · search">
       <div className="px-5 pt-2">
-        <WfTag>Wireframe — library</WfTag>
+        <WfTag>Wireframe - library</WfTag>
         <h2 className="text-[18px] font-bold">Sessions</h2>
         <div className="mt-3 rounded-[10px] border-2 border-[#18181B] px-3 py-2 text-[11px] font-semibold">
           calm ·
@@ -305,7 +305,7 @@ export function ScreenDetailAssigned() {
         Session artwork
       </div>
       <div className="flex-1 px-5 pt-3">
-        <WfTag>Wireframe — detail</WfTag>
+        <WfTag>Wireframe - detail</WfTag>
         <span className="rounded-full bg-[#18181B] px-2 py-0.5 text-[8px] font-semibold text-white">
           Assigned
         </span>
@@ -326,7 +326,7 @@ export function ScreenDetailRemoved() {
         Unavailable
       </div>
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <WfTag>Wireframe — detail</WfTag>
+        <WfTag>Wireframe - detail</WfTag>
         <p className="mt-4 text-[14px] font-semibold">Session no longer available</p>
         <p className="mt-2 text-[11px] text-[#71717A]">Your Partner removed this from your library.</p>
       </div>
@@ -355,12 +355,12 @@ export function ScreenDetailLight() {
   );
 }
 
-/* ——— Player ——— */
+/* --- Player --- */
 
 export function ScreenPlayerIdle() {
   return (
     <WireframePhone label="Player · idle" dark>
-      <WfTag>Wireframe — player</WfTag>
+      <WfTag>Wireframe - player</WfTag>
       <div className="mx-3 flex flex-1 flex-col items-center justify-center rounded-[18px] border border-dashed border-[#3F3F46] bg-[#0A0A0A] p-4 text-center">
         <div className="h-20 w-20 rounded-2xl bg-[#27272A]" />
         <p className="mt-4 text-[14px] font-bold text-[#FAFAFA]">Calm</p>
@@ -376,7 +376,7 @@ export function ScreenPlayerIdle() {
 export function ScreenPlayerCompleted() {
   return (
     <WireframePhone label="Player · completed" dark>
-      <WfTag>Wireframe — player</WfTag>
+      <WfTag>Wireframe - player</WfTag>
       <div className="mx-3 flex flex-1 flex-col items-center justify-center rounded-[18px] bg-[#0A0A0A] p-4 text-center">
         <p className="text-[10px] font-semibold uppercase tracking-wider text-[#A1A1AA]">Complete</p>
         <p className="mt-3 text-[15px] font-bold text-[#FAFAFA]">Calm</p>
@@ -393,7 +393,7 @@ export function ScreenPlayerCompleted() {
 export function ScreenPlayerBackground() {
   return (
     <WireframePhone label="Player · background" dark>
-      <WfTag>Wireframe — player</WfTag>
+      <WfTag>Wireframe - player</WfTag>
       <div className="mx-3 flex flex-1 flex-col rounded-[18px] bg-[#0A0A0A] p-3 opacity-60">
         <p className="text-[12px] text-[#71717A]">Minimized player</p>
       </div>
@@ -428,7 +428,7 @@ export function ScreenLibraryLoading() {
   return (
     <WireframePhone label="Loading · library">
       <div className="px-5 pt-4">
-        <WfTag>Wireframe — loading</WfTag>
+        <WfTag>Wireframe - loading</WfTag>
         <div className="h-6 w-24 rounded bg-[#E4E4E7]" />
         <div className="mt-4 h-9 rounded-lg bg-[#F4F4F5]" />
       </div>
@@ -453,7 +453,7 @@ export function ScreenDetailLoading() {
     <WireframePhone label="Loading · detail">
       <div className="h-28 bg-[#E4E4E7]" />
       <div className="flex-1 space-y-3 px-5 pt-4">
-        <WfTag>Wireframe — loading</WfTag>
+        <WfTag>Wireframe - loading</WfTag>
         <div className="h-5 w-2/3 rounded bg-[#E4E4E7]" />
         <div className="h-3 w-full rounded bg-[#F4F4F5]" />
         <div className="h-3 w-5/6 rounded bg-[#F4F4F5]" />
@@ -465,7 +465,7 @@ export function ScreenDetailLoading() {
 export function ScreenPlayerLoading() {
   return (
     <WireframePhone label="Loading · player" dark>
-      <WfTag>Wireframe — loading</WfTag>
+      <WfTag>Wireframe - loading</WfTag>
       <div className="mx-3 flex flex-1 flex-col items-center justify-center rounded-[18px] bg-[#18181B]">
         <div className="h-8 w-8 animate-pulse rounded-full border-2 border-[#3F3F46] border-t-[#FAFAFA]" />
         <p className="mt-4 text-[11px] text-[#71717A]">Preparing Session…</p>
@@ -474,13 +474,13 @@ export function ScreenPlayerLoading() {
   );
 }
 
-/* ——— Favorites & feedback ——— */
+/* --- Favorites & feedback --- */
 
 export function ScreenFavoritesEmpty() {
   return (
     <WireframePhone label="Favorites · empty">
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <WfTag>Wireframe — favorites</WfTag>
+        <WfTag>Wireframe - favorites</WfTag>
         <div className="mt-4 h-14 w-14 rounded-2xl border-2 border-dashed border-[#D4D4D8] bg-[#F4F4F5]" />
         <p className="mt-4 text-[14px] font-semibold">No favorites yet</p>
         <p className="mt-2 text-[11px] text-[#71717A]">Save Sessions from your library.</p>
@@ -494,7 +494,7 @@ export function ScreenFeedbackSubmitted() {
   return (
     <WireframePhone label="Feedback · submitted">
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <WfTag>Wireframe — feedback</WfTag>
+        <WfTag>Wireframe - feedback</WfTag>
         <p className="mt-4 text-[15px] font-semibold">Thank you</p>
         <p className="mt-2 text-[11px] text-[#71717A]">Your reflection helps improve Sessions.</p>
       </div>
@@ -508,7 +508,7 @@ export function ScreenFeedbackSubmitted() {
 export function ScreenFeedbackRating() {
   return (
     <WireframePhone label="Feedback · rating">
-      <WfTag>Wireframe — feedback</WfTag>
+      <WfTag>Wireframe - feedback</WfTag>
       <div className="flex-1 px-5 pt-2">
         <h2 className="text-[16px] font-bold">How was this Session?</h2>
         <div className="mt-5 flex justify-between gap-1">
@@ -528,13 +528,13 @@ export function ScreenFeedbackRating() {
   );
 }
 
-/* ——— Success & empty states ——— */
+/* --- Success & empty states --- */
 
 export function ScreenSuccessInvite() {
   return (
     <WireframePhone label="Success · invite redeemed">
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <WfTag>Wireframe — success</WfTag>
+        <WfTag>Wireframe - success</WfTag>
         <p className="text-[15px] font-semibold">Access granted</p>
         <p className="mt-2 text-[11px] text-[#71717A]">Let&apos;s set up your listening profile.</p>
       </div>
@@ -549,7 +549,7 @@ export function ScreenEmptyAssignments() {
   return (
     <WireframePhone label="Empty · no assignments">
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <WfTag>Wireframe — empty</WfTag>
+        <WfTag>Wireframe - empty</WfTag>
         <p className="text-[14px] font-semibold">No assignments</p>
         <p className="mt-2 text-[11px] text-[#71717A]">Your Partner hasn&apos;t assigned Sessions yet.</p>
       </div>
@@ -561,7 +561,7 @@ export function ScreenErrorSessionUnavailable() {
   return (
     <WireframePhone label="Error · session unavailable">
       <div className="flex flex-1 flex-col items-center justify-center px-6 text-center">
-        <WfTag>Wireframe — error</WfTag>
+        <WfTag>Wireframe - error</WfTag>
         <p className="text-[15px] font-semibold">Session unavailable</p>
         <p className="mt-2 text-[11px] text-[#71717A]">This Session can&apos;t be played right now.</p>
       </div>
@@ -572,7 +572,7 @@ export function ScreenErrorSessionUnavailable() {
   );
 }
 
-/* ——— Partner & admin ——— */
+/* --- Partner & admin --- */
 
 export function WebPartnerDashboard() {
   return (
@@ -643,7 +643,7 @@ export function WebAdminListenerMgmt() {
   );
 }
 
-/* ——— Session artwork tiles ——— */
+/* --- Session artwork tiles --- */
 
 const ARTWORK_PALETTES = {
   care: { bg: "#FEF3C7", border: "#FCD34D", label: "Care" },
@@ -667,7 +667,7 @@ export function SessionArtworkTile({ title, category }) {
   );
 }
 
-/* ——— Design system primitives ——— */
+/* --- Design system primitives --- */
 
 export function DsPrimitivesStrip() {
   return (

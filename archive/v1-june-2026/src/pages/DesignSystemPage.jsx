@@ -67,7 +67,7 @@ export default function DesignSystemPage() {
               Sonocea Design System
             </motion.h1>
             <p className="mt-4 text-[15px] leading-relaxed text-ink-600">
-              A practical reference for building the Sonocea mobile app — tokens, behavioural modes, and
+              A practical reference for building the Sonocea mobile app - tokens, behavioural modes, and
               reusable components. Import from{" "}
               <code className="font-mono text-[13px]">src/system/</code>; full token definitions live in{" "}
               <code className="font-mono text-[13px]">src/system/README.md</code>.
@@ -100,7 +100,7 @@ export default function DesignSystemPage() {
           id="ds-tokens"
           label="01"
           title="Tokens"
-          description={`${fontName} type, warm neutrals, and a single spacing scale. Modes reshape contrast and density — they do not fork the palette.`}
+          description={`${fontName} type, warm neutrals, and a single spacing scale. Modes reshape contrast and density - they do not fork the palette.`}
         >
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
@@ -133,7 +133,7 @@ export default function DesignSystemPage() {
               </div>
               <p className="mt-4 text-[13px] leading-relaxed text-ink-600">
                 Safe-area minimums: {safeArea.minHorizontal}px horizontal, {safeArea.minBottom}px bottom.
-                Use mode density multipliers for padding and gaps — see{" "}
+                Use mode density multipliers for padding and gaps - see{" "}
                 <code className="font-mono text-[12px]">tokens/spacing.js</code>.
               </p>
             </div>
@@ -184,7 +184,7 @@ export default function DesignSystemPage() {
           id="ds-modes"
           label="02"
           title="Behavioural modes"
-          description="Care, Regulation, and Performance share one identity. Wrap screens in ModeChrome and pass mode to components — adjust behaviour before inventing new themes."
+          description="Care, Regulation, and Performance share one identity. Wrap screens in ModeChrome and pass mode to components - adjust behaviour before inventing new themes."
         >
           <div className="grid gap-5 lg:grid-cols-3">
             {BEHAVIOUR_MODES.map((id) => {
@@ -221,7 +221,7 @@ export default function DesignSystemPage() {
           id="ds-components"
           label="03"
           title="Components"
-          description="Import from src/system/components. Examples below use Regulation — the default balanced mode for most app screens."
+          description="Import from src/system/components. Examples below use Regulation - the default balanced mode for most app screens."
         >
           <ModeChrome mode="regulation" className="rounded-2xl border border-ink-200/40 p-6 md:p-8">
             <div className="grid gap-8 lg:grid-cols-2">
@@ -273,7 +273,7 @@ export default function DesignSystemPage() {
           id="ds-app"
           label="04"
           title="Example screen"
-          description="A typical session view — phone chrome, card, waveform, and bottom actions. Swap mode prop to see behavioural differences."
+          description="A typical session view - phone chrome, card, waveform, and bottom actions. Swap mode prop to see behavioural differences."
           className="border-b-0"
         >
           <div className="mx-auto max-w-sm">

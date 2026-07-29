@@ -101,12 +101,12 @@ export default function IdeationPage() {
                 What is the core UI?
               </h1>
               <p className="mt-4 max-w-2xl text-[17px] font-medium tracking-tight text-ink-700">
-                Five directions for the provisioned Listener app — the screen a Listener opens every day.
+                Five directions for the provisioned Listener app - the screen a Listener opens every day.
               </p>
               <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink-600">
                 The variable we are exploring is the <strong className="font-medium text-ink-800">bottom navigation</strong>:
                 how many destinations, which ones, and whether there is a dedicated play / resume action. Every option
-                is a black-and-white wireframe so the navigation model reads first — no colour or brand styling yet.
+                is a black-and-white wireframe so the navigation model reads first - no colour or brand styling yet.
                 These follow from the{" "}
                 <Link to="/flows/revised#revised-screens" className="text-ink-800 underline decoration-ink-300 underline-offset-2">
                   primary screen list in Flows
@@ -155,11 +155,11 @@ export default function IdeationPage() {
           <div className="max-w-content mx-auto px-6">
             <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-ink-500">Step 1</p>
             <h2 className="mt-3 max-w-3xl text-[clamp(1.35rem,3vw,2rem)] font-medium leading-[1.15] tracking-tight text-ink-950">
-              Core UI — bottom navigation models
+              Core UI - bottom navigation models
             </h2>
             <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-ink-600">
               Five black-and-white wireframes exploring how the Listener app is structured around daily listening.
-              Each option changes tab count, home layout, and where resume lives — see the screen-by-screen breakdown
+              Each option changes tab count, home layout, and where resume lives - see the screen-by-screen breakdown
               below for how each model plays out across the full Listener journey.
             </p>
             <div className="mt-12 space-y-8">
@@ -183,7 +183,7 @@ export default function IdeationPage() {
               How to choose a direction
             </h2>
             <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-ink-600">
-              Pick one core UI option — or a hybrid — then validate against the screen-by-screen variations above.
+              Pick one core UI option - or a hybrid - then validate against the screen-by-screen variations above.
               A quick way to narrow the navigation model:
             </p>
             <div className="mt-10 grid gap-4 md:grid-cols-3">

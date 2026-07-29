@@ -78,7 +78,7 @@ export function ListenerListScreen() {
         <WfRow primary="Jane Smith" secondary="Active · 12 sessions" action="View" />
         <WfRow primary="Alex Jones" secondary="Invited · pending" action="Resend" />
         <WfRow primary="Morgan Lee" secondary="Active · 4 sessions" action="View" />
-        <WfRow primary="Sam Taylor" secondary="Removed" action="—" />
+        <WfRow primary="Sam Taylor" secondary="Removed" action="-" />
       </div>
       <div className="px-4 pb-6">
         <WfButton>Invite listener</WfButton>

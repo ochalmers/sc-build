@@ -10,7 +10,7 @@ import {
 export function SessionManagementScreen({ variant = "upload" }) {
   const labels = { upload: "Upload session", edit: "Edit session", archive: "Archive session" };
   return (
-    <AdminPhone label={`Session management — ${labels[variant]}`}>
+    <AdminPhone label={`Session management - ${labels[variant]}`}>
       <WfTab tabs={["Upload", "Edit", "Archive"]} active={variant.charAt(0).toUpperCase() + variant.slice(1)} />
       <div className="flex flex-1 flex-col px-4 pt-4">
         {variant === "upload" ? (
@@ -52,7 +52,7 @@ export function SessionManagementScreen({ variant = "upload" }) {
 export function ListenerManagementScreen({ variant = "invite" }) {
   const tabs = { invite: "Invite", remove: "Remove", assign: "Assign" };
   return (
-    <AdminPhone label={`Listener management — ${tabs[variant]}`}>
+    <AdminPhone label={`Listener management - ${tabs[variant]}`}>
       <WfTab tabs={["Invite", "Remove", "Assign"]} active={tabs[variant]} />
       <div className="flex flex-1 flex-col px-4 pt-4">
         {variant === "invite" ? (

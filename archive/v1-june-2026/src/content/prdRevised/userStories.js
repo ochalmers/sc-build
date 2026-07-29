@@ -3,7 +3,7 @@
  * P0 = must-have for v1 (blocks launch), P1 = important, P2 = nice-to-have / limited in v1.
  */
 export const STORY_PRIORITY_LEVELS = [
-  { id: "P0", label: "P0 · Must have", note: "Core to v1 — the experience does not work without it." },
+  { id: "P0", label: "P0 · Must have", note: "Core to v1 - the experience does not work without it." },
   { id: "P1", label: "P1 · Important", note: "Strongly wanted for v1; can follow the P0 spine." },
   { id: "P2", label: "P2 · Later", note: "Deferred or intentionally limited in v1." },
 ];
@@ -16,7 +16,7 @@ export const PUBLIC_VISITOR_STORIES = [
     role: "Public Visitor",
     title: "Understand what Sonocea is",
     priority: "P0",
-    priorityNote: "First impression — decides whether anyone continues.",
+    priorityNote: "First impression - decides whether anyone continues.",
     narrative:
       "As a public visitor, I want to understand what Sonocea is so that I know whether it is relevant to me.",
     surfaces: ["Mobile app · public"],
@@ -27,7 +27,7 @@ export const PUBLIC_VISITOR_STORIES = [
     role: "Public Visitor",
     title: "Try a short listening sample",
     priority: "P0",
-    priorityNote: "The heart of the golden route — experience before explanation.",
+    priorityNote: "The heart of the golden route - experience before explanation.",
     narrative:
       "As a public visitor, I want to try a short listening sample, so that I can feel the nature of the experience without receiving restricted protocol content.",
     acceptance: ["One curated 5-minute nervous system reset", "No licensed protocol content"],
@@ -39,7 +39,7 @@ export const PUBLIC_VISITOR_STORIES = [
     role: "Public Visitor",
     title: "Request access or join mailing list",
     priority: "P0",
-    priorityNote: "The only conversion event — without it the public journey has no outcome.",
+    priorityNote: "The only conversion event - without it the public journey has no outcome.",
     narrative:
       "As a public visitor, I want to request access, further information or to join the mailing list.",
     surfaces: ["Mobile app · public · Register Interest"],
@@ -99,7 +99,7 @@ export const PUBLIC_VISITOR_STORIES = [
       "As a public visitor, I want to provide information about myself to inform Sonocea how to best engage with me and to align products to my specific needs or interests.",
     surfaces: ["Mobile app · public · Register Interest"],
     prdRef: "Public Visitor PRD · §2",
-    openQuestions: ["Depth of profile capture vs. light sign-up — TBD"],
+    openQuestions: ["Depth of profile capture vs. light sign-up - TBD"],
   },
 ];
 
@@ -128,7 +128,7 @@ export const MOBILE_APP_STORY_GROUPS = [
         id: "admin-partner-org",
         title: "Setup Partners and Organizations",
         priority: "P0",
-        priorityNote: "Provisioning spine — how any Listener ever gets access.",
+        priorityNote: "Provisioning spine - how any Listener ever gets access.",
         narrative:
           "As a Sonocea Admin, I need to setup and manage Sonocea Partners or Organizations including Partner-level content bundles and associating a Listener to a Partner.",
         acceptance: [
@@ -157,13 +157,13 @@ export const MOBILE_APP_STORY_GROUPS = [
     id: "partner",
     sectionId: "revised-stories-partner",
     label: "Sonocea Partner",
-    intro: "Partner operates through Admin-mediated distribution in v1.0 — no self-serve Listener management.",
+    intro: "Partner operates through Admin-mediated distribution in v1.0 - no self-serve Listener management.",
     stories: [
       {
         id: "partner-notify",
         title: "Engage Admin for distribution",
         priority: "P1",
-        priorityNote: "Admin-mediated in v1 — can be a lightweight/manual path.",
+        priorityNote: "Admin-mediated in v1 - can be a lightweight/manual path.",
         narrative:
           "As a Sonocea Partner, I need to notify and engage Sonocea Admins to distribute access to Sonocea for my organization or clients.",
         prdRef: "Mobile App PRD · §5 Partner #1",
@@ -197,7 +197,7 @@ export const MOBILE_APP_STORY_GROUPS = [
     id: "listener",
     sectionId: "revised-stories-listener",
     label: "Listener",
-    intro: "Provisioned end user after invite redemption — distinct from Public Visitor and Invited Participant.",
+    intro: "Provisioned end user after invite redemption - distinct from Public Visitor and Invited Participant.",
     stories: [
       {
         id: "listener-redeem",
@@ -220,7 +220,7 @@ export const MOBILE_APP_STORY_GROUPS = [
         id: "listener-library",
         title: "See provisioned playlist",
         priority: "P0",
-        priorityNote: "The home of the app — what a Listener sees every day.",
+        priorityNote: "The home of the app - what a Listener sees every day.",
         narrative: "As a Listener, I need to see my playlist of Sessions provisioned to me.",
         prdRef: "Mobile App PRD · §5 Listener #3",
       },
@@ -237,17 +237,17 @@ export const MOBILE_APP_STORY_GROUPS = [
         id: "listener-protocol",
         title: "View assigned Regiment or Protocol",
         priority: "P2",
-        priorityNote: "Explicitly limited in v1 — see out-of-scope.",
+        priorityNote: "Explicitly limited in v1 - see out-of-scope.",
         narrative:
           "As a Listener, I need to view a Regiment or Protocol assigned to me and the Sessions within that Regiment.",
         prdRef: "Mobile App PRD · §5 Listener #5",
-        openQuestions: ["Protocol display in-app may be limited in v1.0 — see out-of-scope"],
+        openQuestions: ["Protocol display in-app may be limited in v1.0 - see out-of-scope"],
       },
       {
         id: "listener-playback",
         title: "Stream and control playback",
         priority: "P0",
-        priorityNote: "The reason the app exists — must be flawless and secure.",
+        priorityNote: "The reason the app exists - must be flawless and secure.",
         narrative: "As a Listener, I need to stream and control playback with confidence.",
         acceptance: [
           "Log in and understand how to use Sonocea",

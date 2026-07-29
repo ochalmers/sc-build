@@ -1,37 +1,11 @@
 /**
- * Monochrome atmospheric fields for session detail / player — matches hifi reference.
+ * Flat dark surfaces for session detail / player - no gradient blobs.
  */
 
-const MODE_FIELDS = {
-  care: {
-    detail:
-      "radial-gradient(90% 70% at 30% 20%, #6a6864 0%, transparent 55%), radial-gradient(80% 60% at 80% 70%, #3a3936 0%, transparent 50%), linear-gradient(165deg, #1a1917 0%, #0a0a09 100%)",
-    player:
-      "radial-gradient(70% 55% at 45% 35%, #5c5a56 0%, transparent 60%), radial-gradient(90% 70% at 70% 80%, #2e2d2b 0%, transparent 55%), linear-gradient(180deg, #1c1b19 0%, #090908 100%)",
-    complete:
-      "radial-gradient(70% 50% at 55% 40%, #4a4845 0%, transparent 55%), linear-gradient(180deg, #121110 0%, #050505 100%)",
-  },
-  regulation: {
-    detail:
-      "radial-gradient(85% 65% at 40% 25%, #5e6164 0%, transparent 55%), radial-gradient(75% 55% at 75% 75%, #2c3034 0%, transparent 50%), linear-gradient(165deg, #16181a 0%, #08090a 100%)",
-    player:
-      "radial-gradient(65% 50% at 50% 30%, #55585c 0%, transparent 58%), radial-gradient(85% 65% at 60% 85%, #1e2226 0%, transparent 50%), linear-gradient(180deg, #141618 0%, #070809 100%)",
-    complete:
-      "radial-gradient(65% 48% at 50% 42%, #3e4246 0%, transparent 55%), linear-gradient(180deg, #101214 0%, #050607 100%)",
-  },
-  performance: {
-    detail:
-      "radial-gradient(90% 70% at 35% 15%, #6e6a64 0%, transparent 55%), radial-gradient(80% 55% at 85% 65%, #3a3530 0%, transparent 50%), linear-gradient(165deg, #1c1916 0%, #0a0908 100%)",
-    player:
-      "radial-gradient(70% 55% at 40% 30%, #615c56 0%, transparent 58%), radial-gradient(90% 70% at 75% 80%, #2a2622 0%, transparent 50%), linear-gradient(180deg, #181614 0%, #080706 100%)",
-    complete:
-      "radial-gradient(70% 50% at 48% 40%, #4a4540 0%, transparent 55%), linear-gradient(180deg, #12100e 0%, #050403 100%)",
-  },
-};
+const DARK_BG = "#141414";
 
-export function sessionAtmosphere(mode = "regulation", surface = "detail") {
-  const field = MODE_FIELDS[mode] ?? MODE_FIELDS.regulation;
-  return field[surface] ?? field.detail;
+export function sessionAtmosphere(_mode = "regulation", _surface = "detail") {
+  return DARK_BG;
 }
 
 export function GrainOverlay({ opacity = 0.35, className = "" }) {
@@ -57,19 +31,42 @@ export function formatPlayTime(progressPct, durationMin) {
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
-const DEFAULT_BEST = ["Wearing headphones", "In a quiet space", "Without interruptions"];
+const DEFAULT_BEFORE = ["Use headphones", "Get comfortable", "Give yourself a few uninterrupted minutes"];
 
-export function sessionAbout(session) {
-  return (
-    session.about ??
-    `A guided listening experience designed to ${session.summary?.toLowerCase()?.replace(/\.$/, "") ?? "support regulation"}. Sound is structured to help your nervous system settle as you listen.`
-  );
+/** Category label for metadata - e.g. REST · 22 MIN */
+export function sessionCategoryLabel(session) {
+  return (session.category || session.useCase || "Session").toUpperCase();
 }
 
+export function sessionHeadline(session) {
+  return session.headline ?? session.summary ?? session.title;
+}
+
+export function sessionDescription(session) {
+  return session.description ?? session.about ?? "";
+}
+
+/** Max three intention chips - “This session may support” */
+export function sessionSupportTags(session) {
+  const tags = session.supportTags ?? session.benefits ?? [];
+  return tags.slice(0, 3);
+}
+
+export function sessionBeforeYouBegin(session) {
+  return session.beforeYouBegin ?? session.bestExperienced ?? DEFAULT_BEFORE;
+}
+
+/** @deprecated Prefer sessionDescription */
+export function sessionAbout(session) {
+  return sessionDescription(session);
+}
+
+/** @deprecated Benefits section removed from listener UI */
 export function sessionBenefitLines(session) {
   return session.benefitLines ?? session.benefits ?? [];
 }
 
+/** @deprecated Prefer sessionBeforeYouBegin */
 export function sessionBestExperienced(session) {
-  return session.bestExperienced ?? DEFAULT_BEST;
+  return sessionBeforeYouBegin(session);
 }

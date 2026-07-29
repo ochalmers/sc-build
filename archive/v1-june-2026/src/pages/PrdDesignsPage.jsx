@@ -36,11 +36,11 @@ export default function PrdDesignsPage() {
                 {PRD_DESIGNS_META.title}
               </h1>
               <p className="mt-4 max-w-2xl text-[17px] font-medium tracking-tight text-ink-700">
-                Monotone gradient surfaces — full journeys mapped to both PRDs
+                Monotone gradient surfaces - full journeys mapped to both PRDs
               </p>
               <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink-600">
                 Hi-fidelity screen concepts for every key flow across the Public Visitor and Mobile App PRDs.
-                Each journey scrolls horizontally through its steps — player, library, and session detail follow
+                Each journey scrolls horizontally through its steps - player, library, and session detail follow
                 the reference visual language (ambient gradients, glass controls, pill CTAs). For directional
                 exploration see{" "}
                 <Link to="/designs/ideation" className="text-ink-800 underline decoration-ink-300 underline-offset-2">

@@ -53,7 +53,7 @@ export default function FlowsLitePage() {
               </p>
               <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-ink-600">
                 Mapped from goals, role definitions, screen list, user stories, and functional requirements in
-                Sonocea Mobile App — Version 1.0 LITE. Out-of-scope items (including offline downloads) are
+                Sonocea Mobile App - Version 1.0 LITE. Out-of-scope items (including offline downloads) are
                 excluded. Low-fidelity key screen artboards live on the Key screens tab; journey flows remain on Full PRD wireframes.
               </p>
 
@@ -97,7 +97,7 @@ export default function FlowsLitePage() {
           id="stories-roles"
           label="Actors"
           title="Who uses what"
-          description="Four roles in PRD LITE — Guest is distinct from provisioned Listeners and Partner operators."
+          description="Four roles in PRD LITE - Guest is distinct from provisioned Listeners and Partner operators."
         >
           <LiteRoleOverview />
         </FlowSection>
@@ -115,7 +115,7 @@ export default function FlowsLitePage() {
           id="stories-screens"
           label="Mobile IA"
           title="PRD LITE screen list"
-          description="Canonical mobile screens — guideline only; additional screens may be required."
+          description="Canonical mobile screens - guideline only; additional screens may be required."
         >
           <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {MOBILE_SCREEN_MAP_LITE.map((screen) => (
@@ -188,7 +188,7 @@ export default function FlowsLitePage() {
           id="stories-scope"
           label="Boundaries"
           title="Explicitly out of scope for v1 LITE"
-          description="Items marked out of scope in the PRD — excluded from stories and flows above."
+          description="Items marked out of scope in the PRD - excluded from stories and flows above."
         >
           <ul className="flex flex-wrap gap-3">
             {LITE_OUT_OF_SCOPE.map((item) => (

@@ -9,10 +9,10 @@ Drop exportable brand and product files here. Paths are stable for decks, micros
 | `typography/` | Type specimens, scale references, PDF guidelines (non-font binaries) |
 | `icons/` | SVG icons (1.5px stroke, minimal) |
 | `waveforms/` | Line treatments, loopable wave assets |
-| `personas/` | Photography direction — candid, neutral grade |
+| `personas/` | Photography direction - candid, neutral grade |
 | `stories/` | Scenario / use-case imagery |
 | `atmospheres/` | Mood stills, abstract texture |
-| `backgrounds/` | Deck or web backgrounds — muted, restrained |
+| `backgrounds/` | Deck or web backgrounds - muted, restrained |
 | `frames/` | Device / app frame templates |
 | `illustrations/` | Marketing and product illustration (SVG or raster) |
 | `motion/` | Lottie, video loops, motion references |

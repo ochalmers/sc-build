@@ -1,5 +1,5 @@
 /**
- * Typography roles — one family stack; sizes and tracking stay consistent across modes.
+ * Typography roles - one family stack; sizes and tracking stay consistent across modes.
  * (Modes may shift density/contrast; they do not swap type families.)
  */
 

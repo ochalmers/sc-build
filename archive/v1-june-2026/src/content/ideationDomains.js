@@ -18,21 +18,21 @@ export const IDEATION_DOMAINS = [
     platform: "Mobile · provisioned",
     title: "Invite redemption through neurotype alignment",
     description:
-      "The first minutes after invite redemption set trust, clinical credibility, and listening literacy. These screens must feel calm and premium while collecting only what v1 needs — no consumer-app signup theatre.",
+      "The first minutes after invite redemption set trust, clinical credibility, and listening literacy. These screens must feel calm and premium while collecting only what v1 needs - no consumer-app signup theatre.",
     prd: "Mobile App PRD · §5 Listener #1–2 · stories listener-redeem, listener-onboard",
     screens: [
       screen(
         "login-invite",
         "Sign-up / login (invite)",
-        "Redeem a Partner-issued invite and establish a secure Listener account. The screen must communicate entitlement — this is not a public download — while keeping friction low for clinical and workplace contexts.",
+        "Redeem a Partner-issued invite and establish a secure Listener account. The screen must communicate entitlement - this is not a public download - while keeping friction low for clinical and workplace contexts.",
         "P0 · listener-redeem · wireframe: login",
         "P0",
         [
-          "Lead with organisation context — who provisioned access and why the Listener is here.",
+          "Lead with organisation context - who provisioned access and why the Listener is here.",
           "Support deep-link invite codes; surface invalid/expired states without dead ends.",
           "Offer Apple ID and email paths; avoid password complexity that blocks older users.",
           "Keep legal copy minimal but visible; partner branding should not overpower Sonocea trust.",
-          "Successful auth should route to onboarding, not straight to library — set expectations first.",
+          "Successful auth should route to onboarding, not straight to library - set expectations first.",
         ],
         [
           v(
@@ -41,7 +41,7 @@ export const IDEATION_DOMAINS = [
             "B2B",
             "Full-bleed partner mark above a single invite-code field and primary Continue CTA. Organisation name and seat expiry shown as quiet metadata.",
             [
-              "Partner logo max 48px height — Sonocea wordmark remains primary.",
+              "Partner logo max 48px height - Sonocea wordmark remains primary.",
               "Code field accepts paste; auto-advance on valid format.",
               "Expired invite offers Request new invite → mailto Partner or support.",
             ],
@@ -54,7 +54,7 @@ export const IDEATION_DOMAINS = [
             "Minimal",
             "Black canvas, centred mono invite field, outline Apple button, email as tertiary text link. No carousel, no illustration.",
             [
-              "Single-field focus — keyboard opens immediately.",
+              "Single-field focus - keyboard opens immediately.",
               "Apple Sign In reduces password fatigue in clinical cohorts.",
               "Error states inline under field, not modal alerts.",
             ],
@@ -81,7 +81,7 @@ export const IDEATION_DOMAINS = [
             "Camera scan affordance for QR invites plus manual code fallback. Clinical context line: Your care team invited you.",
             [
               "QR permission rationale before camera opens.",
-              "Manual entry collapsed behind text link — never two equal CTAs.",
+              "Manual entry collapsed behind text link - never two equal CTAs.",
               "HIPAA-adjacent tone: no social login badges on this variant.",
             ],
             { app: "Oura", pattern: "Device pairing permission flow as trust template" },
@@ -91,9 +91,9 @@ export const IDEATION_DOMAINS = [
             "login-v5",
             "Science teaser gate",
             "Editorial",
-            "Short science headline and 20-word value prop above invite field — borrows credibility from public Visitor journey before account creation.",
+            "Short science headline and 20-word value prop above invite field - borrows credibility from public Visitor journey before account creation.",
             [
-              "Teaser is static copy, not video — keeps load fast.",
+              "Teaser is static copy, not video - keeps load fast.",
               "Learn more expands inline accordion, not navigation away.",
               "After redeem, science teaser does not repeat in onboarding.",
             ],
@@ -105,12 +105,12 @@ export const IDEATION_DOMAINS = [
       screen(
         "onboarding-science",
         "Onboarding & science",
-        "Teach how to listen, what Sessions are, and why neurotype alignment matters — without repeating the full public Visitor science hub. Onboarding is operational: headphones, environment, duration expectations.",
+        "Teach how to listen, what Sessions are, and why neurotype alignment matters - without repeating the full public Visitor science hub. Onboarding is operational: headphones, environment, duration expectations.",
         "P0 · listener-onboard · wireframe: onboarding",
         "P0",
         [
           "Cap at 4–6 steps; show progress but avoid gamified step counts.",
-          "Reuse public science copy where possible — one source of truth.",
+          "Reuse public science copy where possible - one source of truth.",
           "Headphone and environment prompts are mandatory before first playback.",
           "Allow skip only for returning Listeners who completed onboarding on another device.",
           "End with a clear handoff: See your Sessions or Start first Session.",
@@ -123,7 +123,7 @@ export const IDEATION_DOMAINS = [
             "Horizontal swipe cards: How listening works → Headphones → Your neurotype → Your library. Dot progress, skip top-right.",
             [
               "Each card one idea, max 40 words body copy.",
-              "Illustration placeholders — no stock meditation art.",
+              "Illustration placeholders - no stock meditation art.",
               "Final card CTA: Meet your Sessions.",
             ],
             { app: "Headspace", pattern: "Multi-card onboarding with progress dots" },
@@ -133,11 +133,11 @@ export const IDEATION_DOMAINS = [
             "onboard-v2",
             "Single scroll story",
             "Minimal",
-            "One continuous vertical scroll: headline blocks separated by hairlines. No pagination — reduces tap fatigue.",
+            "One continuous vertical scroll: headline blocks separated by hairlines. No pagination - reduces tap fatigue.",
             [
               "Sticky footer CTA appears after 60% scroll.",
               "Sections collapsible on second visit.",
-              "Works well with VoiceOver — linear reading order.",
+              "Works well with VoiceOver - linear reading order.",
             ],
             { app: "Open", pattern: "Sparse vertical education with floating continue" },
             "Calmest cognitive load; good for regulation-focused Listeners.",
@@ -149,7 +149,7 @@ export const IDEATION_DOMAINS = [
             "60-second hosted video (or audio-only) then interactive checklist: Quiet space, Headphones, 10+ minutes available.",
             [
               "Video skippable after 10s with confirmation.",
-              "Checklist items must be ticked — not honour system.",
+              "Checklist items must be ticked - not honour system.",
               "Captions on by default.",
             ],
             { app: "Calm", pattern: "Intro video then preference capture" },
@@ -162,7 +162,7 @@ export const IDEATION_DOMAINS = [
             "Structured brief: Your assigned listening plan, How to use Sonocea, When to listen, What to expect. Feels like discharge instructions.",
             [
               "Partner clinician name optional in header.",
-              "No skip — appropriate for regulated contexts.",
+              "No skip - appropriate for regulated contexts.",
               "Print-friendly PDF link in overflow menu.",
             ],
             { app: "Oura", pattern: "Readiness guidance with measured, clinical tone" },
@@ -172,9 +172,9 @@ export const IDEATION_DOMAINS = [
             "onboard-v5",
             "Conversational coach",
             "Motion",
-            "Chat-bubble sequence from Sonocea guide — one message at a time with tap-to-advance. Personalised with Listener first name.",
+            "Chat-bubble sequence from Sonocea guide - one message at a time with tap-to-advance. Personalised with Listener first name.",
             [
-              "Typing indicator max 800ms — do not fake long delays.",
+              "Typing indicator max 800ms - do not fake long delays.",
               "Bubbles max 2 lines; link out for deep science.",
               "Reduces formality for younger neurodiverse cohorts.",
             ],
@@ -186,15 +186,15 @@ export const IDEATION_DOMAINS = [
       screen(
         "neurotype-questionnaire",
         "Neurotype questionnaire",
-        "Capture neurotype signals to align Session recommendations and filtering. Must feel respectful and scientific — not a personality quiz. Results inform library ordering and copy, not diagnostic labels.",
+        "Capture neurotype signals to align Session recommendations and filtering. Must feel respectful and scientific - not a personality quiz. Results inform library ordering and copy, not diagnostic labels.",
         "P0 · listener-onboard · wireframe: neurotype",
         "P0",
         [
-          "Explain why we ask — improves Session matching, not medical diagnosis.",
+          "Explain why we ask - improves Session matching, not medical diagnosis.",
           "Prefer single-select per screen over long multi-page forms.",
           "Offer Prefer not to say without blocking library access.",
           "Show outcome as listening profile, not a scored type.",
-          "Results editable later from Profile — not locked at onboarding.",
+          "Results editable later from Profile - not locked at onboarding.",
         ],
         [
           v(
@@ -203,7 +203,7 @@ export const IDEATION_DOMAINS = [
             "Structured",
             "Classic wizard: 5–7 screens, progress bar, large tap targets, back navigation. Final summary card before confirm.",
             [
-              "Progress shows Step X of Y — never percentage.",
+              "Progress shows Step X of Y - never percentage.",
               "Back preserves answers.",
               "Summary uses plain language: You tend to benefit from shorter Sessions.",
             ],
@@ -217,7 +217,7 @@ export const IDEATION_DOMAINS = [
             "Continuous sliders for stimulation preference, session length tolerance, time-of-day energy. Live preview of recommended Sessions on same screen.",
             [
               "Sliders have labelled endpoints, not numbers only.",
-              "Preview updates after debounce — not on every pixel.",
+              "Preview updates after debounce - not on every pixel.",
               "Reset to defaults link.",
             ],
             { app: "Endel", pattern: "Ambient personalization sliders" },
@@ -227,9 +227,9 @@ export const IDEATION_DOMAINS = [
             "neuro-v3",
             "Visual card sort",
             "Editorial",
-            "Pick the environments that feel most regulating — illustrated cards (Quiet room, Movement, Nature, etc.). Multi-select up to 3.",
+            "Pick the environments that feel most regulating - illustrated cards (Quiet room, Movement, Nature, etc.). Multi-select up to 3.",
             [
-              "Cards have text labels — not illustration-only.",
+              "Cards have text labels - not illustration-only.",
               "Selected state: border + check, not colour alone.",
               "Maps to existing neurotype taxonomy in CMS.",
             ],
@@ -255,7 +255,7 @@ export const IDEATION_DOMAINS = [
             "Sparse",
             "Three required core questions, then optional Refine my profile expands 4 more. Default path completes in under 60 seconds.",
             [
-              "Required questions marked subtly — no red asterisks.",
+              "Required questions marked subtly - no red asterisks.",
               "Expand uses chevron, not modal.",
               "Library works with partial profile.",
             ],
@@ -272,20 +272,20 @@ export const IDEATION_DOMAINS = [
     platform: "Mobile · provisioned",
     title: "Sessions home, detail, and saved",
     description:
-      "The library is what a Listener opens every day. These screens express the core UI navigation decision — browse-first, play-first, or plan-first — while keeping provisioned content scannable and resume always one tap away.",
+      "The library is what a Listener opens every day. These screens express the core UI navigation decision - browse-first, play-first, or plan-first - while keeping provisioned content scannable and resume always one tap away.",
     prd: "Mobile App PRD · §5 Listener #3–4 · stories listener-library, listener-session-profile",
     screens: [
       screen(
         "sessions-library",
         "Sessions library (home)",
-        "The provisioned playlist — every Session assigned to this Listener. Home must answer: what should I play now? Supports the five core UI navigation models explored above.",
+        "The provisioned playlist - every Session assigned to this Listener. Home must answer: what should I play now? Supports the five core UI navigation models explored above.",
         "P0 · listener-library · wireframe: library · core UI options A–E",
         "P0",
         [
           "Resume / continue listening must be visible without scrolling on all navigation models.",
-          "Filter by neurotype, duration, use case — but default view is curated For you.",
-          "No infinite scroll of thousands of items — provisioned sets are bounded.",
-          "Empty state only if zero Sessions assigned — route to support, not browse.",
+          "Filter by neurotype, duration, use case - but default view is curated For you.",
+          "No infinite scroll of thousands of items - provisioned sets are bounded.",
+          "Empty state only if zero Sessions assigned - route to support, not browse.",
           "Grid vs list toggle is optional in v1; pick one default per core UI direction.",
         ],
         [
@@ -295,7 +295,7 @@ export const IDEATION_DOMAINS = [
             "Structured",
             "Default from Core UI A: greeting, category chips, scannable rows with duration and assigned badge. Bottom nav: Home · Sessions · Saved · Profile.",
             [
-              "Chips filter in place — no full-screen filter sheet in v1.",
+              "Chips filter in place - no full-screen filter sheet in v1.",
               "Rows show play affordance on trailing edge.",
               "Pull-to-refresh re-fetches provisioned set.",
             ],
@@ -310,7 +310,7 @@ export const IDEATION_DOMAINS = [
             [
               "Hero shows last Session or Partner-recommended default.",
               "Secondary text link: Browse all Sessions.",
-              "Minimise metadata on hero — title and time remaining only.",
+              "Minimise metadata on hero - title and time remaining only.",
             ],
             { app: "Endel", pattern: "Soundscape-first home with immediate play" },
             "Calmest daily entry when Partner assigns one primary Session.",
@@ -326,7 +326,7 @@ export const IDEATION_DOMAINS = [
               "Day boundary at local midnight.",
             ],
             { app: "Oura", pattern: "Daily readiness checklist" },
-            "When sequence matters — clinical regimens and workplace programmes.",
+            "When sequence matters - clinical regimens and workplace programmes.",
           ),
           v(
             "lib-v4",
@@ -334,7 +334,7 @@ export const IDEATION_DOMAINS = [
             "Motion",
             "Default from Core UI D: 2-column grid, filter chips, raised centre nav play FAB always resumes. Bottom nav: Home · Library · ▶ · Progress · Profile.",
             [
-              "FAB opens last Session — long-press for picker.",
+              "FAB opens last Session - long-press for picker.",
               "Grid cards show artwork + title only.",
               "Progress tab stub acceptable in v1 ideation.",
             ],
@@ -349,7 +349,7 @@ export const IDEATION_DOMAINS = [
             [
               "Learn teaser rotates from public science CMS.",
               "Resume card always above fold.",
-              "Five-tab nav — test thumb reach on small phones.",
+              "Five-tab nav - test thumb reach on small phones.",
             ],
             { app: "Headspace", pattern: "Education rail above session library" },
             "Reinforces credibility for science-curious Listeners and Partner programmes.",
@@ -359,15 +359,15 @@ export const IDEATION_DOMAINS = [
       screen(
         "session-detail",
         "Session detail / profile",
-        "Pre-play briefing — purpose, duration, neurotype fit, benefits, and tags. Sets expectations before the Player opens. Not a marketing page; clinical-adjacent honesty.",
+        "Pre-play briefing - purpose, duration, neurotype fit, benefits, and tags. Sets expectations before the Player opens. Not a marketing page; clinical-adjacent honesty.",
         "P1 · listener-session-profile · wireframe: detail",
         "P1",
         [
           "Lead with outcome-oriented headline, not internal Session codename.",
           "Show duration, neurotype alignment, and use case above the fold.",
-          "Primary CTA: Play Session — sticky on scroll.",
+          "Primary CTA: Play Session - sticky on scroll.",
           "Favourite and share are secondary; download likely out of scope v1.",
-          "Related Sessions only from same provisioned set — never global catalogue.",
+          "Related Sessions only from same provisioned set - never global catalogue.",
         ],
         [
           v(
@@ -376,8 +376,8 @@ export const IDEATION_DOMAINS = [
             "Editorial",
             "Full-width artwork hero, title, duration pill, tag row, benefits bullets, sticky Play.",
             [
-              "Hero parallax subtle — disable if reduced motion.",
-              "Benefits max 3 bullets — link More in profile copy.",
+              "Hero parallax subtle - disable if reduced motion.",
+              "Benefits max 3 bullets - link More in profile copy.",
               "Play button uses filled pill per design system.",
             ],
             { app: "Open", pattern: "Program hero with tag chips and start CTA" },
@@ -403,11 +403,11 @@ export const IDEATION_DOMAINS = [
             "Square artwork left, title and duration right, two-line description, full-width Play. No scroll for standard Sessions.",
             [
               "Expands only if description exceeds 280 chars.",
-              "No related Sessions rail — back returns to library.",
+              "No related Sessions rail - back returns to library.",
               "Fastest path to Player.",
             ],
             { app: "Endel", pattern: "Compact soundscape card" },
-            "When Listeners already know their library — detail is confirm-only.",
+            "When Listeners already know their library - detail is confirm-only.",
           ),
           v(
             "detail-v4",
@@ -415,7 +415,7 @@ export const IDEATION_DOMAINS = [
             "Sound",
             "Narrative paragraph, 30-second preview player inline, then full Play. Waveform preview optional.",
             [
-              "Preview counts as stream — analytics event.",
+              "Preview counts as stream - analytics event.",
               "Preview stops if user scrolls away.",
               "Full Play clears preview state.",
             ],
@@ -440,15 +440,15 @@ export const IDEATION_DOMAINS = [
       screen(
         "favorites-saved",
         "Favorites / saved",
-        "Personal shortlist within the provisioned set — not a second library. Answers: what do I come back to? Syncs across devices when logged in.",
+        "Personal shortlist within the provisioned set - not a second library. Answers: what do I come back to? Syncs across devices when logged in.",
         "P1 · listener-library · wireframe: favorites",
         "P1",
         [
           "Favourite action available from library row and Session detail.",
-          "Saved order: manual reorder optional in v2 — default recent-first.",
+          "Saved order: manual reorder optional in v2 - default recent-first.",
           "Removing last favourite never removes Session from provisioned library.",
           "Empty state encourages browsing library, not discovering new content.",
-          "Heart vs bookmark icon — pick one metaphor project-wide.",
+          "Heart vs bookmark icon - pick one metaphor project-wide.",
         ],
         [
           v(
@@ -468,7 +468,7 @@ export const IDEATION_DOMAINS = [
             "fav-v2",
             "Filter on library",
             "Minimal",
-            "No separate tab — Saved chip on library filters to favourites in place.",
+            "No separate tab - Saved chip on library filters to favourites in place.",
             [
               "Chip persists until cleared.",
               "Zero results shows how to favourite.",
@@ -483,7 +483,7 @@ export const IDEATION_DOMAINS = [
             "Sound-first",
             "Up to 3 pinned Sessions on home above resume card. Manage pins from long-press on library row.",
             [
-              "Pin slots max 3 — replacing prompts confirm.",
+              "Pin slots max 3 - replacing prompts confirm.",
               "Pins sync with favourites backend.",
               "Visual pin icon on library rows.",
             ],
@@ -494,7 +494,7 @@ export const IDEATION_DOMAINS = [
             "fav-v4",
             "Collections folders",
             "Editorial",
-            "Listener-created folders (e.g. Morning, Travel) — drag Sessions from library. Optional v2; ideation shows structure.",
+            "Listener-created folders (e.g. Morning, Travel) - drag Sessions from library. Optional v2; ideation shows structure.",
             [
               "Folder create from Saved header +.",
               "Session can live in multiple folders.",
@@ -526,7 +526,7 @@ export const IDEATION_DOMAINS = [
     platform: "Mobile · provisioned",
     title: "Player, feedback, and protocol",
     description:
-      "Playback is the product. UI must recede — sound leads. Post-session capture is light in v1. Protocol surfaces stay honest about v1 limits while supporting Partner narratives.",
+      "Playback is the product. UI must recede - sound leads. Post-session capture is light in v1. Protocol surfaces stay honest about v1 limits while supporting Partner narratives.",
     prd: "Mobile App PRD · §5 Listener #5–7 · stories listener-playback, listener-protocol",
     screens: [
       screen(
@@ -536,11 +536,11 @@ export const IDEATION_DOMAINS = [
         "P0 · listener-playback · wireframe: player",
         "P0",
         [
-          "Auto-lock screen dimming — show tap to wake controls.",
-          "Scrubber optional for regulation Sessions — consider disable per Session type.",
-          "Sleep timer in overflow — not primary chrome.",
-          "Exit confirms if >10% complete — accidental back is costly.",
-          "Ambient artwork or generative gradient — no busy animation during listen.",
+          "Auto-lock screen dimming - show tap to wake controls.",
+          "Scrubber optional for regulation Sessions - consider disable per Session type.",
+          "Sleep timer in overflow - not primary chrome.",
+          "Exit confirms if >10% complete - accidental back is costly.",
+          "Ambient artwork or generative gradient - no busy animation during listen.",
         ],
         [
           v(
@@ -549,7 +549,7 @@ export const IDEATION_DOMAINS = [
             "Sound-first",
             "Edge-to-edge gradient artwork, centred play/pause, thin progress, swipe down to minimise.",
             [
-              "Gradient shifts slowly with session movement — 60s loop.",
+              "Gradient shifts slowly with session movement - 60s loop.",
               "Minimise returns to library with mini-bar.",
               "Lock screen shows title + artwork.",
             ],
@@ -560,7 +560,7 @@ export const IDEATION_DOMAINS = [
             "player-v2",
             "Timer-forward",
             "Minimal",
-            "Large remaining time numerals, small title, play/pause only — no scrubber.",
+            "Large remaining time numerals, small title, play/pause only - no scrubber.",
             [
               "Countdown preferred over elapsed for timed Sessions.",
               "Screen stays awake option in overflow.",
@@ -573,9 +573,9 @@ export const IDEATION_DOMAINS = [
             "player-v3",
             "Breath-sync visual",
             "Motion",
-            "Subtle expanding circle or waveform tied to audio envelope — not literal breath pacer unless Session type requires.",
+            "Subtle expanding circle or waveform tied to audio envelope - not literal breath pacer unless Session type requires.",
             [
-              "Respect reduced motion — static artwork fallback.",
+              "Respect reduced motion - static artwork fallback.",
               "No flashing frequencies.",
               "Tap centre toggles play/pause.",
             ],
@@ -599,9 +599,9 @@ export const IDEATION_DOMAINS = [
             "player-v5",
             "Picture-in-picture mini",
             "Structured",
-            "On background, persistent mini player pill above bottom nav — tap to expand full Player.",
+            "On background, persistent mini player pill above bottom nav - tap to expand full Player.",
             [
-              "Mini player on library and detail only — not onboarding.",
+              "Mini player on library and detail only - not onboarding.",
               "Android PiP parity documented for v2.",
               "Dismiss ends session with confirm.",
             ],
@@ -613,11 +613,11 @@ export const IDEATION_DOMAINS = [
       screen(
         "post-session-feedback",
         "Post-session feedback",
-        "Lightweight check-in after playback — how do you feel, optional note. Not a clinical outcome measure in v1. Informs analytics and Partner reporting at aggregate level.",
+        "Lightweight check-in after playback - how do you feel, optional note. Not a clinical outcome measure in v1. Informs analytics and Partner reporting at aggregate level.",
         "P1 · listener-playback · wireframe: feedback",
         "P1",
         [
-          "Skippable in one tap — never block return to library.",
+          "Skippable in one tap - never block return to library.",
           "Use visual scale (faces or spectrum) not 1–10 numeric.",
           "One question primary; second question behind expand.",
           "Do not ask on every session if Listener dismissed 3× in a row.",
@@ -628,7 +628,7 @@ export const IDEATION_DOMAINS = [
             "feedback-v1",
             "Emoji spectrum",
             "Minimal",
-            "How do you feel now? — five faces from dysregulated to regulated. Done skips.",
+            "How do you feel now? - five faces from dysregulated to regulated. Done skips.",
             [
               "Faces labelled for screen readers.",
               "Selection highlights with border.",
@@ -643,7 +643,7 @@ export const IDEATION_DOMAINS = [
             "Data",
             "Dual slider: Before (captured at play start if check-in enabled) vs After on same axis.",
             [
-              "Before optional — skip if not captured.",
+              "Before optional - skip if not captured.",
               "Shows delta visually as arrow.",
               "Aggregate only in Partner analytics.",
             ],
@@ -657,7 +657,7 @@ export const IDEATION_DOMAINS = [
             "Optional one-line journal + mood chip. Character limit 140.",
             [
               "Placeholder prompts rotate.",
-              "Private by default — no sharing.",
+              "Private by default - no sharing.",
               "Keyboard dismiss saves draft.",
             ],
             { app: "Open", pattern: "Post-practice reflection quote card" },
@@ -667,7 +667,7 @@ export const IDEATION_DOMAINS = [
             "feedback-v4",
             "Skip with schedule",
             "Sparse",
-            "Ask every 3rd completion or weekly — configurable per Partner. Today shows feedback; other days Done only.",
+            "Ask every 3rd completion or weekly - configurable per Partner. Today shows feedback; other days Done only.",
             [
               "Schedule explained first time feedback appears.",
               "Listener can opt into always ask in settings.",
@@ -680,7 +680,7 @@ export const IDEATION_DOMAINS = [
             "feedback-v5",
             "Partner micro-survey",
             "B2B",
-            "Partner-configured single question (max) — e.g. Ready to return to work? Yes / Somewhat / Not yet.",
+            "Partner-configured single question (max) - e.g. Ready to return to work? Yes / Somewhat / Not yet.",
             [
               "Question text from CMS.",
               "Sonocea mood question optional second step.",
@@ -694,15 +694,15 @@ export const IDEATION_DOMAINS = [
       screen(
         "protocol-regiment",
         "Assigned Regiment / Protocol",
-        "Shows Partner-assigned sequence of Sessions when protocol feature is enabled. v1 may limit to read-only day plan — no custom Listener-built protocols.",
+        "Shows Partner-assigned sequence of Sessions when protocol feature is enabled. v1 may limit to read-only day plan - no custom Listener-built protocols.",
         "P2 · listener-protocol · wireframe: pending",
         "P2",
         [
           "Honest scope: display assigned plan, do not promise DIY protocol builder.",
-          "Sequence vs library — clarify which Sessions are plan-locked.",
+          "Sequence vs library - clarify which Sessions are plan-locked.",
           "Completion states sync for Partner analytics.",
           "If protocol not assigned, hide nav destination entirely.",
-          "Copy says plan or programme — avoid medical regiment unless Partner requires.",
+          "Copy says plan or programme - avoid medical regiment unless Partner requires.",
         ],
         [
           v(
@@ -712,7 +712,7 @@ export const IDEATION_DOMAINS = [
             "Dedicated bottom-nav tab (Core UI C): vertical checklist by time of day with completion ticks.",
             [
               "Tap item opens Session detail.",
-              "Missed item styling neutral — not punitive red.",
+              "Missed item styling neutral - not punitive red.",
               "Week view in header chevron.",
             ],
             { app: "Oura", pattern: "Daily plan checklist" },
@@ -722,7 +722,7 @@ export const IDEATION_DOMAINS = [
             "protocol-v2",
             "Home module only",
             "Structured",
-            "No extra tab — Today on home shows plan card. See all opens full-screen list.",
+            "No extra tab - Today on home shows plan card. See all opens full-screen list.",
             [
               "Module collapses when day complete.",
               "Reduces five-tab nav weight.",
@@ -748,7 +748,7 @@ export const IDEATION_DOMAINS = [
             "protocol-v4",
             "Clinician note header",
             "B2B",
-            "Plan screen opens with clinician or programme manager note — static text from CMS.",
+            "Plan screen opens with clinician or programme manager note - static text from CMS.",
             [
               "Note max 120 words.",
               "Timestamp of last plan update.",
@@ -761,14 +761,14 @@ export const IDEATION_DOMAINS = [
             "protocol-v5",
             "Locked sequence mode",
             "Clinical",
-            "Sessions unlock in order — next greyed until previous complete. Controversial; ideation only.",
+            "Sessions unlock in order - next greyed until previous complete. Controversial; ideation only.",
             [
               "Partner flag enables lock mode.",
               "Override requires support contact.",
               "Clear explainer why locked.",
             ],
             { app: "Headspace", pattern: "Sequential course unlock" },
-            "Strict clinical protocols only — default off for v1.",
+            "Strict clinical protocols only - default off for v1.",
           ),
         ],
       ),
@@ -780,19 +780,19 @@ export const IDEATION_DOMAINS = [
     platform: "Mobile · provisioned",
     title: "Profile, settings, and help",
     description:
-      "Listeners are here to listen, not configure. Profile surfaces entitlement, neurotype, and essentials — notifications, legal, support. Sparse hierarchy, premium tone.",
+      "Listeners are here to listen, not configure. Profile surfaces entitlement, neurotype, and essentials - notifications, legal, support. Sparse hierarchy, premium tone.",
     prd: "Mobile App PRD · §5 Listener · wireframes: profile pending, about, support",
     screens: [
       screen(
         "profile-settings",
         "Profile / settings",
-        "Account hub: name, organisation, neurotype summary, notification prefs, legal, sign out. Not a social profile — no public persona.",
+        "Account hub: name, organisation, neurotype summary, notification prefs, legal, sign out. Not a social profile - no public persona.",
         "P1 · listener-onboard · wireframe: pending",
         "P1",
         [
           "Show provisioning Partner and seat status.",
-          "Neurotype editable — re-runs recommendation sort only.",
-          "Notification defaults conservative — clinical contexts.",
+          "Neurotype editable - re-runs recommendation sort only.",
+          "Notification defaults conservative - clinical contexts.",
           "Sign out clear; delete account behind support.",
           "Version and build in About subsection.",
         ],
@@ -827,7 +827,7 @@ export const IDEATION_DOMAINS = [
             "profile-v3",
             "Minimal account sheet",
             "Minimal",
-            "Single screen — no drill-down: email, Partner, neurotype chip, notification toggle, sign out.",
+            "Single screen - no drill-down: email, Partner, neurotype chip, notification toggle, sign out.",
             [
               "Advanced settings link opens web FAQ.",
               "Fits three-tab core UI.",
@@ -853,7 +853,7 @@ export const IDEATION_DOMAINS = [
             "profile-v5",
             "Listening profile editor",
             "Data",
-            "Profile centres neurotype and preference sliders with live library preview — settings secondary below.",
+            "Profile centres neurotype and preference sliders with live library preview - settings secondary below.",
             [
               "Edit profile primary CTA.",
               "Preview shows top 3 recommended.",
@@ -872,7 +872,7 @@ export const IDEATION_DOMAINS = [
         "P2",
         [
           "Reuse public science copy blocks.",
-          "No investor deck length — scannable.",
+          "No investor deck length - scannable.",
           "Version matches support diagnostics.",
           "Acknowledgements for audio licences if required.",
         ],
@@ -880,7 +880,7 @@ export const IDEATION_DOMAINS = [
           v("about-v1", "Mission scroll", "Editorial", "Short mission, three science bullets, link to full science hub, legal links footer.", ["Scroll < 2 screens.", "Science link opens in-app browser.", "Logo mono on paper background."], { app: "Headspace", pattern: "About with science credibility" }, "Default credibility pack."),
           v("about-v2", "Fact sheet", "Clinical", "Structured facts: What Sonocea is, What it is not, Evidence summary, Contact.", ["Not does not diagnose.", "Citations as footnotes.", "PDF download."], { app: "Oura", pattern: "Product fact sheet tone" }, "Clinical Partner due diligence."),
           v("about-v3", "Inline web", "Minimal", "Single row in settings opens sonocea.com/about in SFSafariView.", ["No duplicate content maintenance.", "Offline shows cached paragraph.", "Return to app gesture."], { app: "Open", pattern: "External legal links" }, "Lowest build cost."),
-          v("about-v4", "Team voices", "Editorial", "Founder quote + lead scientist card — humanises brand.", ["Photos optional.", "Quote max 2 sentences.", "Link to research partners."], { app: "Calm", pattern: "Founder story snippet" }, "Premium brand building."),
+          v("about-v4", "Team voices", "Editorial", "Founder quote + lead scientist card - humanises brand.", ["Photos optional.", "Quote max 2 sentences.", "Link to research partners."], { app: "Calm", pattern: "Founder story snippet" }, "Premium brand building."),
           v("about-v5", "Licenses modal", "Sparse", "About is legal-heavy: privacy, terms, licenses, analytics opt-out.", ["Plain language summaries.", "Last updated dates.", "Opt-out honoured in v1 if feasible."], { app: "Open", pattern: "Legal uppercase mono footer" }, "Privacy-sensitive deployments."),
         ],
       ),
@@ -901,7 +901,7 @@ export const IDEATION_DOMAINS = [
           v("support-v2", "Troubleshoot wizard", "Clinical", "Tree: Cannot play → Check headphones → Check network → Still stuck → Contact.", ["Each step actionable.", "Logs attach on final step.", "Partner escalate button."], { app: "Oura", pattern: "Device troubleshooting flow" }, "Reduces support volume."),
           v("support-v3", "Partner triage", "B2B", "Is this about access from your organisation? → Partner contact card first.", ["Partner phone/email from CMS.", "Sonocea technical second.", "Seat ID copy button."], { app: "Oura", pattern: "Membership support routing" }, "B2B entitlement clarity."),
           v("support-v4", "In-app message", "Minimal", "Single form: What happened? + screenshot attach. No FAQ.", ["Max 500 chars.", "Screenshot optional.", "Auto-include diagnostics."], { app: "Open", pattern: "Simple contact form" }, "Fastest v1 ship."),
-          v("support-v5", "Contextual help", "Sparse", "No support tab — help icon on screens that need it opens sheet.", ["Player: audio issues.", "Login: invite issues.", "Profile aggregates all."], { app: "Endel", pattern: "Contextual ? icon" }, "Minimal nav models."),
+          v("support-v5", "Contextual help", "Sparse", "No support tab - help icon on screens that need it opens sheet.", ["Player: audio issues.", "Login: invite issues.", "Profile aggregates all."], { app: "Endel", pattern: "Contextual ? icon" }, "Minimal nav models."),
         ],
       ),
     ],

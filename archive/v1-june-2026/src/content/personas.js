@@ -1,9 +1,9 @@
-/** Brand personas — Sonocea Brand 2026 */
+/** Brand personas - Sonocea Brand 2026 */
 
 export const PERSONAS_META = {
-  source: "Sonocea Brand 2026 — Personas",
+  source: "Sonocea Brand 2026 - Personas",
   intro:
-    "Four refined listener personas shape how Sonocea looks, sounds, and behaves. They are not rigid user segments — they are design lenses for colour, motion, pacing, and product tone across clinical, personal, and performance contexts.",
+    "Four refined listener personas shape how Sonocea looks, sounds, and behaves. They are not rigid user segments - they are design lenses for colour, motion, pacing, and product tone across clinical, personal, and performance contexts.",
 };
 
 export const BRAND_PERSONAS = [

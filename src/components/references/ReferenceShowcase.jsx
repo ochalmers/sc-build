@@ -26,7 +26,7 @@ function ReferenceEntry({ item }) {
     <article className="flex h-full flex-col overflow-hidden rounded-2xl border border-ink-200/80 bg-white shadow-card">
       <div className="flex justify-center gap-4 overflow-x-auto border-b border-ink-200/60 bg-paper-100/60 px-6 py-8 md:px-8 md:py-10">
         {item.screens.map((screen, index) => (
-          <AppScreen key={index} screen={screen} label={`${item.title} — ${item.app}`} />
+          <AppScreen key={index} screen={screen} label={`${item.title} - ${item.app}`} />
         ))}
       </div>
 

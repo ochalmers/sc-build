@@ -14,7 +14,7 @@ export const listenerFlows = [
       { id: "s3", label: "Science education", detail: "SAT™ guidance, headphones, environment.", wireframeId: "onboarding" },
       { id: "s4", label: "Neurotype profile", detail: "Align recommendations to listener grouping.", wireframeId: "neurotype" },
       { id: "s5", label: "Provisioned library", detail: "Only entitled Sessions visible.", wireframeId: "library", events: ["session_view"] },
-      { id: "s6", label: "Session detail", detail: "Purpose, duration, benefits — choose what to play.", wireframeId: "detail" },
+      { id: "s6", label: "Session detail", detail: "Purpose, duration, benefits - choose what to play.", wireframeId: "detail" },
       { id: "s7", label: "Play", detail: "~1s start target; branded visualization.", wireframeId: "player", events: ["play_start"] },
       { id: "s8", label: "Complete + feedback", detail: "Completion logged; optional rating.", wireframeId: "feedback", events: ["play_complete", "feedback_prompt_shown"] },
     ],
@@ -93,7 +93,7 @@ export const listenerFlows = [
     id: "listener-library-browse",
     title: "Library browse & search",
     prdScreens: "§7 Library · §5 Listener #3",
-    summary: "Playlist of Sessions provisioned by Partner — never full public catalog.",
+    summary: "Playlist of Sessions provisioned by Partner - never full public catalog.",
     role: "listener",
     surface: "mobile",
     steps: [
@@ -106,7 +106,7 @@ export const listenerFlows = [
     id: "listener-library-empty",
     title: "Empty / awaiting entitlement library",
     prdScreens: "§7 Library",
-    summary: "Listener authenticated but no Sessions assigned yet — Partner pending assignment.",
+    summary: "Listener authenticated but no Sessions assigned yet - Partner pending assignment.",
     role: "listener",
     surface: "mobile",
     steps: [
@@ -226,7 +226,7 @@ export const listenerFlows = [
     id: "listener-about-policies",
     title: "About & policy links",
     prdScreens: "§7 Onboarding · §9 Privacy",
-    summary: "Company info, SAT™ overview, Privacy, Terms, OSS — compliance-linked.",
+    summary: "Company info, SAT™ overview, Privacy, Terms, OSS - compliance-linked.",
     role: "listener",
     surface: "mobile",
     steps: [
@@ -252,7 +252,7 @@ export const listenerFlows = [
     id: "listener-facilitator-led",
     title: "Facilitator-controlled playback",
     prdScreens: "Appendix E · TLDR",
-    summary: "Phone as clinical tool — staff selects Session, presses play for patient/listener.",
+    summary: "Phone as clinical tool - staff selects Session, presses play for patient/listener.",
     role: "listener",
     surface: "mobile",
     steps: [
@@ -266,7 +266,7 @@ export const listenerFlows = [
     id: "listener-home-tab",
     title: "Home tab & profile entry",
     prdScreens: "§4 Tab IA · WF tab bar",
-    summary: "Tab bar: Home, Sessions, Saved, Profile — entry points to About/Support.",
+    summary: "Tab bar: Home, Sessions, Saved, Profile - entry points to About/Support.",
     role: "listener",
     surface: "mobile",
     steps: [
@@ -295,7 +295,7 @@ export const listenerEdgeFlows = [
     id: "edge-access-revoked",
     title: "Access revoked mid-session",
     prdScreens: "§7 Auth · §9 Security",
-    summary: "Admin or Partner revokes Listener — stream and offline license fail closed.",
+    summary: "Admin or Partner revokes Listener - stream and offline license fail closed.",
     role: "listener",
     surface: "mobile",
     steps: [
@@ -336,7 +336,7 @@ export const listenerEdgeFlows = [
     id: "edge-jailbreak",
     title: "Jailbreak / root denial",
     prdScreens: "§9 Security #4",
-    summary: "Compromised device detection — graceful denial of playback and downloads.",
+    summary: "Compromised device detection - graceful denial of playback and downloads.",
     role: "listener",
     surface: "mobile",
     steps: [

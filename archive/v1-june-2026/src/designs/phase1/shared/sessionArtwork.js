@@ -1,4 +1,4 @@
-/** Session artwork system — Care / Regulation / Performance categories */
+/** Session artwork system - Care / Regulation / Performance categories */
 
 export const SESSION_CATEGORIES = {
   care: {

@@ -7,7 +7,7 @@
 | `tokens/colors.js` | **Canonical** base palette + semantic aliases. Single source for colour. |
 | `tokens/spacing.js` | Spacing scale, section rhythm, safe-area notes, density multipliers by mode. |
 | `tokens/typography.js` | Font stack, type roles, `typeClasses` for Tailwind. |
-| `tokens/motion.js` | Motion principles, durations, easing — secondary to sound. |
+| `tokens/motion.js` | Motion principles, durations, easing - secondary to sound. |
 | `modes.js` | `behaviourModeMeta` (sliders + transforms) + `modeReference` (documentation copy). |
 | `components/` | Reusable UI primitives (`SystemButton`, `SystemCard`, …). Use inside `ModeChrome` or apply `resolvePalette` CSS vars. |
 

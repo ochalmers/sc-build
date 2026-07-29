@@ -7,8 +7,8 @@
 | `tokens/colors.js` | **Canonical** base palette + semantic aliases. Single source for colour. |
 | `tokens/spacing.js` | Spacing scale, section rhythm, safe-area notes, density multipliers by mode. |
 | `tokens/typography.js` | Font stack, type roles, `typeClasses` / `appTypeClasses` for Tailwind. |
-| `tokens/appLayout.js` | App frame geometry from Figma GTM Home — spacing, radii, component sizes (no colour). |
-| `tokens/motion.js` | Motion principles, durations, easing — secondary to sound. |
+| `tokens/appLayout.js` | App frame geometry from Figma GTM Home - spacing, radii, component sizes (no colour). |
+| `tokens/motion.js` | Motion principles, durations, easing - secondary to sound. |
 | `modes.js` | `behaviourModeMeta` (sliders + transforms) + `modeReference` (documentation copy). |
 | `components/` | Reusable UI primitives (`SystemButton`, `SystemCard`, …). Use inside `ModeChrome` or apply `resolvePalette` CSS vars. |
 
@@ -33,7 +33,7 @@ The design system reference page lives at **`/design-system`** (`src/pages/Desig
 
 ## Figma reference
 
-Structural styles (layout, type scale, radii, blur, component geometry) are sourced from **[Sonocea App — GTM, Home](https://www.figma.com/design/lmo2RrohjwEiyyZj7SEGHM/Sonocea-App--GTM-?node-id=1-54800)** (node `1:54800`). Colour and imagery are intentionally excluded from tokens — bind via `resolvePalette` / CSS vars.
+Structural styles (layout, type scale, radii, blur, component geometry) are sourced from **[Sonocea App - GTM, Home](https://www.figma.com/design/lmo2RrohjwEiyyZj7SEGHM/Sonocea-App--GTM-?node-id=1-54800)** (node `1:54800`). Colour and imagery are intentionally excluded from tokens - bind via `resolvePalette` / CSS vars.
 
 - Tokens: `tokens/appLayout.js`, `appTypeClasses` in `tokens/typography.js`
 - Components: `SystemTag`, `SystemTabBar`, `SystemSessionCard`, `SystemPlayControl`, `SystemAppSectionHeader`

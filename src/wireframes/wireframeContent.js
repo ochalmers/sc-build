@@ -7,12 +7,12 @@ export const BRAND = {
   name: "Sonocea",
   tagline: "Sonic augmentation",
   mission:
-    "Patented Sonic Augmentation Technology™ — structured Sessions designed to support autonomic regulation and emotional balance.",
+    "Patented Sonic Augmentation Technology™ - structured Sessions designed to support autonomic regulation and emotional balance.",
 };
 
 export const ENTRY = {
   getStartedTitle: "Welcome to Sonocea",
-  getStartedSubtitle: "Experience structured sound — or sign in with your invitation.",
+  getStartedSubtitle: "Experience structured sound - or sign in with your invitation.",
   discoverCta: "Discover Sonocea",
   invitationCta: "Accept Invitation",
   loginCta: "Login",
@@ -53,13 +53,13 @@ export const SCIENCE_TOPICS = [
 
 export const SCIENCE_HOME = {
   title: "How Sonocea works",
-  subtitle: "What you just experienced — and the science behind structured sound.",
+  subtitle: "What you just experienced - and the science behind structured sound.",
 };
 
 export const EXPERIENCED = {
   title: "What you just experienced",
   subtitle:
-    "A brief nervous system reset using structured sound — not meditation, not generic relaxation.",
+    "A brief nervous system reset using structured sound - not meditation, not generic relaxation.",
   body:
     "Sonocea Sonic Augmentation Technology™ produces measurable effects on autonomic regulation within minutes.",
 };
@@ -78,7 +78,7 @@ export const INVITATION = {
   subtitle:
     "Your organisation has provisioned Sonocea access. Activate your account to begin listening.",
   intro:
-    "Brief intro to Sonocea before sign-up — you may preview public content first.",
+    "Brief intro to Sonocea before sign-up - you may preview public content first.",
 };
 
 export const AUTH = {
@@ -92,7 +92,7 @@ export const AUTH = {
 export const ONBOARDING = {
   introTitle: "What is Sonocea?",
   introSubtitle:
-    "Structured sound Sessions with Sonic Augmentation Technology™ — assigned by your organisation.",
+    "Structured sound Sessions with Sonic Augmentation Technology™ - assigned by your organisation.",
   introBullets: [
     "Evidence-informed listening Sessions",
     "Assigned by your Partner or care team",
@@ -142,34 +142,34 @@ export const GUIDANCE = {
 };
 
 export const SESSIONS = {
-  resume: { title: "Arrive · settle", meta: "14 min · Regulation", remaining: "05:18 left" },
+  resume: { title: "Session 1", meta: "14 min · Regulation", remaining: "05:18 left" },
   library: [
-    { title: "Arrive · settle", meta: "14 min · Assigned" },
-    { title: "Deep unwind", meta: "22 min · Assigned" },
-    { title: "Focus reset", meta: "18 min · Assigned" },
-    { title: "Wind down", meta: "15 min · Assigned" },
+    { title: "Session 1", meta: "14 min · Assigned" },
+    { title: "Session 2", meta: "22 min · Assigned" },
+    { title: "Session 3", meta: "18 min · Assigned" },
+    { title: "Session 4", meta: "15 min · Assigned" },
     { title: "Recovery", meta: "15 min · Assigned" },
   ],
   categories: ["Unwind", "Rest", "Recovery", "Focus", "Arrive", "Settle"],
   detail: {
-    title: "Arrive · settle",
+    title: "Session 1",
     duration: "14 min",
     useCase: "Starting your day",
     neurotype: "Neurotypical",
     benefits: "Supports calm arrival and autonomic settling before demanding tasks.",
     description:
-      "A regulation Session using Sonic Augmentation Technology™ — purpose, audience fit, and benefits before play.",
+      "A regulation Session using Sonic Augmentation Technology™ - purpose, audience fit, and benefits before play.",
   },
 };
 
 export const PLAYER = {
-  sessionTitle: "Arrive · settle",
+  sessionTitle: "Session 1",
   duration: "14:00",
   category: "Regulation",
 };
 
 export const FEEDBACK = {
-  completionSubtitle: "Optional quick rating after this Session — skip any time.",
+  completionSubtitle: "Optional quick rating after this Session - skip any time.",
   ratingTitle: "Rate this Session",
   ratingSubtitle: "How effective was this Session for you?",
   formTitle: "How was this Session?",
@@ -224,5 +224,5 @@ export const TOPIC_DETAIL = {
   category: "Science",
   title: "What is the autonomic nervous system?",
   excerpt:
-    "Structured sound can influence autonomic regulation — distinct from generic relaxation or meditation audio.",
+    "Structured sound can influence autonomic regulation - distinct from generic relaxation or meditation audio.",
 };

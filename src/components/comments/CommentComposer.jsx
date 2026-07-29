@@ -72,7 +72,7 @@ export function CommentComposer({
   );
 }
 
-/** Open thread panel — view, reply, resolve, delete. */
+/** Open thread panel - view, reply, resolve, delete. */
 export function CommentThreadPanel({
   thread,
   onClose,

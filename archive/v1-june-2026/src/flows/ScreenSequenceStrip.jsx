@@ -8,7 +8,7 @@ export function ScreenSequenceStrip() {
         PRD screen map · 11 areas
       </p>
       <p className="mt-2 max-w-2xl text-[13px] leading-relaxed text-ink-600">
-        Canonical mobile IA from the PRD — scroll horizontally to see each wireframe in sequence.
+        Canonical mobile IA from the PRD - scroll horizontally to see each wireframe in sequence.
         Individual flows below branch from these screens.
       </p>
       <div className="mt-8 -mx-2 overflow-x-auto px-2 pb-2">

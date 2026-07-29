@@ -1,5 +1,5 @@
 /**
- * Spectral appearance — adaptive atmospheric layers anchored on two foundations:
+ * Spectral appearance - adaptive atmospheric layers anchored on two foundations:
  * light #EDEFE8 and dark #080808. Behaviour modes (Care / Regulation / Performance)
  * compound on top; naming is behavioural, not decorative.
  */
@@ -17,7 +17,7 @@ export const spectralIntroPrinciples = [
 export const spectralPrinciples = [
   {
     title: "Adaptive intensity",
-    body: "Spectral energy scales with context and nervous-system state — never a fixed decorative brightness.",
+    body: "Spectral energy scales with context and nervous-system state - never a fixed decorative brightness.",
   },
   {
     title: "Soft contrast",
@@ -25,7 +25,7 @@ export const spectralPrinciples = [
   },
   {
     title: "Environmental colour",
-    body: "Palette behaviour mirrors light in atmosphere — diffusion, depth, and glow — not flat spot colours.",
+    body: "Palette behaviour mirrors light in atmosphere - diffusion, depth, and glow - not flat spot colours.",
   },
   {
     title: "Sound translated visually",
@@ -42,49 +42,49 @@ export const spectralEnvironmentStudies = [
   {
     id: "ref-1",
     label: "Refracted light",
-    caption: "Spectrum scattered through haze — soft bands, no hard primaries.",
+    caption: "Spectrum scattered through haze - soft bands, no hard primaries.",
     css: "linear-gradient(125deg, rgba(255,255,255,0.65) 0%, rgba(232,220,245,0.5) 35%, rgba(200,216,255,0.45) 70%, rgba(237,239,232,0.9) 100%)",
   },
   {
     id: "ref-2",
     label: "Dusk atmosphere",
-    caption: "Low sun warmth meeting cool air — separation without chroma noise.",
+    caption: "Low sun warmth meeting cool air - separation without chroma noise.",
     css: "linear-gradient(180deg, rgba(45,38,52,0.35) 0%, rgba(180,140,160,0.25) 45%, rgba(232,200,175,0.3) 85%, rgba(237,239,232,0.95) 100%)",
   },
   {
     id: "ref-3",
     label: "Oceanic depth",
-    caption: "Pressure and calm — deep neutrals with restrained teal luminescence.",
+    caption: "Pressure and calm - deep neutrals with restrained teal luminescence.",
     css: "radial-gradient(100% 80% at 50% 100%, rgba(100,160,155,0.35), transparent 55%), linear-gradient(185deg, #0c1010 0%, #080808 55%)",
   },
   {
     id: "ref-4",
     label: "Mineral surfaces",
-    caption: "Cool stone and ash — structure without taupe lifestyle cues.",
+    caption: "Cool stone and ash - structure without taupe lifestyle cues.",
     css: "linear-gradient(145deg, #d8dad4 0%, #c4c6be 40%, #a8aaa2 100%)",
   },
   {
     id: "ref-5",
     label: "Environmental glow",
-    caption: "Light pooled in space — bloom stays diffuse and peripheral.",
+    caption: "Light pooled in space - bloom stays diffuse and peripheral.",
     css: "radial-gradient(60% 50% at 60% 40%, rgba(245,210,230,0.5), transparent 70%), radial-gradient(80% 60% at 20% 80%, rgba(180,200,255,0.35), transparent 65%), #EDEFE8",
   },
   {
     id: "ref-6",
     label: "Spectral diffusion",
-    caption: "Chroma as mist — edges dissolve before they read as UI accents.",
+    caption: "Chroma as mist - edges dissolve before they read as UI accents.",
     css: "linear-gradient(160deg, rgba(248,230,240,0.9) 0%, rgba(220,228,255,0.75) 50%, rgba(225,240,232,0.85) 100%)",
   },
   {
     id: "ref-7",
     label: "Soft horizon",
-    caption: "Air meets ground — a thin luminous band, not a stripe of accent colour.",
+    caption: "Air meets ground - a thin luminous band, not a stripe of accent colour.",
     css: "linear-gradient(180deg, rgba(210,218,232,0.55) 0%, rgba(237,239,232,0.95) 38%, #c8ccc4 55%, #9aa096 100%)",
   },
   {
     id: "ref-8",
     label: "Cinematic haze",
-    caption: "Depth through lowering contrast — fog as spatial cue, not a grey wash.",
+    caption: "Depth through lowering contrast - fog as spatial cue, not a grey wash.",
     css: "radial-gradient(80% 60% at 50% 40%, rgba(240,236,252,0.5), transparent 65%), linear-gradient(175deg, #b8c0c8 0%, #d8dcd6 45%, #EDEFE8 100%)",
   },
 ];
