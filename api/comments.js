@@ -127,14 +127,22 @@ async function writeThreads(threads, token) {
   for (const thread of threads) {
     if (!thread?.id || isJunkThread(thread)) continue;
     writes.push(
-      put(threadPath(thread.id), JSON.stringify(thread), {
-        access: "private",
-        addRandomSuffix: false,
-        allowOverwrite: true,
-        contentType: "application/json",
-        cacheControlMaxAge: 0,
-        token,
-      }),
+      (async () => {
+        const path = threadPath(thread.id);
+        const existing = await readThreadBlob(path, token);
+        if (existing && (existing.updatedAt || 0) > (thread.updatedAt || 0)) {
+          // Keep the newer server copy — blocks stale client overwrites.
+          return;
+        }
+        await put(path, JSON.stringify(thread), {
+          access: "private",
+          addRandomSuffix: false,
+          allowOverwrite: true,
+          contentType: "application/json",
+          cacheControlMaxAge: 0,
+          token,
+        });
+      })(),
     );
   }
   await Promise.all(writes);
