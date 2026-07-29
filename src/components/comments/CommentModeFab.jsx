@@ -1,6 +1,15 @@
 import { useEffect } from "react";
 import { useComments } from "../../comments/CommentStore.jsx";
 
+function syncLabel(status) {
+  if (status === "synced") return "Shared · live";
+  if (status === "syncing") return "Sharing…";
+  if (status === "loading") return "Loading shared…";
+  if (status === "offline") return "Offline cache";
+  if (status === "error") return "Sync issue";
+  return null;
+}
+
 /**
  * Fixed comment-mode control - Figma-style toggle to place pins.
  */
@@ -15,6 +24,9 @@ export default function CommentModeFab() {
     draft,
     clearDraft,
     closeThread,
+    syncStatus,
+    syncError,
+    refreshComments,
   } = useComments();
 
   useEffect(() => {
@@ -27,6 +39,8 @@ export default function CommentModeFab() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [commentMode, draft, clearDraft, setCommentMode, closeThread]);
+
+  const syncText = syncLabel(syncStatus);
 
   return (
     <div className="fixed bottom-5 right-5 z-[70] flex flex-col items-end gap-2">
@@ -42,6 +56,20 @@ export default function CommentModeFab() {
               className="min-w-0 flex-1 rounded-md border border-ink-200 px-2 py-1 text-[12px] text-ink-800 outline-none focus:border-ink-400"
             />
           </label>
+          {syncText ? (
+            <p className="mt-2 text-[11px] text-ink-500">
+              {syncText}
+              {syncStatus === "error" && syncError ? ` — ${syncError}` : null}
+              {" · "}
+              <button
+                type="button"
+                onClick={() => refreshComments?.()}
+                className="underline-offset-2 hover:underline"
+              >
+                Refresh
+              </button>
+            </p>
+          ) : null}
           {draft ? (
             <button
               type="button"

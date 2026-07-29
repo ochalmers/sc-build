@@ -1,7 +1,9 @@
-import { createContext, useContext, useEffect, useMemo, useReducer } from "react";
+import { createContext, useContext, useEffect, useMemo, useReducer, useRef } from "react";
+import { loadSharedComments, saveSharedComments } from "./commentsApi.js";
 
 const STORAGE_KEY = "sonocea-workspace-comments-v1";
 const AUTHOR_KEY = "sonocea-workspace-comment-author";
+const POLL_MS = 8000;
 const CommentContext = createContext(null);
 
 function loadAuthor() {
@@ -12,21 +14,28 @@ function loadAuthor() {
   }
 }
 
-function loadInitialState() {
+function loadCachedThreads() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return { threads: [], author: loadAuthor(), commentMode: false, openThreadId: null, draft: null };
+    if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return {
-      threads: Array.isArray(parsed.threads) ? parsed.threads : [],
-      author: loadAuthor(),
-      commentMode: false,
-      openThreadId: null,
-      draft: null,
-    };
+    return Array.isArray(parsed.threads) ? parsed.threads : [];
   } catch {
-    return { threads: [], author: loadAuthor(), commentMode: false, openThreadId: null, draft: null };
+    return [];
   }
+}
+
+function loadInitialState() {
+  return {
+    threads: loadCachedThreads(),
+    author: loadAuthor(),
+    commentMode: false,
+    openThreadId: null,
+    draft: null,
+    syncStatus: "loading", // loading | synced | syncing | offline | error
+    remoteUpdatedAt: 0,
+    syncError: null,
+  };
 }
 
 function reducer(state, action) {
@@ -121,6 +130,22 @@ function reducer(state, action) {
         },
       };
     }
+    case "REPLACE_THREADS":
+      return {
+        ...state,
+        threads: action.payload.threads,
+        remoteUpdatedAt: action.payload.updatedAt || state.remoteUpdatedAt,
+        syncStatus: action.payload.syncStatus || state.syncStatus,
+        syncError: action.payload.syncError ?? null,
+      };
+    case "SET_SYNC":
+      return {
+        ...state,
+        syncStatus: action.payload.status,
+        syncError: action.payload.error ?? null,
+        remoteUpdatedAt:
+          action.payload.updatedAt != null ? action.payload.updatedAt : state.remoteUpdatedAt,
+      };
     default:
       return state;
   }
@@ -148,16 +173,163 @@ function makeThread({ scopeKey, body, pin, author }) {
   };
 }
 
+/** Merge by thread id — keep the newest updatedAt. */
+function mergeThreads(a, b) {
+  const map = new Map();
+  for (const thread of [...a, ...b]) {
+    const prev = map.get(thread.id);
+    if (!prev || (thread.updatedAt || 0) >= (prev.updatedAt || 0)) {
+      map.set(thread.id, thread);
+    }
+  }
+  return [...map.values()].sort((x, y) => (y.updatedAt || 0) - (x.updatedAt || 0));
+}
+
 export function CommentProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, null, loadInitialState);
+  const stateRef = useRef(state);
+  const saveTimer = useRef(null);
+  const bootstrapped = useRef(false);
+  const applyingRemote = useRef(false);
 
   useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ threads: state.threads }));
+    stateRef.current = state;
+  }, [state]);
+
+  // Cache locally for fast reload / offline fallback.
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ threads: state.threads }));
+    } catch {
+      // ignore quota
+    }
   }, [state.threads]);
 
   useEffect(() => {
-    localStorage.setItem(AUTHOR_KEY, state.author);
+    try {
+      localStorage.setItem(AUTHOR_KEY, state.author);
+    } catch {
+      // ignore
+    }
   }, [state.author]);
+
+  const pushRemote = (threads) => {
+    if (applyingRemote.current) return;
+    dispatch({ type: "SET_SYNC", payload: { status: "syncing" } });
+    const updatedAt = Date.now();
+    saveSharedComments(threads, updatedAt)
+      .then((saved) => {
+        dispatch({
+          type: "SET_SYNC",
+          payload: { status: "synced", updatedAt: saved.updatedAt || updatedAt, error: null },
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: "SET_SYNC",
+          payload: {
+            status: "error",
+            error: String(err?.message || err),
+          },
+        });
+      });
+  };
+
+  const schedulePush = () => {
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = setTimeout(() => {
+      pushRemote(stateRef.current.threads);
+    }, 400);
+  };
+
+  const pullRemote = async ({ allowBootstrap = false } = {}) => {
+    try {
+      const remote = await loadSharedComments();
+      const local = stateRef.current.threads;
+      let nextThreads = remote.threads;
+      let nextUpdatedAt = remote.updatedAt || 0;
+
+      // First load: if remote is empty and we have local cache, publish it once.
+      if (
+        allowBootstrap &&
+        !bootstrapped.current &&
+        remote.threads.length === 0 &&
+        local.length > 0
+      ) {
+        bootstrapped.current = true;
+        nextThreads = local;
+        nextUpdatedAt = Date.now();
+        await saveSharedComments(nextThreads, nextUpdatedAt);
+      } else if (remote.updatedAt && remote.updatedAt < stateRef.current.remoteUpdatedAt) {
+        // Stale response — ignore.
+        dispatch({ type: "SET_SYNC", payload: { status: "synced", error: null } });
+        return;
+      } else {
+        // Merge so in-flight local adds aren't wiped by a slightly stale poll.
+        nextThreads = mergeThreads(remote.threads, local);
+        if (nextThreads.length !== remote.threads.length) {
+          // Local had newer items — push merged set.
+          nextUpdatedAt = Date.now();
+          saveSharedComments(nextThreads, nextUpdatedAt).catch(() => {});
+        }
+      }
+
+      bootstrapped.current = true;
+      applyingRemote.current = true;
+      dispatch({
+        type: "REPLACE_THREADS",
+        payload: {
+          threads: nextThreads,
+          updatedAt: nextUpdatedAt,
+          syncStatus: "synced",
+          syncError: null,
+        },
+      });
+      queueMicrotask(() => {
+        applyingRemote.current = false;
+      });
+    } catch (err) {
+      dispatch({
+        type: "SET_SYNC",
+        payload: {
+          status: stateRef.current.threads.length ? "offline" : "error",
+          error: String(err?.message || err),
+        },
+      });
+    }
+  };
+
+  // Initial pull + poll for other reviewers' comments.
+  useEffect(() => {
+    pullRemote({ allowBootstrap: true });
+    const id = setInterval(() => {
+      // Don't poll while a composer draft is open — avoid focus/layout jumps.
+      if (stateRef.current.draft) return;
+      pullRemote();
+    }, POLL_MS);
+    return () => {
+      clearInterval(id);
+      if (saveTimer.current) clearTimeout(saveTimer.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Push after local mutations (skip when applying remote).
+  const threadsSignature = useMemo(
+    () =>
+      state.threads
+        .map((t) => `${t.id}:${t.updatedAt}:${t.status}:${t.messages?.length || 0}:${t.pin?.x},${t.pin?.y}`)
+        .join("|"),
+    [state.threads],
+  );
+
+  useEffect(() => {
+    if (!bootstrapped.current) return;
+    if (applyingRemote.current) return;
+    if (state.syncStatus === "loading") return;
+    schedulePush();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [threadsSignature]);
 
   const value = useMemo(
     () => ({
@@ -167,6 +339,8 @@ export function CommentProvider({ children }) {
       openThreadId: state.openThreadId,
       draft: state.draft,
       openCount: state.threads.filter((t) => t.status === "open").length,
+      syncStatus: state.syncStatus,
+      syncError: state.syncError,
 
       setAuthor(name) {
         const next = name?.trim() || "Reviewer";
@@ -243,6 +417,9 @@ export function CommentProvider({ children }) {
       },
       moveDraftPin(x, y) {
         dispatch({ type: "MOVE_DRAFT_PIN", payload: { x, y } });
+      },
+      refreshComments() {
+        return pullRemote();
       },
     }),
     [state],

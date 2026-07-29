@@ -13,4 +13,10 @@ dist/
 # local tooling
 .vite/
 .paper-tmp/
+.vercel/
+
+# secrets / local env
+.env
+.env.*
+!.env.example
 
