@@ -28,6 +28,7 @@ export default function CommentModeFab() {
     syncStatus,
     syncError,
     refreshComments,
+    republishComments,
   } = useComments();
   const [writeToken, setWriteToken] = useState(() => getClientWriteToken());
 
@@ -83,7 +84,11 @@ export default function CommentModeFab() {
                 onChange={(e) => setWriteToken(e.target.value)}
                 onBlur={() => {
                   setClientWriteToken(writeToken);
-                  refreshComments?.();
+                  // Pull latest then push local so a pasted token actually publishes.
+                  Promise.resolve(refreshComments?.())
+                    .catch(() => {})
+                    .then(() => republishComments?.())
+                    .catch(() => {});
                 }}
                 placeholder="ghp_… or gho_…"
                 className="mt-1 w-full rounded-md border border-ink-200 px-2 py-1 text-[12px] text-ink-800 outline-none focus:border-ink-400"

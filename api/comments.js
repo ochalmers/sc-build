@@ -137,8 +137,25 @@ export default async function handler(req, res) {
       const body = await readBody(req);
       const threads = Array.isArray(body.threads) ? body.threads : null;
       if (!threads) return json(res, 400, { error: "threads_array_required" });
+      // Merge with current gist so concurrent reviewers don't wipe each other.
+      let merged = threads;
+      try {
+        const current = await fetchGist();
+        const map = new Map();
+        for (const thread of [...(current.threads || []), ...threads]) {
+          const prev = map.get(thread.id);
+          if (!prev || (thread.updatedAt || 0) >= (prev.updatedAt || 0)) {
+            map.set(thread.id, thread);
+          }
+        }
+        merged = [...map.values()].sort(
+          (a, b) => (b.updatedAt || 0) - (a.updatedAt || 0),
+        );
+      } catch {
+        // If read fails, still attempt to write the payload we received.
+      }
       const updatedAt = Number(body.updatedAt) || Date.now();
-      const saved = await saveGist(threads, updatedAt);
+      const saved = await saveGist(merged, updatedAt);
       return json(res, 200, saved);
     }
 

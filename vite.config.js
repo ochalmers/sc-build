@@ -106,8 +106,24 @@ function commentsApiPlugin(env) {
             if (!Array.isArray(body.threads)) {
               return send(res, 400, { error: "threads_array_required" });
             }
+            let merged = body.threads;
+            try {
+              const current = await readGist();
+              const map = new Map();
+              for (const thread of [...(current.threads || []), ...body.threads]) {
+                const prev = map.get(thread.id);
+                if (!prev || (thread.updatedAt || 0) >= (prev.updatedAt || 0)) {
+                  map.set(thread.id, thread);
+                }
+              }
+              merged = [...map.values()].sort(
+                (a, b) => (b.updatedAt || 0) - (a.updatedAt || 0),
+              );
+            } catch {
+              // write payload as received if merge read fails
+            }
             const updatedAt = Number(body.updatedAt) || Date.now();
-            return send(res, 200, await writeGist(body.threads, updatedAt));
+            return send(res, 200, await writeGist(merged, updatedAt));
           }
           return send(res, 405, { error: "method_not_allowed" });
         } catch (err) {

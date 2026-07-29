@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAppStore } from "../context/AppStore.jsx";
 import { AdminDesktopFrame } from "./AdminDesktopFrame.jsx";
+import PinComments from "../../components/comments/PinComments.jsx";
 
 /**
  * Content chrome for Partner / Admin - header brand/switcher lives in AppShell.
@@ -17,7 +18,9 @@ export function AppChrome({
   simple,
   framed = true,
 }) {
+  const { pathname, search } = useLocation();
   const { role, user, logout } = useAppStore();
+  const commentScope = `app:${pathname}${search}`;
 
   const accountBar =
     !simple && role && user ? (
@@ -72,18 +75,20 @@ export function AppChrome({
 
   if (!framed) {
     return (
-      <div className="relative text-[#f4f4f4]">
-        <div
-          className="pointer-events-none fixed inset-0 opacity-50"
-          style={{
-            background:
-              "radial-gradient(80% 50% at 20% -10%, rgba(255,255,255,0.05), transparent 55%), radial-gradient(60% 40% at 90% 10%, rgba(255,255,255,0.03), transparent 50%)",
-          }}
-          aria-hidden
-        />
-        {topBar ? <div className="relative z-10">{topBar}</div> : null}
-        <div className="relative z-10 mx-auto max-w-6xl">{main}</div>
-      </div>
+      <PinComments scopeKey={commentScope}>
+        <div className="relative text-[#f4f4f4]">
+          <div
+            className="pointer-events-none fixed inset-0 opacity-50"
+            style={{
+              background:
+                "radial-gradient(80% 50% at 20% -10%, rgba(255,255,255,0.05), transparent 55%), radial-gradient(60% 40% at 90% 10%, rgba(255,255,255,0.03), transparent 50%)",
+            }}
+            aria-hidden
+          />
+          {topBar ? <div className="relative z-10">{topBar}</div> : null}
+          <div className="relative z-10 mx-auto max-w-6xl">{main}</div>
+        </div>
+      </PinComments>
     );
   }
 

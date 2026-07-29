@@ -421,6 +421,35 @@ export function CommentProvider({ children }) {
       refreshComments() {
         return pullRemote();
       },
+      /** Force-publish current local threads (e.g. after pasting a write token). */
+      republishComments() {
+        return new Promise((resolve, reject) => {
+          dispatch({ type: "SET_SYNC", payload: { status: "syncing" } });
+          const updatedAt = Date.now();
+          saveSharedComments(stateRef.current.threads, updatedAt)
+            .then((saved) => {
+              dispatch({
+                type: "SET_SYNC",
+                payload: {
+                  status: "synced",
+                  updatedAt: saved.updatedAt || updatedAt,
+                  error: null,
+                },
+              });
+              resolve(saved);
+            })
+            .catch((err) => {
+              dispatch({
+                type: "SET_SYNC",
+                payload: {
+                  status: "error",
+                  error: String(err?.message || err),
+                },
+              });
+              reject(err);
+            });
+        });
+      },
     }),
     [state],
   );
