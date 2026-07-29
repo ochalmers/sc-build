@@ -11,6 +11,7 @@
     "paper:mobile": "node scripts/generate-paper-behavioural-mobile.mjs"
   },
   "dependencies": {
+    "@vercel/blob": "^2.6.1",
     "framer-motion": "^12.23.12",
     "lucide-react": "^1.26.0",
     "react": "^19.1.1",

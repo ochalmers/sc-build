@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useComments } from "../../comments/CommentStore.jsx";
-import { getClientWriteToken, setClientWriteToken } from "../../comments/commentsApi.js";
 
 function syncLabel(status) {
   if (status === "synced") return "Shared · live";
@@ -28,9 +27,7 @@ export default function CommentModeFab() {
     syncStatus,
     syncError,
     refreshComments,
-    republishComments,
   } = useComments();
-  const [writeToken, setWriteToken] = useState(() => getClientWriteToken());
 
   useEffect(() => {
     function onKey(e) {
@@ -44,8 +41,6 @@ export default function CommentModeFab() {
   }, [commentMode, draft, clearDraft, setCommentMode, closeThread]);
 
   const syncText = syncLabel(syncStatus);
-  const needsWriteToken =
-    syncStatus === "error" && /missing_write_token|missing_comments_github_token/i.test(syncError || "");
 
   return (
     <div className="fixed bottom-5 right-5 z-[70] flex flex-col items-end gap-2">
@@ -74,26 +69,6 @@ export default function CommentModeFab() {
                 Refresh
               </button>
             </p>
-          ) : null}
-          {needsWriteToken ? (
-            <label className="mt-2 block text-[11px] text-ink-500">
-              Paste a GitHub token with <span className="font-medium">gist</span> scope to publish shared comments:
-              <input
-                type="password"
-                value={writeToken}
-                onChange={(e) => setWriteToken(e.target.value)}
-                onBlur={() => {
-                  setClientWriteToken(writeToken);
-                  // Pull latest then push local so a pasted token actually publishes.
-                  Promise.resolve(refreshComments?.())
-                    .catch(() => {})
-                    .then(() => republishComments?.())
-                    .catch(() => {});
-                }}
-                placeholder="ghp_… or gho_…"
-                className="mt-1 w-full rounded-md border border-ink-200 px-2 py-1 text-[12px] text-ink-800 outline-none focus:border-ink-400"
-              />
-            </label>
           ) : null}
           {draft ? (
             <button

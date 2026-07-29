@@ -1,13 +1,18 @@
 /**
- * Shared workspace comments — backed by a public GitHub Gist so every
- * reviewer sees the same threads (not localStorage).
+ * Shared workspace comments — backed by Vercel Blob so every reviewer
+ * sees the same threads (not localStorage / GitHub Gist rate limits).
  *
- * Env (Vercel project → Settings → Environment Variables):
- *   COMMENTS_GITHUB_TOKEN  — GitHub PAT with `gist` scope
- *   COMMENTS_GIST_ID       — optional override (defaults below)
+ * Env (set automatically when a Blob store is linked):
+ *   BLOB_READ_WRITE_TOKEN
+ *
+ * Optional legacy fallback for reads:
+ *   COMMENTS_GITHUB_TOKEN / COMMENTS_GIST_ID
  */
 
-const DEFAULT_GIST_ID = "5253e9bc9987baf2d4a4ff0007aa5098";
+import { get, put } from "@vercel/blob";
+
+const BLOB_PATH = "workspace-comments.json";
+const LEGACY_GIST_ID = "5253e9bc9987baf2d4a4ff0007aa5098";
 const GIST_FILE = "comments.json";
 
 function corsHeaders() {
@@ -44,82 +49,80 @@ function readBody(req) {
   });
 }
 
-function gistId() {
-  return process.env.COMMENTS_GIST_ID || DEFAULT_GIST_ID;
+function normalize(data) {
+  return {
+    threads: Array.isArray(data?.threads) ? data.threads : [],
+    updatedAt: Number(data?.updatedAt) || 0,
+  };
 }
 
-function token() {
-  return (
-    process.env.COMMENTS_GITHUB_TOKEN ||
-    process.env.GITHUB_TOKEN ||
-    process.env.GH_TOKEN ||
-    ""
-  );
+function mergeThreads(a, b) {
+  const map = new Map();
+  for (const thread of [...(a || []), ...(b || [])]) {
+    const prev = map.get(thread.id);
+    if (!prev || (thread.updatedAt || 0) >= (prev.updatedAt || 0)) {
+      map.set(thread.id, thread);
+    }
+  }
+  return [...map.values()].sort((x, y) => (y.updatedAt || 0) - (x.updatedAt || 0));
 }
 
-async function fetchGist() {
+async function readBlob() {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token) {
+    const err = new Error("missing_blob_read_write_token");
+    err.code = "missing_token";
+    throw err;
+  }
+  const result = await get(BLOB_PATH, { access: "private", token });
+  if (!result) return { threads: [], updatedAt: 0 };
+  const text = await new Response(result.stream).text();
+  try {
+    return normalize(JSON.parse(text));
+  } catch {
+    return { threads: [], updatedAt: 0 };
+  }
+}
+
+async function writeBlob(threads, updatedAt) {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token) {
+    const err = new Error("missing_blob_read_write_token");
+    err.code = "missing_token";
+    throw err;
+  }
+  const payload = { threads, updatedAt };
+  await put(BLOB_PATH, JSON.stringify(payload, null, 2), {
+    access: "private",
+    addRandomSuffix: false,
+    allowOverwrite: true,
+    contentType: "application/json",
+    token,
+  });
+  return payload;
+}
+
+async function readLegacyGist() {
+  const gistId = process.env.COMMENTS_GIST_ID || LEGACY_GIST_ID;
   const headers = {
     Accept: "application/vnd.github+json",
     "User-Agent": "sonocea-sc-build-comments",
   };
-  const t = token();
+  const t =
+    process.env.COMMENTS_GITHUB_TOKEN ||
+    process.env.GITHUB_TOKEN ||
+    process.env.GH_TOKEN ||
+    "";
   if (t) headers.Authorization = `Bearer ${t}`;
-
-  const res = await fetch(`https://api.github.com/gists/${gistId()}`, { headers });
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`gist_get_${res.status}: ${text.slice(0, 200)}`);
-  }
+  const res = await fetch(`https://api.github.com/gists/${gistId}`, { headers });
+  if (!res.ok) return null;
   const data = await res.json();
-  const file = data.files?.[GIST_FILE];
-  const raw = file?.content || '{"threads":[]}';
-  let parsed;
+  const raw = data.files?.[GIST_FILE]?.content || '{"threads":[]}';
   try {
-    parsed = JSON.parse(raw);
+    return normalize(JSON.parse(raw));
   } catch {
-    parsed = { threads: [] };
+    return { threads: [], updatedAt: 0 };
   }
-  return {
-    threads: Array.isArray(parsed.threads) ? parsed.threads : [],
-    updatedAt: Number(parsed.updatedAt) || Date.parse(data.updated_at) || 0,
-  };
-}
-
-async function saveGist(threads, updatedAt) {
-  const t = token();
-  if (!t) {
-    const err = new Error("missing_comments_github_token");
-    err.code = "missing_token";
-    throw err;
-  }
-  const payload = {
-    files: {
-      [GIST_FILE]: {
-        content: JSON.stringify({ threads, updatedAt }, null, 2),
-      },
-    },
-  };
-
-  let lastErr = null;
-  for (let attempt = 0; attempt < 4; attempt++) {
-    const res = await fetch(`https://api.github.com/gists/${gistId()}`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${t}`,
-        "Content-Type": "application/json",
-        "User-Agent": "sonocea-sc-build-comments",
-      },
-      body: JSON.stringify(payload),
-    });
-    if (res.ok) return { threads, updatedAt };
-    const text = await res.text();
-    lastErr = new Error(`gist_put_${res.status}: ${text.slice(0, 200)}`);
-    // 409 conflict — brief backoff and retry.
-    if (res.status !== 409 || attempt === 3) break;
-    await new Promise((r) => setTimeout(r, 200 * (attempt + 1)));
-  }
-  throw lastErr;
 }
 
 export default async function handler(req, res) {
@@ -129,7 +132,14 @@ export default async function handler(req, res) {
 
   try {
     if (req.method === "GET") {
-      const data = await fetchGist();
+      let data = await readBlob();
+      // One-time hydrate from legacy gist if blob is empty.
+      if (data.threads.length === 0) {
+        const legacy = await readLegacyGist().catch(() => null);
+        if (legacy?.threads?.length) {
+          data = await writeBlob(legacy.threads, legacy.updatedAt || Date.now());
+        }
+      }
       return json(res, 200, data);
     }
 
@@ -137,25 +147,16 @@ export default async function handler(req, res) {
       const body = await readBody(req);
       const threads = Array.isArray(body.threads) ? body.threads : null;
       if (!threads) return json(res, 400, { error: "threads_array_required" });
-      // Merge with current gist so concurrent reviewers don't wipe each other.
+
       let merged = threads;
       try {
-        const current = await fetchGist();
-        const map = new Map();
-        for (const thread of [...(current.threads || []), ...threads]) {
-          const prev = map.get(thread.id);
-          if (!prev || (thread.updatedAt || 0) >= (prev.updatedAt || 0)) {
-            map.set(thread.id, thread);
-          }
-        }
-        merged = [...map.values()].sort(
-          (a, b) => (b.updatedAt || 0) - (a.updatedAt || 0),
-        );
+        const current = await readBlob();
+        merged = mergeThreads(current.threads, threads);
       } catch {
-        // If read fails, still attempt to write the payload we received.
+        // write payload as received if merge read fails
       }
       const updatedAt = Number(body.updatedAt) || Date.now();
-      const saved = await saveGist(merged, updatedAt);
+      const saved = await writeBlob(merged, updatedAt);
       return json(res, 200, saved);
     }
 
@@ -163,18 +164,11 @@ export default async function handler(req, res) {
   } catch (err) {
     if (err?.code === "missing_token") {
       return json(res, 503, {
-        error: "missing_comments_github_token",
-        hint: "Set COMMENTS_GITHUB_TOKEN on the Vercel project (gist scope).",
-      });
-    }
-    const message = String(err?.message || err);
-    if (/gist_put_403|rate limit/i.test(message)) {
-      return json(res, 429, {
-        error: "comments_rate_limited",
-        hint: "GitHub gist write rate limit hit — retry in a minute.",
+        error: "missing_blob_read_write_token",
+        hint: "Link a Vercel Blob store so BLOB_READ_WRITE_TOKEN is available.",
       });
     }
     console.error("[api/comments]", err);
-    return json(res, 500, { error: message });
+    return json(res, 500, { error: String(err?.message || err) });
   }
 }
