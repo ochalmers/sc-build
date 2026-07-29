@@ -112,8 +112,10 @@ export function ListenerStage() {
       />
 
       <div
-        className={`relative z-10 mx-auto flex w-full gap-8 px-4 pb-16 pt-4 md:px-6 md:pt-6 lg:px-8 ${
-          showFlowBoard ? "max-w-[2200px] xl:px-10" : "max-w-[1600px]"
+        className={`relative z-10 mx-auto flex w-full gap-8 px-4 pt-4 md:px-6 lg:px-8 ${
+          showFlowBoard
+            ? "max-w-[2200px] pb-6 md:pt-5 xl:px-10"
+            : "max-w-[1600px] pb-16 md:pt-6"
         }`}
       >
         {showFlowBoard ? (
