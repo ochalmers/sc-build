@@ -1,5 +1,4 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { DEMO_CREDENTIALS } from "../data/catalog.js";
 import { useAppStore } from "../context/AppStore.jsx";
 import { isCombinedStyleSurface, useReviewSurface } from "../context/SurfaceContext.jsx";
 
