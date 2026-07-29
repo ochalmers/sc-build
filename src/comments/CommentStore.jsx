@@ -274,12 +274,9 @@ export function CommentProvider({ children }) {
         return;
       } else {
         // Merge so in-flight local adds aren't wiped by a slightly stale poll.
+        // Do not auto-push here — stale localStorage would re-publish junk.
+        // Local mutations already schedule a push via threadsSignature.
         nextThreads = mergeThreads(remote.threads, local);
-        if (nextThreads.length !== remote.threads.length) {
-          // Local had newer items — push merged set.
-          nextUpdatedAt = Date.now();
-          saveSharedComments(nextThreads, nextUpdatedAt).catch(() => {});
-        }
       }
 
       bootstrapped.current = true;
