@@ -33,6 +33,7 @@ const TAB_ICONS = {
  * Phone-framed Listener surface. Uses design-system ModeChrome for palette.
  * Primary navigation is bottom tabs only (Home · Profile) - no top logo/menu.
  * Full page fades in (100ms) on route and in-screen step changes.
+ * Pass slowEnter for a longer settle (300ms) — e.g. into session playback.
  */
 export function ListenerFrame({
   mode = "regulation",
@@ -45,6 +46,8 @@ export function ListenerFrame({
   bleed = false,
   /** Extra key segment for in-screen state transitions (e.g. feedback sent). */
   screenKey,
+  /** 300ms ease-out fade instead of the default 100ms snap. */
+  slowEnter = false,
 }) {
   const navigate = useNavigate();
   const { pathname, search } = useLocation();
@@ -73,12 +76,14 @@ export function ListenerFrame({
     <ModeChrome mode={mode} className="flex w-full justify-center">
       <PinComments scopeKey={`app:${pathname}${search}`}>
         {/*
-          Keyed page shell - full phone fades in (~100ms) on route / step change
+          Keyed page shell - full phone fades in on route / step change
           so Home → programme / session / profile / player reads as one transition.
         */}
         <div
           key={enterKey}
-          className="app-screen-enter relative flex flex-col overflow-hidden rounded-[2rem] shadow-[0_24px_80px_rgba(18,18,18,0.18)] ring-1 ring-black/5"
+          className={`${
+            slowEnter ? "app-screen-enter-slow" : "app-screen-enter"
+          } relative flex flex-col overflow-hidden rounded-[2rem] shadow-[0_24px_80px_rgba(18,18,18,0.18)] ring-1 ring-black/5`}
           style={{
             width: LISTENER_FRAME.width,
             height: LISTENER_FRAME.height,

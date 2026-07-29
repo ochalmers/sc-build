@@ -210,7 +210,7 @@ export const DESKTOP_PREVIEW = { width: 1100, height: 720 };
 export function LiveAppPreview({
   path,
   frame = "mobile",
-  scale = frame === "desktop" ? 0.36 : 0.62,
+  scale = frame === "desktop" ? 0.48 : 0.78,
   active = false,
   className = "",
   seedMode = "org",
@@ -278,7 +278,7 @@ export function LazyLiveAppPreview(props) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
   const frame = props.frame ?? resolveLiveRoute(props.path)?.frame ?? "mobile";
-  const scale = props.scale ?? (frame === "desktop" ? 0.36 : 0.62);
+  const scale = props.scale ?? (frame === "desktop" ? 0.48 : 0.78);
   const intrinsic = frame === "desktop" ? DESKTOP_PREVIEW : LISTENER_FRAME;
   const displayW = intrinsic.width * scale;
   const displayH = intrinsic.height * scale;

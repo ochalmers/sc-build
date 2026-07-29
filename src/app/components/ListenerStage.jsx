@@ -10,6 +10,7 @@ import { isCombinedStyleSurface, useReviewSurface } from "../context/SurfaceCont
 import { CombinedFlowBoard } from "./CombinedFlowBoard.jsx";
 import { COMBINED_STAGE, LISTENER_ONLY_STAGE } from "./combinedStageAtmosphere.js";
 import { FlowReviewMobileSelect, FlowReviewRail } from "./FlowReviewRail.jsx";
+import { PrototypeFitStage } from "./PrototypeFitStage.jsx";
 
 const AUTH_GATE_PATHS = new Set([
   "/app/listener",
@@ -156,9 +157,9 @@ export function ListenerStage() {
                 tone={atmosphere.rail}
               />
 
-              <div className="flex justify-center">
+              <PrototypeFitStage>
                 <Outlet />
-              </div>
+              </PrototypeFitStage>
             </div>
           </>
         )}

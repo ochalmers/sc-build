@@ -51,7 +51,7 @@ function FlowArrow({ tall }) {
 }
 
 function StepCard({ step, index, active, onOpen, seedMode = "org" }) {
-  const scale = step.frame === "desktop" ? 0.38 : 0.62;
+  const scale = step.frame === "desktop" ? 0.48 : 0.78;
 
   return (
     <button
@@ -60,7 +60,7 @@ function StepCard({ step, index, active, onOpen, seedMode = "org" }) {
       className="group flex w-auto shrink-0 flex-col items-start text-left outline-none"
       aria-current={active ? "step" : undefined}
     >
-      <div className="mb-3 flex min-h-[2.75rem] w-full items-start gap-2" style={{ maxWidth: step.frame === "desktop" ? 420 : 250 }}>
+      <div className="mb-3 flex min-h-[2.75rem] w-full items-start gap-2" style={{ maxWidth: step.frame === "desktop" ? 528 : 304 }}>
         <span className="mt-0.5 font-mono text-[10px] text-white/30">
           {String(index + 1).padStart(2, "0")}
         </span>
@@ -92,7 +92,7 @@ function StepCard({ step, index, active, onOpen, seedMode = "org" }) {
 
       <p
         className="mt-2 truncate font-mono text-[9px] text-white/25"
-        style={{ maxWidth: step.frame === "desktop" ? 420 : 250 }}
+        style={{ maxWidth: step.frame === "desktop" ? 528 : 304 }}
       >
         {step.path}
       </p>

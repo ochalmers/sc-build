@@ -14,7 +14,6 @@ import {
   FEEL_LABELS,
   orderedSessionSectionsForPreferences,
   pairFeelingCheckIns,
-  partnerLogoSrc,
   personalisedProgrammeSubtitle,
   programmeCompletionPct,
   rankSessionsForPreferences,
@@ -26,6 +25,7 @@ import {
 } from "../../data/catalog.js";
 import { useAppStore } from "../../context/AppStore.jsx";
 import { LISTENER_FRAME, ListenerFrame } from "../../components/ListenerFrame.jsx";
+import { PartnerBrandMark } from "../../components/PartnerBrandMark.jsx";
 import { AppBody, AppButton, AppTitle } from "../../components/ui.jsx";
 import {
   sessionAtmosphere,
@@ -94,35 +94,13 @@ function openSessionDetail(navigate, sessionId, from = "/app/listener/home") {
 }
 
 function PartnerMark({ partner, className = "h-10 w-10", rounded = "rounded-full" }) {
-  const src = partnerLogoSrc(partner);
-  const [failed, setFailed] = useState(false);
-
-  if (src && !failed) {
-    return (
-      <img
-        src={src}
-        alt={partner?.name ?? "Organisation"}
-        className={`shrink-0 object-contain ${rounded} ${className}`}
-        onError={() => setFailed(true)}
-      />
-    );
-  }
-  if (partner?.monogram) {
-    return (
-      <div
-        className={`flex shrink-0 items-center justify-center text-[11px] font-semibold tracking-wide ${rounded} ${className}`}
-        style={{
-          background: "var(--proto-surface)",
-          border: "1px solid var(--proto-border)",
-          color: "var(--proto-text)",
-        }}
-        aria-label={partner.name}
-      >
-        {partner.monogram}
-      </div>
-    );
-  }
-  return null;
+  return (
+    <PartnerBrandMark
+      partner={partner}
+      className={`shrink-0 object-contain ${rounded} ${className}`}
+      monogramClassName={`flex shrink-0 items-center justify-center text-[11px] font-semibold tracking-wide ${rounded} ${className}`}
+    />
+  );
 }
 
 function TimeOfDaySessionList({ sessions, completedIds, navigate, from, prefs }) {

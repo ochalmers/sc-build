@@ -5,13 +5,13 @@ import {
   DIRECT_ACCESS_PARTNER_ID,
   isDirectAccessPartner,
   partnerFromInviteCode,
-  partnerLogoSrc,
   PNE_ORGANIZATION,
   SONOCEA_DIRECT_ORGANIZATION,
 } from "../../data/catalog.js";
 import { useAppStore } from "../../context/AppStore.jsx";
 import { useReviewSurface } from "../../context/SurfaceContext.jsx";
 import { ListenerFrame } from "../../components/ListenerFrame.jsx";
+import { PartnerBrandMark } from "../../components/PartnerBrandMark.jsx";
 import { AppBody, AppButton, AppField, AppTitle } from "../../components/ui.jsx";
 import { SystemBrandLogo } from "../../../system/components/SystemBrandLogo.jsx";
 import { SystemLogoMark } from "../../../system/components/SystemLogoMark.jsx";
@@ -69,34 +69,6 @@ function StaggerItem({ i = 0, className = "", children }) {
     >
       {children}
     </div>
-  );
-}
-
-/** Partner crest with monogram fallback if the asset fails to load. */
-function PartnerCrest({ partner, className = "h-9 w-auto max-w-[72px] object-contain" }) {
-  const src = partnerLogoSrc(partner);
-  const [failed, setFailed] = useState(false);
-
-  if (!src || failed) {
-    return (
-      <span
-        className="flex h-9 w-9 items-center justify-center rounded-full text-[11px] font-semibold tracking-wide text-white"
-        style={{ background: partner?.inviteAccent ?? "#0b1c2c" }}
-        aria-label={partner?.name || "Organisation"}
-      >
-        {partner?.monogram || "ORG"}
-      </span>
-    );
-  }
-
-  return (
-    <img
-      src={src}
-      alt={partner?.name || "Partner"}
-      className={className}
-      decoding="async"
-      onError={() => setFailed(true)}
-    />
   );
 }
 
@@ -192,7 +164,7 @@ export function ListenerInviteEmail() {
                     <span className="text-[13px] font-medium tracking-wide text-black/30" aria-hidden>
                       ×
                     </span>
-                    <PartnerCrest
+                    <PartnerBrandMark
                       partner={partner}
                       className="h-9 w-auto max-w-[64px] object-contain"
                     />
@@ -558,7 +530,7 @@ export function ListenerInvite() {
                   >
                     ×
                   </span>
-                  <PartnerCrest partner={partner} />
+                  <PartnerBrandMark partner={partner} />
                 </>
               ) : null}
             </div>

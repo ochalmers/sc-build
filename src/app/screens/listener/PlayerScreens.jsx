@@ -267,7 +267,7 @@ export function ListenerPlayer() {
   }
 
   return (
-    <ListenerFrame mode={mode} hideTabBar bleed>
+    <ListenerFrame mode={mode} hideTabBar bleed slowEnter>
       <div
         className="relative flex h-full min-h-full flex-col text-white"
         style={{ background: sessionAtmosphere(mode, "player") }}

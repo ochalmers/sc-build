@@ -12,12 +12,12 @@ import {
   ONBOARDING_SENSORY_OPTIONS,
   ONBOARDING_SUPPORT_OPTIONS,
   normaliseOnboardingPrefs,
-  partnerLogoSrc,
   personalisedReadyCopy,
   rankSessionsForPreferences,
 } from "../../data/catalog.js";
 import { useAppStore } from "../../context/AppStore.jsx";
 import { ListenerFrame } from "../../components/ListenerFrame.jsx";
+import { PartnerBrandMark } from "../../components/PartnerBrandMark.jsx";
 import { AppBody, AppButton, AppEyebrow, AppField, AppTitle } from "../../components/ui.jsx";
 import { SystemBrandLogo } from "../../../system/components/SystemBrandLogo.jsx";
 import { SystemLogoMark } from "../../../system/components/SystemLogoMark.jsx";
@@ -292,13 +292,10 @@ function SoftHero({ children, tall }) {
 
 /** Sonocea + partner lockup to signal the partnership. */
 function PartnershipLockup({ partner, markOnly = false, size = "md" }) {
-  const logoSrc = partnerLogoSrc(partner);
-  const [logoFailed, setLogoFailed] = useState(false);
   const markClass = size === "lg" ? "h-14 w-auto" : "h-7 w-auto";
   const brandClass = size === "lg" ? "h-8 w-auto" : "h-7 w-auto";
   const partnerClass = size === "lg" ? "h-14 w-auto max-h-14 max-w-[72px]" : "h-9 w-auto max-h-9 max-w-[56px]";
-  const showPartner = Boolean((logoSrc && !logoFailed) || partner?.monogram) && !partner?.isDirectAccess;
-  const showLogo = Boolean(logoSrc && !logoFailed);
+  const showPartner = Boolean(partner) && !partner?.isDirectAccess;
 
   return (
     <div className="flex items-center justify-center gap-3" aria-label={showPartner && partner?.name ? `Sonocea and ${partner.name}` : "Sonocea"}>
@@ -307,7 +304,7 @@ function PartnershipLockup({ partner, markOnly = false, size = "md" }) {
       ) : (
         <SystemBrandLogo className={brandClass} />
       )}
-      {showPartner && showLogo ? (
+      {showPartner ? (
         <>
           <span
             className="text-[13px] font-normal tracking-wide opacity-35"
@@ -316,32 +313,13 @@ function PartnershipLockup({ partner, markOnly = false, size = "md" }) {
           >
             ×
           </span>
-          <img
-            src={logoSrc}
-            alt={partner?.name || "Partner"}
+          <PartnerBrandMark
+            partner={partner}
             className={`${partnerClass} object-contain`}
-            decoding="async"
-            onError={() => setLogoFailed(true)}
-          />
-        </>
-      ) : showPartner && partner?.monogram ? (
-        <>
-          <span
-            className="text-[13px] font-normal tracking-wide opacity-35"
-            style={{ color: markOnly ? "#2c2a27" : "var(--proto-text)" }}
-            aria-hidden
-          >
-            ×
-          </span>
-          <span
-            className={`flex items-center justify-center rounded-full text-[11px] font-semibold tracking-wide text-white ${
+            monogramClassName={`flex items-center justify-center rounded-full text-[11px] font-semibold tracking-wide text-white ${
               size === "lg" ? "h-14 w-14" : "h-9 w-9"
             }`}
-            style={{ background: partner.inviteAccent ?? "#0b1c2c" }}
-            aria-label={partner.name}
-          >
-            {partner.monogram}
-          </span>
+          />
         </>
       ) : null}
     </div>
@@ -886,7 +864,7 @@ export function ListenerOnboarding() {
       <ChoiceStep
         animKey="sensory"
         title="How sensitive are you to your surroundings?"
-        body="Everyone experiences sound and their surroundings differently. This helps us better understand your listening preferences."
+        body="Everyone responds differently to sound, visuals and their surroundings. This helps us tailor how your sessions look and feel."
         options={ONBOARDING_SENSORY_OPTIONS}
         onBack={() => setPhase(PHASES.context)}
         renderOption={(opt) => (
@@ -1163,24 +1141,20 @@ export function ListenerOnboarding() {
                     }}
                   >
                     <div
-                      className="px-5 pb-5 pt-6"
+                      className="px-5 py-6 text-center"
                       style={{
                         background: "#e8e6e1",
                         color: "#2c2a27",
                       }}
                     >
-                      <p className="text-[12px]" style={{ color: "rgba(44, 42, 39, 0.55)" }}>
-                        {readyCopy.cardEyebrow}
-                      </p>
-                      <p className="mt-2 text-[1.25rem] font-normal tracking-tight" style={{ color: "#2c2a27" }}>
+                      <p className="text-[1.25rem] font-normal tracking-tight" style={{ color: "#2c2a27" }}>
                         {session.title}
                       </p>
-                      <p className="mt-1 text-[13px]" style={{ color: "rgba(44, 42, 39, 0.55)" }}>
-                        {readyCopy.sessionMeta}
-                      </p>
-                      <p className="mt-4 text-[13px] leading-relaxed" style={{ color: "rgba(44, 42, 39, 0.62)" }}>
-                        {readyCopy.cardDetail}
-                      </p>
+                      {readyCopy.sessionMeta ? (
+                        <p className="mt-1 text-[13px]" style={{ color: "rgba(44, 42, 39, 0.55)" }}>
+                          {readyCopy.sessionMeta}
+                        </p>
+                      ) : null}
                     </div>
                   </div>
                 </div>

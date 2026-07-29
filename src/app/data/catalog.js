@@ -1442,19 +1442,10 @@ export function personalisedReadyCopy(prefs = {}, session) {
       : `Matched to ${goal}. If you’re comfortable, you can begin your first Sonocea session now.`
     : "Everything is set. If you’re comfortable, you can begin your first Sonocea session now.";
 
-  const cardEyebrow = timeLed ? focus.heroLead : "Your first session";
-  const cardDetail = goal
-    ? `Guided by Sonocea · shaped around ${goal}.`
-    : "Guided by Sonocea - nothing to follow or get right. Simply listen.";
-
   return {
     title,
     body,
-    cardEyebrow,
-    cardDetail,
-    sessionMeta: session
-      ? `${session.durationMin} min · ${session.useCase || session.category}`
-      : null,
+    sessionMeta: session ? `${session.durationMin} min` : null,
   };
 }
 

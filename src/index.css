@@ -53,6 +53,10 @@ body{
 .app-screen-enter{
   animation:app-screen-in 100ms linear both;
 }
+/* Slower enter for settling into session playback from check-in / start */
+.app-screen-enter-slow{
+  animation:app-screen-in 300ms ease-out both;
+}
 /*
   Phone frame fill: grid row is at least the scrollport tall and grows with
   content. Children stretch to that row so min-h-full + mt-auto CTAs work.
@@ -66,7 +70,8 @@ body{
   min-height:100%;
 }
 @media (prefers-reduced-motion: reduce){
-  .app-screen-enter{
+  .app-screen-enter,
+  .app-screen-enter-slow{
     animation:none !important;
     opacity:1 !important;
   }

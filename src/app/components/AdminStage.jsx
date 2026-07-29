@@ -108,7 +108,7 @@ export function AdminStage({ children }) {
         }}
         aria-hidden
       />
-      <div className="relative z-10 mx-auto flex w-full max-w-[2200px] gap-8 px-4 pb-16 pt-4 md:px-6 md:pt-6 lg:px-8 xl:px-10">
+      <div className="relative z-10 mx-auto flex w-full max-w-[2200px] gap-8 px-4 pb-4 pt-3 md:px-6 md:pt-4 lg:px-8 xl:px-10">
         {showFlowBoard ? (
           <CombinedFlowBoard
             sections={flowSections}
@@ -137,7 +137,7 @@ export function AdminStage({ children }) {
               onNavigate={goToFlowPath}
               tone={atmosphere.rail}
             />
-            <div className="min-w-0 flex-1">
+            <div className="flex min-h-[calc(100dvh-4.75rem)] min-w-0 flex-1 flex-col">
               <FlowReviewMobileSelect
                 id="combined-admin-flow-jump"
                 sections={flowSections}
@@ -146,7 +146,7 @@ export function AdminStage({ children }) {
                 onNavigate={goToFlowPath}
                 tone={atmosphere.rail}
               />
-              <div key={enterKey} className="app-screen-enter">
+              <div key={enterKey} className="app-screen-enter flex min-h-0 flex-1 flex-col">
                 {children}
               </div>
             </div>
