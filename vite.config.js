@@ -79,16 +79,19 @@ function commentsApiPlugin(env) {
     await Promise.all(
       threads
         .filter((t) => t?.id && !isJunk(t))
-        .map((thread) =>
-          put(threadPath(thread.id), JSON.stringify(thread), {
+        .map(async (thread) => {
+          const path = threadPath(thread.id);
+          const existing = await readThread(path);
+          if (existing && (existing.updatedAt || 0) > (thread.updatedAt || 0)) return;
+          await put(path, JSON.stringify(thread), {
             access: "private",
             addRandomSuffix: false,
             allowOverwrite: true,
             contentType: "application/json",
             cacheControlMaxAge: 0,
             token,
-          }),
-        ),
+          });
+        }),
     );
   }
 
