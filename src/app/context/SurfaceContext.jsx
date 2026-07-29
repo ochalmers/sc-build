@@ -14,7 +14,7 @@ function loadSurface() {
   } catch {
     /* ignore */
   }
-  return "listener";
+  return "combined";
 }
 
 function loadCombinedView() {
@@ -66,7 +66,7 @@ export function useReviewSurface() {
   const ctx = useContext(SurfaceContext);
   if (!ctx) {
     return {
-      surface: "listener",
+      surface: "combined",
       setSurface: () => {},
       combinedView: "prototype",
       setCombinedView: () => {},

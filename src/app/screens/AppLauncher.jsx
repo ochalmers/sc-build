@@ -3,29 +3,57 @@ import { useNavigate } from "react-router-dom";
 import { DEMO_CREDENTIALS } from "../data/catalog.js";
 import { useAppStore } from "../context/AppStore.jsx";
 import { AppChrome } from "../components/AppChrome.jsx";
+import { PRIMARY_SURFACE, SECONDARY_SURFACES } from "../components/SurfaceSwitcher.jsx";
+import { useReviewSurface } from "../context/SurfaceContext.jsx";
 
 const SURFACES = [
   {
-    id: "listener",
-    label: "Listener",
-    surface: "Mobile · provisioned",
+    id: PRIMARY_SURFACE.id,
+    label: PRIMARY_SURFACE.label,
+    surface: "Primary review",
     description:
-      "Invite redeem, onboarding, Home / Profile, session journey, player, reflection, and support.",
-    to: "/app/listener/email",
-    hint: `${DEMO_CREDENTIALS.listener.email} / ${DEMO_CREDENTIALS.listener.password} · invite ${DEMO_CREDENTIALS.listener.inviteCode}`,
+      "Full org journey across Admin setup and Listener — Prototype and Flow boards in one place.",
+    to: "/app/admin/setup?step=login",
+    hint: "Starts at Admin setup · switch Prototype / Flow in the header",
   },
-  {
-    id: "admin",
-    label: "Admin",
-    surface: "CMS + ops",
-    description: "Dashboard, Session CMS, Organizations, invite links, multi-org export, and analytics.",
-    to: "/app/admin",
-    hint: `${DEMO_CREDENTIALS.admin.email} / ${DEMO_CREDENTIALS.admin.password}`,
-  },
+  ...SECONDARY_SURFACES.map((s) => {
+    if (s.id === "listener") {
+      return {
+        id: s.id,
+        label: s.label,
+        surface: "Mobile · provisioned",
+        description:
+          "Invite redeem, onboarding, Home / Profile, session journey, player, reflection, and support.",
+        to: "/app/listener/email",
+        hint: `${DEMO_CREDENTIALS.listener.email} / ${DEMO_CREDENTIALS.listener.password} · invite ${DEMO_CREDENTIALS.listener.inviteCode}`,
+      };
+    }
+    if (s.id === "admin") {
+      return {
+        id: s.id,
+        label: s.label,
+        surface: "CMS + ops",
+        description:
+          "Dashboard, Session CMS, Organizations, invite links, multi-org export, and analytics.",
+        to: "/app/admin",
+        hint: `${DEMO_CREDENTIALS.admin.email} / ${DEMO_CREDENTIALS.admin.password}`,
+      };
+    }
+    return {
+      id: s.id,
+      label: s.label,
+      surface: "Direct-access",
+      description:
+        "Anonymous / direct-access Combined journey — no organisation co-brand, invite-code first.",
+      to: "/app/admin/setup?step=login",
+      hint: `Invite ${DEMO_CREDENTIALS.anonymousListener.inviteCode}`,
+    };
+  }),
 ];
 
 export function AppLauncher() {
   const { loginAdmin, logout, resetApp } = useAppStore();
+  const { setSurface } = useReviewSurface();
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
@@ -38,6 +66,13 @@ export function AppLauncher() {
 
   function enter(surfaceId) {
     setError("");
+    setSurface(surfaceId);
+
+    if (surfaceId === "combined") {
+      logout();
+      navigate("/app/admin/setup?step=login");
+      return;
+    }
 
     if (surfaceId === "listener") {
       logout();
@@ -52,6 +87,12 @@ export function AppLauncher() {
       });
       if (!r.ok) return setError(r.error);
       navigate("/app/admin");
+      return;
+    }
+
+    if (surfaceId === "anonymous") {
+      logout();
+      navigate("/app/admin/setup?step=login");
     }
   }
 
@@ -60,7 +101,7 @@ export function AppLauncher() {
       simple
       framed={false}
       title="app v2.0 prototypes"
-      subtitle="Semi-working build of the Mobile App PRD - Listener and Admin. Demo state resets each time you return here."
+      subtitle="Semi-working build of the Mobile App PRD. End-to-End is the primary review surface; Listener, Admin, and Anonymous remain available here and under More in the header."
     >
       <div className="grid gap-4 lg:grid-cols-2">
         {SURFACES.map((s) => (

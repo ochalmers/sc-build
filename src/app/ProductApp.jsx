@@ -55,7 +55,7 @@ export default function ProductApp() {
     <AppStoreProvider>
       <AppShell>
         <Routes>
-          <Route index element={<Navigate to="/app/listener/email" replace />} />
+          <Route index element={<Navigate to="/app/admin/setup?step=login" replace />} />
 
           {/* Listener - phone-staged */}
           <Route path="listener" element={<ListenerStage />}>
@@ -203,7 +203,7 @@ export default function ProductApp() {
             }
           />
 
-          <Route path="*" element={<Navigate to="/app/listener/email" replace />} />
+          <Route path="*" element={<Navigate to="/app/admin/setup?step=login" replace />} />
         </Routes>
       </AppShell>
     </AppStoreProvider>

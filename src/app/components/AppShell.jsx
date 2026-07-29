@@ -5,8 +5,7 @@ import { useAppStore } from "../context/AppStore.jsx";
 import { SurfaceProvider } from "../context/SurfaceContext.jsx";
 
 /**
- * Shared fixed header for Listener / Admin / Combined so the surface switcher
- * stays in one place across all working-app surfaces.
+ * Shared fixed header for End-to-End review (Listener / Admin / Anonymous under More).
  */
 export function AppShell({ children }) {
   const { resetApp } = useAppStore();
