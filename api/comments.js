@@ -104,9 +104,17 @@ async function listAllThreads(token) {
       cursor,
       limit: 1000,
     });
-    for (const blob of page.blobs || []) {
-      const thread = await readThreadBlob(blob.pathname, token);
-      if (thread?.id && !isJunkThread(thread)) threads.push(thread);
+    const loaded = await Promise.all(
+      (page.blobs || []).map(async (blob) => {
+        // Prefer URL — more reliable for private blob reads in serverless.
+        const thread =
+          (await readThreadBlob(blob.url || blob.pathname, token)) ||
+          (blob.url ? await readThreadBlob(blob.pathname, token) : null);
+        return thread?.id && !isJunkThread(thread) ? thread : null;
+      }),
+    );
+    for (const thread of loaded) {
+      if (thread) threads.push(thread);
     }
     cursor = page.hasMore ? page.cursor : undefined;
   } while (cursor);
@@ -196,6 +204,8 @@ export default async function handler(req, res) {
 
       const visible = publicThreads(threads);
       const updatedAt = visible.reduce((max, t) => Math.max(max, t.updatedAt || 0), 0);
+      res.setHeader("X-Comments-Listed", String(threads.length));
+      res.setHeader("X-Comments-Visible", String(visible.length));
       return json(res, 200, { threads: visible, updatedAt });
     }
 
