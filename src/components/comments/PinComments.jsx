@@ -54,6 +54,12 @@ export default function PinComments({ scopeKey, children }) {
       left: clamp(rect.left + pin.x * rect.width + 12, 12, window.innerWidth - 340),
       top: clamp(rect.top + pin.y * rect.height + 12, 12, window.innerHeight - 280),
     });
+
+    // Bring the pin (and its frame) into view when opened from the comment list.
+    const pinEl = containerRef.current.querySelector(
+      `[data-comment-pin="${openThreadData.id}"]`,
+    );
+    pinEl?.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
   }, [openIsHere, openThreadData, draftHere, draggingId]);
 
   useEffect(() => {
@@ -200,6 +206,7 @@ export default function PinComments({ scopeKey, children }) {
   return (
     <div
       ref={containerRef}
+      data-comment-scope={scopeKey}
       className={`relative isolate ${commentMode ? "cursor-crosshair" : ""}`}
       aria-describedby={commentMode ? labelId : undefined}
     >
@@ -242,6 +249,7 @@ export default function PinComments({ scopeKey, children }) {
             <button
               key={thread.id}
               type="button"
+              data-comment-pin={thread.id}
               aria-label={`Comment ${index + 1}. Drag to move, click to open.`}
               onPointerDown={(event) => beginDrag("thread", thread.id, event)}
               className={`pointer-events-auto absolute flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 touch-none items-center justify-center rounded-full border text-[11px] font-medium shadow-md ${
