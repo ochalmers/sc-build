@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
 import { useComments } from "../../comments/CommentStore.jsx";
+import { useReviewNavigate } from "../../app/hooks/useReviewNavigate.js";
 
 function syncLabel(status) {
   if (status === "synced") return "Shared · live";
@@ -67,12 +67,19 @@ export function targetFromScope(scopeKey = "") {
   return { type: "none" };
 }
 
+function scrollToPin(threadId) {
+  const pin = document.querySelector(`[data-comment-pin="${threadId}"]`);
+  if (!pin) return false;
+  pin.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+  return true;
+}
+
 /**
  * Fixed comment-mode control - Figma-style toggle to place pins,
  * with a clickable list of all shared comments.
  */
 export default function CommentModeFab() {
-  const navigate = useNavigate();
+  const goToAppPath = useReviewNavigate();
   const {
     commentMode,
     toggleCommentMode,
@@ -120,13 +127,15 @@ export default function CommentModeFab() {
 
     const target = targetFromScope(thread.scopeKey);
     if (target.type === "route" && target.to) {
-      navigate(target.to);
-      // Give the destination frame a beat to mount, then scroll to the pin.
-      window.setTimeout(() => {
-        document
-          .querySelector(`[data-comment-pin="${thread.id}"]`)
-          ?.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-      }, 120);
+      // Prime listener/admin demo auth so protected screens don't bounce to /email.
+      goToAppPath(target.to, { preferPrototype: true });
+      // Retry pin scroll while the destination frame mounts.
+      let tries = 0;
+      const tick = () => {
+        if (scrollToPin(thread.id) || tries++ > 20) return;
+        window.setTimeout(tick, 100);
+      };
+      window.setTimeout(tick, 80);
       return;
     }
 
@@ -144,11 +153,7 @@ export default function CommentModeFab() {
       el?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
 
-    window.setTimeout(() => {
-      document
-        .querySelector(`[data-comment-pin="${thread.id}"]`)
-        ?.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
-    }, 80);
+    window.setTimeout(() => scrollToPin(thread.id), 80);
   }
 
   return (

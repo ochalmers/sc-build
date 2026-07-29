@@ -1,5 +1,6 @@
+import { useRef } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import { AppStoreProvider } from "./context/AppStore.jsx";
+import { AppStoreProvider, useAppStore } from "./context/AppStore.jsx";
 import { AppShell } from "./components/AppShell.jsx";
 import { ListenerStage } from "./components/ListenerStage.jsx";
 import { AdminStage } from "./components/AdminStage.jsx";
@@ -37,6 +38,7 @@ import {
 import { AdminLoginScreen } from "./screens/admin/AdminLoginScreen.jsx";
 import { AdminSetupFlow } from "./screens/admin/AdminSetupFlow.jsx";
 import { RequireAdmin, RequirePartner } from "./components/RequireRole.jsx";
+import { consumePendingReviewNav } from "./hooks/useReviewNavigate.js";
 
 function AdminPage({ children }) {
   return (
@@ -46,6 +48,17 @@ function AdminPage({ children }) {
   );
 }
 
+/** Apply microsite comment-jump auth before gated screens first paint. */
+function ReviewNavHandoff({ children }) {
+  const store = useAppStore();
+  const done = useRef(false);
+  if (!done.current) {
+    done.current = true;
+    consumePendingReviewNav(store);
+  }
+  return children;
+}
+
 /**
  * Working Mobile App PRD destination - Listener (mobile), Admin (web), Combined review.
  * Mounted at /app/* outside the design-workspace SiteChrome.
@@ -53,6 +66,7 @@ function AdminPage({ children }) {
 export default function ProductApp() {
   return (
     <AppStoreProvider>
+      <ReviewNavHandoff>
       <AppShell>
         <Routes>
           <Route index element={<Navigate to="/app/admin/setup?step=login" replace />} />
@@ -206,6 +220,7 @@ export default function ProductApp() {
           <Route path="*" element={<Navigate to="/app/admin/setup?step=login" replace />} />
         </Routes>
       </AppShell>
+      </ReviewNavHandoff>
     </AppStoreProvider>
   );
 }

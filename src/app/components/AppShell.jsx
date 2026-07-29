@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
+import CommentModeFab from "../../components/comments/CommentModeFab.jsx";
 import { SurfaceSwitcher } from "./SurfaceSwitcher.jsx";
 import { CombinedViewSwitcher } from "./CombinedViewSwitcher.jsx";
 import { SurfaceProvider } from "../context/SurfaceContext.jsx";
 
 /**
  * Shared fixed header for End-to-End review.
+ * Comment FAB lives here so jump-to-pin can prime demo auth via AppStore.
  */
 export function AppShell({ children }) {
   return (
@@ -20,6 +22,7 @@ export function AppShell({ children }) {
           </div>
         </header>
         {children}
+        <CommentModeFab />
       </div>
     </SurfaceProvider>
   );

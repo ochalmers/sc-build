@@ -866,3 +866,8 @@ export function useAppStore() {
   if (!ctx) throw new Error("useAppStore must be used within AppStoreProvider");
   return ctx;
 }
+
+/** Safe outside ProductApp (e.g. microsite comment FAB). */
+export function useAppStoreOptional() {
+  return useContext(AppStoreContext);
+}

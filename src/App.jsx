@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import ScrollManager from "./components/ScrollManager.jsx";
 import WorkspacePage from "./components/workspace/WorkspacePage.jsx";
 import DesignPage from "./pages/DesignPage.jsx";
@@ -13,6 +13,13 @@ import EndToEndPage from "./pages/EndToEndPage.jsx";
 import AppWireframesPage from "./pages/AppWireframesPage.jsx";
 import { CommentProvider } from "./comments/CommentStore.jsx";
 import CommentModeFab from "./components/comments/CommentModeFab.jsx";
+
+/** Microsite FAB only — /app mounts its own inside AppShell (needs AppStore). */
+function MicrositeCommentFab() {
+  const { pathname } = useLocation();
+  if (pathname.startsWith("/app")) return null;
+  return <CommentModeFab />;
+}
 
 export default function App() {
   return (
@@ -33,7 +40,7 @@ export default function App() {
         <Route path="/prototype" element={<WorkspacePage pageKey="prototype" />} />
         <Route path="/app/*" element={<ProductApp />} />
       </Routes>
-      <CommentModeFab />
+      <MicrositeCommentFab />
     </CommentProvider>
   );
 }
