@@ -20,14 +20,18 @@ const TEST_ID =
   /^(cmt-smoke|cmt-verify|cmt-b-|cmt-a-|cmt-local-|cmt-prod-|cmt-alive-|cmt-final-|cmt-mA-|cmt-mB-|cmt-ok-|cmt-keep)/i;
 
 function isJunkThread(thread) {
-  if (!thread || thread.deleted) return true;
+  if (!thread) return true;
   if (TEST_SCOPE.test(String(thread.scopeKey || ""))) return true;
   if (TEST_ID.test(String(thread.id || ""))) return true;
   return false;
 }
 
-function sanitizeThreads(threads) {
-  return (threads || []).filter((thread) => !isJunkThread(thread));
+function sanitizeThreads(threads, { dropDeleted = false } = {}) {
+  return (threads || []).filter((thread) => {
+    if (isJunkThread(thread)) return false;
+    if (dropDeleted && thread.deleted) return false;
+    return true;
+  });
 }
 
 function corsHeaders() {
@@ -112,6 +116,7 @@ async function writeBlob(threads, updatedAt) {
     addRandomSuffix: false,
     allowOverwrite: true,
     contentType: "application/json",
+    cacheControlMaxAge: 0,
     token,
   });
   return payload;
@@ -149,15 +154,20 @@ export default async function handler(req, res) {
     if (req.method === "GET") {
       let data = await readBlob();
       data = {
-        threads: sanitizeThreads(data.threads),
+        // Clients only need live threads; keep tombstones in blob for merge safety.
+        threads: sanitizeThreads(data.threads, { dropDeleted: true }),
         updatedAt: data.updatedAt,
       };
       // One-time hydrate from legacy gist if blob is empty.
       if (data.threads.length === 0) {
         const legacy = await readLegacyGist().catch(() => null);
-        const legacyThreads = sanitizeThreads(legacy?.threads);
+        const legacyThreads = sanitizeThreads(legacy?.threads, { dropDeleted: true });
         if (legacyThreads.length) {
           data = await writeBlob(legacyThreads, legacy.updatedAt || Date.now());
+          data = {
+            threads: sanitizeThreads(data.threads, { dropDeleted: true }),
+            updatedAt: data.updatedAt,
+          };
         }
       }
       return json(res, 200, data);
@@ -168,16 +178,22 @@ export default async function handler(req, res) {
       const threads = Array.isArray(body.threads) ? body.threads : null;
       if (!threads) return json(res, 400, { error: "threads_array_required" });
 
-      let merged = sanitizeThreads(threads);
+      // Keep soft-delete tombstones in storage so concurrent clients can't resurrect them.
+      let merged = sanitizeThreads(threads, { dropDeleted: false });
       try {
         const current = await readBlob();
-        merged = sanitizeThreads(mergeThreads(current.threads, threads));
+        merged = sanitizeThreads(mergeThreads(current.threads, threads), {
+          dropDeleted: false,
+        });
       } catch {
         // write payload as received if merge read fails
       }
       const updatedAt = Number(body.updatedAt) || Date.now();
       const saved = await writeBlob(merged, updatedAt);
-      return json(res, 200, saved);
+      return json(res, 200, {
+        threads: sanitizeThreads(saved.threads, { dropDeleted: true }),
+        updatedAt: saved.updatedAt,
+      });
     }
 
     return json(res, 405, { error: "method_not_allowed" });

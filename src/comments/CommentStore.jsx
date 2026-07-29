@@ -3,7 +3,7 @@ import { loadSharedComments, saveSharedComments } from "./commentsApi.js";
 
 const STORAGE_KEY = "sonocea-workspace-comments-v2";
 const AUTHOR_KEY = "sonocea-workspace-comment-author";
-const POLL_MS = 15000;
+const POLL_MS = 8000;
 const CommentContext = createContext(null);
 
 function loadAuthor() {
@@ -193,13 +193,24 @@ function aliveThreads(threads) {
   return (threads || []).filter((thread) => !thread?.deleted);
 }
 
+function threadSignature(threads) {
+  return (threads || [])
+    .map(
+      (t) =>
+        `${t.id}:${t.updatedAt}:${t.status}:${t.deleted ? 1 : 0}:${t.messages?.length || 0}:${t.pin?.x},${t.pin?.y}`,
+    )
+    .join("|");
+}
+
 export function CommentProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, null, loadInitialState);
   const stateRef = useRef(state);
   const saveTimer = useRef(null);
   const bootstrapped = useRef(false);
-  const applyingRemote = useRef(false);
-  const skipNextPush = useRef(false);
+  const pushing = useRef(false);
+  const pendingPush = useRef(false);
+  const pullGeneration = useRef(0);
+  const lastSyncedSignature = useRef("");
 
   useEffect(() => {
     stateRef.current = state;
@@ -222,18 +233,37 @@ export function CommentProvider({ children }) {
     }
   }, [state.author]);
 
-  const pushRemote = (threads) => {
-    if (applyingRemote.current) return;
+  const pushRemote = () => {
+    if (pushing.current) {
+      pendingPush.current = true;
+      return;
+    }
+    const payload = stateRef.current.threads;
+    const signature = threadSignature(payload);
+    if (signature === lastSyncedSignature.current && !pendingPush.current) {
+      return;
+    }
+
+    pendingPush.current = false;
+    pushing.current = true;
     dispatch({ type: "SET_SYNC", payload: { status: "syncing" } });
     const updatedAt = Date.now();
-    saveSharedComments(threads, updatedAt)
+    saveSharedComments(payload, updatedAt)
       .then((saved) => {
+        const merged = mergeThreads(saved.threads || [], stateRef.current.threads);
+        lastSyncedSignature.current = threadSignature(merged);
         dispatch({
-          type: "SET_SYNC",
-          payload: { status: "synced", updatedAt: saved.updatedAt || updatedAt, error: null },
+          type: "REPLACE_THREADS",
+          payload: {
+            threads: merged,
+            updatedAt: saved.updatedAt || updatedAt,
+            syncStatus: "synced",
+            syncError: null,
+          },
         });
       })
       .catch((err) => {
+        pendingPush.current = true;
         dispatch({
           type: "SET_SYNC",
           payload: {
@@ -241,24 +271,35 @@ export function CommentProvider({ children }) {
             error: String(err?.message || err),
           },
         });
+      })
+      .finally(() => {
+        pushing.current = false;
+        if (pendingPush.current) {
+          schedulePush(150);
+        }
       });
   };
 
-  const schedulePush = () => {
+  const schedulePush = (delay = 350) => {
+    pendingPush.current = true;
     if (saveTimer.current) clearTimeout(saveTimer.current);
     saveTimer.current = setTimeout(() => {
-      pushRemote(stateRef.current.threads);
-    }, 400);
+      pushRemote();
+    }, delay);
   };
 
   const pullRemote = async ({ allowBootstrap = false } = {}) => {
+    const generation = ++pullGeneration.current;
     try {
       const remote = await loadSharedComments();
+      if (generation !== pullGeneration.current) return;
+
+      // Re-read local AFTER the network round-trip so in-flight posts aren't dropped.
       const local = stateRef.current.threads;
       let nextThreads = remote.threads;
       let nextUpdatedAt = remote.updatedAt || 0;
+      let shouldPush = false;
 
-      // First load: if remote is empty and we have local cache, publish it once.
       if (
         allowBootstrap &&
         !bootstrapped.current &&
@@ -268,21 +309,21 @@ export function CommentProvider({ children }) {
         bootstrapped.current = true;
         nextThreads = local;
         nextUpdatedAt = Date.now();
-        await saveSharedComments(nextThreads, nextUpdatedAt);
-      } else if (remote.updatedAt && remote.updatedAt < stateRef.current.remoteUpdatedAt) {
-        // Stale response — ignore.
-        dispatch({ type: "SET_SYNC", payload: { status: "synced", error: null } });
-        return;
+        shouldPush = true;
       } else {
-        // Merge so in-flight local adds aren't wiped by a slightly stale poll.
-        // Do not auto-push here — stale localStorage would re-publish junk.
-        // Local mutations already schedule a push via threadsSignature.
         nextThreads = mergeThreads(remote.threads, local);
+        if (
+          threadSignature(aliveThreads(nextThreads)) !==
+          threadSignature(aliveThreads(remote.threads))
+        ) {
+          shouldPush = true;
+        }
       }
 
       bootstrapped.current = true;
-      applyingRemote.current = true;
-      skipNextPush.current = true;
+      if (!shouldPush) {
+        lastSyncedSignature.current = threadSignature(nextThreads);
+      }
       dispatch({
         type: "REPLACE_THREADS",
         payload: {
@@ -292,10 +333,12 @@ export function CommentProvider({ children }) {
           syncError: null,
         },
       });
-      queueMicrotask(() => {
-        applyingRemote.current = false;
-      });
+
+      if (shouldPush || pendingPush.current) {
+        schedulePush(200);
+      }
     } catch (err) {
+      if (generation !== pullGeneration.current) return;
       dispatch({
         type: "SET_SYNC",
         payload: {
@@ -310,34 +353,35 @@ export function CommentProvider({ children }) {
   useEffect(() => {
     pullRemote({ allowBootstrap: true });
     const id = setInterval(() => {
-      // Don't poll while a composer draft is open — avoid focus/layout jumps.
       if (stateRef.current.draft) return;
       pullRemote();
     }, POLL_MS);
+
+    function onFocus() {
+      pullRemote();
+    }
+    function onVisibility() {
+      if (document.visibilityState === "visible") pullRemote();
+    }
+    window.addEventListener("focus", onFocus);
+    document.addEventListener("visibilitychange", onVisibility);
+
     return () => {
       clearInterval(id);
       if (saveTimer.current) clearTimeout(saveTimer.current);
+      window.removeEventListener("focus", onFocus);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Push after local mutations (skip when applying remote).
-  const threadsSignature = useMemo(
-    () =>
-      state.threads
-        .map((t) => `${t.id}:${t.updatedAt}:${t.status}:${t.messages?.length || 0}:${t.pin?.x},${t.pin?.y}`)
-        .join("|"),
-    [state.threads],
-  );
+  // Push after local mutations.
+  const threadsSignature = useMemo(() => threadSignature(state.threads), [state.threads]);
 
   useEffect(() => {
     if (!bootstrapped.current) return;
-    if (applyingRemote.current) return;
-    if (skipNextPush.current) {
-      skipNextPush.current = false;
-      return;
-    }
     if (state.syncStatus === "loading") return;
+    if (threadsSignature === lastSyncedSignature.current) return;
     schedulePush();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [threadsSignature]);
@@ -409,6 +453,9 @@ export function CommentProvider({ children }) {
           pin: { x: Math.max(0, Math.min(1, x)), y: Math.max(0, Math.min(1, y)) },
         });
         dispatch({ type: "ADD_THREAD", payload: thread });
+        // Guarantee a publish attempt even if signature effect is delayed.
+        pendingPush.current = true;
+        schedulePush(100);
         return thread.id;
       },
       addReply(threadId, body) {
@@ -417,15 +464,23 @@ export function CommentProvider({ children }) {
           type: "ADD_REPLY",
           payload: { threadId, message: makeMessage(body, state.author) },
         });
+        pendingPush.current = true;
+        schedulePush(100);
       },
       toggleResolved(id) {
         dispatch({ type: "TOGGLE_RESOLVED", payload: id });
+        pendingPush.current = true;
+        schedulePush(100);
       },
       deleteThread(id) {
         dispatch({ type: "DELETE_THREAD", payload: id });
+        pendingPush.current = true;
+        schedulePush(100);
       },
       movePin(id, x, y) {
         dispatch({ type: "MOVE_PIN", payload: { id, x, y } });
+        pendingPush.current = true;
+        schedulePush(250);
       },
       moveDraftPin(x, y) {
         dispatch({ type: "MOVE_DRAFT_PIN", payload: { x, y } });
@@ -433,19 +488,21 @@ export function CommentProvider({ children }) {
       refreshComments() {
         return pullRemote();
       },
-      /** Force-publish current local threads (e.g. after pasting a write token). */
       republishComments() {
+        pendingPush.current = true;
         return new Promise((resolve, reject) => {
-          dispatch({ type: "SET_SYNC", payload: { status: "syncing" } });
           const updatedAt = Date.now();
+          dispatch({ type: "SET_SYNC", payload: { status: "syncing" } });
           saveSharedComments(stateRef.current.threads, updatedAt)
             .then((saved) => {
+              pendingPush.current = false;
               dispatch({
-                type: "SET_SYNC",
+                type: "REPLACE_THREADS",
                 payload: {
-                  status: "synced",
+                  threads: mergeThreads(saved.threads || [], stateRef.current.threads),
                   updatedAt: saved.updatedAt || updatedAt,
-                  error: null,
+                  syncStatus: "synced",
+                  syncError: null,
                 },
               });
               resolve(saved);
