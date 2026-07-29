@@ -3,7 +3,7 @@ import { loadSharedComments, saveSharedComments } from "./commentsApi.js";
 
 const STORAGE_KEY = "sonocea-workspace-comments-v1";
 const AUTHOR_KEY = "sonocea-workspace-comment-author";
-const POLL_MS = 8000;
+const POLL_MS = 15000;
 const CommentContext = createContext(null);
 
 function loadAuthor() {
@@ -96,7 +96,11 @@ function reducer(state, action) {
     case "DELETE_THREAD":
       return {
         ...state,
-        threads: state.threads.filter((thread) => thread.id !== action.payload),
+        threads: state.threads.map((thread) =>
+          thread.id === action.payload
+            ? { ...thread, deleted: true, updatedAt: Date.now() }
+            : thread,
+        ),
         openThreadId: state.openThreadId === action.payload ? null : state.openThreadId,
       };
     case "MOVE_PIN": {
@@ -183,6 +187,10 @@ function mergeThreads(a, b) {
     }
   }
   return [...map.values()].sort((x, y) => (y.updatedAt || 0) - (x.updatedAt || 0));
+}
+
+function aliveThreads(threads) {
+  return (threads || []).filter((thread) => !thread?.deleted);
 }
 
 export function CommentProvider({ children }) {
@@ -338,7 +346,7 @@ export function CommentProvider({ children }) {
       commentMode: state.commentMode,
       openThreadId: state.openThreadId,
       draft: state.draft,
-      openCount: state.threads.filter((t) => t.status === "open").length,
+      openCount: aliveThreads(state.threads).filter((t) => t.status === "open").length,
       syncStatus: state.syncStatus,
       syncError: state.syncError,
 
@@ -376,10 +384,11 @@ export function CommentProvider({ children }) {
       },
 
       getThreads(scopeKey) {
-        return state.threads.filter((thread) => thread.scopeKey === scopeKey);
+        return aliveThreads(state.threads).filter((thread) => thread.scopeKey === scopeKey);
       },
       getThread(id) {
-        return state.threads.find((thread) => thread.id === id) ?? null;
+        const thread = state.threads.find((thread) => thread.id === id) ?? null;
+        return thread && !thread.deleted ? thread : null;
       },
 
       addSectionComment(scopeKey, body) {

@@ -110,9 +110,16 @@ export async function saveSharedComments(threads, updatedAt = Date.now()) {
     });
     if (res.ok && isJsonResponse(res)) return normalizePayload(await res.json());
     // Missing serverless token, or SPA HTML fallback — try client token next.
-    if (isJsonResponse(res) && res.status !== 503 && res.status !== 404) {
-      const errBody = await res.json().catch(() => ({}));
-      throw new Error(errBody.error || `api_put_${res.status}`);
+    if (isJsonResponse(res)) {
+      if (res.status === 503 || res.status === 404) {
+        // fall through to client gist write
+      } else if (res.status === 429) {
+        const errBody = await res.json().catch(() => ({}));
+        throw new Error(errBody.error || "comments_rate_limited");
+      } else {
+        const errBody = await res.json().catch(() => ({}));
+        throw new Error(errBody.error || `api_put_${res.status}`);
+      }
     }
   } catch (err) {
     if (String(err?.message || err).startsWith("api_put_")) throw err;

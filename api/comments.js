@@ -167,7 +167,14 @@ export default async function handler(req, res) {
         hint: "Set COMMENTS_GITHUB_TOKEN on the Vercel project (gist scope).",
       });
     }
+    const message = String(err?.message || err);
+    if (/gist_put_403|rate limit/i.test(message)) {
+      return json(res, 429, {
+        error: "comments_rate_limited",
+        hint: "GitHub gist write rate limit hit — retry in a minute.",
+      });
+    }
     console.error("[api/comments]", err);
-    return json(res, 500, { error: String(err?.message || err) });
+    return json(res, 500, { error: message });
   }
 }
