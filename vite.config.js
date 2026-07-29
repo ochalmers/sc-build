@@ -1,22 +1,17 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
-import { get, put } from "@vercel/blob";
+import { get, list, put } from "@vercel/blob";
 
-const BLOB_PATH = "workspace-comments-v2.json";
+const THREAD_PREFIX = "comments/v2/threads/";
+const LEGACY_SNAPSHOT = "workspace-comments-v2.json";
 
 function commentsApiPlugin(env) {
   const token = env.BLOB_READ_WRITE_TOKEN || "";
 
-  function normalize(data) {
-    return {
-      threads: Array.isArray(data?.threads) ? data.threads : [],
-      updatedAt: Number(data?.updatedAt) || 0,
-    };
-  }
-
   function mergeThreads(a, b) {
     const map = new Map();
     for (const thread of [...(a || []), ...(b || [])]) {
+      if (!thread?.id) continue;
       const prev = map.get(thread.id);
       if (!prev || (thread.updatedAt || 0) >= (prev.updatedAt || 0)) {
         map.set(thread.id, thread);
@@ -25,52 +20,93 @@ function commentsApiPlugin(env) {
     return [...map.values()].sort((x, y) => (y.updatedAt || 0) - (x.updatedAt || 0));
   }
 
-  function sanitizeThreads(threads) {
-    return (threads || []).filter((thread) => {
-      if (!thread || thread.deleted) return false;
-      if (/^test$/i.test(String(thread.scopeKey || ""))) return false;
-      if (
-        /^(cmt-smoke|cmt-verify|cmt-b-|cmt-a-|cmt-local-|cmt-prod-|cmt-alive-|cmt-final-|cmt-mA-|cmt-mB-|cmt-ok-|cmt-keep)/i.test(
-          String(thread.id || ""),
-        )
-      ) {
-        return false;
-      }
+  function isJunk(thread) {
+    if (!thread) return true;
+    if (/^test$/i.test(String(thread.scopeKey || ""))) return true;
+    if (
+      /^(cmt-smoke|cmt-verify|cmt-b-|cmt-a-|cmt-local-|cmt-prod-|cmt-alive-|cmt-final-|cmt-mA-|cmt-mB-|cmt-ok-|cmt-keep)/i.test(
+        String(thread.id || ""),
+      )
+    ) {
       return true;
-    });
+    }
+    return false;
   }
 
-  async function readStore() {
-    if (!token) {
-      const err = new Error("missing_blob_read_write_token");
-      err.statusCode = 503;
-      throw err;
-    }
-    const result = await get(BLOB_PATH, { access: "private", token });
-    if (!result) return { threads: [], updatedAt: 0 };
-    const text = await new Response(result.stream).text();
+  function publicThreads(threads) {
+    return mergeThreads(threads, []).filter((t) => !t.deleted && !isJunk(t));
+  }
+
+  function threadPath(id) {
+    return `${THREAD_PREFIX}${encodeURIComponent(id)}.json`;
+  }
+
+  async function readThread(pathname) {
+    const result = await get(pathname, { access: "private", token });
+    if (!result) return null;
     try {
-      return normalize(JSON.parse(text));
+      return JSON.parse(await new Response(result.stream).text());
     } catch {
-      return { threads: [], updatedAt: 0 };
+      return null;
     }
   }
 
-  async function writeStore(threads, updatedAt) {
+  async function listAllThreads() {
     if (!token) {
       const err = new Error("missing_blob_read_write_token");
       err.statusCode = 503;
       throw err;
     }
-    const payload = { threads, updatedAt };
-    await put(BLOB_PATH, JSON.stringify(payload, null, 2), {
-      access: "private",
-      addRandomSuffix: false,
-      allowOverwrite: true,
-      contentType: "application/json",
-      token,
-    });
-    return payload;
+    const threads = [];
+    let cursor;
+    do {
+      const page = await list({ prefix: THREAD_PREFIX, token, cursor, limit: 1000 });
+      for (const blob of page.blobs || []) {
+        const thread = await readThread(blob.pathname);
+        if (thread?.id && !isJunk(thread)) threads.push(thread);
+      }
+      cursor = page.hasMore ? page.cursor : undefined;
+    } while (cursor);
+    return mergeThreads(threads, []);
+  }
+
+  async function writeThreads(threads) {
+    if (!token) {
+      const err = new Error("missing_blob_read_write_token");
+      err.statusCode = 503;
+      throw err;
+    }
+    await Promise.all(
+      threads
+        .filter((t) => t?.id && !isJunk(t))
+        .map((thread) =>
+          put(threadPath(thread.id), JSON.stringify(thread), {
+            access: "private",
+            addRandomSuffix: false,
+            allowOverwrite: true,
+            contentType: "application/json",
+            cacheControlMaxAge: 0,
+            token,
+          }),
+        ),
+    );
+  }
+
+  async function migrateLegacyIfNeeded(existing) {
+    if (existing.length) return existing;
+    const result = await get(LEGACY_SNAPSHOT, { access: "private", token }).catch(() => null);
+    if (!result) return existing;
+    try {
+      const parsed = JSON.parse(await new Response(result.stream).text());
+      const legacy = Array.isArray(parsed.threads) ? parsed.threads.filter((t) => !isJunk(t)) : [];
+      if (legacy.length) {
+        await writeThreads(legacy);
+        return listAllThreads();
+      }
+    } catch {
+      // ignore
+    }
+    return existing;
   }
 
   function send(res, status, body) {
@@ -109,10 +145,12 @@ function commentsApiPlugin(env) {
             return res.end();
           }
           if (req.method === "GET") {
-            const data = await readStore();
+            let threads = await listAllThreads();
+            threads = await migrateLegacyIfNeeded(threads);
+            const visible = publicThreads(threads);
             return send(res, 200, {
-              threads: sanitizeThreads(data.threads),
-              updatedAt: data.updatedAt,
+              threads: visible,
+              updatedAt: visible.reduce((max, t) => Math.max(max, t.updatedAt || 0), 0),
             });
           }
           if (req.method === "PUT") {
@@ -120,16 +158,12 @@ function commentsApiPlugin(env) {
             if (!Array.isArray(body.threads)) {
               return send(res, 400, { error: "threads_array_required" });
             }
-            let merged = sanitizeThreads(body.threads);
-            try {
-              merged = sanitizeThreads(
-                mergeThreads((await readStore()).threads, body.threads),
-              );
-            } catch {
-              // write payload as received if merge read fails
-            }
-            const updatedAt = Number(body.updatedAt) || Date.now();
-            return send(res, 200, await writeStore(merged, updatedAt));
+            await writeThreads(body.threads);
+            const all = publicThreads(await listAllThreads());
+            return send(res, 200, {
+              threads: all,
+              updatedAt: Number(body.updatedAt) || Date.now(),
+            });
           }
           return send(res, 405, { error: "method_not_allowed" });
         } catch (err) {

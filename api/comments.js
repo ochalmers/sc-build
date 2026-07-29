@@ -1,17 +1,15 @@
 /**
- * Shared workspace comments — backed by Vercel Blob so every reviewer
- * sees the same threads (not localStorage / GitHub Gist rate limits).
+ * Shared workspace comments — one Vercel Blob object per thread so concurrent
+ * reviewers cannot wipe each other via read-merge-write races.
  *
  * Env (set automatically when a Blob store is linked):
  *   BLOB_READ_WRITE_TOKEN
- *
- * Optional legacy fallback for reads:
- *   COMMENTS_GITHUB_TOKEN / COMMENTS_GIST_ID
  */
 
-import { get, put } from "@vercel/blob";
+import { get, list, put } from "@vercel/blob";
 
-const BLOB_PATH = "workspace-comments-v2.json";
+const THREAD_PREFIX = "comments/v2/threads/";
+const LEGACY_SNAPSHOT = "workspace-comments-v2.json";
 const LEGACY_GIST_ID = "5253e9bc9987baf2d4a4ff0007aa5098";
 const GIST_FILE = "comments.json";
 
@@ -24,14 +22,6 @@ function isJunkThread(thread) {
   if (TEST_SCOPE.test(String(thread.scopeKey || ""))) return true;
   if (TEST_ID.test(String(thread.id || ""))) return true;
   return false;
-}
-
-function sanitizeThreads(threads, { dropDeleted = false } = {}) {
-  return (threads || []).filter((thread) => {
-    if (isJunkThread(thread)) return false;
-    if (dropDeleted && thread.deleted) return false;
-    return true;
-  });
 }
 
 function corsHeaders() {
@@ -68,16 +58,24 @@ function readBody(req) {
   });
 }
 
-function normalize(data) {
-  return {
-    threads: Array.isArray(data?.threads) ? data.threads : [],
-    updatedAt: Number(data?.updatedAt) || 0,
-  };
+function requireToken() {
+  const token = process.env.BLOB_READ_WRITE_TOKEN;
+  if (!token) {
+    const err = new Error("missing_blob_read_write_token");
+    err.code = "missing_token";
+    throw err;
+  }
+  return token;
+}
+
+function threadPath(id) {
+  return `${THREAD_PREFIX}${encodeURIComponent(id)}.json`;
 }
 
 function mergeThreads(a, b) {
   const map = new Map();
   for (const thread of [...(a || []), ...(b || [])]) {
+    if (!thread?.id) continue;
     const prev = map.get(thread.id);
     if (!prev || (thread.updatedAt || 0) >= (prev.updatedAt || 0)) {
       map.set(thread.id, thread);
@@ -86,40 +84,63 @@ function mergeThreads(a, b) {
   return [...map.values()].sort((x, y) => (y.updatedAt || 0) - (x.updatedAt || 0));
 }
 
-async function readBlob() {
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) {
-    const err = new Error("missing_blob_read_write_token");
-    err.code = "missing_token";
-    throw err;
-  }
-  const result = await get(BLOB_PATH, { access: "private", token });
-  if (!result) return { threads: [], updatedAt: 0 };
-  const text = await new Response(result.stream).text();
+async function readThreadBlob(pathname, token) {
+  const result = await get(pathname, { access: "private", token });
+  if (!result) return null;
   try {
-    return normalize(JSON.parse(text));
+    return JSON.parse(await new Response(result.stream).text());
   } catch {
-    return { threads: [], updatedAt: 0 };
+    return null;
   }
 }
 
-async function writeBlob(threads, updatedAt) {
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) {
-    const err = new Error("missing_blob_read_write_token");
-    err.code = "missing_token";
-    throw err;
+async function listAllThreads(token) {
+  const threads = [];
+  let cursor;
+  do {
+    const page = await list({
+      prefix: THREAD_PREFIX,
+      token,
+      cursor,
+      limit: 1000,
+    });
+    for (const blob of page.blobs || []) {
+      const thread = await readThreadBlob(blob.pathname, token);
+      if (thread?.id && !isJunkThread(thread)) threads.push(thread);
+    }
+    cursor = page.hasMore ? page.cursor : undefined;
+  } while (cursor);
+
+  return mergeThreads(threads, []);
+}
+
+async function writeThreads(threads, token) {
+  const writes = [];
+  for (const thread of threads) {
+    if (!thread?.id || isJunkThread(thread)) continue;
+    writes.push(
+      put(threadPath(thread.id), JSON.stringify(thread), {
+        access: "private",
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: "application/json",
+        cacheControlMaxAge: 0,
+        token,
+      }),
+    );
   }
-  const payload = { threads, updatedAt };
-  await put(BLOB_PATH, JSON.stringify(payload, null, 2), {
-    access: "private",
-    addRandomSuffix: false,
-    allowOverwrite: true,
-    contentType: "application/json",
-    cacheControlMaxAge: 0,
-    token,
-  });
-  return payload;
+  await Promise.all(writes);
+}
+
+async function readLegacySnapshot(token) {
+  const result = await get(LEGACY_SNAPSHOT, { access: "private", token }).catch(() => null);
+  if (!result) return [];
+  try {
+    const parsed = JSON.parse(await new Response(result.stream).text());
+    return Array.isArray(parsed.threads) ? parsed.threads : [];
+  } catch {
+    return [];
+  }
 }
 
 async function readLegacyGist() {
@@ -135,14 +156,19 @@ async function readLegacyGist() {
     "";
   if (t) headers.Authorization = `Bearer ${t}`;
   const res = await fetch(`https://api.github.com/gists/${gistId}`, { headers });
-  if (!res.ok) return null;
+  if (!res.ok) return [];
   const data = await res.json();
   const raw = data.files?.[GIST_FILE]?.content || '{"threads":[]}';
   try {
-    return normalize(JSON.parse(raw));
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed.threads) ? parsed.threads : [];
   } catch {
-    return { threads: [], updatedAt: 0 };
+    return [];
   }
+}
+
+function publicThreads(threads) {
+  return mergeThreads(threads, []).filter((thread) => !thread.deleted && !isJunkThread(thread));
 }
 
 export default async function handler(req, res) {
@@ -151,26 +177,26 @@ export default async function handler(req, res) {
   }
 
   try {
+    const token = requireToken();
+
     if (req.method === "GET") {
-      let data = await readBlob();
-      data = {
-        // Clients only need live threads; keep tombstones in blob for merge safety.
-        threads: sanitizeThreads(data.threads, { dropDeleted: true }),
-        updatedAt: data.updatedAt,
-      };
-      // One-time hydrate from legacy gist if blob is empty.
-      if (data.threads.length === 0) {
-        const legacy = await readLegacyGist().catch(() => null);
-        const legacyThreads = sanitizeThreads(legacy?.threads, { dropDeleted: true });
-        if (legacyThreads.length) {
-          data = await writeBlob(legacyThreads, legacy.updatedAt || Date.now());
-          data = {
-            threads: sanitizeThreads(data.threads, { dropDeleted: true }),
-            updatedAt: data.updatedAt,
-          };
+      let threads = await listAllThreads(token);
+
+      // Migrate once from legacy single-file snapshot / gist if the folder is empty.
+      if (threads.length === 0) {
+        const legacy = [
+          ...(await readLegacySnapshot(token)),
+          ...(await readLegacyGist().catch(() => [])),
+        ].filter((thread) => !isJunkThread(thread));
+        if (legacy.length) {
+          await writeThreads(legacy, token);
+          threads = await listAllThreads(token);
         }
       }
-      return json(res, 200, data);
+
+      const visible = publicThreads(threads);
+      const updatedAt = visible.reduce((max, t) => Math.max(max, t.updatedAt || 0), 0);
+      return json(res, 200, { threads: visible, updatedAt });
     }
 
     if (req.method === "PUT") {
@@ -178,22 +204,14 @@ export default async function handler(req, res) {
       const threads = Array.isArray(body.threads) ? body.threads : null;
       if (!threads) return json(res, 400, { error: "threads_array_required" });
 
-      // Keep soft-delete tombstones in storage so concurrent clients can't resurrect them.
-      let merged = sanitizeThreads(threads, { dropDeleted: false });
-      try {
-        const current = await readBlob();
-        merged = sanitizeThreads(mergeThreads(current.threads, threads), {
-          dropDeleted: false,
-        });
-      } catch {
-        // write payload as received if merge read fails
-      }
+      // Write each incoming thread as its own object (no full-document overwrite).
+      await writeThreads(threads, token);
+
+      // Return the full union so clients converge.
+      const all = await listAllThreads(token);
+      const visible = publicThreads(all);
       const updatedAt = Number(body.updatedAt) || Date.now();
-      const saved = await writeBlob(merged, updatedAt);
-      return json(res, 200, {
-        threads: sanitizeThreads(saved.threads, { dropDeleted: true }),
-        updatedAt: saved.updatedAt,
-      });
+      return json(res, 200, { threads: visible, updatedAt });
     }
 
     return json(res, 405, { error: "method_not_allowed" });
