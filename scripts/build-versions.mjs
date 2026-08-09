@@ -20,28 +20,28 @@ import {
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { BUILD_VERSIONS } from "../src/content/buildVersions.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 const DIST = join(ROOT, "dist");
 
-const VERSIONS = [
-  {
-    id: "2026-07-29",
-    label: "29 Jul 2026",
-    blurb: "Previous production — all shared comments live here.",
+/** Deploy-only metadata keyed by version id from `buildVersions.js`. */
+const VERSION_BUILD_META = {
+  "2026-07-29": {
     kind: "archive",
     commit: "2d1ade2bf5100f50e927615a30138284dc4d4a65",
-    badge: "Comments",
   },
-  {
-    id: "2026-08-09",
-    label: "9 Aug 2026",
-    blurb: "Latest prototype — Admin + Listener flows from this push.",
+  "2026-08-09": {
     kind: "current",
-    badge: "Latest",
   },
-];
+};
+
+const VERSIONS = BUILD_VERSIONS.map((version) => {
+  const meta = VERSION_BUILD_META[version.id];
+  if (!meta) throw new Error(`Missing VERSION_BUILD_META for ${version.id}`);
+  return { ...version, ...meta };
+});
 
 function run(cmd, opts = {}) {
   console.log(`\n$ ${cmd}`);
@@ -51,18 +51,50 @@ function run(cmd, opts = {}) {
 function patchArchiveMain(worktree) {
   const mainPath = join(worktree, "src/main.jsx");
   let src = readFileSync(mainPath, "utf8");
-  if (src.includes("basename=")) return;
-  if (!src.includes("<BrowserRouter>")) {
-    throw new Error("archive main.jsx missing <BrowserRouter> to patch");
+  if (!src.includes("basename=")) {
+    if (!src.includes("<BrowserRouter>")) {
+      throw new Error("archive main.jsx missing <BrowserRouter> to patch");
+    }
+    src = src.replace(
+      `import "./index.css";\n\nReactDOM.createRoot(document.getElementById("root")).render(\n  <React.StrictMode>\n    <BrowserRouter>\n      <App />\n    </BrowserRouter>`,
+      `import "./index.css";\n\nconst basename = (import.meta.env.BASE_URL || "/").replace(/\\/$/, "") || undefined;\n\nReactDOM.createRoot(document.getElementById("root")).render(\n  <React.StrictMode>\n    <BrowserRouter basename={basename}>\n      <App />\n    </BrowserRouter>`,
+    );
+    if (!src.includes("basename={basename}")) {
+      throw new Error("failed to patch archive BrowserRouter basename");
+    }
+    writeFileSync(mainPath, src);
   }
-  src = src.replace(
-    `import "./index.css";\n\nReactDOM.createRoot(document.getElementById("root")).render(\n  <React.StrictMode>\n    <BrowserRouter>\n      <App />\n    </BrowserRouter>`,
-    `import "./index.css";\n\nconst basename = (import.meta.env.BASE_URL || "/").replace(/\\/$/, "") || undefined;\n\nReactDOM.createRoot(document.getElementById("root")).render(\n  <React.StrictMode>\n    <BrowserRouter basename={basename}>\n      <App />\n    </BrowserRouter>`,
+}
+
+/** Bring the nav version selector into the frozen July snapshot before building it. */
+function patchArchiveVersionSwitcher(worktree) {
+  mkdirSync(join(worktree, "src/content"), { recursive: true });
+  mkdirSync(join(worktree, "src/app/components"), { recursive: true });
+  cpSync(join(ROOT, "src/content/buildVersions.js"), join(worktree, "src/content/buildVersions.js"));
+  cpSync(
+    join(ROOT, "src/app/components/VersionSwitcher.jsx"),
+    join(worktree, "src/app/components/VersionSwitcher.jsx"),
   );
-  if (!src.includes("basename={basename}")) {
-    throw new Error("failed to patch archive BrowserRouter basename");
+
+  const shellPath = join(worktree, "src/app/components/AppShell.jsx");
+  let shell = readFileSync(shellPath, "utf8");
+  if (shell.includes("VersionSwitcher")) return;
+
+  if (!shell.includes('import { CombinedViewSwitcher } from "./CombinedViewSwitcher.jsx";')) {
+    throw new Error("archive AppShell missing CombinedViewSwitcher import to patch");
   }
-  writeFileSync(mainPath, src);
+  shell = shell.replace(
+    'import { CombinedViewSwitcher } from "./CombinedViewSwitcher.jsx";\n',
+    'import { CombinedViewSwitcher } from "./CombinedViewSwitcher.jsx";\nimport { VersionSwitcher } from "./VersionSwitcher.jsx";\n',
+  );
+  shell = shell.replace(
+    "<CombinedViewSwitcher />\n          </div>",
+    "<CombinedViewSwitcher />\n            <VersionSwitcher />\n          </div>",
+  );
+  if (!shell.includes("<VersionSwitcher />")) {
+    throw new Error("failed to patch archive AppShell VersionSwitcher");
+  }
+  writeFileSync(shellPath, shell);
 }
 
 function writeRootSwitcher(versions) {
@@ -134,6 +166,7 @@ function buildArchive(version) {
   try {
     run(`git worktree add --detach "${worktree}" ${version.commit}`);
     patchArchiveMain(worktree);
+    patchArchiveVersionSwitcher(worktree);
     run("npm ci --ignore-scripts", { cwd: worktree });
     run(`npx vite build --base=${base} --outDir="${outDir}"`, {
       cwd: worktree,

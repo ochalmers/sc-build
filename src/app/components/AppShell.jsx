@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import CommentModeFab from "../../components/comments/CommentModeFab.jsx";
 import { SurfaceSwitcher } from "./SurfaceSwitcher.jsx";
 import { CombinedViewSwitcher } from "./CombinedViewSwitcher.jsx";
+import { VersionSwitcher } from "./VersionSwitcher.jsx";
 import { SurfaceProvider } from "../context/SurfaceContext.jsx";
 
 /**
@@ -19,6 +20,7 @@ export function AppShell({ children }) {
             </Link>
             <SurfaceSwitcher />
             <CombinedViewSwitcher />
+            <VersionSwitcher />
           </div>
         </header>
         {children}
