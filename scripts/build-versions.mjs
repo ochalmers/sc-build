@@ -65,24 +65,6 @@ function patchArchiveMain(worktree) {
   writeFileSync(mainPath, src);
 }
 
-function injectVersionChip(indexHtmlPath, version) {
-  let html = readFileSync(indexHtmlPath, "utf8");
-  if (html.includes("data-sonocea-version-chip")) return;
-  const chip = `
-<style data-sonocea-version-chip>
-  .sonocea-version-chip{position:fixed;z-index:2147483000;left:12px;bottom:12px;display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:999px;background:rgba(12,12,12,.88);color:#f5f2ea;font:500 12px/1.2 Inter,system-ui,sans-serif;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,.28)}
-  .sonocea-version-chip a{color:#f5f2ea;text-decoration:none;opacity:.85}
-  .sonocea-version-chip a:hover{opacity:1;text-decoration:underline}
-  .sonocea-version-chip b{font-weight:600}
-</style>
-<div class="sonocea-version-chip" data-sonocea-version-chip>
-  <b>${version.label}</b>
-  <a href="/">All versions</a>
-</div>`;
-  html = html.replace("</body>", `${chip}\n</body>`);
-  writeFileSync(indexHtmlPath, html);
-}
-
 function writeRootSwitcher(versions) {
   const cards = versions
     .map(
@@ -157,7 +139,6 @@ function buildArchive(version) {
       cwd: worktree,
       env: { ...process.env, VITE_BASE: base },
     });
-    injectVersionChip(join(outDir, "index.html"), version);
   } finally {
     try {
       run(`git worktree remove --force "${worktree}"`);
@@ -178,7 +159,6 @@ function buildCurrent(version) {
   run(`npx vite build --base=${base} --outDir="${outDir}"`, {
     env: { ...process.env, VITE_BASE: base },
   });
-  injectVersionChip(join(outDir, "index.html"), version);
 }
 
 function copyRootPublicAssets() {
