@@ -12,8 +12,9 @@ export const FLOWS_HERO = {
 
 /** MVP bottom navigation for the provisioned listener app. */
 export const LISTENER_MVP_NAV = [
+  { id: "library", label: "Library", path: "/app/listener/library" },
   { id: "home", label: "Home", path: "/app/listener/home" },
-  { id: "profile", label: "Profile", path: "/app/listener/profile" },
+  { id: "profile", label: "Me", path: "/app/listener/profile" },
 ];
 
 /**

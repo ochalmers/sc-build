@@ -206,6 +206,11 @@ function loadState() {
         programmeTitle: p.programmeTitle || demo?.programmeTitle || "",
         programme: p.programme || demo?.programme || "",
         inviteLine: p.inviteLine || demo?.inviteLine || "",
+        homeModes: Array.isArray(p.homeModes)
+          ? p.homeModes
+          : Array.isArray(demo?.homeModes)
+            ? demo.homeModes
+            : undefined,
         isDirectAccess: Boolean(p.isDirectAccess ?? demo?.isDirectAccess),
       };
     });

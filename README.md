@@ -4,11 +4,16 @@ Internal workspace: **one** brand and product system that adapts through contras
 
 ## Routes
 
+Production hosts **dated builds** side by side so reviewers can keep the commented July board and open the newer prototype without overwriting it:
+
 | Path | Content |
 |------|---------|
-| `/` | Interactive behavioural prototype (personas, controls, live phone mockup). |
-| `/design-system` | **Design system reference** - tokens, principles, components, assets. |
-| `/system` | Redirects to `/design-system`. |
+| `/` | Version switcher (pick a dated build). |
+| `/v/2026-07-29/` | Previous production snapshot — shared comments stay here. |
+| `/v/2026-08-09/` | Latest prototype from this repo. |
+| `/app/*` | Redirects to the July build so existing comment links keep working. |
+
+Local `npm run dev` still serves the current tree at `/`.
 
 ## Design system (reusable)
 

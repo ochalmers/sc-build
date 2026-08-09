@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/build-versions.mjs",
+    "build:single": "vite build",
     "preview": "vite preview",
     "paper:app-ds": "node scripts/generate-paper-app-ds-frames.mjs",
     "paper:mobile": "node scripts/generate-paper-behavioural-mobile.mjs"

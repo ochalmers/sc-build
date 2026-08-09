@@ -325,6 +325,77 @@ export const SESSION_CATEGORIES = [
   "Custom",
 ];
 
+/**
+ * Home mode chips (Rest / Focus / Restore). Labels are org-editable via Admin;
+ * ids + category buckets stay stable so session matching keeps working.
+ */
+export const DEFAULT_HOME_MODES = [
+  {
+    id: "Calm",
+    label: "Rest",
+    categories: ["Calm"],
+    tone: "calm",
+  },
+  {
+    id: "Focus",
+    label: "Focus",
+    categories: ["Focus"],
+    tone: "focus",
+  },
+  {
+    id: "Restore",
+    label: "Restore",
+    categories: ["Reset", "Rest", "Recovery", "Wellbeing"],
+    tone: "restore",
+  },
+];
+
+/** Prior labels from earlier prototypes — treat as unset so current defaults apply. */
+const LEGACY_HOME_MODE_LABELS = new Set([
+  "Calm",
+  "Calm Session",
+  "Rest Session",
+]);
+
+/** Merge partner label overrides onto the stable home-mode taxonomy. */
+export function resolveHomeModes(partner) {
+  const overrides = Array.isArray(partner?.homeModes) ? partner.homeModes : [];
+  return DEFAULT_HOME_MODES.map((mode) => {
+    const hit =
+      overrides.find((o) => o?.id === mode.id) ||
+      overrides.find((o) => o?.tone === mode.tone);
+    const label = hit?.label?.trim();
+    if (!label || LEGACY_HOME_MODE_LABELS.has(label)) return { ...mode };
+    return { ...mode, label };
+  });
+}
+
+export function sessionMatchesHomeMode(session, mode) {
+  if (!mode?.categories?.length) return true;
+  const cat = session.category ?? session.useCase;
+  return mode.categories.includes(cat);
+}
+
+/** Home mode (Rest / Focus / Restore) that owns this session, if any. */
+export function homeModeForSession(session, partner) {
+  if (!session) return null;
+  return resolveHomeModes(partner).find((m) => sessionMatchesHomeMode(session, m)) ?? null;
+}
+
+/**
+ * Listener-facing session title with the home-tab label prefixed
+ * e.g. "Session 1" → "Rest Session 1".
+ */
+export function homeModeSessionTitle(session, partner) {
+  if (!session?.title) return "";
+  const label = homeModeForSession(session, partner)?.label;
+  if (!label) return session.title;
+  if (session.title.toLowerCase().startsWith(`${label} `.toLowerCase())) {
+    return session.title;
+  }
+  return `${label} ${session.title}`;
+}
+
 export const SESSION_TAG_OPTIONS = [
   "calm",
   "focus",
@@ -1050,6 +1121,8 @@ export function emptyOrganization(overrides = {}) {
     inviteLine: "",
     programmeTitle: "",
     programme: "",
+    /** Optional label overrides for Rest / Focus / Restore home modes. */
+    homeModes: DEFAULT_HOME_MODES.map(({ id, label, tone }) => ({ id, label, tone })),
     seats: 30,
     seatsUsed: 0,
     billingModel: "seat-pool",

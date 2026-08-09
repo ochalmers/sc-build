@@ -16,6 +16,7 @@ import {
   rankSessionsForPreferences,
 } from "../../data/catalog.js";
 import { useAppStore } from "../../context/AppStore.jsx";
+import { openCheckInModal } from "../../components/CheckInModal.jsx";
 import { ListenerFrame } from "../../components/ListenerFrame.jsx";
 import { PartnerBrandMark } from "../../components/PartnerBrandMark.jsx";
 import { AppBody, AppButton, AppEyebrow, AppField, AppTitle } from "../../components/ui.jsx";
@@ -563,7 +564,8 @@ export function ListenerOnboarding() {
       rankSessionsForPreferences(catalog ?? [], prefs)[0] ??
       catalog?.find((s) => s.id === "ses-arrive") ??
       catalog?.[0];
-    navigate(`/app/listener/check-in/${first?.id ?? "ses-arrive"}`, { replace: true });
+    navigate("/app/listener/home", { replace: true });
+    if (first) openCheckInModal(first);
   }
 
   function goToHome() {

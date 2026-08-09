@@ -1,8 +1,79 @@
 {
+  "redirects": [
+    {
+      "source": "/app",
+      "destination": "/v/2026-07-29/app",
+      "permanent": false
+    },
+    {
+      "source": "/app/:path*",
+      "destination": "/v/2026-07-29/app/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/end-to-end",
+      "destination": "/v/2026-07-29/end-to-end",
+      "permanent": false
+    },
+    {
+      "source": "/end-to-end/:path*",
+      "destination": "/v/2026-07-29/end-to-end/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/flows",
+      "destination": "/v/2026-07-29/flows",
+      "permanent": false
+    },
+    {
+      "source": "/flows/:path*",
+      "destination": "/v/2026-07-29/flows/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/plan",
+      "destination": "/v/2026-07-29/plan",
+      "permanent": false
+    },
+    {
+      "source": "/design",
+      "destination": "/v/2026-07-29/design",
+      "permanent": false
+    },
+    {
+      "source": "/key-screens",
+      "destination": "/v/2026-07-29/key-screens",
+      "permanent": false
+    },
+    {
+      "source": "/copy",
+      "destination": "/v/2026-07-29/copy",
+      "permanent": false
+    },
+    {
+      "source": "/references",
+      "destination": "/v/2026-07-29/references",
+      "permanent": false
+    },
+    {
+      "source": "/prototype",
+      "destination": "/v/2026-07-29/prototype",
+      "permanent": false
+    },
+    {
+      "source": "/app-wireframes",
+      "destination": "/v/2026-07-29/app-wireframes",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
-      "source": "/((?!api/|assets/).*)",
-      "destination": "/index.html"
+      "source": "/v/2026-07-29/:path*",
+      "destination": "/v/2026-07-29/index.html"
+    },
+    {
+      "source": "/v/2026-08-09/:path*",
+      "destination": "/v/2026-08-09/index.html"
     }
   ]
 }

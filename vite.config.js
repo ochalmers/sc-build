@@ -186,7 +186,9 @@ function commentsApiPlugin(env) {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
+  const base = env.VITE_BASE || process.env.VITE_BASE || "/";
   return {
+    base,
     plugins: [react(), commentsApiPlugin(env)],
     server: {
       port: 5173,

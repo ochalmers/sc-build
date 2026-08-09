@@ -27,7 +27,7 @@ export function AdminDesktopFrame({
     <div className="w-full min-h-0 flex-1">
       <PinComments scopeKey={`app:${pathname}${search}`}>
         <div
-          className="flex h-full flex-col overflow-hidden rounded-2xl border border-black/10 shadow-[0_24px_80px_rgba(0,0,0,0.18)]"
+          className="app-proto-surface flex h-full flex-col overflow-hidden rounded-2xl border border-black/10 shadow-[0_24px_80px_rgba(0,0,0,0.18)]"
           style={{
             height: ADMIN_DESKTOP.height,
             backgroundColor: ADMIN_DESKTOP.surface,

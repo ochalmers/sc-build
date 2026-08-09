@@ -17,27 +17,35 @@ import {
   personalisedProgrammeSubtitle,
   programmeCompletionPct,
   rankSessionsForPreferences,
+  homeModeSessionTitle,
+  resolveHomeModes,
   resolvePartner,
+  sessionMatchesHomeMode,
   sessionsByTimeOfDay,
   totalListenMinutes,
   WEEKLY_SESSION_GOAL,
   weekCompletedCount,
 } from "../../data/catalog.js";
 import { useAppStore } from "../../context/AppStore.jsx";
-import { LISTENER_FRAME, ListenerFrame } from "../../components/ListenerFrame.jsx";
+import { LISTENER_BOTTOM_CHROME_WITH_PILLS, ListenerFrame } from "../../components/ListenerFrame.jsx";
+import {
+  HOME_HERO_FADE_EXTRA,
+  HOME_MODE_CONTENT_FADE_MS,
+  HomeHeroVideo,
+  HomeModePager,
+  HomeModePills,
+  HomeStageWash,
+  homeModeTone,
+} from "../../components/HomeModeSlider.jsx";
 import { PartnerBrandMark } from "../../components/PartnerBrandMark.jsx";
 import { AppBody, AppButton, AppTitle } from "../../components/ui.jsx";
-import {
-  sessionAtmosphere,
-  sessionBeforeYouBegin,
-  sessionDescription,
-  sessionHeadline,
-} from "../../components/SessionAtmosphere.jsx";
+import { openCheckInModal } from "../../components/CheckInModal.jsx";
+import { closeSessionDrawer, openSessionDrawer } from "../../components/SessionDrawer.jsx";
 import { IconPlay } from "../../../system/components/SampleIcons.jsx";
 import { SystemLogoMark } from "../../../system/components/SystemLogoMark.jsx";
 import { LISTENER_MVP_NAV } from "../../../content/flows.js";
 import { resolveAppearance } from "../../utils/appearance.js";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 
 function useListenerGate() {
@@ -89,9 +97,6 @@ function SessionRow({ session, onOpen, meta, right }) {
   );
 }
 
-function openSessionDetail(navigate, sessionId, from = "/app/listener/home") {
-  navigate(`/app/listener/session/${sessionId}`, { state: { from } });
-}
 
 function PartnerMark({ partner, className = "h-10 w-10", rounded = "rounded-full" }) {
   return (
@@ -103,7 +108,7 @@ function PartnerMark({ partner, className = "h-10 w-10", rounded = "rounded-full
   );
 }
 
-function TimeOfDaySessionList({ sessions, completedIds, navigate, from, prefs }) {
+function TimeOfDaySessionList({ sessions, completedIds, prefs }) {
   const sections = prefs
     ? orderedSessionSectionsForPreferences(sessions, prefs)
     : [
@@ -129,7 +134,7 @@ function TimeOfDaySessionList({ sessions, completedIds, navigate, from, prefs })
               <SessionRow
                 key={session.id}
                 session={session}
-                onOpen={() => openSessionDetail(navigate, session.id, from)}
+                onOpen={() => openSessionDrawer(session)}
                 meta={
                   completedIds?.has(session.id)
                     ? `${formatDuration(session.durationMin)} · Completed`
@@ -149,23 +154,9 @@ function dayKeyFromDate(d) {
 }
 
 /**
- * Direct-access / anonymous home filters - three states only.
- * Restore covers Reset, Rest, Recovery, and Wellbeing so every session lands in a filter.
+ * Prefer Focus / Restore from onboarding prefs; otherwise Rest (Calm id).
+ * Stable ids map onto org-editable labels via resolveHomeModes().
  */
-const DIRECT_ACCESS_HOME_FILTERS = [
-  { id: "Calm", label: "Calm", categories: ["Calm"] },
-  { id: "Focus", label: "Focus", categories: ["Focus"] },
-  { id: "Restore", label: "Restore", categories: ["Reset", "Rest", "Recovery", "Wellbeing"] },
-];
-
-function sessionMatchesHomeFilter(session, filterId) {
-  if (!filterId) return true;
-  const filter = DIRECT_ACCESS_HOME_FILTERS.find((f) => f.id === filterId);
-  if (!filter?.categories?.length) return true;
-  const cat = session.category ?? session.useCase;
-  return filter.categories.includes(cat);
-}
-
 function preferredHomeFilter(prefs = {}) {
   const goals = prefs.supportGoals ?? prefs.supportIds ?? [];
   const moments = prefs.listeningMoments ?? prefs.moodIds ?? [];
@@ -182,16 +173,34 @@ function preferredHomeFilter(prefs = {}) {
   return "Calm";
 }
 
-function homeFiltersForLibrary(_sessions) {
-  return DIRECT_ACCESS_HOME_FILTERS;
-}
-
-/** 03 · Home - personalised programme overview */
+/** 03 · Home — swipeable modes with thumb-reach pills */
 export function ListenerHome() {
   const navigate = useNavigate();
   const onTabChange = useTabNavigate();
   const { redirect, store } = useListenerGate();
   const [categoryFilter, setCategoryFilter] = useState(null);
+  const [pillsOpacity, setPillsOpacity] = useState(1);
+  const [greetingScrollTop, setGreetingScrollTop] = useState(0);
+  const [contentOpacity, setContentOpacity] = useState(1);
+  const modeFadeTimerRef = useRef(null);
+
+  const onActivePanelScroll = useCallback(({ scrollTop }) => {
+    setGreetingScrollTop((prev) => (Math.abs(prev - scrollTop) < 0.5 ? prev : scrollTop));
+    // Vanish almost as soon as the list moves — short absolute range, not viewport %.
+    const fadeStart = 4;
+    const fadeEnd = 28;
+    const t = fadeEnd <= fadeStart ? 0 : (scrollTop - fadeStart) / (fadeEnd - fadeStart);
+    const nextOpacity = Math.max(0, Math.min(1, 1 - t));
+    setPillsOpacity((prev) => (Math.abs(prev - nextOpacity) < 0.02 ? prev : nextOpacity));
+  }, []);
+
+  useEffect(
+    () => () => {
+      if (modeFadeTimerRef.current) window.clearTimeout(modeFadeTimerRef.current);
+    },
+    [],
+  );
+
   if (redirect) return <Navigate to={redirect} replace />;
 
   const {
@@ -201,7 +210,6 @@ export function ListenerHome() {
     neurotypeId,
     user,
     partners,
-    feedback,
     listeners,
     onboardingPrefs,
   } = store;
@@ -219,9 +227,6 @@ export function ListenerHome() {
   const completedIds = new Set(
     myHistory.filter((h) => h.progressPct >= 90).map((h) => h.sessionId),
   );
-  const incomplete = library.filter((s) => !completedIds.has(s.id));
-  // Only resume sessions that are still incomplete - ignore stale partials
-  // left behind after a later completion of the same session.
   const continueSession =
     myHistory.find(
       (h) =>
@@ -232,313 +237,307 @@ export function ListenerHome() {
   const continueFromCatalog = continueSession
     ? library.find((s) => s.id === continueSession.sessionId)
     : null;
-  const rankedIncomplete = rankSessionsForPreferences(incomplete, onboardingPrefs ?? {});
   const directAccess = isDirectAccessPartner(partner) || Boolean(user.isAnonymous);
-  // Org programmes keep Session 1 first until something is completed.
-  // Direct-access / anonymous: ranking from onboarding drives the first suggestion.
-  const sessionOne =
-    incomplete.find((s) => s.id === "ses-arrive") ??
-    library.find((s) => s.id === "ses-arrive");
-  // Exclude in-progress from "next" - resume OR next, never both.
-  const nextCandidates = rankedIncomplete.filter((s) => s.id !== continueFromCatalog?.id);
-  const recommended =
-    completedIds.size === 0 && !continueFromCatalog
-      ? directAccess
-        ? nextCandidates[0] ?? sessionOne ?? incomplete[0] ?? library[0]
-        : sessionOne ?? nextCandidates[0] ?? incomplete[0] ?? library[0]
-      : nextCandidates[0] ?? incomplete.find((s) => s.id !== continueFromCatalog?.id) ?? null;
-  const { listenedDays, windowDays } = listenDaysInWindow(myHistory, LISTEN_STREAK_DAYS);
-  const dayPct = windowDays ? Math.round((listenedDays / windowDays) * 100) : 0;
-  const recent = myHistory.slice(0, 3);
-
-  const heroMinHeight = Math.round(LISTENER_FRAME.height * 0.5);
   const prefs = onboardingPrefs ?? {};
-  const homeSubtitle = directAccess
-    ? null
-    : partner?.programmeTitle
-      ? `${partner.programmeTitle}${partner?.name ? ` · ${partner.name}` : ""}`
-      : partner?.name
-        ? `Sessions from ${partner.name}`
-        : "Your sessions, ready when you are.";
 
   const rankedLibrary = directAccess
     ? rankSessionsForPreferences(library, prefs)
     : library;
-  const categoryFilters = directAccess ? homeFiltersForLibrary(library) : [];
+  const homeModes = resolveHomeModes(partner);
   const preferredFilter = preferredHomeFilter(prefs);
-  const activeCategoryFilter = directAccess
-    ? categoryFilters.some((f) => f.id === categoryFilter)
-      ? categoryFilter
-      : categoryFilters.find((f) => f.id === preferredFilter)?.id ??
-        categoryFilters[0]?.id ??
-        "Calm"
-    : null;
+  const activeModeId = homeModes.some((m) => m.id === categoryFilter)
+    ? categoryFilter
+    : homeModes.find((m) => m.id === preferredFilter)?.id ?? homeModes[0]?.id ?? "Calm";
+  const activeHomeMode = homeModes.find((m) => m.id === activeModeId) ?? homeModes[0];
+  const greetingTone = homeModeTone(activeHomeMode, isDark);
+  // Focus ink is dark for mid-page titles; greeting sits on the dark gradient top — keep it light.
+  const greetingColor =
+    activeHomeMode?.tone === "focus" ? "#f5f5f5" : greetingTone.ink;
+  // Greeting stays put across mode pills — only scrolls/fades with vertical scroll.
+  const greetingOpacity = Math.max(0, Math.min(1, 1 - greetingScrollTop / 72));
 
-  const filteredLibrary = directAccess
-    ? rankedLibrary.filter((s) => sessionMatchesHomeFilter(s, activeCategoryFilter))
-    : rankedLibrary;
-  // Always keep a startable session under the filters for anonymous / direct-access.
-  const filteredIncomplete = filteredLibrary.filter((s) => !completedIds.has(s.id));
-  const filteredContinue =
-    continueFromCatalog && sessionMatchesHomeFilter(continueFromCatalog, activeCategoryFilter)
-      ? continueFromCatalog
-      : null;
-  const filteredRecommended =
-    filteredIncomplete.find((s) => s.id !== filteredContinue?.id) ??
-    filteredIncomplete[0] ??
-    filteredLibrary[0] ??
-    rankedLibrary[0] ??
-    library[0] ??
-    null;
+  const bottomPad = LISTENER_BOTTOM_CHROME_WITH_PILLS;
 
-  const primaryHero = directAccess
-    ? filteredContinue
-      ? {
-          kind: "resume",
-          session: filteredContinue,
-          eyebrow: "Pick up where you left off",
-          meta: `${Math.round(continueSession.progressPct)}% · ${formatDuration(filteredContinue.durationMin)}`,
-          cta: "Resume",
-          playerPath: `/app/listener/player/${filteredContinue.id}`,
-        }
-      : filteredRecommended
-        ? {
-            kind: "next",
-            session: filteredRecommended,
-            eyebrow: filteredRecommended.category || filteredRecommended.useCase || "Session",
-            meta: `${formatDuration(filteredRecommended.durationMin)} · ${filteredRecommended.useCase}`,
-            cta: "Start session",
-            playerPath: `/app/listener/player/${filteredRecommended.id}`,
-          }
-        : null
-    : continueFromCatalog
-      ? {
-          kind: "resume",
-          session: continueFromCatalog,
-          eyebrow: "Pick up where you left off",
-          meta: `${Math.round(continueSession.progressPct)}% · ${formatDuration(continueFromCatalog.durationMin)}`,
-          cta: "Resume",
-          playerPath: `/app/listener/player/${continueFromCatalog.id}`,
-        }
-      : recommended
-        ? {
-            kind: "next",
-            session: recommended,
-            eyebrow: "Next session",
-            meta: `${formatDuration(recommended.durationMin)} · ${recommended.useCase}`,
-            cta: "Start session",
-            playerPath: `/app/listener/player/${recommended.id}`,
-          }
+  function sessionsForMode(homeMode) {
+    return rankedLibrary.filter((s) => sessionMatchesHomeMode(s, homeMode));
+  }
+
+  function primaryForMode(homeMode) {
+    const filtered = sessionsForMode(homeMode);
+    const incomplete = filtered.filter((s) => !completedIds.has(s.id));
+    const cont =
+      continueFromCatalog && sessionMatchesHomeMode(continueFromCatalog, homeMode)
+        ? continueFromCatalog
         : null;
+    if (cont) {
+      return {
+        session: cont,
+        kind: "resume",
+        meta: `${Math.round(continueSession.progressPct)}% listened`,
+      };
+    }
+    const next = directAccess
+      ? incomplete[0] ?? filtered[0] ?? null
+      : completedIds.size === 0
+        ? incomplete.find((s) => s.id === "ses-arrive") ?? incomplete[0] ?? filtered[0] ?? null
+        : incomplete[0] ?? filtered[0] ?? null;
+    if (!next) return null;
+    return {
+      session: next,
+      kind: "next",
+      meta: formatDuration(next.durationMin),
+    };
+  }
 
-  const suggestedTitle = directAccess
-    ? categoryFilters.find((f) => f.id === activeCategoryFilter)?.label ?? "Suggested for you"
-    : "Upcoming sessions";
+  function applyMode(id, { preserveContentFade = false } = {}) {
+    if (modeFadeTimerRef.current) {
+      window.clearTimeout(modeFadeTimerRef.current);
+      modeFadeTimerRef.current = null;
+    }
+    setCategoryFilter(id);
+    setPillsOpacity(1);
+    if (!preserveContentFade) setContentOpacity(1);
+  }
 
-  const progressCard = (
-    <button
-      type="button"
-      className="w-full rounded-2xl border p-4 text-left"
-      style={{ borderColor: "var(--proto-border)", background: "var(--proto-surface)" }}
-      onClick={() => navigate("/app/listener/progress")}
-    >
-      <div className="flex items-center justify-between">
-        <p className="text-[13px] font-medium" style={{ color: "var(--proto-text-muted)" }}>
-          Progress
-        </p>
-        <p className="text-[12px]" style={{ color: "var(--proto-text)" }}>
-          {listenedDays} of {windowDays} days
-        </p>
-      </div>
-      <div
-        className="mt-3 h-1.5 overflow-hidden rounded-full"
-        style={{ background: "var(--proto-bg)" }}
-      >
-        <div
-          className="h-full rounded-full"
-          style={{ width: `${dayPct}%`, background: "var(--proto-text)" }}
-        />
-      </div>
-    </button>
-  );
-
-  const filterRow =
-    directAccess && categoryFilters.length > 0 ? (
-      <div
-        className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        role="tablist"
-        aria-label="Session filters"
-      >
-        {categoryFilters.map((filter) => {
-          const active = filter.id === activeCategoryFilter;
-          return (
-            <button
-              key={filter.id}
-              type="button"
-              role="tab"
-              aria-selected={active}
-              className="shrink-0 rounded-full px-3.5 py-1.5 text-[12px] font-medium tracking-tight transition"
-              style={
-                active
-                  ? {
-                      background: "var(--proto-text)",
-                      color: "var(--proto-bg)",
-                    }
-                  : {
-                      background: "var(--proto-surface)",
-                      color: "var(--proto-text-muted)",
-                      border: "1px solid var(--proto-border)",
-                    }
-              }
-              onClick={() => setCategoryFilter(filter.id)}
-            >
-              {filter.label}
-            </button>
-          );
-        })}
-      </div>
-    ) : null;
-
-  const heroCard = primaryHero ? (
-    <div
-      role="link"
-      tabIndex={0}
-      className={`relative cursor-pointer overflow-hidden rounded-[1.35rem] text-left outline-none focus-visible:ring-2 ${
-        isDark ? "focus-visible:ring-black/20" : "focus-visible:ring-white/40"
-      }`}
-      style={{
-        background: isDark ? "#f3f2ee" : sessionAtmosphere(mode, "detail"),
-        minHeight: heroMinHeight,
-      }}
-      onClick={() => openSessionDetail(navigate, primaryHero.session.id)}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openSessionDetail(navigate, primaryHero.session.id);
-        }
-      }}
-    >
-      <div
-        className="relative flex h-full flex-col justify-end p-5"
-        style={{ minHeight: heroMinHeight }}
-      >
-        <div>
-          <p
-            className="text-[12px] font-medium tracking-[0.04em]"
-            style={{ color: isDark ? "rgba(23,23,22,0.5)" : "rgba(255,255,255,0.55)" }}
-          >
-            {primaryHero.eyebrow}
-          </p>
-          <p
-            className="mt-2 text-[1.65rem] font-medium leading-tight tracking-tight"
-            style={{ color: isDark ? "#171716" : "#fff" }}
-          >
-            {primaryHero.session.title}
-          </p>
-          <p
-            className="mt-1.5 text-[13px]"
-            style={{ color: isDark ? "rgba(23,23,22,0.5)" : "rgba(255,255,255,0.55)" }}
-          >
-            {primaryHero.meta}
-          </p>
-          <button
-            type="button"
-            className={`mt-5 w-full rounded-xl px-5 py-3.5 text-[13px] font-medium tracking-tight transition active:scale-[0.99] ${
-              isDark
-                ? "bg-[#171716] text-[#f3f2ee] hover:bg-black"
-                : "bg-white text-black hover:bg-white/95"
-            }`}
-            onClick={(e) => {
-              e.stopPropagation();
-              navigate(primaryHero.playerPath);
-            }}
-          >
-            {primaryHero.cta}
-          </button>
-        </div>
-      </div>
-    </div>
-  ) : null;
+  /** Pill tap: fade session content, jump pager (no slide), let stage bg morph slowly. */
+  function selectModeFromPill(id) {
+    if (id === activeModeId) return;
+    if (modeFadeTimerRef.current) window.clearTimeout(modeFadeTimerRef.current);
+    setContentOpacity(0);
+    modeFadeTimerRef.current = window.setTimeout(() => {
+      applyMode(id, { preserveContentFade: true });
+      // Double rAF so the new panel paints at 0 before fading in.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => setContentOpacity(1));
+      });
+      modeFadeTimerRef.current = null;
+    }, HOME_MODE_CONTENT_FADE_MS);
+  }
 
   return (
-    <ListenerFrame mode={mode} activeTab="home" onTabChange={onTabChange}>
-      <div className="pb-4 pt-2">
-        <div className="min-w-0">
-          <AppTitle className="text-[1.25rem] leading-tight tracking-[-0.02em]">
+    <ListenerFrame
+      mode={mode}
+      activeTab="home"
+      onTabChange={onTabChange}
+      aboveTabBar={
+        <HomeModePills
+          modes={homeModes}
+          activeId={activeModeId}
+          onChange={selectModeFromPill}
+          opacity={pillsOpacity}
+        />
+      }
+      bleed
+      overlayChrome
+    >
+      <div className="relative flex h-0 min-h-full flex-col overflow-hidden">
+        {/* Stage wash crossfades slowly when the active mode changes (pill or swipe). */}
+        <HomeStageWash page={greetingTone.stage || greetingTone.page} className="z-0" />
+
+        {/* One greeting for all modes: stays put on horizontal swipe, tracks vertical scroll. */}
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 z-20 px-5 pt-5"
+          style={{
+            transform: `translateY(${-greetingScrollTop}px)`,
+            opacity: greetingOpacity,
+          }}
+          aria-hidden={greetingOpacity < 0.05}
+        >
+          <p
+            className="text-center text-[15px] font-medium tracking-tight"
+            style={{
+              color: greetingColor,
+              textShadow: "0 1px 12px rgba(0,0,0,0.35)",
+            }}
+          >
             {homeGreeting}
-          </AppTitle>
-          {homeSubtitle ? <AppBody className="mt-1.5 text-[13px]">{homeSubtitle}</AppBody> : null}
+          </p>
         </div>
 
-        {directAccess ? (
-          <div className="mt-5 space-y-4">
-            {progressCard}
-            {filterRow}
-            {heroCard}
-          </div>
-        ) : (
-          <>
-            {heroCard ? <div className="mt-5">{heroCard}</div> : null}
-            <div className="mt-4">{progressCard}</div>
-          </>
-        )}
+        <div className="relative z-10 min-h-0 flex-1">
+          <HomeModePager
+            modes={homeModes}
+            activeId={activeModeId}
+            contentOpacity={contentOpacity}
+            onChange={applyMode}
+            onActivePanelScroll={onActivePanelScroll}
+            isDark={isDark}
+            renderPanel={({
+              mode: homeMode,
+              tone,
+              active: panelActive,
+              contentOpacity: panelOpacity,
+              contentFadeMs,
+            }) => {
+              const primary = primaryForMode(homeMode);
+              const session = primary?.session;
+              const moreSessions = sessionsForMode(homeMode).filter(
+                (s) => s.id !== session?.id,
+              );
+              const contentStyle = {
+                opacity: panelOpacity,
+                transition: `opacity ${contentFadeMs}ms ease`,
+              };
+              const toneKey = homeMode?.tone || "calm";
+              // Focus light uses dark ink — keep a brighter veil so type stays legible.
+              const brightHero = toneKey === "focus" && !isDark;
 
-        <div className="mt-8">
-          <div className="mb-3 flex items-center justify-between gap-3">
-            <p className="text-[14px] font-medium" style={{ color: "var(--proto-text)" }}>
-              {suggestedTitle}
-            </p>
-            <button
-              type="button"
-              className="text-[12px] font-medium"
-              style={{ color: "var(--proto-text)" }}
-              onClick={() => navigate("/app/listener/programme")}
-            >
-              View programme
-            </button>
-          </div>
-          {filteredLibrary.length === 0 ? (
-            <p className="text-[13px]" style={{ color: "var(--proto-text-muted)" }}>
-              No sessions in this category yet.
-            </p>
-          ) : (
-            <TimeOfDaySessionList
-              sessions={filteredLibrary}
-              completedIds={completedIds}
-              navigate={navigate}
-              from="/app/listener/home"
-              prefs={directAccess ? prefs : null}
-            />
-          )}
+              return (
+                <>
+                  <div
+                    className="relative flex flex-col"
+                    style={{
+                      // First window (100cqh) + fade zone — wash-out only after scroll.
+                      height: `calc(100cqh + ${HOME_HERO_FADE_EXTRA})`,
+                      // Transparent so stage wash + video can show through.
+                      background: "transparent",
+                      cursor: session ? "pointer" : undefined,
+                    }}
+                    onClick={() => {
+                      if (session) {
+                        openSessionDrawer(session, { resume: primary?.kind === "resume" });
+                      }
+                    }}
+                  >
+                    <HomeHeroVideo toneKey={toneKey} active={panelActive} className="z-0" />
+                    {/* Mode colour tint over the blurred video */}
+                    <div
+                      className="pointer-events-none absolute inset-0 z-[1]"
+                      style={{
+                        background: tone.page,
+                        opacity: brightHero ? 0.72 : 0.52,
+                        mixBlendMode: brightHero ? "normal" : isDark ? "multiply" : "soft-light",
+                      }}
+                      aria-hidden
+                    />
+                    {/* Soft vignette so the play control stays readable */}
+                    <div
+                      className="pointer-events-none absolute inset-0 z-[1]"
+                      style={{
+                        background: brightHero
+                          ? "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 55%, rgba(0,0,0,0.12) 100%)"
+                          : "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.28) 70%, rgba(0,0,0,0.45) 100%)",
+                      }}
+                      aria-hidden
+                    />
+
+                    {/* First window tall — content dead-centered on the phone window. */}
+                    <div
+                      className="relative z-10 flex h-[100cqh] shrink-0 flex-col items-center justify-center px-5"
+                      style={contentStyle}
+                    >
+                      {session ? (
+                        <div className="flex w-full max-w-[20rem] flex-col items-center justify-center px-4 py-6 text-center">
+                          <button
+                            type="button"
+                            aria-label={`Play ${homeModeSessionTitle(session, partner)}`}
+                            className="flex h-[5.75rem] w-[5.75rem] items-center justify-center rounded-full transition active:scale-[0.97]"
+                            style={{
+                              border: `1.5px solid ${tone.playRing}`,
+                              background: tone.playFill,
+                              color: tone.ink,
+                              boxShadow: isDark
+                                ? "0 0 40px rgba(255,255,255,0.12)"
+                                : "0 0 36px rgba(255,255,255,0.35)",
+                              backdropFilter: "blur(6px)",
+                              WebkitBackdropFilter: "blur(6px)",
+                            }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (primary?.kind === "resume") {
+                                navigate(`/app/listener/player/${session.id}`);
+                              } else {
+                                openCheckInModal(session);
+                              }
+                            }}
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              className="ml-1 h-8 w-8"
+                              fill="currentColor"
+                              aria-hidden
+                            >
+                              <path d="M8.5 6.2v11.6L18.2 12 8.5 6.2z" />
+                            </svg>
+                          </button>
+
+                          <p
+                            className="mt-8 max-w-[16rem] text-[1.65rem] font-medium leading-tight tracking-tight"
+                            style={{
+                              color: tone.ink,
+                              textShadow: "0 1px 18px rgba(0,0,0,0.35)",
+                            }}
+                          >
+                            {homeModeSessionTitle(session, partner)}
+                          </p>
+                          {primary.meta ? (
+                            <p
+                              className="mt-2 text-[13px]"
+                              style={{
+                                color: tone.muted,
+                                textShadow: "0 1px 12px rgba(0,0,0,0.3)",
+                              }}
+                            >
+                              {primary.kind === "resume"
+                                ? `Resume · ${primary.meta}`
+                                : primary.meta}
+                            </p>
+                          ) : null}
+                        </div>
+                      ) : (
+                        <p className="text-[14px]" style={{ color: tone.muted }}>
+                          No sessions in this mode yet.
+                        </p>
+                      )}
+                    </div>
+                    <div
+                      className="relative z-10 shrink-0"
+                      style={{ height: HOME_HERO_FADE_EXTRA }}
+                      aria-hidden
+                    />
+                  </div>
+
+                  {moreSessions.length > 0 ? (
+                    <div
+                      className="relative z-10 -mt-24 px-5 pt-[calc(1.5rem+6rem)]"
+                      style={{
+                        // Transparent → list wash overlaps the hero so the seam dissolves.
+                        background:
+                          tone.listWash ||
+                          `linear-gradient(180deg, rgba(236,236,236,0) 0%, ${tone.list || "#ececec"} 7rem, ${tone.list || "#ececec"} 100%)`,
+                        paddingBottom: bottomPad + 16,
+                        ...contentStyle,
+                      }}
+                    >
+                      <p
+                        className="mb-4 text-[14px] font-medium"
+                        style={{ color: tone.listInk || "#171717" }}
+                      >
+                        More {homeMode.label}
+                      </p>
+                      <div className="space-y-2">
+                        {moreSessions.map((s) => {
+                          const done = completedIds.has(s.id);
+                          return (
+                            <SessionRow
+                              key={s.id}
+                              session={s}
+                              onOpen={() => openSessionDrawer(s)}
+                              meta={`${formatDuration(s.durationMin)} · ${s.useCase || s.category || "Session"}${
+                                done ? " · Done" : ""
+                              }`}
+                              right={<span />}
+                            />
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ) : null}
+                </>
+              );
+            }}
+          />
         </div>
-
-        {recent.length > 0 ? (
-          <div className="mt-8">
-            <p className="mb-3 text-[14px] font-medium" style={{ color: "var(--proto-text)" }}>
-              Recently listened
-            </p>
-            <div className="space-y-2">
-              {recent.map((entry) => {
-                const session = library.find((s) => s.id === entry.sessionId);
-                if (!session) return null;
-                const note = feedback.find((f) => f.sessionId === session.id);
-                return (
-                  <SessionRow
-                    key={`${entry.sessionId}-${entry.completedAt}`}
-                    session={session}
-                    onOpen={() => openSessionDetail(navigate, session.id)}
-                    meta={
-                      entry.progressPct >= 90
-                        ? `Completed${note ? ` · Rated ${note.rating}` : ""}`
-                        : `${Math.round(entry.progressPct)}% listened`
-                    }
-                    right={<span />}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        ) : null}
       </div>
     </ListenerFrame>
   );
@@ -645,8 +644,6 @@ export function ListenerProgramme() {
             <TimeOfDaySessionList
               sessions={programmeSessions}
               completedIds={completedIds}
-              navigate={navigate}
-              from="/app/listener/programme"
               prefs={directAccess ? onboardingPrefs ?? {} : null}
             />
           </div>
@@ -701,10 +698,7 @@ export function ListenerProgramme() {
                           borderColor: "var(--proto-border)",
                           background: "var(--proto-surface)",
                         }}
-                        onClick={() =>
-                          hasSession &&
-                          openSessionDetail(navigate, session.id, "/app/listener/programme")
-                        }
+                        onClick={() => hasSession && openSessionDrawer(session)}
                       >
                         {hasSession ? (
                           <>
@@ -828,7 +822,7 @@ export function ListenerAssigned() {
                     <button
                       type="button"
                       className="flex w-full text-left"
-                      onClick={() => openSessionDetail(navigate, session.id, "/app/listener/assigned")}
+                      onClick={() => openSessionDrawer(session)}
                     >
                       <span
                         className="w-1 shrink-0 self-stretch"
@@ -885,7 +879,91 @@ export function ListenerAssigned() {
 
 /** Backwards-compatible alias */
 export function ListenerLibrary() {
-  return <Navigate to="/app/listener/assigned" replace />;
+  const navigate = useNavigate();
+  const onTabChange = useTabNavigate();
+  const { redirect, store } = useListenerGate();
+  const [modeFilter, setModeFilter] = useState(null);
+  if (redirect) return <Navigate to={redirect} replace />;
+
+  const {
+    library,
+    listenHistory,
+    neurotypeId,
+    user,
+    partners,
+    listeners,
+    onboardingPrefs,
+  } = store;
+  const mode = modeFromNeurotype(neurotypeId);
+  const partner = resolvePartner(partners, user.partnerId);
+  const directAccess = isDirectAccessPartner(partner) || Boolean(user.isAnonymous);
+  const listenerId =
+    listeners.find((l) => l.email === user.email)?.id ??
+    listeners.find((l) => l.inviteCode === user.inviteCode)?.id;
+  const myHistory = listenerId
+    ? listenHistory.filter((h) => !h.listenerId || h.listenerId === listenerId)
+    : listenHistory;
+  const completedIds = new Set(
+    myHistory.filter((h) => h.progressPct >= 90).map((h) => h.sessionId),
+  );
+  const homeModes = resolveHomeModes(partner);
+  const preferredFilter = preferredHomeFilter(onboardingPrefs ?? {});
+  const activeModeId = homeModes.some((m) => m.id === modeFilter)
+    ? modeFilter
+    : homeModes.find((m) => m.id === preferredFilter)?.id ?? homeModes[0]?.id ?? "Calm";
+  const activeMode = homeModes.find((m) => m.id === activeModeId) ?? homeModes[0];
+  const allSessions = directAccess
+    ? rankSessionsForPreferences(library, onboardingPrefs ?? {})
+    : library;
+  const sessions = activeMode
+    ? allSessions.filter((s) => sessionMatchesHomeMode(s, activeMode))
+    : allSessions;
+
+  return (
+    <ListenerFrame mode={mode} activeTab="library" onTabChange={onTabChange}>
+      <div className="pb-6 pt-2">
+        <AppTitle className="text-[1.5rem]">Library</AppTitle>
+        <AppBody className="mt-2">
+          {directAccess
+            ? "All sessions in your programme"
+            : partner?.name
+              ? `All sessions from ${partner.name}`
+              : "All sessions in your programme"}
+        </AppBody>
+
+        <HomeModePills
+          className="mt-5"
+          modes={homeModes}
+          activeId={activeModeId}
+          onChange={setModeFilter}
+          variant="solid"
+        />
+
+        <div className="mt-5">
+          {sessions.length === 0 ? (
+            <p className="text-[13px]" style={{ color: "var(--proto-text-muted)" }}>
+              No sessions in {activeMode?.label || "this mode"} yet.
+            </p>
+          ) : (
+            <div className="space-y-2">
+              {sessions.map((session) => (
+                <SessionRow
+                  key={session.id}
+                  session={session}
+                  onOpen={() => openSessionDrawer(session)}
+                  meta={
+                    completedIds.has(session.id)
+                      ? `${formatDuration(session.durationMin)} · ${session.useCase || session.category || "Session"} · Done`
+                      : `${formatDuration(session.durationMin)} · ${session.useCase || session.category || "Session"}`
+                  }
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </ListenerFrame>
+  );
 }
 
 /** 08 · Progress - streak, weekly goal, programme, feelings, history */
@@ -1186,7 +1264,7 @@ export function ListenerProgress() {
                   <SessionRow
                     key={`${entry.sessionId}-${entry.completedAt}`}
                     session={session}
-                    onOpen={() => openSessionDetail(navigate, session.id, "/app/listener/progress")}
+                    onOpen={() => openSessionDrawer(session)}
                     meta={
                       entry.progressPct >= 90
                         ? `Completed · ${whenLabel} · ${formatDuration(session.durationMin)}`
@@ -1394,8 +1472,6 @@ export function ListenerSessionDetail() {
   const navigate = useNavigate();
   const location = useLocation();
   const { redirect, store } = useListenerGate();
-  if (redirect) return <Navigate to={redirect} replace />;
-
   const { getSession, neurotypeId } = store;
   const session = getSession(sessionId);
   const mode = modeFromNeurotype(neurotypeId);
@@ -1408,6 +1484,16 @@ export function ListenerSessionDetail() {
     }
     navigate("/app/listener/home");
   }
+
+  useEffect(() => {
+    if (redirect || !session) return undefined;
+    openSessionDrawer(session, { onClose: closeDetail });
+    return () => closeSessionDrawer();
+    // Open once per session id when the route mounts.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- intentional mount open
+  }, [sessionId, redirect]);
+
+  if (redirect) return <Navigate to={redirect} replace />;
 
   if (!session) {
     return (
@@ -1422,79 +1508,28 @@ export function ListenerSessionDetail() {
   }
 
   const sessionMode = session.mode || mode;
-  const beforeItems = sessionBeforeYouBegin(session);
 
   return (
     <ListenerFrame mode={sessionMode} hideTabBar bleed>
-      <div className="flex h-full min-h-full flex-col bg-[#f5f4f0]">
-        <div className="relative h-[42%] min-h-[280px] shrink-0 overflow-hidden bg-[#141414]">
-          <button
-            type="button"
-            className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center text-white/80"
-            aria-label="Close"
-            onClick={closeDetail}
-          >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
-              <path d="M4 4l10 10M14 4L4 14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-            </svg>
-          </button>
-
-          <div className="absolute inset-x-0 bottom-0 z-10 px-5 pb-6 pt-16">
-            <p className="text-[11px] uppercase tracking-[0.16em] text-white/50">
-              {formatDuration(session.durationMin)}
-            </p>
-            <h1 className="mt-2 text-[2rem] font-medium leading-[1.05] tracking-[-0.03em] text-white">
-              {session.title}
-            </h1>
-          </div>
-        </div>
-
-        <div className="relative z-10 flex flex-1 flex-col px-5 pb-6 pt-5">
-          <p className="text-[1.2rem] font-medium leading-snug tracking-[-0.02em] text-[#141414]">
-            {sessionHeadline(session)}
+      <div className="flex h-full min-h-full flex-col bg-[#1a1a1a]">
+        <button
+          type="button"
+          className="flex flex-1 flex-col justify-end px-5 pb-10 text-left"
+          onClick={closeDetail}
+          aria-label="Close session details"
+        >
+          <p className="text-[12px] font-medium tracking-tight text-white/45">
+            {formatDuration(session.durationMin)}
+            {session.useCase || session.category
+              ? ` · ${session.useCase || session.category}`
+              : ""}
           </p>
-          {sessionDescription(session) ? (
-            <p className="mt-2 max-w-[34ch] text-[14px] leading-relaxed text-[#6a6864]">
-              {sessionDescription(session)}
-            </p>
-          ) : null}
-
-          {beforeItems.length > 0 ? (
-            <DetailSection label="Before you begin">
-              <ul className="space-y-2">
-                {beforeItems.slice(0, 3).map((item) => (
-                  <li key={item} className="flex gap-2.5 text-[14px] leading-snug text-[#2a2a28]">
-                    <span className="mt-[0.55em] h-1 w-1 shrink-0 rounded-full bg-[#2a2a28]/40" aria-hidden />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </DetailSection>
-          ) : null}
-
-          <div className="mt-auto space-y-3 pt-8">
-            <button
-              type="button"
-              className="w-full rounded-full bg-[#111110] px-5 py-3.5 text-[14px] font-medium tracking-tight text-white"
-              onClick={() => navigate(`/app/listener/check-in/${session.id}`)}
-            >
-              Start session
-            </button>
-          </div>
-        </div>
+          <h1 className="mt-2 text-[1.75rem] font-medium leading-tight tracking-[-0.03em] text-white/90">
+            {session.title}
+          </h1>
+        </button>
       </div>
     </ListenerFrame>
-  );
-}
-
-function DetailSection({ label, children }) {
-  return (
-    <section className="mt-5 first:mt-2">
-      <div className="border-b border-[#ddd9d0] pb-1.5">
-        <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-[#9a9690]">{label}</p>
-      </div>
-      <div className="mt-3">{children}</div>
-    </section>
   );
 }
 

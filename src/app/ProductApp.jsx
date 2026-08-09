@@ -39,6 +39,7 @@ import { AdminLoginScreen } from "./screens/admin/AdminLoginScreen.jsx";
 import { AdminSetupFlow } from "./screens/admin/AdminSetupFlow.jsx";
 import { RequireAdmin, RequirePartner } from "./components/RequireRole.jsx";
 import { consumePendingReviewNav } from "./hooks/useReviewNavigate.js";
+import { FigmaCaptureScreen } from "./screens/FigmaCaptureScreen.jsx";
 
 function AdminPage({ children }) {
   return (
@@ -70,6 +71,7 @@ export default function ProductApp() {
       <AppShell>
         <Routes>
           <Route index element={<Navigate to="/app/admin/setup?step=login" replace />} />
+          <Route path="capture" element={<FigmaCaptureScreen />} />
 
           {/* Listener - phone-staged */}
           <Route path="listener" element={<ListenerStage />}>

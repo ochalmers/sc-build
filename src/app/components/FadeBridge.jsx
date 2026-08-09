@@ -6,12 +6,13 @@ import { ListenerFrame } from "./ListenerFrame.jsx";
  * (Hi Alex, session ended, see you next session, etc.).
  */
 export const FADE_BRIDGE = {
-  wordInMs: 380,
-  wordStaggerMs: 140,
-  holdAfterMs: 1100,
-  lineOutMs: 500,
-  beatGapMs: 180,
-  donePadMs: 120,
+  wordInMs: 420,
+  wordStaggerMs: 160,
+  holdAfterMs: 1200,
+  /** Long soft dissolve for Well done / see-you beats (~1.5s). */
+  lineOutMs: 1500,
+  beatGapMs: 220,
+  donePadMs: 160,
 };
 
 const DISPLAY_TYPE = "font-normal leading-[1.2] tracking-[-0.03em] text-white";

@@ -5,6 +5,7 @@ import {
   ORG_TYPE_OPTIONS,
   emptyOrganization,
   labelForOption,
+  resolveHomeModes,
 } from "../../data/catalog.js";
 import { useAppStore } from "../../context/AppStore.jsx";
 import { AppChrome } from "../../components/AppChrome.jsx";
@@ -468,6 +469,47 @@ export function AdminPartners() {
                     placeholder="Preston North End has invited you to experience Sonocea."
                   />
                 </label>
+
+                <div className="space-y-3 rounded-xl border border-white/10 bg-black/20 p-4">
+                  <div>
+                    <h4 className="text-[13px] font-medium text-white">Home mode names</h4>
+                    <p className="mt-1 text-[12px] text-white/45">
+                      Labels for the three home modes Listeners slide between. Session buckets stay
+                      Rest · Focus · Restore underneath.
+                    </p>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    {(
+                      active.homeModes?.length
+                        ? resolveHomeModes(active)
+                        : resolveHomeModes(null)
+                    ).map((mode) => (
+                      <label key={mode.id} className="block">
+                        <span className={labelClass}>{mode.id}</span>
+                        <input
+                          value={
+                            (active.homeModes ?? []).find((m) => m.id === mode.id)?.label ??
+                            mode.label
+                          }
+                          onChange={(e) => {
+                            const base = resolveHomeModes(active).map((m) => ({
+                              id: m.id,
+                              tone: m.tone,
+                              label: m.label,
+                            }));
+                            const next = base.map((m) =>
+                              m.id === mode.id ? { ...m, label: e.target.value } : m,
+                            );
+                            patch({ homeModes: next });
+                          }}
+                          className={fieldClass}
+                          placeholder={mode.id}
+                        />
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="grid gap-4 sm:grid-cols-2">
                   <label className="block">
                     <span className={labelClass}>Invite accent</span>

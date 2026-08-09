@@ -1,16 +1,23 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ModeChrome } from "../../system/components/ModeChrome.jsx";
-import { IconProfile } from "../../system/components/SampleIcons.jsx";
+import { IconAssigned, IconProfile } from "../../system/components/SampleIcons.jsx";
 import { SystemLogoMark } from "../../system/components/SystemLogoMark.jsx";
 import { appTypeClasses } from "../../system/tokens/typography.js";
 import { useAppStore } from "../context/AppStore.jsx";
 import { LISTENER_MVP_NAV } from "../../content/flows.js";
 import PinComments from "../../components/comments/PinComments.jsx";
 import { resolveAppearance } from "../utils/appearance.js";
+import { CheckInModalHost } from "./CheckInModal.jsx";
+import { SessionDrawerHost } from "./SessionDrawer.jsx";
 
 /** Fixed iPhone-class frame - content scrolls; chrome stays put. */
 export const LISTENER_FRAME = { width: 390, height: 812 };
+
+/** Space reserved above overlaid bottom chrome on Home (tabs + breathing room). */
+export const LISTENER_BOTTOM_CHROME = 96;
+/** Extra when mode pills are docked above the tab bar. */
+export const LISTENER_BOTTOM_CHROME_WITH_PILLS = 132;
 
 const DARK_APPEARANCE = {
   "--proto-bg": "#141414",
@@ -25,28 +32,38 @@ const DARK_APPEARANCE = {
 };
 
 const TAB_ICONS = {
+  library: IconAssigned,
   home: SystemLogoMark,
   profile: IconProfile,
 };
 
 /**
  * Phone-framed Listener surface. Uses design-system ModeChrome for palette.
- * Primary navigation is bottom tabs only (Home · Profile) - no top logo/menu.
- * Full page fades in (100ms) on route and in-screen step changes.
- * Pass slowEnter for a longer settle (300ms) — e.g. into session playback.
+ * Primary navigation is bottom tabs (Library · Home · Profile).
+ * Full page fades in (300ms) on route and in-screen step changes.
+ * Pass slowEnter for a slightly longer settle — e.g. into session playback.
  */
 export function ListenerFrame({
   mode = "regulation",
   children,
   footer,
+  /** Sticky strip above the bottom tabs (e.g. home mode carousel). */
+  aboveTabBar,
   hideTabBar,
   activeTab = "home",
   onTabChange,
   /** Edge-to-edge content (session detail / player) - no chrome padding. */
   bleed = false,
+  /** Prevent the phone content area from scrolling (modals). */
+  lockScroll = false,
+  /**
+   * Overlay pills + tabs on top of content with frosted gradient so the
+   * page background continues behind the bottom chrome.
+   */
+  overlayChrome = false,
   /** Extra key segment for in-screen state transitions (e.g. feedback sent). */
   screenKey,
-  /** 300ms ease-out fade instead of the default 100ms snap. */
+  /** Slightly longer ease-out fade than the default 300ms tab transition. */
   slowEnter = false,
 }) {
   const navigate = useNavigate();
@@ -62,6 +79,7 @@ export function ListenerFrame({
 
   const isDark = resolveAppearance(appearance, new Date(clock)) === "dark";
   const enterKey = `${pathname}${search}${screenKey != null ? `:${screenKey}` : ""}`;
+  const glass = Boolean(overlayChrome && !footer && !hideTabBar);
 
   function handleTabChange(id) {
     if (onTabChange) {
@@ -72,18 +90,47 @@ export function ListenerFrame({
     if (tab) navigate(tab.path);
   }
 
+  const chrome = !hideTabBar && !footer ? (
+    <div className={glass ? "pointer-events-none absolute inset-x-0 bottom-0 z-30" : "relative z-10 shrink-0"}>
+      {/* Light frost behind mode pills + tab bar — same on every home mode. */}
+      {glass ? (
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[200px]"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.78) 38%, rgba(255,255,255,0.42) 68%, rgba(255,255,255,0) 100%)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            maskImage:
+              "linear-gradient(to top, black 0%, black 48%, rgba(0,0,0,0.6) 78%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to top, black 0%, black 48%, rgba(0,0,0,0.6) 78%, transparent 100%)",
+          }}
+          aria-hidden
+        />
+      ) : null}
+
+      <div className="relative pointer-events-auto">
+        {aboveTabBar ? <div className="relative z-10">{aboveTabBar}</div> : null}
+        <ListenerTabBar
+          activeTab={activeTab}
+          onTabChange={handleTabChange}
+          glass={glass}
+          fadeAbove={!glass && !aboveTabBar}
+          isDark={isDark}
+        />
+      </div>
+    </div>
+  ) : null;
+
   return (
     <ModeChrome mode={mode} className="flex w-full justify-center">
       <PinComments scopeKey={`app:${pathname}${search}`}>
-        {/*
-          Keyed page shell - full phone fades in on route / step change
-          so Home → programme / session / profile / player reads as one transition.
-        */}
         <div
           key={enterKey}
           className={`${
             slowEnter ? "app-screen-enter-slow" : "app-screen-enter"
-          } relative flex flex-col overflow-hidden rounded-[2rem] shadow-[0_24px_80px_rgba(18,18,18,0.18)] ring-1 ring-black/5`}
+          } app-proto-surface relative flex flex-col overflow-hidden rounded-[2rem] shadow-[0_24px_80px_rgba(18,18,18,0.18)] ring-1 ring-black/5`}
           style={{
             width: LISTENER_FRAME.width,
             height: LISTENER_FRAME.height,
@@ -94,17 +141,11 @@ export function ListenerFrame({
           }}
         >
           <div
-            className={`relative h-0 min-h-0 flex-1 overflow-y-auto overscroll-contain ${
-              bleed ? "p-0" : "px-4 pb-2 pt-3"
-            }`}
+            className={`relative h-0 min-h-0 flex-1 ${
+              glass || lockScroll ? "overflow-hidden" : "overflow-y-auto overscroll-contain"
+            } ${bleed ? "p-0" : "px-4 pb-2 pt-3"}`}
           >
-            {/*
-              h-0 + flex-1 gives the scrollport a definite height so min-h-full
-              on the fill wrapper (and screen roots) can fill the phone.
-            */}
-            <div className="app-screen-enter--fill">
-              {children}
-            </div>
+            <div className="app-screen-enter--fill">{children}</div>
           </div>
 
           {footer ? (
@@ -125,16 +166,17 @@ export function ListenerFrame({
               </div>
             </div>
           ) : null}
-          {!hideTabBar && !footer ? (
-            <ListenerTabBar activeTab={activeTab} onTabChange={handleTabChange} />
-          ) : null}
+
+          {chrome}
+          <SessionDrawerHost />
+          <CheckInModalHost />
         </div>
       </PinComments>
     </ModeChrome>
   );
 }
 
-function ListenerTabBar({ activeTab, onTabChange }) {
+function ListenerTabBar({ activeTab, onTabChange, fadeAbove = true, glass = false, isDark = false }) {
   const tabs = LISTENER_MVP_NAV.map((tab) => ({
     ...tab,
     icon: TAB_ICONS[tab.id],
@@ -142,20 +184,29 @@ function ListenerTabBar({ activeTab, onTabChange }) {
 
   return (
     <div className="relative shrink-0">
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-full h-16"
-        style={{
-          background:
-            "linear-gradient(to top, var(--proto-bg) 0%, color-mix(in srgb, var(--proto-bg) 65%, transparent) 55%, transparent 100%)",
-        }}
-        aria-hidden
-      />
+      {fadeAbove ? (
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-full h-16"
+          style={{
+            background:
+              "linear-gradient(to top, var(--proto-bg) 0%, color-mix(in srgb, var(--proto-bg) 65%, transparent) 55%, transparent 100%)",
+          }}
+          aria-hidden
+        />
+      ) : null}
       <nav
-        className="flex h-[72px] items-center justify-center border-t"
-        style={{
-          borderColor: "color-mix(in srgb, var(--proto-border) 50%, transparent)",
-          background: "var(--proto-bg)",
-        }}
+        className="flex h-[72px] items-center justify-center"
+        style={
+          glass
+            ? {
+                borderTop: "none",
+                background: "transparent",
+              }
+            : {
+                borderTop: "1px solid color-mix(in srgb, var(--proto-border) 50%, transparent)",
+                background: "var(--proto-bg)",
+              }
+        }
         aria-label="Primary"
       >
         {tabs.map((tab) => {
@@ -168,7 +219,16 @@ function ListenerTabBar({ activeTab, onTabChange }) {
               onClick={() => onTabChange?.(tab.id)}
               className="flex h-full flex-1 flex-col items-center justify-center gap-1"
               aria-current={active ? "page" : undefined}
-              style={{ color: active ? "var(--proto-text)" : "var(--proto-text-muted)" }}
+              style={{
+                // Overlay home chrome stays light-mode on every Rest/Focus/Restore tab.
+                color: glass
+                  ? active
+                    ? "#111111"
+                    : "rgba(17,17,17,0.4)"
+                  : active
+                    ? "var(--proto-text)"
+                    : "var(--proto-text-muted)",
+              }}
             >
               {Icon ? (
                 <Icon className={tab.id === "home" ? "h-[22px] w-auto" : "h-[22px] w-[22px]"} />
