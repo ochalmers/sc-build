@@ -405,7 +405,7 @@ export function ListenerHome() {
                       className="pointer-events-none absolute inset-0 z-[1]"
                       style={{
                         background: tone.page,
-                        opacity: brightHero ? 0.72 : 0.52,
+                        opacity: brightHero ? 0.55 : 0.36,
                         mixBlendMode: brightHero ? "normal" : isDark ? "multiply" : "soft-light",
                       }}
                       aria-hidden
@@ -415,8 +415,8 @@ export function ListenerHome() {
                       className="pointer-events-none absolute inset-0 z-[1]"
                       style={{
                         background: brightHero
-                          ? "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 55%, rgba(0,0,0,0.12) 100%)"
-                          : "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.28) 70%, rgba(0,0,0,0.45) 100%)",
+                          ? "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.04) 55%, rgba(0,0,0,0.08) 100%)"
+                          : "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.16) 70%, rgba(0,0,0,0.3) 100%)",
                       }}
                       aria-hidden
                     />

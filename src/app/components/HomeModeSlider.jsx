@@ -144,7 +144,7 @@ export function HomeHeroVideo({
         key={src}
         className="absolute left-1/2 top-1/2 h-[145%] w-[145%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover"
         style={{
-          filter: "grayscale(1) blur(52px) brightness(0.78) contrast(1.05)",
+          filter: "grayscale(0.85) blur(28px) brightness(0.9) contrast(1.06)",
         }}
         src={src}
         muted
