@@ -1059,7 +1059,7 @@ export const DEMO_LISTENERS = [
     moodIds: ["focus", "overwhelmed"],
     supportIds: ["focus", "regulation"],
     listenTime: "afternoon",
-    appearance: "dark",
+    appearance: "light",
     notificationsEnabled: false,
     joinedAt: Date.now() - 30 * 24 * 60 * 60 * 1000,
     notes: "",

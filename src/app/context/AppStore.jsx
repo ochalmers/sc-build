@@ -15,7 +15,7 @@ import {
   sessionsForNeurotype,
 } from "../data/catalog.js";
 
-const STORAGE_KEY = "sonocea-prd-app-v8";
+const STORAGE_KEY = "sonocea-prd-app-v9";
 
 function resolveLogoSrc(src, { isPreston = false, fallback = "" } = {}) {
   return resolveBrandLogoSrc(src, { isPreston, fallback });
@@ -260,6 +260,11 @@ function loadState() {
       return Array.from(byId.values());
     })();
 
+    // Listener prototype defaults to light. Persist explicit dark only — older
+    // "adapt" sessions resolved to dark after 6pm and looked like a dark default.
+    const appearance =
+      parsed.appearance === "dark" ? "dark" : initialState.appearance;
+
     return {
       ...initialState,
       ...parsed,
@@ -270,6 +275,7 @@ function loadState() {
       listenHistory,
       sessionGroups: SESSION_GROUPS,
       catalog: mergedCatalog,
+      appearance,
     };
   } catch {
     return initialState;
@@ -345,7 +351,8 @@ function reducer(state, action) {
                   moodIds: profile.moodIds ?? [],
                   listenTime: profile.listenTime ?? null,
                 },
-                appearance: profile.appearance ?? state.appearance,
+                appearance:
+                  (profile.appearance ?? state.appearance) === "dark" ? "dark" : "light",
                 notificationsEnabled: profile.notificationsEnabled ?? state.notificationsEnabled,
               }
             : {}),

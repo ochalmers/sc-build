@@ -70,6 +70,13 @@ export function useReviewNavigate() {
             isAnonymous: Boolean(listenerCreds.isAnonymous),
           });
         }
+        // Combined-flow review should open Listener in light, not night-adapted dark.
+        if (
+          bare.startsWith("/app/listener") &&
+          !AUTH_GATE_PATHS.has(bare)
+        ) {
+          store.setAppearance?.("light");
+        }
         navigate(path);
         return;
       }

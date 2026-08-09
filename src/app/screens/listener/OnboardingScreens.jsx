@@ -447,7 +447,7 @@ export function ListenerOnboarding() {
   const [sensorySensitivity, setSensorySensitivity] = useState(null);
   const [neurodivergence] = useState(null);
   const [notificationPreference, setNotificationPreference] = useState(null);
-  const [modeChoice, setModeChoice] = useState("adapt");
+  const [modeChoice, setModeChoice] = useState("light");
   const [firstSessionStarted, setFirstSessionStarted] = useState(false);
 
   useEffect(() => {
@@ -460,9 +460,16 @@ export function ListenerOnboarding() {
     }
   }, [phaseParam]);
 
+  // Keep First-Time Experience in light until the appearance step (avoids night-time
+  // "adapt" making the whole listener review look default-dark).
+  useEffect(() => {
+    if (phase === PHASES.appearance) return;
+    setAppearance("light");
+  }, [phase, setAppearance]);
+
   useEffect(() => {
     if (phase !== PHASES.appearance) return;
-    setAppearance(modeChoice || "adapt");
+    setAppearance(modeChoice || "light");
   }, [phase, modeChoice, setAppearance]);
   const about =
     ONBOARDING_ABOUT_SLIDES[aboutStep] ?? ONBOARDING_ABOUT_SLIDES[0];
@@ -507,7 +514,7 @@ export function ListenerOnboarding() {
     } else {
       updateListenerProfile({ displayName: null, isAnonymous: true });
     }
-    setAppearance(modeChoice || "adapt");
+    setAppearance(modeChoice || "light");
     // Pathway mode only - never derived from neurodivergence / sensory answers.
     setNeurotype("supported");
     completeOnboarding();
@@ -995,7 +1002,7 @@ export function ListenerOnboarding() {
 
   // 09 · Appearance
   if (phase === PHASES.appearance) {
-    const selected = modeChoice || "adapt";
+    const selected = modeChoice || "light";
     const period = adaptPeriodLabel();
     const beginMode = adaptBeginModeLabel();
     const topBarDark = resolveAppearance(selected) === "dark";
@@ -1085,7 +1092,7 @@ export function ListenerOnboarding() {
       catalog?.[0] ??
       null;
     const readyCopy = personalisedReadyCopy(readyPrefs, session);
-    const topBarDark = resolveAppearance(modeChoice || "adapt") === "dark";
+    const topBarDark = resolveAppearance(modeChoice || "light") === "dark";
     let i = 0;
     return (
       <ListenerFrame
