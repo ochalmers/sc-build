@@ -16,7 +16,6 @@ import {
   rankSessionsForPreferences,
 } from "../../data/catalog.js";
 import { useAppStore } from "../../context/AppStore.jsx";
-import { openCheckInModal } from "../../components/CheckInModal.jsx";
 import { ListenerFrame } from "../../components/ListenerFrame.jsx";
 import { PartnerBrandMark } from "../../components/PartnerBrandMark.jsx";
 import { AppBody, AppButton, AppEyebrow, AppField, AppTitle } from "../../components/ui.jsx";
@@ -414,6 +413,7 @@ export function ListenerOnboarding() {
     onboardingComplete,
     neurotypeId,
     onboardingPrefs,
+    appearance,
     completeOnboarding,
     setNeurotype,
     setOnboardingPrefs,
@@ -464,8 +464,9 @@ export function ListenerOnboarding() {
   // "adapt" making the whole listener review look default-dark).
   useEffect(() => {
     if (phase === PHASES.appearance) return;
+    if (appearance === "light") return;
     setAppearance("light");
-  }, [phase, setAppearance]);
+  }, [phase, appearance, setAppearance]);
 
   useEffect(() => {
     if (phase !== PHASES.appearance) return;
@@ -561,22 +562,33 @@ export function ListenerOnboarding() {
     });
   }
 
+  function ensureReadyToLeaveOnboarding() {
+    if (!neurotypeId) setNeurotype("supported");
+    if (!onboardingComplete) completeOnboarding();
+  }
+
   function beginFirstSession() {
     const prefs = persistPrefs({ firstSessionStarted: true });
     setFirstSessionStarted(true);
     if (prefs.preferredName) {
       updateListenerProfile({ displayName: prefs.preferredName, isAnonymous: false });
     }
+    ensureReadyToLeaveOnboarding();
     const first =
       rankSessionsForPreferences(catalog ?? [], prefs)[0] ??
       catalog?.find((s) => s.id === "ses-arrive") ??
       catalog?.[0];
-    navigate("/app/listener/home", { replace: true });
-    if (first) openCheckInModal(first);
+    // Defer check-in to Home so it mounts on a live ListenerFrame host
+    // (opening here is wiped when this screen unmounts).
+    navigate("/app/listener/home", {
+      replace: true,
+      state: first ? { openCheckInSessionId: first.id } : undefined,
+    });
   }
 
   function goToHome() {
     persistPrefs({ firstSessionStarted: false });
+    ensureReadyToLeaveOnboarding();
     navigate("/app/listener/home", { replace: true });
   }
 

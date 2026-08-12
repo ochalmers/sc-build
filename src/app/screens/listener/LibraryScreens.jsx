@@ -176,6 +176,7 @@ function preferredHomeFilter(prefs = {}) {
 /** 03 · Home — swipeable modes with thumb-reach pills */
 export function ListenerHome() {
   const navigate = useNavigate();
+  const location = useLocation();
   const onTabChange = useTabNavigate();
   const { redirect, store } = useListenerGate();
   const [categoryFilter, setCategoryFilter] = useState(null);
@@ -183,6 +184,7 @@ export function ListenerHome() {
   const [greetingScrollTop, setGreetingScrollTop] = useState(0);
   const [contentOpacity, setContentOpacity] = useState(1);
   const modeFadeTimerRef = useRef(null);
+  const pendingCheckInId = location.state?.openCheckInSessionId;
 
   const onActivePanelScroll = useCallback(({ scrollTop }) => {
     setGreetingScrollTop((prev) => (Math.abs(prev - scrollTop) < 0.5 ? prev : scrollTop));
@@ -200,6 +202,25 @@ export function ListenerHome() {
     },
     [],
   );
+
+  // First-session Begin hands off a session id — open check-in after this frame mounts.
+  useEffect(() => {
+    if (redirect || !pendingCheckInId) return undefined;
+    const session = store.catalog?.find((s) => s.id === pendingCheckInId);
+    if (!session) return undefined;
+    let cancelled = false;
+    const frame = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        if (cancelled) return;
+        openCheckInModal(session);
+        navigate(".", { replace: true, state: null });
+      });
+    });
+    return () => {
+      cancelled = true;
+      window.cancelAnimationFrame(frame);
+    };
+  }, [redirect, pendingCheckInId, store.catalog, navigate]);
 
   if (redirect) return <Navigate to={redirect} replace />;
 

@@ -466,6 +466,7 @@ function reducer(state, action) {
       const raw = action.payload;
       const appearance =
         raw === "dark" || raw === "adapt" ? raw : "light";
+      if (state.appearance === appearance) return state;
       return {
         ...state,
         appearance,
