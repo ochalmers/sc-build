@@ -175,3 +175,18 @@ body{
   }
 }
 
+/* Copy deck → Print / Save as PDF */
+@media print{
+  header.fixed,
+  .print\\:hidden{
+    display:none!important;
+  }
+  body{
+    background:#fff!important;
+    color:#111!important;
+  }
+  main{
+    padding-top:0!important;
+  }
+}
+

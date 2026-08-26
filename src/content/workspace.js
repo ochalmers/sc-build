@@ -135,13 +135,18 @@ export const WORKSPACE_PAGES = {
     path: "/copy",
     navLabel: "Copy",
     eyebrow: "Content Ops",
-    title: "Marketing Copy Breakdown",
-    description: "Flow-by-flow messaging, CTA intent, and review status for launch copy.",
-    purpose: "Align product, design, and marketing on screen-level messaging before ship.",
+    title: "Listener journey copy",
+    description:
+      "Listener-facing strings from invitation through the listening loop — editable Markdown plus print-to-PDF.",
+    purpose: "Align product, design, and content on screen-level messaging before ship.",
     introId: "copy-intro",
     sections: [
-      { id: "copy-public-visitor", label: "Public Visitor", title: "Public Visitor Funnel" },
-      { id: "copy-listener-onboarding", label: "Listener", title: "Invitation + Onboarding" },
+      { id: "copy-invite", label: "01 Invite", title: "Invitation & authentication" },
+      { id: "copy-fte", label: "02 FTE", title: "First-time experience" },
+      { id: "copy-home", label: "03 Home", title: "Home" },
+      { id: "copy-programme", label: "04 Programme", title: "Programme & library" },
+      { id: "copy-session", label: "05–07 Session", title: "Session, playback & reflection" },
+      { id: "copy-account", label: "08–11 Account", title: "Progress, organisation, profile & support" },
     ],
   },
 

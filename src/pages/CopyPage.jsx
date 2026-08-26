@@ -4,45 +4,75 @@ import PageSection from "../components/workspace/PageSection.jsx";
 import { PAGE_MAIN } from "../components/workspace/pageLayout.js";
 import { COPY_HERO, COPY_SECTIONS } from "../content/copy.js";
 
-function CopyCards({ entries }) {
+function CopyScreenCard({ screen }) {
   return (
-    <div className="grid gap-4 md:grid-cols-2">
-      {entries.map((entry) => (
-        <article key={entry.screen} className="rounded-2xl border border-ink-200/80 bg-white/60 p-5">
-          <p className="text-[10px] font-medium uppercase tracking-[0.14em] text-ink-500">{entry.screen}</p>
-          <p className="mt-2 text-[13px] leading-relaxed text-ink-700">{entry.goal}</p>
-          <dl className="mt-4 space-y-2 text-[12px] text-ink-600">
-            <div>
-              <dt className="inline font-medium text-ink-800">Primary CTA:</dt>{" "}
-              <dd className="inline">{entry.primary}</dd>
-            </div>
-            <div>
-              <dt className="inline font-medium text-ink-800">Secondary CTA:</dt>{" "}
-              <dd className="inline">{entry.secondary}</dd>
-            </div>
-          </dl>
-          <p className="mt-4 text-[12px] leading-relaxed text-ink-500">{entry.notes}</p>
-        </article>
-      ))}
-    </div>
+    <article className="rounded-2xl border border-ink-200/80 bg-white/70 p-5 print:break-inside-avoid print:border-ink-300 print:bg-white">
+      <div className="flex flex-wrap items-baseline justify-between gap-2">
+        <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-ink-500">
+          {screen.screen}
+        </p>
+        {screen.path ? (
+          <p className="font-mono text-[11px] text-ink-400 print:text-ink-500">{screen.path}</p>
+        ) : null}
+      </div>
+      <dl className="mt-4 space-y-3">
+        {screen.fields.map((field) => (
+          <div key={`${screen.id}-${field.label}`}>
+            <dt className="text-[10px] font-medium uppercase tracking-[0.12em] text-ink-500">
+              {field.label}
+            </dt>
+            <dd className="mt-1 text-[14px] leading-relaxed text-ink-800">{field.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </article>
   );
 }
 
 export default function CopyPage() {
   return (
     <SiteChrome>
-      <main className={PAGE_MAIN}>
-        <PageHero id="copy-intro" title={COPY_HERO.title} description={COPY_HERO.intro} withGradient />
+      <main className={`${PAGE_MAIN} print:max-w-none print:px-0`}>
+        <div className="print:hidden">
+          <PageHero id="copy-intro" title={COPY_HERO.title} description={COPY_HERO.intro} withGradient />
+          <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-3 px-6 pb-2 md:px-10">
+            <button
+              type="button"
+              onClick={() => window.print()}
+              className="rounded-full bg-ink-950 px-4 py-2 text-[13px] font-medium text-white transition hover:bg-ink-800"
+            >
+              Print / Save as PDF
+            </button>
+            <p className="text-[12px] text-ink-500">
+              Full editable deck (every option string):{" "}
+              <code className="rounded bg-ink-100 px-1.5 py-0.5 text-[11px]">
+                docs/listener-journey-copy.md
+              </code>
+            </p>
+          </div>
+        </div>
+
+        <div className="hidden print:block print:mb-8">
+          <h1 className="text-2xl font-medium tracking-tight text-ink-950">Listener journey copy</h1>
+          <p className="mt-2 max-w-2xl text-[13px] leading-relaxed text-ink-600">
+            Listener-facing only. Dynamic placeholders shown as {"{Name}"}, {"{Partner}"}, etc.
+          </p>
+        </div>
+
         {COPY_SECTIONS.map((section, index) => (
           <PageSection
             key={section.id}
             id={section.id}
-            label={section.label}
+            label={`${section.number} · Listener`}
             title={section.title}
             description={section.description}
             className={index === COPY_SECTIONS.length - 1 ? "border-b-0" : ""}
           >
-            <CopyCards entries={section.entries} />
+            <div className="grid gap-4 md:grid-cols-2 print:grid-cols-1">
+              {section.screens.map((screen) => (
+                <CopyScreenCard key={screen.id} screen={screen} />
+              ))}
+            </div>
           </PageSection>
         ))}
       </main>
