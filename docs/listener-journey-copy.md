@@ -2,8 +2,8 @@
 
 **Audience:** product, design, content  
 **Scope:** Listener-facing only (invitation → listening loop). Admin provisioning is out of scope.  
-**How to edit:** Change the strings in this file. The live app still holds its own UI strings — treat this as the review / handoff source until we wire screens to a shared copy module.  
-**PDF:** [`docs/listener-journey-copy.pdf`](./listener-journey-copy.pdf) (also downloadable from [/listener-journey-copy.pdf](/listener-journey-copy.pdf)). Re-export after edits: `npm run export:copy-pdf`.
+**How to edit:** Prefer the Word file on Google Drive (upload → Open with Google Docs). Source of truth in-repo: this Markdown. Live app strings are still separate until wired to a shared copy module.  
+**Exports:** [`listener-journey-copy.docx`](./listener-journey-copy.docx) (Drive) · [`listener-journey-copy.pdf`](./listener-journey-copy.pdf). Re-export: `npm run export:copy-pdf`.
 
 Dynamic bits are shown as `{Name}`, `{Partner}`, `{N}`, etc.
 
