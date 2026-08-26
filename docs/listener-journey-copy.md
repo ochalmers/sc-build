@@ -3,7 +3,7 @@
 **Audience:** product, design, content  
 **Scope:** Listener-facing only (invitation → listening loop). Admin provisioning is out of scope.  
 **How to edit:** Change the strings in this file. The live app still holds its own UI strings — treat this as the review / handoff source until we wire screens to a shared copy module.  
-**PDF:** Open the in-app [Copy](/copy) page → Print → Save as PDF.
+**PDF:** [`docs/listener-journey-copy.pdf`](./listener-journey-copy.pdf) (also downloadable from [/listener-journey-copy.pdf](/listener-journey-copy.pdf)). Re-export after edits: `npm run export:copy-pdf`.
 
 Dynamic bits are shown as `{Name}`, `{Partner}`, `{N}`, etc.
 

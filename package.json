@@ -9,7 +9,8 @@
     "build:single": "vite build",
     "preview": "vite preview",
     "paper:app-ds": "node scripts/generate-paper-app-ds-frames.mjs",
-    "paper:mobile": "node scripts/generate-paper-behavioural-mobile.mjs"
+    "paper:mobile": "node scripts/generate-paper-behavioural-mobile.mjs",
+    "export:copy-pdf": "node scripts/export-listener-copy-pdf.mjs"
   },
   "dependencies": {
     "@vercel/blob": "^2.6.1",

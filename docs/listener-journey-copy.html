@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Sonocea — Listener journey copy</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    color: #1a1a1a;
+  }
+  h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 8pt;
+    page-break-after: avoid;
+  }
+  h2 {
+    font-size: 14pt;
+    font-weight: 700;
+    margin: 22pt 0 10pt;
+    padding-top: 8pt;
+    border-top: 1.5pt solid #1a1a1a;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 11.5pt;
+    font-weight: 700;
+    margin: 16pt 0 6pt;
+    page-break-after: avoid;
+  }
+  p { margin: 0 0 8pt; }
+  strong { font-weight: 650; }
+  hr {
+    border: none;
+    border-top: 0.5pt solid #ccc;
+    margin: 16pt 0;
+  }
+  ul, ol {
+    margin: 0 0 10pt;
+    padding-left: 18pt;
+  }
+  li { margin: 0 0 3pt; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 12pt;
+    font-size: 9.5pt;
+  }
+  thead { display: table-header-group; }
+  tr { page-break-inside: avoid; }
+  th, td {
+    border: 0.5pt solid #bbb;
+    padding: 5pt 7pt;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #f3f3f3;
+    font-weight: 650;
+  }
+  th:first-child, td:first-child { width: 28%; }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 8.5pt;
+    background: #f4f4f4;
+    padding: 1pt 3pt;
+  }
+  a { color: inherit; text-decoration: none; }
+</style>
+</head>
+<body>
+<h1>Listener journey — copy deck</h1>
+<p><strong>Audience:</strong> product, design, content<br><strong>Scope:</strong> Listener-facing only (invitation → listening loop). Admin provisioning is out of scope.<br><strong>How to edit:</strong> Change the strings in this file. The live app still holds its own UI strings — treat this as the review / handoff source until we wire screens to a shared copy module.<br><strong>PDF:</strong> <a href="./listener-journey-copy.pdf"><code>docs/listener-journey-copy.pdf</code></a> (also downloadable from <a href="/listener-journey-copy.pdf">/listener-journey-copy.pdf</a>). Re-export after edits: <code>npm run export:copy-pdf</code>.</p>
+<p>Dynamic bits are shown as <code>{Name}</code>, <code>{Partner}</code>, <code>{N}</code>, etc.</p>
+<hr>
+<h2>01 · Invitation &amp; authentication</h2>
+<h3>Invitation email</h3>
+<p><strong>Path:</strong> <code>/app/listener/email</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Eyebrow</td>
+<td>Invitation</td>
+</tr>
+<tr>
+<td>Subject / title</td>
+<td>You’re invited to Sonocea</td>
+</tr>
+<tr>
+<td>Meta</td>
+<td>From {Partner|Sonocea} · Today</td>
+</tr>
+<tr>
+<td>Headline (partner)</td>
+<td>{Partner} has invited you to experience Sonocea.</td>
+</tr>
+<tr>
+<td>Headline (direct)</td>
+<td>You’re invited to experience Sonocea.</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Sonocea uses patented Sonic Augmentation Technology™ to create structured listening experiences designed to support regulation, recovery and wellbeing.</td>
+</tr>
+<tr>
+<td>Primary CTA</td>
+<td>Get started</td>
+</tr>
+</tbody></table>
+<p><strong>Partner invite line examples</strong></p>
+<ul>
+<li>Haven Care Network has invited you to experience Sonocea.</li>
+<li>Summit Performance Lab has invited you to experience Sonocea.</li>
+<li>Wigan Athletic has invited you to experience Sonocea.</li>
+<li>Loughborough Sport has invited you to experience Sonocea.</li>
+<li>Preston North End has invited you to experience Sonocea.</li>
+<li>You’re invited to experience Sonocea. <em>(direct / anonymous)</em></li>
+</ul>
+<h3>App Store</h3>
+<p><strong>Path:</strong> <code>/app/listener/app-store</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>App name</td>
+<td>Sonocea</td>
+</tr>
+<tr>
+<td>Tagline</td>
+<td>Guided listening for recovery</td>
+</tr>
+<tr>
+<td>Developer</td>
+<td>Sonocea Ltd</td>
+</tr>
+<tr>
+<td>Primary CTA</td>
+<td>Get</td>
+</tr>
+<tr>
+<td>Micro</td>
+<td>In-App Purchases</td>
+</tr>
+<tr>
+<td>What’s New (partner)</td>
+<td>Join partner-led listening programmes. Short headphone sessions for recovery and regulation - invited by your organisation.</td>
+</tr>
+<tr>
+<td>What’s New (direct)</td>
+<td>Personalised listening from a Sonocea invite. Short headphone sessions shaped around what you share when you join.</td>
+</tr>
+</tbody></table>
+<h3>Welcome</h3>
+<p><strong>Path:</strong> <code>/app/listener/invite</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Headline</td>
+<td>Welcome to Sonocea.</td>
+</tr>
+<tr>
+<td>Body (partner)</td>
+<td>{Partner} has invited you to experience Sonocea. We’ll help you get set up, then you can start listening.</td>
+</tr>
+<tr>
+<td>Body (direct)</td>
+<td>We’ll ask a few questions so your home and sessions match what you need, then you can start listening.</td>
+</tr>
+<tr>
+<td>Primary CTA</td>
+<td>Let’s get started</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>Already set up? Sign in</td>
+</tr>
+</tbody></table>
+<h3>Sign in</h3>
+<p><strong>Path:</strong> <code>/app/listener/login</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Welcome back</td>
+</tr>
+<tr>
+<td>Body (email)</td>
+<td>Sign in with the email from your organisation.</td>
+</tr>
+<tr>
+<td>Body (anonymous)</td>
+<td>Sign in with your invite code - your name and email stay private in the app.</td>
+</tr>
+<tr>
+<td>Toggle</td>
+<td>Need to stay anonymous? ↔ Using private sign-in</td>
+</tr>
+<tr>
+<td>Fields</td>
+<td>Email · Invite code · Password · Access password</td>
+</tr>
+<tr>
+<td>Primary CTA</td>
+<td>Continue</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>Open invitation instead</td>
+</tr>
+<tr>
+<td>Error</td>
+<td>Invite or credentials not recognised. Try the demo account.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>02 · First-time experience</h2>
+<p><strong>Path:</strong> <code>/app/listener/onboarding?phase=…</code></p>
+<h3>Loading</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Micro</td>
+<td>Loading</td>
+</tr>
+</tbody></table>
+<h3>Preferred name</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>What should we call you?</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>We’ll use this when we say hello. A first name or nickname is perfect.</td>
+</tr>
+<tr>
+<td>Placeholder</td>
+<td>Your name</td>
+</tr>
+<tr>
+<td>Primary CTA</td>
+<td>Continue</td>
+</tr>
+</tbody></table>
+<h3>Welcome bridge</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Phrases</td>
+<td>Hi, {Name}. / Hi. → A little about us…</td>
+</tr>
+</tbody></table>
+<h3>About Sonocea (4 slides)</h3>
+<p><strong>1 · Experience</strong>  </p>
+<ul>
+<li>Title: Listening, designed differently  </li>
+<li>Body: Sonocea uses structured sound to create listening experiences designed around how your nervous system responds to what you hear.  </li>
+<li>CTA: Next</li>
+</ul>
+<p><strong>2 · Purpose</strong>  </p>
+<ul>
+<li>Title: Made for the moments that matter  </li>
+<li>Body: Choose sessions based on what you need, from feeling calmer and more settled to supporting focus, recovery, rest or preparation for sleep.  </li>
+<li>CTA: Next</li>
+</ul>
+<p><strong>3 · Science</strong>  </p>
+<ul>
+<li>Title: Built on science  </li>
+<li>Body: Sonocea is grounded in research into how sound and the nervous system interact. Our Sonic Augmentation Technology™ uses structured sound to create listening experiences for specific states and outcomes.  </li>
+<li>CTA: Next</li>
+</ul>
+<p><strong>4 · Listening</strong>  </p>
+<ul>
+<li>Title: Nothing to learn. Just listen.  </li>
+<li>Body: You don’t need to follow instructions or get anything right. Put on your headphones, get comfortable and give the session your attention.  </li>
+<li>Checklist:  <ul>
+<li>Wear headphones — Use both ears and choose a comfortable volume.  </li>
+<li>Get comfortable — Sit or lie somewhere you can relax.  </li>
+<li>Give yourself the time — Try to listen without interruption until the session ends.</li>
+</ul>
+</li>
+<li>CTA: I&#39;m ready</li>
+</ul>
+<h3>Personalise intro</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Phrase</td>
+<td>Now let’s learn more about you…</td>
+</tr>
+</tbody></table>
+<h3>Goals</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>What would you like Sonocea to help with?</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>This helps us understand what matters to you and recommend sessions that feel more relevant.</td>
+</tr>
+<tr>
+<td>Options</td>
+<td>Feeling calmer · Recovering and resetting · Staying focused · Feeling more balanced · Sleeping better · General wellbeing</td>
+</tr>
+<tr>
+<td>CTA</td>
+<td>Next</td>
+</tr>
+</tbody></table>
+<h3>Moments</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>When might Sonocea be useful to you?</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Think about the moments when you might want a little support. This helps us understand when different sessions could be most useful.</td>
+</tr>
+<tr>
+<td>Options</td>
+<td>When I feel overwhelmed · When I feel unsettled · When I need to reset · When I’m recovering · When I need to focus · When I’m winding down · When I want some time to myself</td>
+</tr>
+<tr>
+<td>CTA</td>
+<td>Next</td>
+</tr>
+</tbody></table>
+<h3>Sensory sensitivity</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>How sensitive are you to your surroundings?</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Everyone responds differently to sound, visuals and their surroundings. This helps us tailor how your sessions look and feel.</td>
+</tr>
+<tr>
+<td>Options</td>
+<td>Not particularly sensitive · Sometimes sensitive · Quite sensitive · Very sensitive · It varies</td>
+</tr>
+<tr>
+<td>Primary</td>
+<td>Next</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>Skip</td>
+</tr>
+</tbody></table>
+<h3>Listening time</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>When would listening fit into your day?</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Choose the times that feel most natural for you. We’ll use this to make your experience and reminders more useful.</td>
+</tr>
+<tr>
+<td>Options</td>
+<td>Morning · Afternoon · Evening · Before bed · No particular time</td>
+</tr>
+<tr>
+<td>CTA</td>
+<td>Next</td>
+</tr>
+</tbody></table>
+<h3>Notifications</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Would you like us to remind you?</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>We can send gentle reminders around the times you’ve chosen, so it’s easier to make time for your sessions.</td>
+</tr>
+<tr>
+<td>Card title</td>
+<td>Session reminders</td>
+</tr>
+<tr>
+<td>Card body</td>
+<td>Helpful prompts around the times that work for you. You can change these anytime in Profile.</td>
+</tr>
+<tr>
+<td>Primary</td>
+<td>Allow notifications</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>Not now</td>
+</tr>
+</tbody></table>
+<h3>Appearance</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>How would you like Sonocea to feel?</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Choose an appearance that feels right for you, or let Sonocea adapt throughout the day.</td>
+</tr>
+<tr>
+<td>Light</td>
+<td>Bright and clear throughout the day.</td>
+</tr>
+<tr>
+<td>Dark</td>
+<td>A softer, darker listening environment.</td>
+</tr>
+<tr>
+<td>Adapt</td>
+<td>Light during the day. Dark when it gets later. <em>(badge: Recommended)</em></td>
+</tr>
+<tr>
+<td>Adapt micro</td>
+<td>It&#39;s {daytime|evening} where you are, so Sonocea will begin in {Light|Dark}.</td>
+</tr>
+<tr>
+<td>Footer</td>
+<td>You can change this anytime.</td>
+</tr>
+<tr>
+<td>CTA</td>
+<td>Next</td>
+</tr>
+</tbody></table>
+<h3>Preparing</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Preparing your first session, {Name} / Preparing your first session…</td>
+</tr>
+</tbody></table>
+<h3>Ready to listen</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title patterns</td>
+<td>{A morning session | An afternoon session | An evening session | A wind-down session | Your first session} is ready{, {Name}}.</td>
+</tr>
+<tr>
+<td>Body (with goal)</td>
+<td>Matched to {goal}, for the times you said you’d listen. Begin when you’re ready.</td>
+</tr>
+<tr>
+<td>Body (no goal)</td>
+<td>Everything is set. If you’re comfortable, you can begin your first Sonocea session now.</td>
+</tr>
+<tr>
+<td>Session meta</td>
+<td>{N} min</td>
+</tr>
+<tr>
+<td>Primary</td>
+<td>Begin</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>Not right now</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>03 · Home</h2>
+<p><strong>Path:</strong> <code>/app/listener/home</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Greeting</td>
+<td>Good morning{, {Name}} / Good afternoon{, {Name}} / Good evening{, {Name}}</td>
+</tr>
+<tr>
+<td>Mode pills (default)</td>
+<td>Rest · Focus · Restore</td>
+</tr>
+<tr>
+<td>Hero meta (next)</td>
+<td>{duration}</td>
+</tr>
+<tr>
+<td>Hero meta (resume)</td>
+<td>Resume · {N}% listened</td>
+</tr>
+<tr>
+<td>List section</td>
+<td>More {Rest|Focus|Restore}</td>
+</tr>
+<tr>
+<td>Row meta</td>
+<td>{duration} · {useCase}{ · Done}</td>
+</tr>
+<tr>
+<td>Empty</td>
+<td>No sessions in this mode yet.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>04 · Programme / Library</h2>
+<h3>Programme</h3>
+<p><strong>Path:</strong> <code>/app/listener/programme</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Your programme / Your sessions <em>(direct)</em></td>
+</tr>
+<tr>
+<td>Tabs</td>
+<td>List · Calendar</td>
+</tr>
+<tr>
+<td>About Sonocea</td>
+<td>Sonocea uses patented Sonic Augmentation Technology™ to deliver structured listening experiences designed to support nervous system regulation, recovery and wellbeing.</td>
+</tr>
+<tr>
+<td>Programme fallback</td>
+<td>Your organisation has shared a set of listening sessions to support recovery and wellbeing.</td>
+</tr>
+<tr>
+<td>Direct body</td>
+<td>Session order and suggestions follow the goals, moments, and times you shared in onboarding. You can listen in any order that fits.</td>
+</tr>
+</tbody></table>
+<h3>Library</h3>
+<p><strong>Path:</strong> <code>/app/listener/library</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Library</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>All sessions from {Partner} / All sessions in your programme</td>
+</tr>
+<tr>
+<td>Empty</td>
+<td>No sessions in {mode} yet.</td>
+</tr>
+</tbody></table>
+<h3>Saved (stub)</h3>
+<p><strong>Path:</strong> <code>/app/listener/favorites</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Saved</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Favorites aren’t in this build yet - they’ll land in a later version.</td>
+</tr>
+<tr>
+<td>Card</td>
+<td>Coming later — You’ll be able to save sessions from your list and find them here quickly.</td>
+</tr>
+<tr>
+<td>CTA</td>
+<td>Browse your sessions</td>
+</tr>
+</tbody></table>
+<h3>Partner programme titles (listener-visible)</h3>
+<table>
+<thead>
+<tr>
+<th>Organisation</th>
+<th>Title</th>
+<th>Body</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Haven</td>
+<td>Gentle Recovery</td>
+<td>Gentle recovery sessions for when things feel a lot - paced and supportive.</td>
+</tr>
+<tr>
+<td>Summit</td>
+<td>Between-Block Reset</td>
+<td>Short reset sessions for recovery between busy or demanding days.</td>
+</tr>
+<tr>
+<td>Wigan</td>
+<td>Matchday Recovery</td>
+<td>Listening sessions for academy and first-team recovery around the match week.</td>
+</tr>
+<tr>
+<td>Loughborough</td>
+<td>Campus Calm</td>
+<td>Short regulation sessions for student-athletes between training and study.</td>
+</tr>
+<tr>
+<td>Preston North End</td>
+<td>Post-Training Recovery</td>
+<td>Preston North End has shared a curated Post-Training Recovery programme — short headphone sessions for academy and first-team players after training, between fixtures, and on rest days.</td>
+</tr>
+<tr>
+<td>Direct</td>
+<td>Your personalised programme</td>
+<td>A listening programme shaped around what you share in onboarding — goals, moments, and when you listen.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>05 · Session journey</h2>
+<h3>Session drawer</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Meta</td>
+<td>{duration} · {mode|useCase}</td>
+</tr>
+<tr>
+<td>Title</td>
+<td>{Rest|Focus|Restore} Session {N}</td>
+</tr>
+<tr>
+<td>Section</td>
+<td>Before you begin</td>
+</tr>
+<tr>
+<td>Default prep</td>
+<td>Use headphones · Get comfortable · Give yourself a few uninterrupted minutes</td>
+</tr>
+<tr>
+<td>Primary</td>
+<td>Start session / Resume session</td>
+</tr>
+</tbody></table>
+<h3>Session catalogue</h3>
+<table>
+<thead>
+<tr>
+<th>Session</th>
+<th>Headline</th>
+<th>Description</th>
+<th>Before you begin</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Session 1</td>
+<td>Ease into the start of your day.</td>
+<td>For when you’re arriving and want a gentle way to settle before things get going.</td>
+<td>Use headphones · Get comfortable · Best at the start of your day</td>
+</tr>
+<tr>
+<td>Session 2</td>
+<td>Find a quieter moment.</td>
+<td>For moments when things feel busy and you’d like some space before carrying on.</td>
+<td>Use headphones · Find somewhere comfortable · Give yourself a few uninterrupted minutes</td>
+</tr>
+<tr>
+<td>Session 3</td>
+<td>Find a little more space to focus.</td>
+<td>For when you want to settle in before concentrating on what’s ahead.</td>
+<td>Use headphones · Sit comfortably · Best before focused activity</td>
+</tr>
+<tr>
+<td>Session 4</td>
+<td>Clear a little space to think.</td>
+<td>For mid-morning moments when you’d like to gather yourself before the next thing.</td>
+<td>Use headphones · Sit or lie comfortably · Best when you have some quiet time</td>
+</tr>
+<tr>
+<td>Session 5</td>
+<td>Give yourself a moment to reset.</td>
+<td>For when you’ve finished something demanding and want some time to recover.</td>
+<td>Use headphones · Get comfortable · Best between demanding blocks</td>
+</tr>
+<tr>
+<td>Session 6</td>
+<td>Leave the day behind.</td>
+<td>For moments when you want to slow things down and take some time for yourself.</td>
+<td>Use headphones · Get comfortable · Best later in the day</td>
+</tr>
+<tr>
+<td>Session 7</td>
+<td>Settle into a slower pace.</td>
+<td>For when you’re ready to switch off, recover and prepare for rest.</td>
+<td>Use headphones · Get comfortable · Best later in the day</td>
+</tr>
+<tr>
+<td>Session 8</td>
+<td>Move gently from one thing to the next.</td>
+<td>For when you’re changing pace and want a clean moment between what’s been and what’s next.</td>
+<td>Use headphones · Find somewhere comfortable · Best at a natural pause</td>
+</tr>
+<tr>
+<td>Session 9</td>
+<td>Make a little room for yourself.</td>
+<td>For when you’d like some quiet space alongside other support in your day.</td>
+<td>Use headphones · Sit or lie comfortably · Best when you have some quiet time</td>
+</tr>
+<tr>
+<td>Session 10</td>
+<td>Close the day gently.</td>
+<td>For a short moment before bed when you’re ready to settle for the night.</td>
+<td>Use headphones · Get comfortable · Best later in the day</td>
+</tr>
+</tbody></table>
+<h3>Before check-in</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Before you begin, tell us how you’re feeling</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Choose what feels closest. We’ll ask you again after the session so you can notice if anything has changed.</td>
+</tr>
+<tr>
+<td>Slider idle</td>
+<td>Slide to check in</td>
+</tr>
+<tr>
+<td>Ends</td>
+<td>Unsettled · Settled</td>
+</tr>
+<tr>
+<td>Labels 1–5</td>
+<td>Unsettled · A little unsettled · Neutral · Settled · Very settled</td>
+</tr>
+<tr>
+<td>Note</td>
+<td>Add note / Anything you’d like to note? (Optional)</td>
+</tr>
+<tr>
+<td>Placeholder</td>
+<td>A few words is enough…</td>
+</tr>
+<tr>
+<td>Primary</td>
+<td>Continue</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>Skip</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>06 · Playback</h2>
+<p><strong>Path:</strong> <code>/app/listener/player/:sessionId</code></p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Begin bridge</td>
+<td>Your session is about to begin.</td>
+</tr>
+<tr>
+<td>Paused</td>
+<td>Paused</td>
+</tr>
+<tr>
+<td>First complete</td>
+<td>Well done. → You&#39;ve completed your first session.</td>
+</tr>
+<tr>
+<td>Later complete</td>
+<td>Well done. → Your session is complete.</td>
+</tr>
+<tr>
+<td>Unavailable</td>
+<td>Session unavailable</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>07 · Reflection &amp; completion</h2>
+<p><strong>Path:</strong> <code>/app/listener/feedback/:sessionId</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>How do you feel now?</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Choose what feels closest. There’s no right answer. This simply helps you notice how you feel after listening.</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td>Same feel scale + optional note as before check-in</td>
+</tr>
+<tr>
+<td>Primary</td>
+<td>Continue</td>
+</tr>
+<tr>
+<td>Secondary</td>
+<td>Skip</td>
+</tr>
+<tr>
+<td>Exit bridge</td>
+<td>See you at your next session{, {Name}}.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>08 · Progress</h2>
+<p><strong>Path:</strong> <code>/app/listener/progress</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Your progress</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>How listening is settling into your week</td>
+</tr>
+<tr>
+<td>Stats</td>
+<td>Streak · This week · Programme</td>
+</tr>
+<tr>
+<td>Streak empty</td>
+<td>Start a streak by finishing a session today</td>
+</tr>
+<tr>
+<td>Streak 1</td>
+<td>1 day in a row - keep going when it feels right</td>
+</tr>
+<tr>
+<td>Streak n</td>
+<td>{n} days in a row</td>
+</tr>
+<tr>
+<td>Goals</td>
+<td>Your goals — From what you said listening should support.</td>
+</tr>
+<tr>
+<td>Felt</td>
+<td>How you felt — Before and after ratings from your sessions.</td>
+</tr>
+<tr>
+<td>Felt empty</td>
+<td>After you check in before and after a session, the shift will show here.</td>
+</tr>
+<tr>
+<td>History</td>
+<td>Listening history</td>
+</tr>
+<tr>
+<td>History empty</td>
+<td>Finish a session and it’ll show up here.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>09 · Organisation / plan</h2>
+<p><strong>Path:</strong> <code>/app/listener/organisation</code></p>
+<h3>Partner organisation</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>{Partner} / Your organisation</td>
+</tr>
+<tr>
+<td>Fallback body</td>
+<td>Your organisation has shared a set of listening sessions to support you.</td>
+</tr>
+<tr>
+<td>About</td>
+<td>{N} sessions chosen for you as part of your organisation’s plan.</td>
+</tr>
+<tr>
+<td>What it’s for</td>
+<td>Help you settle, recover, and build a steadier listening habit.</td>
+</tr>
+<tr>
+<td>Need help?</td>
+<td>For programme questions, ask your organisation. For app issues, use Support.</td>
+</tr>
+<tr>
+<td>CTA</td>
+<td>Contact support</td>
+</tr>
+</tbody></table>
+<h3>Direct-access plan</h3>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Your listening plan</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Sonocea shaped this set from what you shared — not from an organisation programme.</td>
+</tr>
+<tr>
+<td>Need help?</td>
+<td>For app or playback issues, use Support. There’s no organisation contact on this plan.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>10 · Profile &amp; about</h2>
+<h3>Profile</h3>
+<p><strong>Path:</strong> <code>/app/listener/profile</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>{Name} / You</td>
+</tr>
+<tr>
+<td>Subtitle</td>
+<td>{email} / Private account</td>
+</tr>
+<tr>
+<td>Appearance</td>
+<td>Light · Dark · Adapt to time of day</td>
+</tr>
+<tr>
+<td>Links</td>
+<td>Organisation · About Sonocea · Support · Sign out</td>
+</tr>
+</tbody></table>
+<h3>About Sonocea</h3>
+<p><strong>Path:</strong> <code>/app/listener/about</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Sonocea</td>
+</tr>
+<tr>
+<td>Body 1</td>
+<td>Sonocea offers listening sessions designed to help you settle, focus, and recover. Access is by invitation from your organisation.</td>
+</tr>
+<tr>
+<td>Body 2</td>
+<td>Sessions stream securely in the app and can’t be downloaded or shared.</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>11 · Support</h2>
+<p><strong>Path:</strong> <code>/app/listener/support</code></p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Copy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Title</td>
+<td>Need help?</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>For access or programme questions, contact your organisation. For playback or account issues, reach Sonocea using the email on your invitation.</td>
+</tr>
+<tr>
+<td>Demo note</td>
+<td>Demo note: this is a working product shell - support messages aren’t sent.</td>
+</tr>
+<tr>
+<td>CTA</td>
+<td>Back to profile</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>12 · System / edge states</h2>
+<p><strong>Path:</strong> <code>/app/listener/system-states</code></p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Title</th>
+<th>Message</th>
+<th>Primary</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>loading</td>
+<td>Loading your sessions…</td>
+<td>Fetching your assigned programme.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>offline</td>
+<td>No connection</td>
+<td>Check your network and try again.</td>
+<td>Retry</td>
+</tr>
+<tr>
+<td>no-sessions</td>
+<td>No sessions assigned</td>
+<td>Your provider hasn&#39;t assigned any sessions yet. Check back later or contact them.</td>
+<td>Contact organisation</td>
+</tr>
+<tr>
+<td>session-unavailable</td>
+<td>Session unavailable</td>
+<td>This session couldn&#39;t load. Try again or contact support.</td>
+<td>Try again</td>
+</tr>
+<tr>
+<td>playback-error</td>
+<td>Playback error</td>
+<td>Something went wrong during playback. Please try again.</td>
+<td>Try again</td>
+</tr>
+<tr>
+<td>playback-interrupted</td>
+<td>Playback interrupted</td>
+<td>Listening paused when you left the app. Tap to resume.</td>
+<td>Resume</td>
+</tr>
+<tr>
+<td>invalid-invitation</td>
+<td>Invalid invitation</td>
+<td>This invite code isn&#39;t recognised. Check with your provider.</td>
+<td>Enter new code</td>
+</tr>
+<tr>
+<td>expired-invitation</td>
+<td>Invitation expired</td>
+<td>This invite has expired. Request a new one from your administrator.</td>
+<td>Request new invite</td>
+</tr>
+<tr>
+<td>access-revoked</td>
+<td>Access revoked</td>
+<td>Your access has been removed. Contact your organisation for help.</td>
+<td>Contact support</td>
+</tr>
+<tr>
+<td>server-error</td>
+<td>Server error</td>
+<td>Something went wrong on our end. Please try again shortly.</td>
+<td>Try again</td>
+</tr>
+<tr>
+<td>maintenance</td>
+<td>Under maintenance</td>
+<td>Sonocea is temporarily unavailable while we perform updates.</td>
+<td>Check status</td>
+</tr>
+</tbody></table>
+<p>Secondary on most error states: <strong>Contact support</strong></p>
+<hr>
+<h2>Notes for editors</h2>
+<ol>
+<li>Prefer this document for copy review and mark-up; keep Admin copy separate.  </li>
+<li><code>{…}</code> placeholders are dynamic — don’t hard-code demo names in final copy.  </li>
+<li>Partner programme titles/bodies are organisation CMS fields; defaults above are the seeded examples.  </li>
+<li>No dedicated listener SMS template exists yet — invite SMS reuses channel selection on Admin only.  </li>
+<li>To export a PDF: open <code>/copy</code> in the prototype → browser Print → Save as PDF.</li>
+</ol>
+
+
+</body>
+</html>

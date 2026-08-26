@@ -36,18 +36,27 @@ export default function CopyPage() {
         <div className="print:hidden">
           <PageHero id="copy-intro" title={COPY_HERO.title} description={COPY_HERO.intro} withGradient />
           <div className="mx-auto flex max-w-5xl flex-wrap items-center gap-3 px-6 pb-2 md:px-10">
+            <a
+              href={`${import.meta.env.BASE_URL}listener-journey-copy.pdf`}
+              download="Sonocea-listener-journey-copy.pdf"
+              className="rounded-full bg-ink-950 px-4 py-2 text-[13px] font-medium text-white transition hover:bg-ink-800"
+            >
+              Download PDF
+            </a>
             <button
               type="button"
               onClick={() => window.print()}
-              className="rounded-full bg-ink-950 px-4 py-2 text-[13px] font-medium text-white transition hover:bg-ink-800"
+              className="rounded-full border border-ink-300 bg-white px-4 py-2 text-[13px] font-medium text-ink-800 transition hover:border-ink-500"
             >
-              Print / Save as PDF
+              Print page
             </button>
             <p className="text-[12px] text-ink-500">
-              Full editable deck (every option string):{" "}
+              Edit source:{" "}
               <code className="rounded bg-ink-100 px-1.5 py-0.5 text-[11px]">
                 docs/listener-journey-copy.md
               </code>
+              {" · "}
+              re-export with <code className="rounded bg-ink-100 px-1.5 py-0.5 text-[11px]">npm run export:copy-pdf</code>
             </p>
           </div>
         </div>
