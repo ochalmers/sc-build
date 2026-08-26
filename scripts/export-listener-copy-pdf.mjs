@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
- * Export docs/listener-journey-copy.md → PDF (+ HTML intermediate).
- * Requires Google Chrome. Usage: node scripts/export-listener-copy-pdf.mjs
+ * Export docs/listener-journey-copy.md → DOCX (Drive-friendly) + PDF.
+ * Requires: pandoc (DOCX), Google Chrome (PDF).
+ * Usage: node scripts/export-listener-copy-pdf.mjs
  */
 import { execFileSync, execSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -12,7 +13,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const mdPath = join(root, "docs/listener-journey-copy.md");
 const htmlPath = join(root, "docs/listener-journey-copy.html");
 const pdfPath = join(root, "docs/listener-journey-copy.pdf");
+const docxPath = join(root, "docs/listener-journey-copy.docx");
 const publicPdfPath = join(root, "public/listener-journey-copy.pdf");
+const publicDocxPath = join(root, "public/listener-journey-copy.docx");
 
 const chromeCandidates = [
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
@@ -36,6 +39,43 @@ function findChrome() {
   }
   throw new Error("Google Chrome / Chromium not found. Install Chrome to export the PDF.");
 }
+
+function findPandoc() {
+  try {
+    execSync("command -v pandoc", { stdio: "ignore" });
+    return "pandoc";
+  } catch {
+    try {
+      execFileSync("/opt/homebrew/bin/pandoc", ["--version"], { stdio: "ignore" });
+      return "/opt/homebrew/bin/pandoc";
+    } catch {
+      throw new Error("pandoc not found. Install with: brew install pandoc");
+    }
+  }
+}
+
+mkdirSync(join(root, "docs"), { recursive: true });
+mkdirSync(join(root, "public"), { recursive: true });
+
+const pandoc = findPandoc();
+execFileSync(
+  pandoc,
+  [
+    mdPath,
+    "-o",
+    docxPath,
+    "--from",
+    "markdown",
+    "--to",
+    "docx",
+    "--metadata",
+    "title=Sonocea — Listener journey copy",
+  ],
+  { stdio: "inherit" },
+);
+copyFileSync(docxPath, publicDocxPath);
+console.log(`Wrote ${docxPath} (${readFileSync(docxPath).byteLength} bytes)`);
+console.log(`Copied to ${publicDocxPath}`);
 
 const bodyHtml = execSync(`npx --yes marked@15.0.7 "${mdPath}"`, {
   encoding: "utf8",
@@ -123,8 +163,6 @@ ${bodyHtml}
 </body>
 </html>`;
 
-mkdirSync(join(root, "docs"), { recursive: true });
-mkdirSync(join(root, "public"), { recursive: true });
 writeFileSync(htmlPath, html);
 
 const chrome = findChrome();
@@ -142,6 +180,5 @@ execFileSync(
 
 copyFileSync(pdfPath, publicPdfPath);
 
-const bytes = readFileSync(pdfPath).byteLength;
-console.log(`Wrote ${pdfPath} (${bytes} bytes)`);
+console.log(`Wrote ${pdfPath} (${readFileSync(pdfPath).byteLength} bytes)`);
 console.log(`Copied to ${publicPdfPath}`);
