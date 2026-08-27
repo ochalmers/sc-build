@@ -44,6 +44,13 @@ export default function CopyPage() {
               Download Word (.docx)
             </a>
             <a
+              href={`${import.meta.env.BASE_URL}listener-journey-copy.pptx`}
+              download="Sonocea-listener-journey-copy.pptx"
+              className="rounded-full border border-ink-300 bg-white px-4 py-2 text-[13px] font-medium text-ink-800 transition hover:border-ink-500"
+            >
+              Download PowerPoint
+            </a>
+            <a
               href={`${import.meta.env.BASE_URL}listener-journey-copy.pdf`}
               download="Sonocea-listener-journey-copy.pdf"
               className="rounded-full border border-ink-300 bg-white px-4 py-2 text-[13px] font-medium text-ink-800 transition hover:border-ink-500"
@@ -51,7 +58,7 @@ export default function CopyPage() {
               Download PDF
             </a>
             <p className="text-[12px] text-ink-500">
-              Upload the .docx to Google Drive → Open with Google Docs to edit together.
+              Upload .docx or .pptx to Google Drive — open with Docs or Slides to edit together.
             </p>
           </div>
         </div>

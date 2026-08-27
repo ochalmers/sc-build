@@ -3,7 +3,7 @@
 **Audience:** product, design, content  
 **Scope:** Listener-facing only (invitation → listening loop). Admin provisioning is out of scope.  
 **How to edit:** Prefer the Word file on Google Drive (upload → Open with Google Docs). Source of truth in-repo: this Markdown. Live app strings are still separate until wired to a shared copy module.  
-**Exports:** [`listener-journey-copy.docx`](./listener-journey-copy.docx) (Drive) · [`listener-journey-copy.pdf`](./listener-journey-copy.pdf). Re-export: `npm run export:copy-pdf`.
+**Exports:** [`listener-journey-copy.docx`](./listener-journey-copy.docx) (Drive/Docs) · [`listener-journey-copy.pptx`](./listener-journey-copy.pptx) (Drive/Slides) · [`listener-journey-copy.pdf`](./listener-journey-copy.pdf). Re-export: `npm run export:copy-pdf` / `npm run export:copy-pptx`.
 
 Dynamic bits are shown as `{Name}`, `{Partner}`, `{N}`, etc.
 
