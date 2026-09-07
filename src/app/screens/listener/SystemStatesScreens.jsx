@@ -21,7 +21,7 @@ const SYSTEM_STATES = [
 const STATE_COPY = {
   loading: {
     title: "Loading your sessions…",
-    message: "Fetching your assigned programme.",
+    message: "Fetching your assigned program.",
     cta: null,
   },
   offline: {
@@ -32,7 +32,7 @@ const STATE_COPY = {
   "no-sessions": {
     title: "No sessions assigned",
     message: "Your provider hasn't assigned any sessions yet. Check back later or contact them.",
-    cta: "Contact organisation",
+    cta: "Contact organization",
   },
   "session-unavailable": {
     title: "Session unavailable",
@@ -51,7 +51,7 @@ const STATE_COPY = {
   },
   "invalid-invitation": {
     title: "Invalid invitation",
-    message: "This invite code isn't recognised. Check with your provider.",
+    message: "This invite code isn't recognized. Check with your provider.",
     cta: "Enter new code",
   },
   "expired-invitation": {
@@ -61,7 +61,7 @@ const STATE_COPY = {
   },
   "access-revoked": {
     title: "Access revoked",
-    message: "Your access has been removed. Contact your organisation for help.",
+    message: "Your access has been removed. Contact your organization for help.",
     cta: "Contact support",
   },
   "server-error": {

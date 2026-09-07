@@ -263,8 +263,7 @@ function CheckInModal({ open, session, onClose, onContinue, onSkip }) {
               Before you begin, tell us how you’re feeling
             </h1>
             <AppBody className="mx-auto mt-2 max-w-[34ch] text-center text-[12.5px] leading-snug">
-              Choose what feels closest. We’ll ask you again after the session so you can notice if
-              anything has changed.
+              Choose what feels closest. We’ll ask you again after the session so you can compare how you feel.
             </AppBody>
             <FeelSlider value={rating} onChange={setRating} />
             <FeelNoteField

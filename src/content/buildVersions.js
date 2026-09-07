@@ -9,8 +9,14 @@ export const BUILD_VERSIONS = [
   {
     id: "2026-08-09",
     label: "9 Aug 2026",
+    badge: "Prior",
+    blurb: "August prototype — before the Clare listener-copy pass.",
+  },
+  {
+    id: "2026-09-07",
+    label: "7 Sep 2026",
     badge: "Latest",
-    blurb: "Latest prototype — Admin + Listener flows from this push.",
+    blurb: "Listener copy: US spelling + Clare 5 Sept amendments.",
   },
 ];
 

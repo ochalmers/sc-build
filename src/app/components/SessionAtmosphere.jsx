@@ -31,7 +31,7 @@ export function formatPlayTime(progressPct, durationMin) {
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
-const DEFAULT_BEFORE = ["Use headphones", "Get comfortable", "Give yourself a few uninterrupted minutes"];
+const DEFAULT_BEFORE = ["Find a comfortable place and use headphones", "There’s nothing to follow", "Simply listen"];
 
 /** Category label for metadata - e.g. REST · 22 MIN */
 export function sessionCategoryLabel(session) {

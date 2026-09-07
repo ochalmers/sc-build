@@ -769,7 +769,7 @@ export function AppStoreProvider({ children, persist = true, seedState = null })
         return { ok: true };
       }
 
-      return { ok: false, error: "Invite or credentials not recognised. Try the demo account." };
+      return { ok: false, error: "Your invitation or sign-in details weren’t recognized. Check your details and try again." };
     },
     [state.invites, state.listeners],
   );

@@ -1,7 +1,7 @@
 export const COPY_HERO = {
   title: "Listener journey copy",
   intro:
-    "All listener-facing strings from invitation through the listening loop. Edit docs/listener-journey-copy.md for mark-up; use Print on this page for a PDF.",
+    "7 Sep 2026 — Clare Hindley amendments (US spelling, formal tone, shift-inclusive language, no habit pressure). Source: docs/listener-journey-copy.md.",
 };
 
 /**

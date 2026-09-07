@@ -25,7 +25,7 @@ const FALLBACK_SONOCEA = {
 };
 
 const INVITE_BODY =
-  "Sonocea uses patented Sonic Augmentation Technology™ to create structured listening experiences designed to support regulation, recovery and wellbeing.";
+  "Sonocea uses patented Sonic Augmentation Technology™ to create structured sound experiences designed to support regulation, recovery, and well-being.";
 
 function partnerInviteHeading(partner) {
   if (isDirectAccessPartner(partner)) {
@@ -291,8 +291,8 @@ export function ListenerAppStore() {
             </div>
             <div className="min-w-0 flex-1">
               <p className="text-[18px] font-normal leading-tight tracking-tight">Sonocea</p>
-              <p className="mt-0.5 text-[13px] text-black/45">Guided listening for recovery</p>
-              <p className="mt-0.5 text-[12px] text-[#007AFF]">Sonocea Ltd</p>
+              <p className="mt-0.5 text-[13px] text-black/45">Structured sound for recovery</p>
+              <p className="mt-0.5 text-[12px] text-[#007AFF]">Sonocea Inc.</p>
               <div className="mt-3 flex items-center gap-2">
                 <button
                   type="button"
@@ -342,8 +342,8 @@ export function ListenerAppStore() {
             <p className="text-[14px] font-normal">What’s New</p>
             <p className="mt-1.5 text-[12px] leading-relaxed text-black/55">
               {direct
-                ? "Personalised listening from a Sonocea invite. Short headphone sessions shaped around what you share when you join."
-                : "Join partner-led listening programmes. Short headphone sessions for recovery and regulation - invited by your organisation."}
+                ? "Personalized listening from your Sonocea invite. Short headphone sessions shaped around what you share when you join."
+                : "Access Sonocea through your organization. Short headphone sessions designed to support recovery and regulation."}
             </p>
           </div>
         </div>
@@ -402,8 +402,8 @@ export function ListenerLogin() {
         <AppTitle className="mt-2">Welcome back</AppTitle>
         <AppBody className="mt-3">
           {anonymous || preferDirect
-            ? "Sign in with your invite code - your name and email stay private in the app."
-            : "Sign in with the email from your organisation."}
+            ? "Sign in with your invite code. Your name and email stay private in the app."
+            : "Sign in with the email address linked to your invitation."}
         </AppBody>
 
         {!preferDirect ? (
@@ -438,7 +438,7 @@ export function ListenerLogin() {
             />
           ) : (
             <AppField
-              label="Email"
+              label="Email address"
               type="email"
               value={email}
               onChange={setEmail}
@@ -466,7 +466,7 @@ export function ListenerLogin() {
             Continue
           </AppButton>
           <AppButton fullWidth variant="ghost" onClick={goBackToWelcome}>
-            Open invitation instead
+            Return to invitation
           </AppButton>
         </div>
       </form>
@@ -548,7 +548,7 @@ export function ListenerInvite() {
               style={{ color: "rgba(243, 242, 238, 0.58)" }}
             >
               {direct
-                ? "We’ll ask a few questions so your home and sessions match what you need, then you can start listening."
+                ? "We’ll ask a few questions to shape your experience around what matters to you. Then you can start listening."
                 : `${partner.name} has invited you to experience Sonocea. We’ll help you get set up, then you can start listening.`}
             </p>
           </StaggerItem>

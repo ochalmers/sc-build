@@ -50,28 +50,28 @@ export const ONBOARDING_ABOUT_SLIDES = [
     id: "what-is",
     eyebrow: "Experience",
     title: "Listening, designed differently",
-    body: "Sonocea uses structured sound to create listening experiences designed around how your nervous system responds to what you hear.",
+    body: "Sonocea uses structured sound to create listening experiences designed to support nervous system regulation, recovery, and well-being.",
     cta: "Next",
   },
   {
     id: "support",
     eyebrow: "Purpose",
     title: "Made for the moments that matter",
-    body: "Choose sessions based on what you need, from feeling calmer and more settled to supporting focus, recovery, rest or preparation for sleep.",
+    body: "Choose sessions for what you need — from feeling calmer and more settled to preparing for focus, recovery, rest, or sleep.",
     cta: "Next",
   },
   {
     id: "science",
     eyebrow: "Science",
     title: "Built on science",
-    body: "Sonocea is grounded in research into how sound and the nervous system interact. Our Sonic Augmentation Technology™ uses structured sound to create listening experiences for specific states and outcomes.",
+    body: "Sonocea is grounded in research into how sound and the nervous system interact. At its core is our patented Sonic Augmentation Technology™, which creates the structured sound behind every session.",
     cta: "Next",
   },
   {
     id: "ready",
     eyebrow: "Listening",
-    title: "Nothing to learn. Just listen.",
-    body: "You don’t need to follow instructions or get anything right. Put on your headphones, get comfortable and give the session your attention.",
+    title: "Nothing to learn. Simply listen.",
+    body: "You don’t need to follow instructions or get anything right. Put on your headphones, get comfortable, and let the session play.",
     showChecklist: true,
     cta: "I'm ready",
   },
@@ -118,7 +118,7 @@ export const ONBOARDING_SUPPORT_OPTIONS = [
   { id: "focus", label: "Staying focused" },
   { id: "regulation", label: "Feeling more balanced" },
   { id: "sleep", label: "Sleeping better" },
-  { id: "wellbeing", label: "General wellbeing" },
+  { id: "wellbeing", label: "General well-being" },
 ];
 
 export const ONBOARDING_LISTEN_TIMES = [
@@ -417,12 +417,12 @@ export const SESSION_CATALOG = [
     category: "Calm",
     tags: ["calm", "beginner"],
     status: "published",
-    headline: "Ease into the start of your day.",
-    description: "For when you’re arriving and want a gentle way to settle before things get going.",
-    supportTags: ["Calm", "Preparation", "Wellbeing"],
-    beforeYouBegin: ["Use headphones", "Get comfortable", "Best at the start of your day"],
+    headline: "Ease into what’s ahead.",
+    description: "For when you’re getting started and want a gentle way to settle before moving into what’s next.",
+    supportTags: ["Calm", "Preparation", "Well-being"],
+    beforeYouBegin: ["Use headphones", "Get comfortable", "Give yourself a few uninterrupted minutes"],
     mode: "care",
-    summary: "Ease into the start of your day.",
+    summary: "Ease into what’s ahead.",
     partnerIds: ["org-preston", "org-haven"],
     groupIds: ["grp-settle"],
     timeOfDay: "morning",
@@ -438,7 +438,7 @@ export const SESSION_CATALOG = [
     status: "published",
     headline: "Find a quieter moment.",
     description: "For moments when things feel busy and you’d like some space before carrying on.",
-    supportTags: ["Calm", "Reset", "Wellbeing"],
+    supportTags: ["Calm", "Reset", "Well-being"],
     beforeYouBegin: ["Use headphones", "Find somewhere comfortable", "Give yourself a few uninterrupted minutes"],
     mode: "care",
     summary: "Find a quieter moment.",
@@ -475,7 +475,7 @@ export const SESSION_CATALOG = [
     tags: ["focus", "daily"],
     status: "published",
     headline: "Clear a little space to think.",
-    description: "For mid-morning moments when you’d like to gather yourself before the next thing.",
+    description: "For when you’d like to gather yourself before moving on to the next thing.",
     supportTags: ["Focus", "Reset", "Preparation"],
     beforeYouBegin: ["Use headphones", "Sit or lie comfortably", "Best when you have some quiet time"],
     mode: "regulation",
@@ -496,7 +496,7 @@ export const SESSION_CATALOG = [
     headline: "Give yourself a moment to reset.",
     description: "For when you’ve finished something demanding and want some time to recover.",
     supportTags: ["Reset", "Recovery", "Focus"],
-    beforeYouBegin: ["Use headphones", "Get comfortable", "Best between demanding blocks"],
+    beforeYouBegin: ["Use headphones", "Get comfortable", "Best between demanding activities"],
     mode: "performance",
     summary: "Give yourself a moment to reset.",
     partnerIds: ["org-preston", "org-summit"],
@@ -512,12 +512,12 @@ export const SESSION_CATALOG = [
     category: "Calm",
     tags: ["calm", "recovery"],
     status: "published",
-    headline: "Leave the day behind.",
-    description: "For moments when you want to slow things down and take some time for yourself.",
+    headline: "Leave what’s been behind.",
+    description: "For when you’ve finished something demanding and want to take some time for yourself.",
     supportTags: ["Calm", "Rest", "Recovery"],
-    beforeYouBegin: ["Use headphones", "Get comfortable", "Best later in the day"],
+    beforeYouBegin: ["Use headphones", "Get comfortable", "Best when you have some uninterrupted time"],
     mode: "care",
-    summary: "Leave the day behind.",
+    summary: "Leave what’s been behind.",
     partnerIds: ["org-preston", "org-haven"],
     groupIds: ["grp-settle"],
     timeOfDay: "evening",
@@ -531,12 +531,12 @@ export const SESSION_CATALOG = [
     category: "Rest",
     tags: ["sleep", "recovery", "calm"],
     status: "published",
-    headline: "Settle into a slower pace.",
-    description: "For when you’re ready to switch off, recover and prepare for rest.",
+    headline: "Give yourself time to settle.",
+    description: "For when you’re ready to unwind, recover, and prepare for rest.",
     supportTags: ["Rest", "Recovery", "Sleep"],
-    beforeYouBegin: ["Use headphones", "Get comfortable", "Best later in the day"],
+    beforeYouBegin: ["Use headphones", "Get comfortable", "Best when you’re ready to rest"],
     mode: "care",
-    summary: "Settle into a slower pace.",
+    summary: "Give yourself time to settle.",
     partnerIds: ["org-preston", "org-haven"],
     groupIds: ["grp-settle"],
     timeOfDay: "evening",
@@ -551,7 +551,7 @@ export const SESSION_CATALOG = [
     tags: ["daily", "recovery"],
     status: "published",
     headline: "Move gently from one thing to the next.",
-    description: "For when you’re changing pace and want a clean moment between what’s been and what’s next.",
+    description: "For when you want a little space between what’s been and what’s next.",
     supportTags: ["Reset", "Calm", "Preparation"],
     beforeYouBegin: ["Use headphones", "Find somewhere comfortable", "Best at a natural pause"],
     mode: "regulation",
@@ -565,13 +565,13 @@ export const SESSION_CATALOG = [
     title: "Session 9",
     durationMin: 20,
     neurotype: ["sensitive", "regulator", "supported", "performance"],
-    useCase: "Wellbeing",
-    category: "Wellbeing",
+    useCase: "Well-being",
+    category: "Well-being",
     tags: ["clinical", "calm"],
     status: "published",
     headline: "Make a little room for yourself.",
     description: "For when you’d like some quiet space alongside other support in your day.",
-    supportTags: ["Wellbeing", "Calm", "Focus"],
+    supportTags: ["Well-being", "Calm", "Focus"],
     beforeYouBegin: ["Use headphones", "Sit or lie comfortably", "Best when you have some quiet time"],
     mode: "regulation",
     summary: "Make a little room for yourself.",
@@ -588,12 +588,12 @@ export const SESSION_CATALOG = [
     category: "Rest",
     tags: ["sleep", "calm"],
     status: "published",
-    headline: "Close the day gently.",
-    description: "For a short moment before bed when you’re ready to settle for the night.",
+    headline: "Settle before sleep.",
+    description: "For when you’re ready to sleep and want a little time to settle first.",
     supportTags: ["Rest", "Sleep", "Calm"],
-    beforeYouBegin: ["Use headphones", "Get comfortable", "Best later in the day"],
+    beforeYouBegin: ["Use headphones", "Get comfortable", "Best when you’re preparing to sleep"],
     mode: "care",
-    summary: "Close the day gently.",
+    summary: "Settle before sleep.",
     partnerIds: ["org-preston", "org-haven"],
     groupIds: ["grp-settle"],
     timeOfDay: "evening",
@@ -772,7 +772,7 @@ export const LISTENER_STATUS_OPTIONS = [
 export const APPEARANCE_OPTIONS = [
   { id: "light", label: "Light" },
   { id: "dark", label: "Dark" },
-  { id: "adapt", label: "Adapt to time of day" },
+  { id: "adapt", label: "Change with time of day" },
 ];
 
 /**
@@ -790,7 +790,7 @@ export const DEMO_PARTNERS = [
     inviteHighlight: "#8faf9a",
     inviteLine: "Haven Care Network has invited you to experience Sonocea.",
     programmeTitle: "Gentle Recovery",
-    programme: "Gentle recovery sessions for when things feel a lot - paced and supportive.",
+    programme: "Gentle recovery sessions for times when things feel like a lot, with a calm and supportive approach.",
     seats: 120,
     seatsUsed: 91,
     billingModel: "usage",
@@ -815,7 +815,7 @@ export const DEMO_PARTNERS = [
     inviteHighlight: "#d4b896",
     inviteLine: "Summit Performance Lab has invited you to experience Sonocea.",
     programmeTitle: "Between-Block Reset",
-    programme: "Short reset sessions for recovery between busy or demanding days.",
+    programme: "Short reset sessions for recovery between busy or demanding periods.",
     seats: 25,
     seatsUsed: 18,
     billingModel: "per-seat",
@@ -840,7 +840,7 @@ export const DEMO_PARTNERS = [
     inviteHighlight: "#7BA3D0",
     inviteLine: "Wigan Athletic has invited you to experience Sonocea.",
     programmeTitle: "Matchday Recovery",
-    programme: "Listening sessions for academy and first-team recovery around the match week.",
+    programme: "Listening sessions to support academy and first-team recovery around the match week.",
     seats: 35,
     seatsUsed: 22,
     billingModel: "seat-pool",
@@ -865,7 +865,7 @@ export const DEMO_PARTNERS = [
     inviteHighlight: "#C4B5E0",
     inviteLine: "Loughborough Sport has invited you to experience Sonocea.",
     programmeTitle: "Campus Calm",
-    programme: "Short regulation sessions for student-athletes between training and study.",
+    programme: "Short listening sessions for student-athletes between training and study.",
     seats: 80,
     seatsUsed: 54,
     billingModel: "seat-pool",
@@ -894,7 +894,7 @@ export const PNE_ORGANIZATION = {
   inviteLine: "Preston North End has invited you to experience Sonocea.",
   programmeTitle: "Post-Training Recovery",
   programme:
-    "Preston North End has shared a curated Post-Training Recovery programme — short headphone sessions for academy and first-team players after training, between fixtures, and on rest days.",
+    "Short headphone sessions for academy and first-team players after training, between fixtures, and on rest days.",
   seats: 40,
   seatsUsed: 28,
   billingModel: "seat-pool",
@@ -934,9 +934,9 @@ export const SONOCEA_DIRECT_ORGANIZATION = {
   inviteAccent: "#171716",
   inviteHighlight: "#c9a86a",
   inviteLine: "You’re invited to experience Sonocea.",
-  programmeTitle: "Your personalised programme",
+  programmeTitle: "Your personalized program",
   programme:
-    "A listening programme shaped around what you share in onboarding — goals, moments, and when you listen.",
+    "A listening program shaped around your goals and the moments when you might want support.",
   seats: 100,
   seatsUsed: 12,
   billingModel: "seat-pool",
@@ -1495,25 +1495,20 @@ export function orderedSessionSectionsForPreferences(sessions, prefs = {}, now =
 
 /** Ready-screen title + body from onboarding answers. */
 export function personalisedReadyCopy(prefs = {}, session) {
-  const focus = resolveHomeListenFocus(prefs);
   const name = prefs.preferredName?.trim() || prefs.displayName?.trim() || null;
   const goal = primaryGoalPhrase(prefs);
-  const times = preferredListeningTimes(prefs);
-  const timeLed = times.length > 0 && !times.includes("anytime");
 
-  const title = name
-    ? timeLed
-      ? `${focus.readyLead} is ready, ${name}.`
-      : `Your first session is ready, ${name}.`
-    : timeLed
-      ? `${focus.readyLead} is ready.`
+  const title = goal
+    ? name
+      ? `A session for ${goal} is ready, ${name}.`
+      : `A session for ${goal} is ready.`
+    : name
+      ? `Your first session is ready, ${name}.`
       : "Your first session is ready.";
 
   const body = goal
-    ? timeLed
-      ? `Matched to ${goal}, for the times you said you’d listen. Begin when you’re ready.`
-      : `Matched to ${goal}. If you’re comfortable, you can begin your first Sonocea session now.`
-    : "Everything is set. If you’re comfortable, you can begin your first Sonocea session now.";
+    ? `Based on what you shared, we’ve selected a session for ${goal}. Begin whenever you’re ready.`
+    : "You can begin your first Sonocea session whenever you’re ready.";
 
   return {
     title,

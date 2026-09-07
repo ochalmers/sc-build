@@ -60,12 +60,12 @@ const APPEARANCE_CHOICES = [
   {
     id: "dark",
     label: "Dark",
-    description: "A softer, darker listening environment.",
+    description: "A softer, darker appearance.",
   },
   {
     id: "adapt",
-    label: "Adapt to time of day",
-    description: "Light during the day. Dark when it gets later.",
+    label: "Change with time of day",
+    description: "Light earlier in the day. Dark later on.",
     recommended: true,
   },
 ];
@@ -809,7 +809,7 @@ export function ListenerOnboarding() {
   if (phase === PHASES.personaliseIntro) {
     return (
       <FadePhraseScreen
-        phrase="Now let’s learn more about you…"
+        phrase="Now let’s shape your experience…"
         autoAdvance={phaseParam !== PHASES.personaliseIntro}
         onDone={() => setPhase(PHASES.outcomes)}
       />
@@ -821,8 +821,8 @@ export function ListenerOnboarding() {
     return (
       <ChoiceStep
         animKey="outcomes"
-        title="What would you like Sonocea to help with?"
-        body="This helps us understand what matters to you and recommend sessions that feel more relevant."
+        title="What would you like Sonocea to support?"
+        body="Choose what matters most to you. We’ll use your answers to recommend more relevant sessions."
         options={ONBOARDING_SUPPORT_OPTIONS}
         onBack={() => {
           setAboutStep(ONBOARDING_ABOUT_SLIDES.length - 1);
@@ -855,7 +855,7 @@ export function ListenerOnboarding() {
       <ChoiceStep
         animKey="context"
         title="When might Sonocea be useful to you?"
-        body="Think about the moments when you might want a little support. This helps us understand when different sessions could be most useful."
+        body="Think about the moments when you might want a little support. This helps us recommend sessions that fit those moments."
         options={ONBOARDING_MOOD_OPTIONS}
         onBack={() => setPhase(PHASES.outcomes)}
         renderOption={(opt) => (
@@ -885,7 +885,7 @@ export function ListenerOnboarding() {
       <ChoiceStep
         animKey="sensory"
         title="How sensitive are you to your surroundings?"
-        body="Everyone responds differently to sound, visuals and their surroundings. This helps us tailor how your sessions look and feel."
+        body="Everyone responds differently to sound, visuals, and their surroundings. This helps us tailor how the app looks and feels while you listen."
         options={ONBOARDING_SENSORY_OPTIONS}
         onBack={() => setPhase(PHASES.context)}
         renderOption={(opt) => (
@@ -922,7 +922,7 @@ export function ListenerOnboarding() {
       <ChoiceStep
         animKey="timing"
         title="When would listening fit into your day?"
-        body="Choose the times that feel most natural for you. We’ll use this to make your experience and reminders more useful."
+        body="Choose any times that usually work for you. We’ll use these to make reminders more useful."
         options={ONBOARDING_LISTEN_TIMES}
         onBack={() => setPhase(PHASES.sensory)}
         renderOption={(opt) => (
@@ -974,7 +974,7 @@ export function ListenerOnboarding() {
           </StaggerItem>
           <StaggerItem i={i++}>
             <AppBody className="mx-auto mt-3 max-w-[32ch] text-center text-[14px] leading-relaxed">
-              We can send gentle reminders around the times you’ve chosen, so it’s easier to make time for your sessions.
+              Get a gentle reminder around the times that usually work for you.
             </AppBody>
           </StaggerItem>
           <StaggerItem i={i++} className="mt-10">
@@ -1003,7 +1003,7 @@ export function ListenerOnboarding() {
                 Session reminders
               </p>
               <p className="mt-2 text-[13px] leading-relaxed" style={{ color: "rgba(23, 23, 22, 0.55)" }}>
-                Helpful prompts around the times that work for you. You can change these anytime in Profile.
+                You can change your reminder settings anytime in Profile.
               </p>
             </div>
           </StaggerItem>
@@ -1038,7 +1038,7 @@ export function ListenerOnboarding() {
           />
           <StaggerItem i={i++} className="mt-7">
             <AppTitle className="mx-auto max-w-[14ch] text-center text-[1.85rem] leading-[1.12] tracking-[-0.03em]">
-              How would you like Sonocea to feel?
+              Choose your appearance
             </AppTitle>
           </StaggerItem>
           <StaggerItem i={i++}>
@@ -1046,7 +1046,7 @@ export function ListenerOnboarding() {
               className="mx-auto mt-3.5 max-w-[30ch] text-center text-[15px] leading-snug"
               style={{ color: "var(--proto-text-muted)" }}
             >
-              Choose an appearance that feels right for you, or let Sonocea adapt throughout the day.
+              Choose a look that feels right for you, or let Sonocea adjust automatically.
             </p>
           </StaggerItem>
 
@@ -1326,8 +1326,8 @@ function PreparingScreen({ name, onDone, autoAdvance = true }) {
   const onDoneRef = useStableCallback(onDone);
   const displayName = formatPreferredName(name);
   const label = displayName
-    ? `Preparing your first session, ${displayName}`
-    : "Preparing your first session…";
+    ? `Finding your first session, ${displayName}`
+    : "Finding your first session…";
 
   useEffect(() => {
     if (!autoAdvance) return undefined;

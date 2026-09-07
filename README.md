@@ -10,7 +10,8 @@ Production hosts **dated builds** side by side so reviewers can keep the comment
 |------|---------|
 | `/` | Version switcher (pick a dated build). |
 | `/v/2026-07-29/` | Previous production snapshot — shared comments stay here. |
-| `/v/2026-08-09/` | Latest prototype from this repo. |
+| `/v/2026-08-09/` | August prototype (before Clare listener-copy pass). |
+| `/v/2026-09-07/` | Latest — US spelling + Clare 5 Sept listener copy. |
 | `/app/*` | Redirects to the July build so existing comment links keep working. |
 
 Local `npm run dev` still serves the current tree at `/`.

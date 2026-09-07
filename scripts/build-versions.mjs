@@ -33,6 +33,10 @@ const VERSION_BUILD_META = {
     commit: "2d1ade2bf5100f50e927615a30138284dc4d4a65",
   },
   "2026-08-09": {
+    kind: "archive",
+    commit: "d87d069cc0cb4e92c0aa20195ef8c0c1ed0a53da",
+  },
+  "2026-09-07": {
     kind: "current",
   },
 };
@@ -146,7 +150,7 @@ function writeRootSwitcher(versions) {
   <main>
     <p class="eyebrow">Sonocea build archive</p>
     <h1>Pick a dated version</h1>
-    <p class="lede">The July build keeps every shared comment in place. The August build is the newer prototype. Same site — different folders on the URL.</p>
+    <p class="lede">Dated builds side by side. July keeps shared comments. August is the prior prototype. September is the latest listener-copy pass.</p>
     <div class="grid">
       ${cards}
     </div>

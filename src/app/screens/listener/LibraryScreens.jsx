@@ -507,7 +507,7 @@ export function ListenerHome() {
                         </div>
                       ) : (
                         <p className="text-[14px]" style={{ color: tone.muted }}>
-                          No sessions in this mode yet.
+                          No sessions in this category yet.
                         </p>
                       )}
                     </div>
@@ -619,14 +619,14 @@ export function ListenerProgramme() {
 
         <div className="mt-5 min-w-0">
           <AppTitle className="text-[1.5rem]">
-            {directAccess ? "Your sessions" : "Your programme"}
+            {directAccess ? "Your sessions" : "Your program"}
           </AppTitle>
           <AppBody className="mt-2">
             {directAccess
               ? personalisedProgrammeSubtitle(onboardingPrefs ?? {})
               : partner?.name
                 ? `${library.length} sessions from ${partner.name}`
-                : `${library.length} sessions in your programme`}
+                : `${library.length} sessions in your program`}
           </AppBody>
         </div>
 
@@ -758,8 +758,7 @@ export function ListenerProgramme() {
               </p>
             </div>
             <AppBody className="mt-3">
-              Sonocea uses patented Sonic Augmentation Technology™ to deliver structured listening
-              experiences designed to support nervous system regulation, recovery and wellbeing.
+              Sonocea uses patented Sonic Augmentation Technology™ to create structured sound experiences designed to support nervous system regulation, recovery, and well-being.
             </AppBody>
           </div>
 
@@ -776,14 +775,14 @@ export function ListenerProgramme() {
               <p className="text-[14px] font-medium" style={{ color: "var(--proto-text)" }}>
                 {directAccess
                   ? "Built around your answers"
-                  : (partner?.programmeTitle ?? "Your programme")}
+                  : (partner?.programmeTitle ?? "Your program")}
               </p>
             </div>
             <AppBody className="mt-3">
               {directAccess
-                ? "Session order and suggestions follow the goals, moments, and times you shared in onboarding. You can listen in any order that fits."
+                ? "Session suggestions reflect the goals and moments you shared when you joined. You can listen in any order that works for you."
                 : (partner?.programme ??
-                  "Your organisation has shared a set of listening sessions to support recovery and wellbeing.")}
+                  "Your organization has shared a set of listening sessions to support recovery and well-being.")}
             </AppBody>
             <AppBody className="mt-2">
               {morning.length} morning · {evening.length} evening · {library.length} total
@@ -946,10 +945,10 @@ export function ListenerLibrary() {
         <AppTitle className="text-[1.5rem]">Library</AppTitle>
         <AppBody className="mt-2">
           {directAccess
-            ? "All sessions in your programme"
+            ? "All sessions in your program"
             : partner?.name
               ? `All sessions from ${partner.name}`
-              : "All sessions in your programme"}
+              : "All sessions in your program"}
         </AppBody>
 
         <HomeModePills
@@ -963,7 +962,7 @@ export function ListenerLibrary() {
         <div className="mt-5">
           {sessions.length === 0 ? (
             <p className="text-[13px]" style={{ color: "var(--proto-text-muted)" }}>
-              No sessions in {activeMode?.label || "this mode"} yet.
+              No sessions in {activeMode?.label || "this category"} yet.
             </p>
           ) : (
             <div className="space-y-2">
@@ -1014,7 +1013,6 @@ export function ListenerProgress() {
   const streak = currentListenStreak(myHistory);
   const weekDone = weekCompletedCount(myHistory);
   const weekGoal = WEEKLY_SESSION_GOAL;
-  const weekPct = Math.min(100, Math.round((weekDone / weekGoal) * 100));
   const programmePct = programmeCompletionPct(myHistory, library);
   const minutes = totalListenMinutes(myHistory);
   const completedCount = new Set(
@@ -1034,24 +1032,24 @@ export function ListenerProgress() {
 
   const streakCopy =
     streak === 0
-      ? "Start a streak by finishing a session today"
+      ? "Finish a session to see it here"
       : streak === 1
-        ? "1 day in a row - keep going when it feels right"
-        : `${streak} days in a row`;
+        ? "1 session day recorded"
+        : `${streak} session days recorded`;
 
   return (
     <ListenerFrame mode={mode} activeTab="home" onTabChange={onTabChange}>
       <div className="pb-4 pt-2">
-        <AppTitle className="text-[1.5rem]">Your progress</AppTitle>
-        <AppBody className="mt-2">How listening is settling into your week</AppBody>
+        <AppTitle className="text-[1.5rem]">Your listening</AppTitle>
+        <AppBody className="mt-2">A look at your listening and what you’ve shared.</AppBody>
 
         {/* Snapshot */}
         <div className="mt-8 grid grid-cols-3 gap-2">
           {[
             {
-              label: "Streak",
-              value: streak > 0 ? `${streak}d` : "-",
-              hint: streak > 0 ? "in a row" : "not started",
+              label: "Sessions",
+              value: `${completedCount}`,
+              hint: "completed",
             },
             {
               label: "This week",
@@ -1059,7 +1057,7 @@ export function ListenerProgress() {
               hint: "sessions",
             },
             {
-              label: "Programme",
+              label: "Program",
               value: `${programmePct}%`,
               hint: `${completedCount} of ${library.length}`,
             },
@@ -1117,8 +1115,7 @@ export function ListenerProgress() {
             />
           </div>
           <p className="mt-2 text-[11px]" style={{ color: "var(--proto-text-muted)" }}>
-            Weekly aim · {weekDone} of {weekGoal} sessions
-            {weekDone >= weekGoal ? " · met" : ""} · {weekPct}% of goal
+            This week · {weekDone} of {weekGoal} sessions
           </p>
 
           <div className="mt-5 flex items-end justify-between gap-1.5">
@@ -1161,10 +1158,10 @@ export function ListenerProgress() {
         {goalRows.length > 0 ? (
           <div className="mt-8">
             <p className="mb-1 text-[14px] font-medium" style={{ color: "var(--proto-text)" }}>
-              Your goals
+              What you’d like to support.
             </p>
             <p className="mb-3 text-[12px]" style={{ color: "var(--proto-text-muted)" }}>
-              From what you said listening should support.
+              From what you shared when you joined.
             </p>
             <div className="space-y-2">
               {goalRows.map((goal) => {
@@ -1205,11 +1202,11 @@ export function ListenerProgress() {
             How you felt
           </p>
           <p className="mb-3 text-[12px]" style={{ color: "var(--proto-text-muted)" }}>
-            Before and after ratings from your sessions.
+            Your before and after check-ins from completed sessions.
           </p>
           {feelingPairs.length === 0 ? (
             <p className="text-[13px]" style={{ color: "var(--proto-text-muted)" }}>
-              After you check in before and after a session, the shift will show here.
+              Complete a before and after check-in to see your responses here.
             </p>
           ) : (
             <div className="space-y-2">
@@ -1268,7 +1265,7 @@ export function ListenerProgress() {
           </p>
           {myHistory.length === 0 ? (
             <p className="text-[13px]" style={{ color: "var(--proto-text-muted)" }}>
-              Finish a session and it’ll show up here.
+              Sessions you complete will appear here.
             </p>
           ) : (
             <div className="space-y-2">
@@ -1323,7 +1320,7 @@ export function ListenerOrganisation() {
         focus: "Staying focused",
         regulation: "Feeling more balanced",
         sleep: "Sleeping better",
-        wellbeing: "General wellbeing",
+        wellbeing: "General well-being",
       })[id],
     )
     .filter(Boolean);
@@ -1358,7 +1355,7 @@ export function ListenerOrganisation() {
           </p>
 
           <AppBody className="mt-4 text-center">
-            Sonocea shaped this set from what you shared — not from an organisation programme.
+            Sonocea shaped this set around the goals, moments, and listening times you shared when you joined.
           </AppBody>
 
           <div className="mt-8 space-y-3">
@@ -1375,7 +1372,7 @@ export function ListenerOrganisation() {
               },
               {
                 title: "Need help?",
-                body: "For app or playback issues, use Support. There’s no organisation contact on this plan.",
+                body: "For app or playback issues, use Support. There’s no organization contact on this plan.",
               },
             ].map((row) => (
               <div
@@ -1423,7 +1420,7 @@ export function ListenerOrganisation() {
         </div>
 
         <AppTitle className="mt-5 text-center">
-          {partner?.name ?? "Your organisation"}
+          {partner?.name ?? "Your organization"}
         </AppTitle>
         {programmeTitle ? (
           <p
@@ -1436,28 +1433,28 @@ export function ListenerOrganisation() {
 
         <AppBody className="mt-4 text-center">
           {partner?.programme ??
-            "Your organisation has shared a set of listening sessions to support you."}
+            "Your organization has shared a set of listening sessions to support you."}
         </AppBody>
 
         <div className="mt-8 space-y-3">
           {[
             {
-              title: "About this programme",
+              title: "About this program",
               body: isPne
                 ? `${library.length} sessions curated for academy and first-team recovery — after training, between fixtures, and on rest days. Your club chose this set; you can listen in any order that fits your week.`
-                : `${library.length} sessions chosen for you as part of your organisation’s plan.`,
+                : `${library.length} sessions chosen for you as part of your organization’s plan.`,
             },
             {
               title: "What it’s for",
               body: isPne
-                ? "Settle after training, recover between matches, and build a steadier listening habit around the match week — without a consumer subscription."
-                : "Help you settle, recover, and build a steadier listening habit.",
+                ? "For listening after training, between fixtures, and on rest days, when you want time to settle and recover."
+                : "Help you settle and recover.",
             },
             {
               title: "Need help?",
               body: isPne
-                ? "For programme questions, speak to Player Care at the club. For app or playback issues, use Support."
-                : "For programme questions, ask your organisation. For app issues, use Support.",
+                ? "For program questions, speak to Player Care at the club. For app or playback issues, use Support."
+                : "For program questions, ask your organization. For app issues, use Support.",
             },
           ].map((row) => (
             <div
@@ -1520,7 +1517,7 @@ export function ListenerSessionDetail() {
     return (
       <ListenerFrame mode={mode} hideTabBar>
         <AppTitle className="mt-8">Session unavailable</AppTitle>
-        <AppBody className="mt-3">This session isn’t in your assigned programme.</AppBody>
+        <AppBody className="mt-3">This session isn’t in your assigned program.</AppBody>
         <AppButton className="mt-8" onClick={closeDetail}>
           Go back
         </AppButton>
@@ -1568,7 +1565,7 @@ export function ListenerFavorites() {
       <div className="pb-4 pt-2">
         <AppTitle className="text-[1.5rem]">Saved</AppTitle>
         <AppBody className="mt-2">
-          Favorites aren’t in this build yet - they’ll land in a later version.
+          Saved sessions are coming soon.
         </AppBody>
 
         <div
@@ -1579,7 +1576,7 @@ export function ListenerFavorites() {
             Coming later
           </p>
           <p className="mt-2 text-[13px] leading-snug" style={{ color: "var(--proto-text-muted)" }}>
-            You’ll be able to save sessions from your list and find them here quickly.
+            You’ll be able to save sessions here for easy access.
           </p>
         </div>
 

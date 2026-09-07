@@ -223,22 +223,14 @@ export function ListenerPlayer() {
           isFirstCompletion
             ? [
                 [
-                  { text: "Well", line: 0 },
-                  { text: "done.", line: 0 },
-                ],
-                [
-                  { text: "You've", line: 0 },
-                  { text: "completed", line: 0 },
-                  { text: "your", line: 1 },
-                  { text: "first", line: 1 },
-                  { text: "session.", line: 1 },
+                  { text: "Your", line: 0 },
+                  { text: "first", line: 0 },
+                  { text: "session", line: 1 },
+                  { text: "is", line: 1 },
+                  { text: "complete.", line: 1 },
                 ],
               ]
             : [
-                [
-                  { text: "Well", line: 0 },
-                  { text: "done.", line: 0 },
-                ],
                 [
                   { text: "Your", line: 0 },
                   { text: "session", line: 0 },
@@ -432,19 +424,15 @@ export function ListenerFeedback() {
             ? [
                 { text: "See", line: 0 },
                 { text: "you", line: 0 },
-                { text: "at", line: 0 },
-                { text: "your", line: 0 },
-                { text: "next", line: 1 },
-                { text: "session,", line: 1 },
+                { text: "next", line: 0 },
+                { text: "time,", line: 1 },
                 { text: `${greetingName}.`, line: 1 },
               ]
             : [
                 { text: "See", line: 0 },
                 { text: "you", line: 0 },
-                { text: "at", line: 0 },
-                { text: "your", line: 0 },
-                { text: "next", line: 1 },
-                { text: "session.", line: 1 },
+                { text: "next", line: 0 },
+                { text: "time.", line: 1 },
               ],
         ]}
         onDone={finishToHome}
@@ -456,7 +444,7 @@ export function ListenerFeedback() {
     <ListenerFrame mode={mode} hideTabBar screenKey="after-check-in">
       <FeelCheckInPane
         title="How do you feel now?"
-        body="Choose what feels closest. There’s no right answer. This simply helps you notice how you feel after listening."
+        body="Choose what feels closest. There’s no right answer. This simply records how you feel after listening."
         exiting={exiting}
         actions={
           <>
@@ -541,7 +529,7 @@ export function ListenerProfile() {
             {[
               { id: "light", label: "Light" },
               { id: "dark", label: "Dark" },
-              { id: "adapt", label: "Adapt to time of day" },
+              { id: "adapt", label: "Change with time of day" },
             ].map((opt) => {
               const on = appearance === opt.id;
               return (
@@ -591,7 +579,7 @@ export function ListenerProfile() {
 
         <div className="mt-8 space-y-2">
           <AppButton fullWidth variant="secondary" onClick={() => navigate("/app/listener/organisation")}>
-            Organisation
+            Organization
           </AppButton>
           <AppButton fullWidth variant="secondary" onClick={() => navigate("/app/listener/about")}>
             About Sonocea
@@ -628,7 +616,7 @@ export function ListenerAbout() {
         </button>
         <AppTitle className="mt-6">Sonocea</AppTitle>
         <AppBody className="mt-4 max-w-[34ch]">
-          Sonocea offers listening sessions designed to help you settle, focus, and recover. Access is by invitation from your organisation.
+          Sonocea uses patented Sonic Augmentation Technology™ to create the structured sound behind its listening experiences. These experiences are designed to support regulation, recovery, and well-being.
         </AppBody>
         <AppBody className="mt-4 max-w-[34ch]">
           Sessions stream securely in the app and can’t be downloaded or shared.
@@ -651,7 +639,7 @@ export function ListenerSupport() {
         </button>
         <AppTitle className="mt-6">Need help?</AppTitle>
         <AppBody className="mt-4">
-          For access or programme questions, contact your organisation. For playback or account issues, reach Sonocea using the email on your invitation.
+          For access or program questions, contact your organization. For playback or account issues, contact Sonocea using the support details in your invitation.
         </AppBody>
         <div
           className="mt-8 rounded-2xl border p-4"
