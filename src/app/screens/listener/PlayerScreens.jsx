@@ -17,6 +17,7 @@ import {
   FeelSlider,
   openCheckInModal,
 } from "../../components/CheckInModal.jsx";
+import { ListenerHome } from "./LibraryScreens.jsx";
 
 function modeFromNeurotype(neurotypeId) {
   return NEUROTYPE_OPTIONS.find((n) => n.id === neurotypeId)?.mode ?? "regulation";
@@ -377,7 +378,9 @@ export function ListenerCheckIn() {
   }, [role, user, session, navigate]);
 
   if (role !== "listener" || !user) return <Navigate to="/app/listener" replace />;
-  return null;
+  // LiveAppPreview / Figma capture: navigate is a no-op, so keep home mounted
+  // so CheckInModalHost can flush the pending open.
+  return <ListenerHome />;
 }
 
 export function ListenerFeedback() {

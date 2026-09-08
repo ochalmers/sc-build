@@ -176,6 +176,11 @@ function buildArchive(version) {
       cwd: worktree,
       env: { ...process.env, VITE_BASE: base },
     });
+    return true;
+  } catch (error) {
+    console.error(`\nArchive ${version.id} failed (continuing):`, error?.message || error);
+    rmSync(outDir, { recursive: true, force: true });
+    return false;
   } finally {
     try {
       run(`git worktree remove --force "${worktree}"`);
@@ -213,15 +218,24 @@ function main() {
   rmSync(DIST, { recursive: true, force: true });
   mkdirSync(DIST, { recursive: true });
 
+  const shipped = [];
   for (const version of VERSIONS) {
-    if (version.kind === "archive") buildArchive(version);
-    else buildCurrent(version);
+    if (version.kind === "archive") {
+      if (buildArchive(version)) shipped.push(version);
+    } else {
+      buildCurrent(version);
+      shipped.push(version);
+    }
+  }
+
+  if (!shipped.some((version) => version.kind === "current")) {
+    throw new Error("Current dated build failed; refusing to deploy an empty site.");
   }
 
   copyRootPublicAssets();
-  writeRootSwitcher(VERSIONS);
+  writeRootSwitcher(shipped);
   console.log("\nVersioned build ready in dist/");
-  for (const v of VERSIONS) console.log(`  /v/${v.id}/  ← ${v.label}`);
+  for (const v of shipped) console.log(`  /v/${v.id}/  ← ${v.label}`);
 }
 
 main();
